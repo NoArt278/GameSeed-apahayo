@@ -6,9 +6,22 @@ public class ArmyCatBehaviour : MonoBehaviour {
     [SerializeField] private SpriteRenderer catRenderer;
 
     [Header("Properties")]
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float followSpeed = 3f;
+    private Transform follow;
 
-    // public void Initialize()
+    public void Initialize(Transform follow) {
+        this.follow = follow;
+    }
+
+    private void StickToGround() {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f)) {
+            transform.position = hit.point;
+        }
+    }
+
+    private void Update() {
+        StickToGround();
+    }
 
     #if UNITY_EDITOR
     [Button]
