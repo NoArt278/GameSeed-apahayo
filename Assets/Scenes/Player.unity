@@ -453,8 +453,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588191
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287319459316531379, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 19.209
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6581633996417484836, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
@@ -507,7 +532,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1310035232080755369, guid: 8dff4f84775630947a58221ce2cbf438, type: 3}
+    - {fileID: 4116623317463215, guid: 8dff4f84775630947a58221ce2cbf438, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dff4f84775630947a58221ce2cbf438, type: 3}
@@ -837,7 +864,7 @@ GameObject:
   - component: {fileID: 1066754703}
   - component: {fileID: 1066754702}
   m_Layer: 0
-  m_Name: InputContainer
+  m_Name: Input Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1454,7 +1481,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2079181260}
+  - {fileID: 1066754703}
   - {fileID: 411307711}
   - {fileID: 1131029582}
-  - {fileID: 1066754703}
   - {fileID: 1735075657}

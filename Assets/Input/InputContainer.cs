@@ -7,10 +7,11 @@ public class InputContainer : MonoBehaviour
 
     private void Awake()
     {
-        playerInputs = new PlayerInput();
         if (instance == null)
         {
+            playerInputs = new PlayerInput();
             instance = this;
+            DontDestroyOnLoad(gameObject);
         } else
         {
             Destroy(gameObject);
