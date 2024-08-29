@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
     private bool isSprinting = false;
     private float fireTimer, stamina, moveSpeed;
-    [SerializeField] private TMP_Text staminaText;
+    [SerializeField] private TMP_Text staminaText, catCountText;
 
     private void Awake()
     {
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Cat"))
         {
             catAmmoCount++;
-            other.enabled = false;
+            catCountText.text = "Cat : " + catAmmoCount.ToString();
         }
     }
 }
