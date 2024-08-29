@@ -122,7 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6162e3e10459d6d4daf254942688b7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  walkSpeed: 10
+  sprintSpeed: 20
   maxArmyCapacity: 10
 --- !u!114 &5530326438173183243
 MonoBehaviour:
