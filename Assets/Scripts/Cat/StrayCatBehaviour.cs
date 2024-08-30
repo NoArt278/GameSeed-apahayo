@@ -102,8 +102,9 @@ public class StrayCatBehaviour : MonoBehaviour {
             {
                 // Debug.DrawLine(transform.position, hit.position, Color.green, 2f);
                 // Check if the path is full
-                if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, new NavMeshPath())) {
-                    return hit.position;
+                var path = new NavMeshPath();
+                if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path)) {
+                    if (path.status == NavMeshPathStatus.PathComplete) return hit.position;
                 }
             }
         }
