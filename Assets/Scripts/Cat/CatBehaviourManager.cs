@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CatBehaviourManager))]
@@ -10,6 +11,8 @@ public class CatBehaviourManager : MonoBehaviour {
 
     public enum State { Stray, Army, Hiding }
     public State CurrentState { get; private set; } = State.Stray;
+    public Action<State, State> OnStateChanged;
+    public Action OnDestroyed;
 
     private void Awake() {
         armyCatBehaviour = GetComponent<ArmyCatBehaviour>();
@@ -19,12 +22,20 @@ public class CatBehaviourManager : MonoBehaviour {
         BecomeStrayCat();
     }
 
+    private void ChangeState(State newState) {
+        if (CurrentState == newState) return;
+        
+        State previousState = CurrentState;
+        CurrentState = newState;
+        OnStateChanged?.Invoke(previousState, CurrentState);
+    }
+
     public void BecomeStrayCat() {
         armyCatBehaviour.enabled = false;
         strayCatBehaviour.enabled = true;
         hidingCatBehaviour.enabled = false;
 
-        CurrentState = State.Stray;
+        ChangeState(State.Stray);
     }
 
     public void BecomeArmyCat() {
@@ -32,7 +43,7 @@ public class CatBehaviourManager : MonoBehaviour {
         strayCatBehaviour.enabled = false;
         hidingCatBehaviour.enabled = false;
 
-        CurrentState = State.Army;
+        ChangeState(State.Army);
     }
 
     public void BecomeHidingCat() {
@@ -40,6 +51,10 @@ public class CatBehaviourManager : MonoBehaviour {
         strayCatBehaviour.enabled = false;
         hidingCatBehaviour.enabled = true;
 
-        CurrentState = State.Hiding;
+        ChangeState(State.Hiding);
+    }
+
+    private void OnDestroy() {
+        OnDestroyed?.Invoke();
     }
 }
