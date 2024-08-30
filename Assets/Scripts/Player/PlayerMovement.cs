@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
     private float stamina, moveSpeed;
     private Transform currTrashBin;
+    private List<ArmyCatBehaviour> catList = new List<ArmyCatBehaviour>();
     [SerializeField] private TMP_Text staminaText, catCountText, hideText;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
@@ -138,8 +140,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Cat"))
         {
-            catAmmoCount++;
-            catCountText.text = "Cat : " + catAmmoCount.ToString();
+            ArmyCatBehaviour armyCat = other.gameObject.GetComponent<ArmyCatBehaviour>();
+            if (!catList.Contains(armyCat))
+            {
+                catAmmoCount++;
+                catCountText.text = "Cat : " + catAmmoCount.ToString();
+                armyCat.Initialize(transform);
+                catList.Add(armyCat);
+            }
         } else if (other.CompareTag("Hide"))
         {
             currTrashBin = other.transform;
