@@ -68,9 +68,29 @@ public class CatSpawner : MonoBehaviour
             spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 10, NavMesh.AllAreas)) {
-                Vector2 clipSpace = Camera.main.WorldToViewportPoint(hit.position);
-                if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1) {
-                    return hit.position;
+                // Check if it is visible by player or not
+
+                // CASE 1: Spawn position is obstructed by something (i.e. building)
+                Vector3 hitPosition = hit.position;
+                Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
+                float distanceToCamera = directionToCamera.magnitude;
+
+                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera))
+                {
+                    if (raycastHit.collider.gameObject != Camera.main.gameObject)
+                    {
+                        return hitPosition;
+                    }
+                }
+
+                // CASE 2: It is outside of the camera view
+                else
+                {
+                    Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
+                    if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+                    {
+                        return hitPosition;
+                    }
                 }
             }
         }
