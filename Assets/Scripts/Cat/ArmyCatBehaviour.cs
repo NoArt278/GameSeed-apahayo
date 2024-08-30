@@ -86,7 +86,7 @@ public class ArmyCatBehaviour : MonoBehaviour {
     }
 
     private void AlignOrientation() {
-        catRenderer.flipX = agent.velocity.x < 0;
+        if (agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = agent.velocity.x < 0;
     }
 
     #if UNITY_EDITOR

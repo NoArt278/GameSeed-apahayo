@@ -41,7 +41,35 @@ public class CatArmy : MonoBehaviour
         cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
 
         cats.Add(cat);
+        RecalculateStoppingDistance();
+
         return true;
+    }
+
+    private void RecalculateStoppingDistance() {
+        if (cats.Count == 0) return;
+
+        float stoppingDistance;
+        switch (cats.Count) {
+            case <= 7:
+                stoppingDistance = catRadius * 2 + 0.02f;
+                break;
+            case <= 21:
+                stoppingDistance = (catRadius * 2 + 0.02f) * 2;
+                break;
+            case <= 42:
+                stoppingDistance = (catRadius * 2 + 0.02f) * 3;
+                break;
+            default:
+                stoppingDistance = (catRadius * 2 + 0.02f) * 4;
+                break;
+        }
+
+        if (stoppingDistance == cats[0].GetComponent<NavMeshAgent>().stoppingDistance) return;
+
+        foreach (ArmyCatBehaviour armyCat in cats) {
+            armyCat.GetComponent<NavMeshAgent>().stoppingDistance = stoppingDistance;
+        }
     }
 
     public int GetCatCount()
