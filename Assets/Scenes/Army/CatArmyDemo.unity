@@ -513,7 +513,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289260402}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CatArmy, Assembly-CSharp
         m_MethodName: FleeOuterCat
         m_Mode: 1
@@ -1544,7 +1544,7 @@ PrefabInstance:
         type: 3}
       propertyPath: catArmy
       value: 
-      objectReference: {fileID: 1289260402}
+      objectReference: {fileID: 0}
     - target: {fileID: 5530326438173183243, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
       propertyPath: hideText
@@ -2338,7 +2338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289260401}
-  - component: {fileID: 1289260402}
   m_Layer: 0
   m_Name: Cat Army
   m_TagString: Untagged
@@ -2371,21 +2370,6 @@ Transform:
   - {fileID: 1206185953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1289260402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289260400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9adbf0066103ca342ab194273b97af53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cats: []
-  armyCatPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
-    type: 3}
 --- !u!1001 &1307189527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2503,7 +2487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1388145376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3009,7 +2993,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289260402}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CatArmy, Assembly-CSharp
         m_MethodName: AddCat
         m_Mode: 1

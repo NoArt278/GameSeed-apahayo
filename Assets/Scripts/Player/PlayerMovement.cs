@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
         }
+        catArmy.StartSprint(stats.sprintSpeed);
     }
 
     private void StopSprintInput(InputAction.CallbackContext ctx)
@@ -90,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isSprinting = false;
         moveSpeed = stats.walkSpeed;
+        catArmy.StopSprint();
     }
 
     private void Hide(InputAction.CallbackContext ctx)

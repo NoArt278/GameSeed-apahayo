@@ -37,7 +37,7 @@ public class CatArmy : MonoBehaviour
 
         this.follow = follow == null ? this.follow : follow;
 
-        cat.Initialize(follow);
+        cat.Initialize(follow, follow.GetComponent<PlayerStats>().walkSpeed);
         cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
 
         cats.Add(cat);
@@ -61,6 +61,18 @@ public class CatArmy : MonoBehaviour
             cat.GetComponent<HidingCatBehaviour>().QuitHiding(
                 onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
             );
+        }
+    }
+
+    public void StartSprint(float speed) {
+        foreach (ArmyCatBehaviour cat in cats) {
+            cat.Sprint(speed);
+        }
+    }
+
+    public void StopSprint() {
+        foreach (ArmyCatBehaviour cat in cats) {
+            cat.StopSprint();
         }
     }
 

@@ -8,11 +8,12 @@ public class ArmyCatBehaviour : MonoBehaviour {
     [SerializeField] private SpriteRenderer catRenderer;
 
     [Header("Properties")]
-    [SerializeField] private float speed = 4f;
     private Transform follow;
     private NavMeshAgent agent;
+    private float followSpeed;
 
     private bool followTheLeader = true;
+    private bool onAction = false;
     private Vector3 towardsFleePosition;
     private Vector3 fleePosition;
 
@@ -20,24 +21,50 @@ public class ArmyCatBehaviour : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Initialize(Transform follow) {
+    public void Initialize(Transform follow, float followSpeed) {
         this.follow = follow;
+        this.followSpeed = followSpeed;
+
+        agent.speed = followSpeed;
+        agent.SetDestination(follow.position);
+        agent.velocity = Vector3.zero;
+        LittleJump();
+    }
+
+    private void LittleJump() {
+        onAction = true;
+        float jumpDuration = 0.4f;
+        float jumpHeight = 0.4f;
+
+        Vector3 ground = transform.position;
+
+        transform.DOJump(ground, jumpHeight, 1, jumpDuration).OnComplete(() => onAction = false);
     }
     
     private void OnEnable() {
+        agent.speed = followSpeed;
+    }
+
+    public void Sprint(float speed) {
         agent.speed = speed;
     }
 
+    public void StopSprint() {
+        agent.speed = followSpeed;
+    }
+
     private void Update() {
+        if (!onAction) Follow();
+        AlignOrientation();
+    }
+
+    private void Follow() {
         if (followTheLeader) {
-            if (follow != null)
-                agent.SetDestination(follow.position);
+            if (follow != null) agent.SetDestination(follow.position);
         } else {
             towardsFleePosition = Vector3.MoveTowards(towardsFleePosition, fleePosition, 0.5f);
             agent.SetDestination(towardsFleePosition);
         }
-
-        AlignOrientation();
     }
 
     public void Flee() {
