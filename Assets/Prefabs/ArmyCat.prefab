@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3319338359886630136}
   - component: {fileID: 8463139469125936459}
   m_Layer: 0
-  m_Name: ArmyCat
+  m_Name: CatRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,9 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4679402809595049987}
-  - component: {fileID: 3170281281078992859}
   - component: {fileID: 5091378545787214062}
   - component: {fileID: 7480164201256537380}
+  - component: {fileID: 3132226445340389964}
+  - component: {fileID: 3170281281078992859}
+  - component: {fileID: 5885072185051355139}
+  - component: {fileID: 6907944684644577778}
   m_Layer: 0
   m_Name: ArmyCat
   m_TagString: Cat
@@ -119,19 +122,6 @@ Transform:
   - {fileID: 3319338359886630136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3170281281078992859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700631295823998277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394127aaadded9047aecac1ae6acac4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catRenderer: {fileID: 8463139469125936459}
 --- !u!195 &5091378545787214062
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -142,7 +132,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.15
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -173,7 +163,71 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.5
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!114 &3132226445340389964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559bb52b5ee58bb45a11bdb20a42870c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3170281281078992859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394127aaadded9047aecac1ae6acac4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catRenderer: {fileID: 8463139469125936459}
+  speed: 4
+--- !u!114 &5885072185051355139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffb3336419c4ad4c9852290ebf85fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 1
+  catRenderer: {fileID: 8463139469125936459}
+  speed: 3
+  wanderRadius:
+    min: 3
+    max: 7
+  idleDuration:
+    min: 5
+    max: 7
+  maxAttempts: 30
+--- !u!114 &6907944684644577778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dd823c0961b2344bf1a5c021a598cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDelay: 0.2
+  fadeDuration: 0.3
+  hideDuration: 0.5
+  catRenderer: {fileID: 8463139469125936459}

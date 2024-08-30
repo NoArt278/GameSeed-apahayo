@@ -5,16 +5,18 @@ using UnityEngine.AI;
 
 public class CatArmy : MonoBehaviour
 {
-    [SerializeField] private Transform follow;
-    [SerializeField] private List<ArmyCatBehaviour> cats;
+    // [SerializeField] private Transform follow;
+    private Transform follow;
+
+    [ReadOnly] [SerializeField] private List<ArmyCatBehaviour> cats;
     [SerializeField] private GameObject armyCatPrefab;
 
     private float catRadius;
 
     private void Awake() {
-        foreach (ArmyCatBehaviour cat in cats) {
-            cat.Initialize(follow);
-        }
+        // foreach (ArmyCatBehaviour cat in cats) {
+        //     cat.Initialize(follow);
+        // }
 
         catRadius = armyCatPrefab.GetComponent<NavMeshAgent>().radius;
     }
@@ -22,11 +24,39 @@ public class CatArmy : MonoBehaviour
     [Button]
     public void AddCat()
     {
-        GameObject newCat = Instantiate(armyCatPrefab, transform);
-        newCat.transform.position = FindAppropriateLocation();
-        ArmyCatBehaviour catBehaviour = newCat.GetComponent<ArmyCatBehaviour>();
-        catBehaviour.Initialize(follow);
-        cats.Add(catBehaviour);
+        // GameObject newCat = Instantiate(armyCatPrefab, transform);
+        // newCat.transform.position = FindAppropriateSpawnLocation();
+        // ArmyCatBehaviour catBehaviour = newCat.GetComponent<ArmyCatBehaviour>();
+        // catBehaviour.Initialize(follow);
+        // cats.Add(catBehaviour);
+    }
+
+    public bool RegisterCat(ArmyCatBehaviour cat, Transform follow) 
+    {
+        if (cats.Contains(cat)) return false;
+
+        this.follow = follow == null ? this.follow : follow;
+
+        cat.Initialize(follow);
+        cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
+
+        cats.Add(cat);
+        return true;
+    }
+
+    public void HideCats(Vector3 hidePosition) {
+        foreach (ArmyCatBehaviour cat in cats) {
+            cat.GetComponent<CatBehaviourManager>().BecomeHidingCat();
+            cat.GetComponent<HidingCatBehaviour>().StartHiding(hidePosition);
+        }
+    }
+
+    public void QuitHiding() {
+        foreach (ArmyCatBehaviour cat in cats) {
+            cat.GetComponent<HidingCatBehaviour>().QuitHiding(
+                onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
+            );
+        }
     }
 
     public void FleeOuterCat() {
@@ -46,8 +76,10 @@ public class CatArmy : MonoBehaviour
         cats.Remove(outerCat);
     }
 
-    private Vector3 FindAppropriateLocation()
+    private Vector3 FindAppropriateSpawnLocation()
     {
+        if (follow == null) return Vector3.zero;
+
         if (cats.Count == 0)
         {
             return follow.position + 2 * catRadius * Random.insideUnitSphere;

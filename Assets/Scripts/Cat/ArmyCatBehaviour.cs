@@ -8,7 +8,7 @@ public class ArmyCatBehaviour : MonoBehaviour {
     [SerializeField] private SpriteRenderer catRenderer;
 
     [Header("Properties")]
-    // [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float speed = 4f;
     private Transform follow;
     private NavMeshAgent agent;
 
@@ -22,6 +22,10 @@ public class ArmyCatBehaviour : MonoBehaviour {
 
     public void Initialize(Transform follow) {
         this.follow = follow;
+    }
+    
+    private void OnEnable() {
+        agent.speed = speed;
     }
 
     private void Update() {
@@ -55,11 +59,6 @@ public class ArmyCatBehaviour : MonoBehaviour {
     }
 
     private void AlignOrientation() {
-        // Vector3 direction = follow.position - transform.position;
-        // float targetYAngle = direction.x > 0 ? 0 : 180;
-
-        // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, targetYAngle, 0), Time.deltaTime * 5);
-        // LookAtCamera();
         catRenderer.flipX = agent.velocity.x < 0;
     }
 
