@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private int catAmmoCount;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
-    private float fireTimer, stamina, moveSpeed;
+    private float stamina, moveSpeed;
     [SerializeField] private TMP_Text staminaText, catCountText, hideText;
 
     private void Awake()
@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mr = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-        fireTimer = 0;
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
     }
