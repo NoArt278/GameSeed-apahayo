@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7480164201256537380}
   m_Layer: 0
   m_Name: ArmyCat
-  m_TagString: Untagged
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catRenderer: {fileID: 8463139469125936459}
-  rotationSpeed: 5
 --- !u!195 &5091378545787214062
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -26,7 +26,8 @@ public class ArmyCatBehaviour : MonoBehaviour {
 
     private void Update() {
         if (followTheLeader) {
-            agent.SetDestination(follow.position);
+            if (follow != null)
+                agent.SetDestination(follow.position);
         } else {
             towardsFleePosition = Vector3.MoveTowards(towardsFleePosition, fleePosition, 0.5f);
             agent.SetDestination(towardsFleePosition);
