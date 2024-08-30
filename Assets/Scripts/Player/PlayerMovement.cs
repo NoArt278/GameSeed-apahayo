@@ -1,6 +1,6 @@
+using Cinemachine;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float stamina, moveSpeed;
     private Transform currTrashBin;
     [SerializeField] private TMP_Text staminaText, catCountText, hideText;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
@@ -94,13 +95,17 @@ public class PlayerMovement : MonoBehaviour
         if (canHide && !isHiding && !justHid)
         {
             StopAllCoroutines();
-            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 2;
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 2;
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 2;
+            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward;
             isHiding = true;
             canMove = false;
             StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
             StopAllCoroutines();
+            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
             isHiding = false;
             mr.enabled = true;
             StartCoroutine(HideDelay());
@@ -119,10 +124,12 @@ public class PlayerMovement : MonoBehaviour
             hideText.text = "Press E to unhide";
         } else
         {
-            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
             canMove = true;
             capsuleCollider.enabled = true;
             hideText.text = "Press E to hide";
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
         }
         justHid = false;
     }
