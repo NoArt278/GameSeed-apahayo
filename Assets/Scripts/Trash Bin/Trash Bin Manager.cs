@@ -15,7 +15,7 @@ public class TrashBinManager : MonoBehaviour
         for (int i = 0; i < binCount; i++)
         {
             Transform chosenPos = binPosList[Random.Range(0, binPosList.Count)];
-            Instantiate(binPrefab, chosenPos.position, Quaternion.identity, transform);
+            Instantiate(binPrefab, chosenPos.position, binPrefab.transform.rotation, transform);
             binPosList.Remove(chosenPos);
         }
     }

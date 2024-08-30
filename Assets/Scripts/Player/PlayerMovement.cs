@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
     private float stamina, moveSpeed;
+    private Transform currTrashBin;
     [SerializeField] private TMP_Text staminaText, catCountText, hideText;
 
     private void Awake()
@@ -92,28 +94,36 @@ public class PlayerMovement : MonoBehaviour
         if (canHide && !isHiding && !justHid)
         {
             StopAllCoroutines();
-            StartCoroutine(HideDelay());
+            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
             isHiding = true;
             canMove = false;
-            capsuleCollider.enabled = false;
-            mr.enabled = false;
-            hideText.text = "Press E to unhide";
+            StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
             StopAllCoroutines();
-            StartCoroutine(HideDelay());
             isHiding = false;
-            canMove = true;
-            capsuleCollider.enabled = true;
             mr.enabled = true;
-            hideText.text = "Press E to hide";
+            StartCoroutine(HideDelay());
         }
     }
 
     private IEnumerator HideDelay()
     {
         justHid = true;
+        hideText.text = "";
         yield return new WaitForSeconds(0.5f);
+        if (isHiding)
+        {
+            capsuleCollider.enabled = false;
+            mr.enabled = false;
+            hideText.text = "Press E to unhide";
+        } else
+        {
+            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
+            canMove = true;
+            capsuleCollider.enabled = true;
+            hideText.text = "Press E to hide";
+        }
         justHid = false;
     }
 
@@ -125,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
             catCountText.text = "Cat : " + catAmmoCount.ToString();
         } else if (other.CompareTag("Hide"))
         {
+            currTrashBin = other.transform;
             canHide = true;
             hideText.gameObject.SetActive(true);
         }
@@ -134,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Hide"))
         {
+            currTrashBin = null;
             canHide = false;
             hideText.gameObject.SetActive(false);
         }
