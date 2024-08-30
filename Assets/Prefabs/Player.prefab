@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 754249302239433328}
   - component: {fileID: 5530326438173183243}
   - component: {fileID: 3693054757737393928}
+  - component: {fileID: 6772096108912146341}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -139,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaText: {fileID: 0}
   catCountText: {fileID: 0}
+  hideText: {fileID: 0}
+  virtualCamera: {fileID: 0}
 --- !u!54 &3693054757737393928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,3 +169,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6772096108912146341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90248743401185210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adbf0066103ca342ab194273b97af53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cats: []
+  armyCatPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
+    type: 3}

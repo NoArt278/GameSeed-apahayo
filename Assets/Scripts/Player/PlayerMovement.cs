@@ -11,12 +11,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private MeshRenderer mr;
-    private int catAmmoCount;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
     private float stamina, moveSpeed;
     private Transform currTrashBin;
-    private List<ArmyCatBehaviour> catList = new List<ArmyCatBehaviour>();
+    private CatArmy catArmy;
     [SerializeField] private TMP_Text staminaText, catCountText, hideText;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
@@ -26,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mr = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        catArmy = GetComponent<CatArmy>();
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
     }
@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward;
             isHiding = true;
             canMove = false;
+            catArmy.HideCats(transform.position);
             StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
@@ -129,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
             canMove = true;
             capsuleCollider.enabled = true;
             hideText.text = "Press E to hide";
+            catArmy.QuitHiding();
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
@@ -141,13 +143,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Cat"))
         {
             ArmyCatBehaviour armyCat = other.gameObject.GetComponent<ArmyCatBehaviour>();
-            if (!catList.Contains(armyCat))
-            {
-                catAmmoCount++;
-                catCountText.text = "Cat : " + catAmmoCount.ToString();
-                armyCat.Initialize(transform);
-                catList.Add(armyCat);
-            }
+            catArmy.RegisterCat(armyCat, transform);
+            catCountText.text = "Cats : " + catArmy.GetCatCount().ToString();
         } else if (other.CompareTag("Hide"))
         {
             currTrashBin = other.transform;

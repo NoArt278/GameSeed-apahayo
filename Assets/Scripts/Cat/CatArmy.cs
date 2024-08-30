@@ -44,6 +44,11 @@ public class CatArmy : MonoBehaviour
         return true;
     }
 
+    public int GetCatCount()
+    {
+        return cats.Count;
+    }
+
     public void HideCats(Vector3 hidePosition) {
         foreach (ArmyCatBehaviour cat in cats) {
             cat.GetComponent<CatBehaviourManager>().BecomeHidingCat();
