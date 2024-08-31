@@ -1392,6 +1392,11 @@ PrefabInstance:
       objectReference: {fileID: 1569931607}
     - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
         type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -1410,6 +1415,11 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 1133052866}
+    - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: idleDuration.max
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
         type: 3}
       propertyPath: wanderRadius.max
@@ -2518,7 +2528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1289260401
 Transform:
   m_ObjectHideFlags: 0
@@ -3520,7 +3530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1864526101
 MonoBehaviour:
   m_ObjectHideFlags: 0
