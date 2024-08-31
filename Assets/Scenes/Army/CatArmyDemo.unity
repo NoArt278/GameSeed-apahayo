@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028471, g: 0.22571573, b: 0.30692348, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028498, g: 0.22571613, b: 0.30692434, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3338,7 +3338,6 @@ GameObject:
   - component: {fileID: 1864526103}
   - component: {fileID: 1864526102}
   - component: {fileID: 1864526101}
-  - component: {fileID: 1864526104}
   m_Layer: 0
   m_Name: CatSpawnArea
   m_TagString: Untagged
@@ -3401,19 +3400,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1864526104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864526100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcd739562446464f8610636ee5f115a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMultiplier: 20
 --- !u!1 &1906813341
 GameObject:
   m_ObjectHideFlags: 0
