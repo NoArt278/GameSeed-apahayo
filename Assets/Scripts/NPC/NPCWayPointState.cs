@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class NPCPointState : MonoBehaviour
+public class NPCWayPointState : BaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject[] wayPoints;
+    public NPCWayPointState(NavMeshAgent agent, Transform transform) : base(agent, transform)
     {
-        
+    }
+    public override void EnterState()
+    {
+        agent.updateRotation = false;
+        wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState()
+    {
+    }
+
+    public override void ExitState()
     {
         
     }
