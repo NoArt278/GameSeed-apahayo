@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6183228193253893456}
   - component: {fileID: 5275928204958545780}
+  - component: {fileID: 3103650062240677007}
+  - component: {fileID: 2666695732229117609}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -56,6 +58,40 @@ CapsuleCollider:
   m_Height: 1.01
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!195 &3103650062240677007
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272540199784814790}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.3
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2666695732229117609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272540199784814790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299cd5830e5d6964f80e563905562162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7588648533899059606
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +144,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b5000d1fe7af34140aa00dcb9fc6670c, type: 3}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
