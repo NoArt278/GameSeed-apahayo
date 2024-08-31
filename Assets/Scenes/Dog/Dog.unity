@@ -1407,6 +1407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
         type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1133052866}
+    - target: {fileID: 1665793085319407427, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
       propertyPath: wanderRadius.max
       value: 5
       objectReference: {fileID: 0}
@@ -1420,6 +1425,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3606688542080626351, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: fieldOfView
+      value: 
+      objectReference: {fileID: 1569931607}
+    - target: {fileID: 3606688542080626351, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1133052866}
     - target: {fileID: 3739206907570816391, guid: 89ac29d2c1869b24eb965c31f004354e,
         type: 3}
       propertyPath: Angle
@@ -1499,6 +1514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463139469125936459, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1622,6 +1642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 90248743401185210, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 754249302239433328, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
@@ -1890,6 +1915,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4679402809595049987, guid: 70312f30f15a881458034dd69c300ee0,
     type: 3}
   m_PrefabInstance: {fileID: 1115512539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1133052866 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8463139469125936459, guid: 89ac29d2c1869b24eb965c31f004354e,
+    type: 3}
+  m_PrefabInstance: {fileID: 859584598}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1206185952
 PrefabInstance:

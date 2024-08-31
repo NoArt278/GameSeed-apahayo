@@ -11,7 +11,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] public Material visionMaterial;
     [SerializeField] private int rayCount = 50;
 
-    private bool isPlayerVisible = false;
+    public bool isPlayerVisible = false;
 
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
@@ -77,7 +77,8 @@ public class FieldOfView : MonoBehaviour
         DrawVisionCone();
         if (isPlayerVisible)
         {
-            print("Player visible");
+            //print("Player visible");
+
         }
     }
 

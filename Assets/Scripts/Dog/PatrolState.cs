@@ -2,12 +2,10 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolBehaviour : MonoBehaviour
+public class PatrolState : DogState
 {
     private enum State { Wander, Idle }
     [ReadOnly][SerializeField] private State currentState = State.Idle;
-    [SerializeField] private SpriteRenderer catRenderer;
-    [SerializeField] private FieldOfView fieldOfView;
 
     [Header("Properties")]
     [SerializeField] private float speed = 3.5f;
@@ -23,16 +21,7 @@ public class PatrolBehaviour : MonoBehaviour
     private float timer;
     private float stopIdlingTime;
 
-    // Wander
-
-    private NavMeshAgent agent;
-
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
-
-    private void OnEnable()
+    public override void EnterState(DogStateMachine stateMachine)
     {
         float random = Random.Range(0f, 1f);
         if (random < 0.5f)
@@ -43,24 +32,37 @@ public class PatrolBehaviour : MonoBehaviour
         {
             SwitchToIdle();
         }
+        print("Enter Patrol State");
     }
 
-    private void Update()
+    public override void UpdateState(DogStateMachine stateMachine)
     {
-        switch (currentState)
+        if (!fieldOfView.isPlayerVisible)
         {
-            case State.Wander:
-                WanderLoop();
-                break;
-            case State.Idle:
-                IdleLoop();
-                break;
+            switch (currentState)
+            {
+                case State.Wander:
+                    WanderLoop();
+                    break;
+                case State.Idle:
+                    IdleLoop();
+                    break;
+            }
         }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.ChaseState);
+        }
+    }
+
+    public override void ExitState(DogStateMachine stateMachine)
+    {
+        agent.ResetPath();
     }
 
     private void AlignOrientation()
     {
-        if (agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = agent.velocity.x < 0;
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x >= 0;
     }
 
     private void SwitchToIdle()
@@ -105,7 +107,6 @@ public class PatrolBehaviour : MonoBehaviour
 
     private Vector3 GetValidDestination()
     {
-        float theta;
         // EXPECTED: Get Random Destination inside the wander radius
         for (int i = 0; i < maxAttempts; i++)
         {
