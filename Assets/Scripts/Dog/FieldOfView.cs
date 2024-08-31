@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    [SerializeField] public float Radius { get; private set; }
-    [SerializeField] public float Angle { get; private set; }
+    public float Radius;
+    public float Angle;
 
     private Mesh mesh;
     private MeshFilter meshFilter;
-    [SerializeField] private Material visionMaterial;
+    [SerializeField] public Material visionMaterial;
     [SerializeField] private int rayCount = 50;
 
     private bool isPlayerVisible = false;
@@ -27,7 +27,7 @@ public class FieldOfView : MonoBehaviour
     public void SetVisionDirection(Vector3 currentPosition, Vector3 direction)
     {
         float theta = Mathf.Atan2(direction.x - currentPosition.x, direction.z - currentPosition.z);
-        print("angle: " + theta * Mathf.Rad2Deg);
+        //print("angle: " + theta * Mathf.Rad2Deg);
         transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
     }
 

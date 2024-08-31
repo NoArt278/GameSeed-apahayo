@@ -61,8 +61,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,12 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baf2b46f0f23e349a31fe6a2f08c926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  angle: 90
-  visionMaterial: {fileID: 0}
-  startingAngle: 0
+  Radius: 5
+  Angle: 90
+  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
   rayCount: 50
-  isPlayerVisible: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -287,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7362a37e74fd9a64aaa6b611371ae60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 0}
+  fieldOfView: {fileID: 3739206907570816391}
 --- !u!114 &1665793085319407427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,15 +299,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 1
   catRenderer: {fileID: 8463139469125936459}
-  fieldOfView: {fileID: 0}
+  fieldOfView: {fileID: 3739206907570816391}
   speed: 3.5
   wanderRadius:
-    min: 0.5
-    max: 2
+    min: 2
+    max: 5
   idleDuration:
     min: 1
     max: 4
-  maxAttempts: 0
+  maxAttempts: 30
 --- !u!114 &3606688542080626351
 MonoBehaviour:
   m_ObjectHideFlags: 0

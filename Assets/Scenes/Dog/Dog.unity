@@ -1415,6 +1415,21 @@ PrefabInstance:
       propertyPath: wanderRadius.min
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2962366968393680047, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739206907570816391, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: Angle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739206907570816391, guid: 89ac29d2c1869b24eb965c31f004354e,
+        type: 3}
+      propertyPath: Radius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3739206907570816391, guid: 89ac29d2c1869b24eb965c31f004354e,
         type: 3}
       propertyPath: viewAngle
@@ -1540,7 +1555,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
