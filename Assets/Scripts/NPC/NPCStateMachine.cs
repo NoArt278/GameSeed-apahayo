@@ -5,27 +5,35 @@ using UnityEngine.AI;
 
 public class NPCStateMachine : MonoBehaviour
 {
-
+    // states
     private BaseState currentState;
-
-    public NPCIdleState idleState;
-    public NPCClickState clickState;
-    public NPCRandomState randomState;
-    
+    private NPCIdleState idleState;
+    private NPCClickState clickState;
+    private NPCRandomState randomState;
+    private NPCWayPointState wayPointState;
+    private NPCHypnotizedState hypnotizedState;
     private int stateIndex = 0;
-
     private BaseState[] states;
+
+    // script component
+    private HypnotizeManager hypnotizeManager;
+
     void Start()
     {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        Transform transform = GetComponent<Transform>();
+        // initialize states
+        idleState = new NPCIdleState(this);
+        clickState = new NPCClickState(this);
+        randomState = new NPCRandomState(this);
+        wayPointState = new NPCWayPointState(this);
+        hypnotizedState = new NPCHypnotizedState(this);
 
-        idleState = new NPCIdleState(agent, transform);
-        clickState = new NPCClickState(agent, transform);
-        randomState = new NPCRandomState(agent, transform);
+        // reference another script    
+        hypnotizeManager = GetComponent<HypnotizeManager>();
 
-        states = new BaseState[] {idleState, clickState, randomState};
+        // initialize state array
+        states = new BaseState[] {idleState, clickState, randomState, wayPointState, hypnotizedState};
 
+        // set initial state
         currentState = states[stateIndex];
         currentState.EnterState();
     }
@@ -33,6 +41,8 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
+
+        checkHypnotize();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,8 +54,22 @@ public class NPCStateMachine : MonoBehaviour
 
     public void TransitionToState(BaseState state)
     {
+        Debug.Log("Switching to state: " + state.GetType().Name);
         currentState.ExitState();
         currentState = state;
         currentState.EnterState();
+    }
+
+    private void checkHypnotize()
+    {
+        if (hypnotizeManager.isHypnotized)
+        {
+            TransitionToState(hypnotizedState); // TODO: hypnotizing state
+        }
+        else
+        {
+            TransitionToState(wayPointState);
+        }
+
     }
 }

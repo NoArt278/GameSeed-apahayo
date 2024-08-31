@@ -7,9 +7,14 @@ public class NPCRandomState : BaseState
 {
 
     public float range = 10.0f;
+    
+    private NavMeshAgent agent;
+    private Transform transform;
 
-    public NPCRandomState(NavMeshAgent agent, Transform transform) : base(agent, transform)
+    public NPCRandomState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
+        agent = monoBehaviour.GetComponent<NavMeshAgent>();
+        transform = monoBehaviour.transform;
     }
 
     public override void EnterState()
@@ -19,6 +24,7 @@ public class NPCRandomState : BaseState
 
     public override void UpdateState()
     {
+        FlipRotation();
         if(agent.remainingDistance <= agent.stoppingDistance) //done with path
         {
             Vector3 point;

@@ -5,9 +5,13 @@ using UnityEngine.AI;
 
 public class NPCClickState : BaseState 
 {
+    private NavMeshAgent agent;
+    private Transform transform;
     
-    public NPCClickState(NavMeshAgent agent, Transform transform) : base(agent, transform)
+    public NPCClickState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
+        agent = monoBehaviour.GetComponent<NavMeshAgent>();
+        transform = monoBehaviour.transform;
     }
 
     public override void EnterState()

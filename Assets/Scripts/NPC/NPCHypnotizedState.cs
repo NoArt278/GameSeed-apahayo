@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCIdleState : BaseState 
+public class NPCHypnotizedState : BaseState
 {
     private NavMeshAgent agent;
+    private HypnotizeManager hypnotizeManager;
 
-    public NPCIdleState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
+    public NPCHypnotizedState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
         agent = monoBehaviour.GetComponent<NavMeshAgent>();
+        hypnotizeManager = monoBehaviour.GetComponent<HypnotizeManager>();
     }
 
     public override void EnterState()
     {
-        agent.updateRotation = false;
         agent.SetDestination(monoBehaviour.transform.position);
+        agent.updateRotation = false;
     }
 
     public override void UpdateState()
     {
+
     }
 
     public override void ExitState()
     {
-        
     }
-
 }
-

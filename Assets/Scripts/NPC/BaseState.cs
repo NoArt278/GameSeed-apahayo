@@ -4,14 +4,12 @@ using UnityEngine.AI;
 
 public abstract class BaseState
 {
-    protected NavMeshAgent agent;
-    protected Transform transform;
+    protected MonoBehaviour monoBehaviour;
     public bool facingRight = false;
 
-    public BaseState(NavMeshAgent agent, Transform transform)
+    public BaseState(MonoBehaviour monoBehaviour)
     {
-        this.agent = agent;
-        this.transform = transform;
+        this.monoBehaviour = monoBehaviour;
     }
 
     public abstract void EnterState();
