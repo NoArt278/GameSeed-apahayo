@@ -10,7 +10,11 @@ public class NPCStateMachine : MonoBehaviour
 
     public NPCIdleState idleState;
     public NPCClickState clickState;
+    public NPCRandomState randomState;
     
+    private int stateIndex = 0;
+
+    private BaseState[] states;
     void Start()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
@@ -18,8 +22,11 @@ public class NPCStateMachine : MonoBehaviour
 
         idleState = new NPCIdleState(agent, transform);
         clickState = new NPCClickState(agent, transform);
+        randomState = new NPCRandomState(agent, transform);
 
-        currentState = idleState;
+        states = new BaseState[] {idleState, clickState, randomState};
+
+        currentState = states[stateIndex];
         currentState.EnterState();
     }
 
@@ -29,7 +36,9 @@ public class NPCStateMachine : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TransitionToState(clickState);
+            stateIndex = (stateIndex + 1) % states.Length;
+            TransitionToState(states[stateIndex]);
+            Debug.Log("Switching to state: " + currentState.GetType().Name);
         }
     }
 
