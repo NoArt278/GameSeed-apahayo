@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private CatArmy catArmy;
     private ParticleSystem sprintParticle;
     private TrailRenderer sprintTrail;
-    [SerializeField] private TMP_Text staminaText, catCountText, hideText;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    public TMP_Text staminaText, catCountText, hideText;
+    public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {

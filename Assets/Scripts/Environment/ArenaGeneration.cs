@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ArenaGeneration : MonoBehaviour {
+    public static ArenaGeneration Instance;
+
     [Header("Editor")]
     #if UNITY_EDITOR
     [SerializeField] private bool showGizmos = true;
@@ -22,12 +25,38 @@ public class ArenaGeneration : MonoBehaviour {
     private int[] remainingGenerationSlot;
     private bool[] arenaMustAppear;
 
-    private void Start() {
-        GenerateArena();
+    public RangeFloat HorizontalBounds() {
+        float halfGridSize = gridSize / 2f;
+        float startX = -arenaGridDimension.x * halfGridSize + halfGridSize;
+        float endX = arenaGridDimension.x * halfGridSize - halfGridSize;
+
+        startX += transform.position.x;
+        endX += transform.position.x;
+
+        return new(startX, endX);
+    }
+
+    public RangeFloat VerticalBounds() {
+        float halfGridSize = gridSize / 2f;
+        float startZ = arenaGridDimension.y * halfGridSize - halfGridSize;
+        float endZ = -arenaGridDimension.y * halfGridSize + halfGridSize;
+
+        startZ += transform.position.z;
+        endZ += transform.position.z;
+
+        return new(startZ, endZ);
+    }
+
+    private void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+        } else {
+            Instance = this;
+        }
     }
 
     [Button("Generate Random Arena")]
-    private void GenerateArena() {
+    public void GenerateArena() {
         ClearArena();
 
         // INITIALIZATION
