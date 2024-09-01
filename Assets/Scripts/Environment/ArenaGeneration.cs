@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -6,9 +7,19 @@ using UnityEngine.UIElements;
 public class ArenaGeneration : MonoBehaviour {
     public static ArenaGeneration Instance;
 
-    [Header("Editor")]
     #if UNITY_EDITOR
+    [System.Serializable]
+    public class BorderPrefabs {
+        public GameObject bottom;
+        public GameObject side;
+        public GameObject corner;
+    }
+
+    [Header("Editor")]
     [SerializeField] private bool showGizmos = true;
+    [SerializeField] private GameObject floorPrefab;
+    [SerializeField] private BorderPrefabs borderPrefabs;
+    [SerializeField] private Transform floorBorderParent;
     #endif
 
     [Header("Settings")]
@@ -16,7 +27,9 @@ public class ArenaGeneration : MonoBehaviour {
     [SerializeField] private float gridSize = 10f;
     [SerializeField] private Vector2Int arenaGridDimension = new(8, 5);
     [SerializeField] private Arena[] arenaPrefabs;
+    [SerializeField] private Transform arenaPropsParent;
     [SerializeField] private int maxGenerationAttempt = 20;
+
     
     // Notes for Grid Coordinate
     // Grid Coordinate starts from top left corner at (0, 0)
@@ -24,6 +37,8 @@ public class ArenaGeneration : MonoBehaviour {
     private GameObject[,] objectsInGrid;
     private int[] remainingGenerationSlot;
     private bool[] arenaMustAppear;
+    private enum Orientation { Default, Rotated90 }
+    private Orientation RandomOrientation => Random.Range(0, 2) == 0 ? Orientation.Default : Orientation.Rotated90;
 
     public RangeFloat HorizontalBounds() {
         float halfGridSize = gridSize / 2f;
@@ -55,9 +70,9 @@ public class ArenaGeneration : MonoBehaviour {
         }
     }
 
-    [Button("Generate Random Arena")]
+    [Button("[ARENA] Generate Random Props")]
     public void GenerateArena() {
-        ClearArena();
+        ClearArenaProps();
 
         // INITIALIZATION
         isGridOccupied = new bool[arenaGridDimension.x, arenaGridDimension.y];
@@ -85,13 +100,15 @@ public class ArenaGeneration : MonoBehaviour {
                 if (prefabIndex == -1) return; // No more arena to be placed
 
                 Arena arena = arenaPrefabs[prefabIndex];
+                Orientation orientation = RandomOrientation;
                 int attempt = 0;
 
                 // Find the suitable arena that can be placed
-                while (!CanBePlaced(coord, arena.GridSpan) && attempt < maxGenerationAttempt) {
+                while (!CanBePlaced(coord, arena.GridSpan, orientation) && attempt < maxGenerationAttempt) {
                     prefabIndex = GetRandomArenaPrefabIndex();
                     if (prefabIndex == -1) return;
                     arena = arenaPrefabs[prefabIndex];
+                    orientation = RandomOrientation;
                     attempt++;
                 }
                 if (attempt >= maxGenerationAttempt) {
@@ -100,11 +117,14 @@ public class ArenaGeneration : MonoBehaviour {
                 }
 
                 // Spawn the arena if it can be placed
-                SpawnArenaAt(coord, arena);
-                for (int i = 0; i < arena.GridSpan.x; i++) {
-                    for (int j = 0; j < arena.GridSpan.y; j++) {
-                        if (x + i >= arenaGridDimension.x || z - j < 0) return;
-                        isGridOccupied[x + i, z - j] = true;
+                SpawnArenaAt(coord, arena, orientation);
+                float spanX = orientation == Orientation.Default ? arena.GridSpan.x : arena.GridSpan.y;
+                float spanZ = orientation == Orientation.Default ? arena.GridSpan.y : arena.GridSpan.x;
+
+                for (int i = 0; i < spanX; i++) {
+                    for (int j = 0; j < spanZ; j++) {
+                        if (x + i >= arenaGridDimension.x || z + j >= arenaGridDimension.y) return;
+                        isGridOccupied[x + i, z + j] = true;
                     }
                 }
 
@@ -124,20 +144,26 @@ public class ArenaGeneration : MonoBehaviour {
 
             // Find the replacable arena
             Vector2Int coord = GetRandomGridCoordinate();
+            Orientation orientation = RandomOrientation;
             int attempt = 0;
-            while (!CanBePlaced(coord, mustAppearArena.GridSpan) && attempt < maxGenerationAttempt) {
+            while (!CanBePlaced(coord, mustAppearArena.GridSpan, orientation) && attempt < maxGenerationAttempt) {
                 coord = GetRandomGridCoordinate();
+                orientation = RandomOrientation;
                 attempt++;
             }
 
             // Replace the arena
             if (attempt < maxGenerationAttempt) {
-                RemoveArenaAt(coord, mustAppearArena);
-                SpawnArenaAt(coord, mustAppearArena);
-                for (int x = 0; x < mustAppearArena.GridSpan.x; x++) {
-                    for (int z = 0; z < mustAppearArena.GridSpan.y; z++) {
-                        if (coord.x + x >= arenaGridDimension.x || coord.y - z < 0) return;
-                        isGridOccupied[coord.x + x, coord.y - z] = true;
+                RemoveArenaAt(coord, mustAppearArena, orientation);
+                SpawnArenaAt(coord, mustAppearArena, orientation);
+
+                float spanX = orientation == Orientation.Default ? mustAppearArena.GridSpan.x : mustAppearArena.GridSpan.y;
+                float spanZ = orientation == Orientation.Default ? mustAppearArena.GridSpan.y : mustAppearArena.GridSpan.x;
+
+                for (int x = 0; x < spanX; x++) {
+                    for (int z = 0; z < spanZ; z++) {
+                        if (coord.x + x >= arenaGridDimension.x || coord.y + z >= arenaGridDimension.y) return;
+                        isGridOccupied[coord.x + x, coord.y + z] = true;
                     }
                 }
             } else {
@@ -146,10 +172,13 @@ public class ArenaGeneration : MonoBehaviour {
         }
     }
 
-    private bool CanBePlaced(Vector2Int coord, Vector2Int gridSpan) {
-        for (int x = 0; x < gridSpan.x; x++) {
-            for (int z = 0; z < gridSpan.y; z++) {
-                if (coord.x + x >= arenaGridDimension.x || coord.y - z < 0) {
+    private bool CanBePlaced(Vector2Int coord, Vector2Int gridSpan, Orientation orientation = Orientation.Default) {
+        int spanX = orientation == Orientation.Default ? gridSpan.x : gridSpan.y;
+        int spanZ = orientation == Orientation.Default ? gridSpan.y : gridSpan.x;
+
+        for (int x = 0; x < spanX; x++) {
+            for (int z = 0; z < spanZ; z++) {
+                if (coord.x + x >= arenaGridDimension.x || coord.y + z >= arenaGridDimension.y) {
                     return false;
                 }
             }
@@ -164,35 +193,50 @@ public class ArenaGeneration : MonoBehaviour {
         return new(x, z);
     }
 
-    private void RemoveArenaAt(Vector2Int coord, Arena arena) {
-        for (int i = 0; i < arena.GridSpan.x; i++) {
-            for (int j = 0; j < arena.GridSpan.y; j++) {
-                if (coord.x + i >= arenaGridDimension.x || coord.y - j < 0) return;
+    private void RemoveArenaAt(Vector2Int coord, Arena arena, Orientation orientation = Orientation.Default) {
+        int spanX = orientation == Orientation.Default ? arena.GridSpan.x : arena.GridSpan.y;
+        int spanZ = orientation == Orientation.Default ? arena.GridSpan.y : arena.GridSpan.x;
 
-                GameObject obj = objectsInGrid[coord.x + i, coord.y - j];
-                if (obj != null) { Destroy(obj); }
+        for (int i = 0; i < spanX; i++) {
+            for (int j = 0; j < spanZ; j++) {
+                if (coord.x + i >= arenaGridDimension.x || coord.y + j >= arenaGridDimension.y) return;
 
-                isGridOccupied[coord.x + i, coord.y - j] = false;
+                GameObject obj = objectsInGrid[coord.x + i, coord.y + j];
+                if (obj != null) { 
+                    if (Application.isPlaying) Destroy(obj);
+                    else DestroyImmediate(obj);
+                }
+
+                isGridOccupied[coord.x + i, coord.y + j] = false;
             }
         }
     }
 
-    private void SpawnArenaAt(Vector2Int coord, Arena arena) {
+    private Quaternion GetRotation(Orientation orientation) {
+        return orientation == Orientation.Default ? 
+            Quaternion.Euler(0, 0 + Random.Range(0, 2) * 180, 0) :
+            Quaternion.Euler(0, 90 + Random.Range(0, 2) * 180, 0);
+    }
+
+    private void SpawnArenaAt(Vector2Int coord, Arena arena, Orientation orientation = Orientation.Default) {
         // Calculate the position
         Vector3 position = GridToWorldCoordinate(coord);
 
+        int spanX = orientation == Orientation.Default ? arena.GridSpan.x : arena.GridSpan.y;
+        int spanZ = orientation == Orientation.Default ? arena.GridSpan.y : arena.GridSpan.x;
+
         float halfGridSize = gridSize / 2f;
-        float offsetFactorX = arena.GridSpan.x - 1f;
-        float offsetFactorZ = arena.GridSpan.y - 1f;
+        float offsetFactorX = spanX - 1f;
+        float offsetFactorZ = spanZ - 1f;
         Vector3 originOffset = new(offsetFactorX * halfGridSize, 0f, -offsetFactorZ * halfGridSize);
 
         position += transform.position;
         position += originOffset;
 
         // Put the arena
-        GameObject arenaObj = Instantiate(arena.gameObject, position, Quaternion.identity);
+        GameObject arenaObj = Instantiate(arena.gameObject, position, GetRotation(orientation));
         arenaObj.GetComponent<Arena>().Init(coord);
-        arenaObj.transform.SetParent(transform);
+        arenaObj.transform.SetParent(arenaPropsParent);
 
         objectsInGrid[coord.x, coord.y] = arenaObj;
     }
@@ -222,7 +266,89 @@ public class ArenaGeneration : MonoBehaviour {
         return availablePrefabIndex[randomIndex];
     }
 
+    [Button("[ARENA] Clear Props")]
+    private void ClearArenaProps() {
+        if (Application.isPlaying) {
+            foreach (Transform child in arenaPropsParent) {
+                Destroy(child.gameObject);
+            }
+        } else {
+            while (arenaPropsParent.childCount > 0) {
+                DestroyImmediate(arenaPropsParent.GetChild(0).gameObject);
+            }
+        }
+    }
+
     #if UNITY_EDITOR
+
+    [Button("[FB] Refresh Floor and Border")]
+    private void PlaceFloorAndBorder() {
+        ClearFloorAndBorder();
+        for (int z = 0; z < arenaGridDimension.y; z++) {
+            for (int x = 0; x < arenaGridDimension.x; x++) {
+                Vector2Int coord = new(x, z);
+                Vector3 position = GridToWorldCoordinate(coord);
+                position += transform.position;
+
+                // Place the floor
+                GameObject floor = Instantiate(floorPrefab, position, Quaternion.identity);
+                floor.transform.SetParent(floorBorderParent);
+            }
+        }
+
+        for (int z = -1; z < arenaGridDimension.y + 1; z++) {
+            Vector2Int coord = new(-1, z);
+            Vector3 position = GridToWorldCoordinate(coord);
+            position += transform.position;
+
+            // Place the border
+            if (z == -1) {
+                GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 180, 0));
+                border.transform.SetParent(floorBorderParent);
+            } else if (z == arenaGridDimension.y) {
+                GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 90, 0));
+                border.transform.SetParent(floorBorderParent);
+            } else {
+                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.Euler(0, 180, 0));
+                border.transform.SetParent(floorBorderParent);
+            }
+
+            coord = new(arenaGridDimension.x, z);
+            position = GridToWorldCoordinate(coord);
+            position += transform.position;
+
+            // Place the border
+            if (z == -1) {
+                GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 270, 0));
+                border.transform.SetParent(floorBorderParent);
+            } else if (z == arenaGridDimension.y) {
+                GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 0, 0));
+                border.transform.SetParent(floorBorderParent);
+            } else {
+                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.identity);
+                border.transform.SetParent(floorBorderParent);
+            }
+        }
+
+        for (int x = 0; x < arenaGridDimension.x; x++) {
+            Vector2Int coord = new(x, -1);
+            Vector3 position = GridToWorldCoordinate(coord);
+            position += transform.position;
+
+            // Place the border
+            GameObject border = Instantiate(borderPrefabs.bottom, position, Quaternion.Euler(0, 180, 0));
+            border.transform.SetParent(floorBorderParent);
+
+            coord = new(x, arenaGridDimension.y);
+            position = GridToWorldCoordinate(coord);
+            position += transform.position;
+
+            // Place the border
+            GameObject border2 = Instantiate(borderPrefabs.bottom, position, Quaternion.Euler(0, 0, 0));
+            border2.transform.SetParent(floorBorderParent);
+        }
+    }
+
     private void OnValidate() {
         if (arenaGridDimension.x < 1) arenaGridDimension.x = 1;
         if (arenaGridDimension.y < 1) arenaGridDimension.y = 1;
@@ -230,15 +356,14 @@ public class ArenaGeneration : MonoBehaviour {
         if (gridSize < 1) gridSize = 1;
     }
 
-    [Button("Clear Arena")]
-    private void ClearArena() {
+    private void ClearFloorAndBorder() {
         if (Application.isPlaying) {
-            foreach (Transform child in transform) {
+            foreach (Transform child in floorBorderParent) {
                 Destroy(child.gameObject);
             }
         } else {
-            foreach (Transform child in transform) {
-                DestroyImmediate(child.gameObject);
+            while (floorBorderParent.childCount > 0) {
+                DestroyImmediate(floorBorderParent.GetChild(0).gameObject);
             }
         }
     }
