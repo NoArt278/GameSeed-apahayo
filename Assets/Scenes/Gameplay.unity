@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 4775285}
   - component: {fileID: 4775287}
   - component: {fileID: 4775286}
+  - component: {fileID: 4775288}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -206,6 +207,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4775284}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &4775288
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775284}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &29336351
 GameObject:
@@ -518,6 +541,7 @@ GameObject:
   - component: {fileID: 90705103}
   - component: {fileID: 90705105}
   - component: {fileID: 90705104}
+  - component: {fileID: 90705106}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -590,6 +614,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90705102}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &90705106
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90705102}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &137413361
 GameObject:
@@ -787,6 +833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194982386}
+  - component: {fileID: 194982387}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -811,6 +858,27 @@ Transform:
   - {fileID: 1777667771}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &194982387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194982385}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &211981091
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +890,7 @@ GameObject:
   - component: {fileID: 211981092}
   - component: {fileID: 211981094}
   - component: {fileID: 211981093}
+  - component: {fileID: 211981095}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -894,6 +963,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211981091}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &211981095
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211981091}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &220872040
 GameObject:
@@ -988,6 +1079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242841406}
+  - component: {fileID: 242841407}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -1012,6 +1104,27 @@ Transform:
   - {fileID: 1166939063}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &242841407
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242841405}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &247346974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,6 +1220,7 @@ GameObject:
   - component: {fileID: 265782772}
   - component: {fileID: 265782774}
   - component: {fileID: 265782773}
+  - component: {fileID: 265782775}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -1179,6 +1293,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265782771}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &265782775
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265782771}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &274220268
 GameObject:
@@ -1268,6 +1404,7 @@ GameObject:
   - component: {fileID: 305445045}
   - component: {fileID: 305445047}
   - component: {fileID: 305445046}
+  - component: {fileID: 305445048}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -1341,6 +1478,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305445044}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &305445048
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305445044}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &317285844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,6 +1511,7 @@ GameObject:
   - component: {fileID: 317285845}
   - component: {fileID: 317285847}
   - component: {fileID: 317285846}
+  - component: {fileID: 317285848}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -1425,6 +1585,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317285844}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &317285848
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317285844}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &318963299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1618,7 @@ GameObject:
   - component: {fileID: 318963300}
   - component: {fileID: 318963302}
   - component: {fileID: 318963301}
+  - component: {fileID: 318963303}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -1508,6 +1691,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318963299}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &318963303
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318963299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &368581512
 GameObject:
@@ -1593,6 +1798,7 @@ GameObject:
   - component: {fileID: 381791722}
   - component: {fileID: 381791724}
   - component: {fileID: 381791723}
+  - component: {fileID: 381791725}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -1665,6 +1871,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381791721}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &381791725
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381791721}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &404492023
 GameObject:
@@ -2173,6 +2401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444181794}
+  - component: {fileID: 444181795}
   m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
@@ -2197,6 +2426,27 @@ Transform:
   - {fileID: 885915531}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &444181795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444181793}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &448953739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7304550056404502844, guid: 91b36c6284cf2944e9f2972384b8e8ba,
@@ -2212,6 +2462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461641081}
+  - component: {fileID: 461641082}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -2236,6 +2487,27 @@ Transform:
   - {fileID: 78038756}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &461641082
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461641080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &488798960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 657380520}
+  - component: {fileID: 657380521}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -2570,6 +2843,27 @@ Transform:
   - {fileID: 488798961}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &657380521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657380519}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &677111026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677111027}
+  - component: {fileID: 677111028}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -2603,6 +2898,27 @@ Transform:
   - {fileID: 681648391}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &677111028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677111026}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &681648390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,6 +3097,7 @@ GameObject:
   - component: {fileID: 684757738}
   - component: {fileID: 684757740}
   - component: {fileID: 684757739}
+  - component: {fileID: 684757741}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -2854,6 +3171,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684757737}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &684757741
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684757737}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &705554036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,6 +3250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707895859}
+  - component: {fileID: 707895860}
   m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
@@ -2935,6 +3275,27 @@ Transform:
   - {fileID: 1325084091}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &707895860
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707895858}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &711433187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2944,6 +3305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711433188}
+  - component: {fileID: 711433189}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -2968,6 +3330,27 @@ Transform:
   - {fileID: 2085231875}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &711433189
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711433187}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &713595452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 715559476}
+  - component: {fileID: 715559477}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -3064,6 +3448,27 @@ Transform:
   - {fileID: 1877908055}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &715559477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715559475}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &717965191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727961122}
+  - component: {fileID: 727961123}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -3228,6 +3634,27 @@ Transform:
   - {fileID: 440454636}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &727961123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727961121}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &739706355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,6 +3798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764440572}
+  - component: {fileID: 764440573}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -3395,6 +3823,27 @@ Transform:
   - {fileID: 2017105423}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &764440573
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764440571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &837155832
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3855,7 @@ GameObject:
   - component: {fileID: 837155833}
   - component: {fileID: 837155835}
   - component: {fileID: 837155834}
+  - component: {fileID: 837155836}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -3479,6 +3929,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837155832}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &837155836
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837155832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &837477959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3962,7 @@ GameObject:
   - component: {fileID: 837477960}
   - component: {fileID: 837477962}
   - component: {fileID: 837477961}
+  - component: {fileID: 837477963}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -3562,6 +4035,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837477959}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &837477963
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837477959}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &856190746
 GameObject:
@@ -3822,6 +4317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938261508}
+  - component: {fileID: 938261509}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -3846,6 +4342,27 @@ Transform:
   - {fileID: 247346975}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &938261509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938261507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &963650066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,6 +4372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963650067}
+  - component: {fileID: 963650068}
   m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
@@ -3879,6 +4397,27 @@ Transform:
   - {fileID: 1714011659}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &963650068
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963650066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &989041721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,6 +4723,7 @@ GameObject:
   - component: {fileID: 1072259377}
   - component: {fileID: 1072259379}
   - component: {fileID: 1072259378}
+  - component: {fileID: 1072259380}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -4256,6 +4796,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072259376}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1072259380
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072259376}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1106670984
 GameObject:
@@ -4522,6 +5084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198136425}
+  - component: {fileID: 1198136426}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -4546,6 +5109,27 @@ Transform:
   - {fileID: 1863700206}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1198136426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198136424}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1201740504
 GameObject:
   m_ObjectHideFlags: 0
@@ -4992,6 +5576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333349296}
+  - component: {fileID: 1333349297}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -5016,6 +5601,27 @@ Transform:
   - {fileID: 1823716727}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1333349297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333349295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1333754029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5110,6 +5716,7 @@ GameObject:
   - component: {fileID: 1335659625}
   - component: {fileID: 1335659627}
   - component: {fileID: 1335659626}
+  - component: {fileID: 1335659628}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -5182,6 +5789,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335659624}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1335659628
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335659624}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1349283427
 GameObject:
@@ -5277,6 +5906,7 @@ GameObject:
   - component: {fileID: 1391507098}
   - component: {fileID: 1391507100}
   - component: {fileID: 1391507099}
+  - component: {fileID: 1391507101}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -5350,6 +5980,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391507097}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1391507101
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391507097}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1417756368
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,6 +6011,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417756369}
+  - component: {fileID: 1417756370}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -5383,6 +6036,27 @@ Transform:
   - {fileID: 220872041}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1417756370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417756368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1444843955
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,6 +6152,7 @@ GameObject:
   - component: {fileID: 1447659033}
   - component: {fileID: 1447659035}
   - component: {fileID: 1447659034}
+  - component: {fileID: 1447659036}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -5551,6 +6226,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447659032}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1447659036
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447659032}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1464066796
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,6 +6257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1464066797}
+  - component: {fileID: 1464066798}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -5584,6 +6282,27 @@ Transform:
   - {fileID: 1444843956}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1464066798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464066796}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1465976129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5593,6 +6312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465976130}
+  - component: {fileID: 1465976131}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -5617,6 +6337,27 @@ Transform:
   - {fileID: 1256260646}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1465976131
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465976129}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1471489626
 GameObject:
   m_ObjectHideFlags: 0
@@ -5628,6 +6369,7 @@ GameObject:
   - component: {fileID: 1471489627}
   - component: {fileID: 1471489629}
   - component: {fileID: 1471489628}
+  - component: {fileID: 1471489630}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -5701,6 +6443,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471489626}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1471489630
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471489626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1474029466
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +6476,7 @@ GameObject:
   - component: {fileID: 1474029467}
   - component: {fileID: 1474029469}
   - component: {fileID: 1474029468}
+  - component: {fileID: 1474029470}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -5784,6 +6549,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474029466}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1474029470
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474029466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1484736193
 GameObject:
@@ -6344,6 +7131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673087268}
+  - component: {fileID: 1673087269}
   m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
@@ -6368,6 +7156,27 @@ Transform:
   - {fileID: 1014828666}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1673087269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673087267}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1703478145
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,6 +7271,7 @@ GameObject:
   - component: {fileID: 1706443652}
   - component: {fileID: 1706443654}
   - component: {fileID: 1706443653}
+  - component: {fileID: 1706443655}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -6535,6 +7345,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706443651}
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1706443655
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706443651}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1713421091
 GameObject:
   m_ObjectHideFlags: 0
@@ -6546,6 +7378,7 @@ GameObject:
   - component: {fileID: 1713421092}
   - component: {fileID: 1713421094}
   - component: {fileID: 1713421093}
+  - component: {fileID: 1713421095}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -6618,6 +7451,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713421091}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &1713421095
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713421091}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &1714011658
 GameObject:
@@ -7183,6 +8038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839489809}
+  - component: {fileID: 1839489810}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -7207,6 +8063,27 @@ Transform:
   - {fileID: 1546116694}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1839489810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839489808}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1863700205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7518,6 +8395,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1914344973}
+  - component: {fileID: 1914344974}
   m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
@@ -7542,6 +8420,27 @@ Transform:
   - {fileID: 2103522020}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1914344974
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914344972}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1928341586
 GameObject:
   m_ObjectHideFlags: 0
@@ -7936,6 +8835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2085693039}
+  - component: {fileID: 2085693040}
   m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
@@ -7960,6 +8860,27 @@ Transform:
   - {fileID: 2115656055}
   m_Father: {fileID: 448953739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2085693040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085693038}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2103522019
 GameObject:
   m_ObjectHideFlags: 0
@@ -8055,6 +8976,7 @@ GameObject:
   - component: {fileID: 2114131792}
   - component: {fileID: 2114131794}
   - component: {fileID: 2114131793}
+  - component: {fileID: 2114131795}
   m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
@@ -8127,6 +9049,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114131791}
+  m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
+--- !u!64 &2114131795
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114131791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8017566174234000633, guid: 71bad458ebe28204aa3382b3305663ca, type: 3}
 --- !u!1 &2115656054
 GameObject:
