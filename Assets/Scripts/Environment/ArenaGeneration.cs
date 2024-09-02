@@ -19,8 +19,8 @@ public class ArenaGeneration : MonoBehaviour {
     [SerializeField] private bool showGizmos = true;
     [SerializeField] private GameObject floorPrefab;
     [SerializeField] private BorderPrefabs borderPrefabs;
-    [SerializeField] private Transform floorBorderParent;
     #endif
+    [SerializeField] private Transform floorBorderParent;
 
     [Header("Settings")]
     [InfoBox("Grid Coordinate starts from top left corner at (0, 0)")]
@@ -31,6 +31,7 @@ public class ArenaGeneration : MonoBehaviour {
     [SerializeField] private int maxGenerationAttempt = 20;
 
     public Transform ArenaPropsParent => arenaPropsParent;
+    public Transform FloorBorderParent => floorBorderParent;
 
     
     // Notes for Grid Coordinate

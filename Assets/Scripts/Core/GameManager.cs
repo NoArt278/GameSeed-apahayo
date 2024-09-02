@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         };
 
         StaticBatchingUtility.Combine(ArenaGeneration.Instance.ArenaPropsParent.gameObject);
+        StaticBatchingUtility.Combine(ArenaGeneration.Instance.FloorBorderParent.gameObject);
     }
 
     private void InitializePlayer() {
