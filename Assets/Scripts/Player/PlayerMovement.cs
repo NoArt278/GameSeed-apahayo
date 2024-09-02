@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (isHiding && !justHid)
         {
             StopAllCoroutines();
-            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 2;
+            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 1f;
             isHiding = false;
             mr.enabled = true;
             StartCoroutine(HideDelay());

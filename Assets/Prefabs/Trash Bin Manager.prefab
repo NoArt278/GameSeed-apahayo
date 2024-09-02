@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f6dbf52709d6041add898d28fc5860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  binPrefab: {fileID: 6397088887045610188, guid: 9530dca35ff722248912b654134c1db1,
+  binPrefab: {fileID: 2677654822116131626, guid: 31a6403ada484e4479d11ea57af5268d,
     type: 3}
   binPosListContainer: {fileID: 2904477609434865569}
-  binCount: 4
+  maxBinCount: 4

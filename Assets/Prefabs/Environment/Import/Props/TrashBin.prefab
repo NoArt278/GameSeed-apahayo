@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1252858060635369275}
   - component: {fileID: 1300714563090467006}
   - component: {fileID: 4709763332071148892}
+  - component: {fileID: 7351604898592062396}
   m_Layer: 0
   m_Name: TrashBin
-  m_TagString: Untagged
+  m_TagString: Hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +107,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5928785198427282456, guid: a1ebe2704a5188848a5b31245b8741ad, type: 3}
+--- !u!65 &7351604898592062396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677654822116131626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.217891, y: 34.44494, z: 5.693341}
+  m_Center: {x: -0.045113374, y: 3.4358208, z: 0}
