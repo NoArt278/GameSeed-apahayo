@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 4775285}
   - component: {fileID: 4775287}
   - component: {fileID: 4775286}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 46416848}
   - component: {fileID: 46416850}
   - component: {fileID: 46416849}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 78038756}
   - component: {fileID: 78038758}
   - component: {fileID: 78038757}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 90705103}
   - component: {fileID: 90705105}
   - component: {fileID: 90705104}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194982386}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 211981092}
   - component: {fileID: 211981094}
   - component: {fileID: 211981093}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 220872041}
   - component: {fileID: 220872043}
   - component: {fileID: 220872042}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242841406}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 247346975}
   - component: {fileID: 247346977}
   - component: {fileID: 247346976}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 265782772}
   - component: {fileID: 265782774}
   - component: {fileID: 265782773}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1268,7 +1268,7 @@ GameObject:
   - component: {fileID: 305445045}
   - component: {fileID: 305445047}
   - component: {fileID: 305445046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 317285845}
   - component: {fileID: 317285847}
   - component: {fileID: 317285846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 318963300}
   - component: {fileID: 318963302}
   - component: {fileID: 318963301}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 381791722}
   - component: {fileID: 381791724}
   - component: {fileID: 381791723}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1677,7 @@ GameObject:
   - component: {fileID: 404492024}
   - component: {fileID: 404492026}
   - component: {fileID: 404492025}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,7 +1760,7 @@ GameObject:
   - component: {fileID: 405890090}
   - component: {fileID: 405890092}
   - component: {fileID: 405890091}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 414241165}
   - component: {fileID: 414241167}
   - component: {fileID: 414241166}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,7 +2091,7 @@ GameObject:
   - component: {fileID: 440454636}
   - component: {fileID: 440454638}
   - component: {fileID: 440454637}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,7 +2173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444181794}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2212,7 +2212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461641081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2247,7 +2247,7 @@ GameObject:
   - component: {fileID: 488798961}
   - component: {fileID: 488798963}
   - component: {fileID: 488798962}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2465,7 +2465,7 @@ GameObject:
   - component: {fileID: 550417289}
   - component: {fileID: 550417291}
   - component: {fileID: 550417290}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2546,7 +2546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 657380520}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2579,7 +2579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677111027}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2614,7 +2614,7 @@ GameObject:
   - component: {fileID: 681648391}
   - component: {fileID: 681648393}
   - component: {fileID: 681648392}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2698,7 +2698,7 @@ GameObject:
   - component: {fileID: 682125689}
   - component: {fileID: 682125691}
   - component: {fileID: 682125690}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2781,7 +2781,7 @@ GameObject:
   - component: {fileID: 684757738}
   - component: {fileID: 684757740}
   - component: {fileID: 684757739}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2911,7 +2911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707895859}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2944,7 +2944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711433188}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3040,7 +3040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 715559476}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3204,7 +3204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727961122}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3371,7 +3371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764440572}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3406,7 +3406,7 @@ GameObject:
   - component: {fileID: 837155833}
   - component: {fileID: 837155835}
   - component: {fileID: 837155834}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3490,7 +3490,7 @@ GameObject:
   - component: {fileID: 837477960}
   - component: {fileID: 837477962}
   - component: {fileID: 837477961}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3574,7 +3574,7 @@ GameObject:
   - component: {fileID: 856190747}
   - component: {fileID: 856190749}
   - component: {fileID: 856190748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3657,7 +3657,7 @@ GameObject:
   - component: {fileID: 872683919}
   - component: {fileID: 872683921}
   - component: {fileID: 872683920}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3740,7 +3740,7 @@ GameObject:
   - component: {fileID: 885915531}
   - component: {fileID: 885915533}
   - component: {fileID: 885915532}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3822,7 +3822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938261508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3855,7 +3855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963650067}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3934,7 +3934,7 @@ GameObject:
   - component: {fileID: 989321951}
   - component: {fileID: 989321953}
   - component: {fileID: 989321952}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4017,7 +4017,7 @@ GameObject:
   - component: {fileID: 1014828666}
   - component: {fileID: 1014828668}
   - component: {fileID: 1014828667}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4101,7 +4101,7 @@ GameObject:
   - component: {fileID: 1065968625}
   - component: {fileID: 1065968627}
   - component: {fileID: 1065968626}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4184,7 +4184,7 @@ GameObject:
   - component: {fileID: 1072259377}
   - component: {fileID: 1072259379}
   - component: {fileID: 1072259378}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4372,7 +4372,7 @@ GameObject:
   - component: {fileID: 1166939063}
   - component: {fileID: 1166939065}
   - component: {fileID: 1166939064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4522,7 +4522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198136425}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4557,7 +4557,7 @@ GameObject:
   - component: {fileID: 1201740505}
   - component: {fileID: 1201740507}
   - component: {fileID: 1201740506}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4640,7 +4640,7 @@ GameObject:
   - component: {fileID: 1242990386}
   - component: {fileID: 1242990388}
   - component: {fileID: 1242990387}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 1256260646}
   - component: {fileID: 1256260648}
   - component: {fileID: 1256260647}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4910,7 +4910,7 @@ GameObject:
   - component: {fileID: 1325084091}
   - component: {fileID: 1325084093}
   - component: {fileID: 1325084092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4992,7 +4992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333349296}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5027,7 +5027,7 @@ GameObject:
   - component: {fileID: 1333754030}
   - component: {fileID: 1333754032}
   - component: {fileID: 1333754031}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5110,7 +5110,7 @@ GameObject:
   - component: {fileID: 1335659625}
   - component: {fileID: 1335659627}
   - component: {fileID: 1335659626}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5194,7 +5194,7 @@ GameObject:
   - component: {fileID: 1349283428}
   - component: {fileID: 1349283430}
   - component: {fileID: 1349283429}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5277,7 +5277,7 @@ GameObject:
   - component: {fileID: 1391507098}
   - component: {fileID: 1391507100}
   - component: {fileID: 1391507099}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5359,7 +5359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417756369}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5394,7 +5394,7 @@ GameObject:
   - component: {fileID: 1444843956}
   - component: {fileID: 1444843958}
   - component: {fileID: 1444843957}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5478,7 +5478,7 @@ GameObject:
   - component: {fileID: 1447659033}
   - component: {fileID: 1447659035}
   - component: {fileID: 1447659034}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5560,7 +5560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1464066797}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5593,7 +5593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465976130}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5628,7 +5628,7 @@ GameObject:
   - component: {fileID: 1471489627}
   - component: {fileID: 1471489629}
   - component: {fileID: 1471489628}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5712,7 +5712,7 @@ GameObject:
   - component: {fileID: 1474029467}
   - component: {fileID: 1474029469}
   - component: {fileID: 1474029468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5930,7 +5930,7 @@ GameObject:
   - component: {fileID: 1533221609}
   - component: {fileID: 1533221611}
   - component: {fileID: 1533221610}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6013,7 +6013,7 @@ GameObject:
   - component: {fileID: 1546116694}
   - component: {fileID: 1546116696}
   - component: {fileID: 1546116695}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6097,7 +6097,7 @@ GameObject:
   - component: {fileID: 1554762768}
   - component: {fileID: 1554762770}
   - component: {fileID: 1554762769}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6180,7 +6180,7 @@ GameObject:
   - component: {fileID: 1595970910}
   - component: {fileID: 1595970912}
   - component: {fileID: 1595970911}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6263,7 +6263,7 @@ GameObject:
   - component: {fileID: 1628650675}
   - component: {fileID: 1628650677}
   - component: {fileID: 1628650676}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6344,7 +6344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673087268}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_atas(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6379,7 +6379,7 @@ GameObject:
   - component: {fileID: 1703478146}
   - component: {fileID: 1703478148}
   - component: {fileID: 1703478147}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6462,7 +6462,7 @@ GameObject:
   - component: {fileID: 1706443652}
   - component: {fileID: 1706443654}
   - component: {fileID: 1706443653}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6546,7 +6546,7 @@ GameObject:
   - component: {fileID: 1713421092}
   - component: {fileID: 1713421094}
   - component: {fileID: 1713421093}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6630,7 +6630,7 @@ GameObject:
   - component: {fileID: 1714011659}
   - component: {fileID: 1714011661}
   - component: {fileID: 1714011660}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6851,7 +6851,7 @@ GameObject:
   - component: {fileID: 1724263220}
   - component: {fileID: 1724263222}
   - component: {fileID: 1724263221}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6934,7 +6934,7 @@ GameObject:
   - component: {fileID: 1761699269}
   - component: {fileID: 1761699271}
   - component: {fileID: 1761699270}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7017,7 +7017,7 @@ GameObject:
   - component: {fileID: 1777667771}
   - component: {fileID: 1777667773}
   - component: {fileID: 1777667772}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7101,7 +7101,7 @@ GameObject:
   - component: {fileID: 1823716727}
   - component: {fileID: 1823716729}
   - component: {fileID: 1823716728}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7183,7 +7183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839489809}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7218,7 +7218,7 @@ GameObject:
   - component: {fileID: 1863700206}
   - component: {fileID: 1863700208}
   - component: {fileID: 1863700207}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7302,7 +7302,7 @@ GameObject:
   - component: {fileID: 1877908055}
   - component: {fileID: 1877908057}
   - component: {fileID: 1877908056}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7518,7 +7518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1914344973}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_samping(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7687,7 +7687,7 @@ GameObject:
   - component: {fileID: 1992398340}
   - component: {fileID: 1992398342}
   - component: {fileID: 1992398341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7770,7 +7770,7 @@ GameObject:
   - component: {fileID: 2017105423}
   - component: {fileID: 2017105425}
   - component: {fileID: 2017105424}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7854,7 +7854,7 @@ GameObject:
   - component: {fileID: 2085231875}
   - component: {fileID: 2085231877}
   - component: {fileID: 2085231876}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7936,7 +7936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2085693039}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: border_pojok(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7971,7 +7971,7 @@ GameObject:
   - component: {fileID: 2103522020}
   - component: {fileID: 2103522022}
   - component: {fileID: 2103522021}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8055,7 +8055,7 @@ GameObject:
   - component: {fileID: 2114131792}
   - component: {fileID: 2114131794}
   - component: {fileID: 2114131793}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: lantai(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8139,7 +8139,7 @@ GameObject:
   - component: {fileID: 2115656055}
   - component: {fileID: 2115656057}
   - component: {fileID: 2115656056}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
