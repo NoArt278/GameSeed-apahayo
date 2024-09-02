@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         InitializePlayer();
 
         // Timer
-        GameTimer.Instance.SetDuration(15f);
+        GameTimer.Instance.SetDuration(60f);
         GameTimer.Instance.StartTimer();
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();

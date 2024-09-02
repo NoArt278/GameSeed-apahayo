@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     public static GameTimer Instance { get; private set; }
-    [SerializeField] private float duration = 30f;
+    [SerializeField] private float duration = 60f;
     [SerializeField] private TextMeshProUGUI timerDisplay;
     [SerializeField] private bool playOnStart = false;
     public Action OnTimeUp;
@@ -79,10 +79,17 @@ public class GameTimer : MonoBehaviour
             OnTimeUp?.Invoke();
         }
 
+        private int ClampTime(int time)
+        {
+            return Mathf.Clamp(time, 0, 59);
+        }
+
         private void UpdateTimerDisplay()
         {
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.CeilToInt(remainingTime % 60);
+            seconds = ClampTime(seconds);
+                
             string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
             
             if (timerDisplay != null) {

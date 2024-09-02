@@ -1541,10 +1541,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strayCatPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
     type: 3}
-  maxStrayCats: 20
-  maxCatsInScene: 25
+  maxStrayCats: 30
+  maxCatsInScene: 50
   spawnDelay: 10
-  bulkSpawnRate: 4
+  bulkSpawnRate: 8
   maxLocationSearchAttempts: 30
 --- !u!65 &368581514
 BoxCollider:
