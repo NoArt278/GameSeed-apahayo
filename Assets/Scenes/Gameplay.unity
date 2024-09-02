@@ -1520,7 +1520,7 @@ GameObject:
   - component: {fileID: 368581515}
   - component: {fileID: 368581514}
   - component: {fileID: 368581513}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CatSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
