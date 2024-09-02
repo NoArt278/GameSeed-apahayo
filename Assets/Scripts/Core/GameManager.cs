@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();
         };
+
+        StaticBatchingUtility.Combine(ArenaGeneration.Instance.ArenaPropsParent.gameObject);
     }
 
     private void InitializePlayer() {

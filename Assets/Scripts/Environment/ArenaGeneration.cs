@@ -30,6 +30,8 @@ public class ArenaGeneration : MonoBehaviour {
     [SerializeField] private Transform arenaPropsParent;
     [SerializeField] private int maxGenerationAttempt = 20;
 
+    public Transform ArenaPropsParent => arenaPropsParent;
+
     
     // Notes for Grid Coordinate
     // Grid Coordinate starts from top left corner at (0, 0)
