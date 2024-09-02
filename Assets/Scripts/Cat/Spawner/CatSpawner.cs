@@ -40,6 +40,7 @@ public class CatSpawner : MonoBehaviour
     private void Spawn() {
         if (strayCatCount >= maxStrayCats) return;
         if (catsInSceneCount >= maxCatsInScene) return;
+        if (!Camera.main) return;
 
         Vector3 spawnPosition = GetSpawnPosition();
         if (spawnPosition == Vector3.zero) return;

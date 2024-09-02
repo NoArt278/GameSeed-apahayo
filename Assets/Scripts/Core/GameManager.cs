@@ -26,6 +26,13 @@ public class GameManager : MonoBehaviour
         ArenaGeneration.Instance.GenerateArena();
         NavMeshManager.Instance.BuildNavMesh();
         InitializePlayer();
+
+        // Timer
+        GameTimer.Instance.SetDuration(15f);
+        GameTimer.Instance.StartTimer();
+        GameTimer.Instance.OnTimeUp += () => {
+            EndGameScreen.Instance.ShowEndGameScreen();
+        };
     }
 
     private void InitializePlayer() {

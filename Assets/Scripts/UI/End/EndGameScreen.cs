@@ -1,0 +1,30 @@
+using DG.Tweening;
+using UnityEngine;
+
+public class EndGameScreen : MonoBehaviour {
+    public static EndGameScreen Instance { get; private set; }
+    [SerializeField] private CanvasGroup endGameScreen;
+
+    private void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+        } else {
+            Instance = this;
+        }
+    }
+
+    private void Start() {
+        endGameScreen.gameObject.SetActive(false);
+    }
+
+    public void ShowEndGameScreen() {
+        endGameScreen.alpha = 0;
+        endGameScreen.gameObject.SetActive(true);
+
+        endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine);
+    }
+
+    public void RestartScene() {
+        SceneLoader.Instance.RestartGameplay();
+    }
+}

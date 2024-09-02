@@ -1,0 +1,94 @@
+using System;
+using TMPro;
+using UnityEngine;
+
+public class GameTimer : MonoBehaviour
+{
+    public static GameTimer Instance { get; private set; }
+    [SerializeField] private float duration = 30f;
+    [SerializeField] private TextMeshProUGUI timerDisplay;
+    [SerializeField] private bool playOnStart = false;
+    public Action OnTimeUp;
+
+    private float remainingTime;
+    private bool isRunning = false;
+
+        void Awake()
+        {
+            if (Instance != null && Instance != this) {
+                Destroy(gameObject);
+            } else {
+                Instance = this;
+            }
+
+            ResetTimer();
+        }
+
+        void Start()
+        {
+            if (playOnStart) StartTimer();
+        }
+
+        void Update()
+        {
+            if (isRunning)
+            {
+                if (remainingTime > 0) {
+                    remainingTime -= Time.deltaTime;
+                    UpdateTimerDisplay();
+                } else {
+                    EndTimer();
+                }
+            }
+        }
+
+        public void StartTimer()
+        {
+            isRunning = true;
+        }
+
+        public void PauseTimer()
+        {
+            isRunning = false;
+        }
+
+        public void AddTime(float time)
+        {
+            remainingTime += time;
+            UpdateTimerDisplay();
+        }
+
+        public void ResetTimer()
+        {
+            remainingTime = duration;
+            isRunning = false;
+            UpdateTimerDisplay();
+        }
+
+        public void SetDuration(float newDuration)
+        {
+            duration = newDuration;
+            ResetTimer();
+        }
+
+        private void EndTimer()
+        {
+            isRunning = false;
+            remainingTime = 0;
+            UpdateTimerDisplay();
+            OnTimeUp?.Invoke();
+        }
+
+        private void UpdateTimerDisplay()
+        {
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.CeilToInt(remainingTime % 60);
+            string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
+            
+            if (timerDisplay != null) {
+                timerDisplay.text = timeString;
+            } else {
+                Debug.LogWarning("Timer Display (TextMeshProUGUI) is not assigned!");
+            }
+        }
+}

@@ -49,6 +49,10 @@ public class SceneLoader : MonoBehaviour {
         });
     }
 
+    public void RestartGameplay() {
+        ToGameplay();
+    }
+
     public void QuitGame() {
         Application.Quit();
     }
