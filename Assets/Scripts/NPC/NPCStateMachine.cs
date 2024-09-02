@@ -12,7 +12,7 @@ public class NPCStateMachine : MonoBehaviour
     private NPCRandomState randomState;
     private NPCWayPointState wayPointState;
     private NPCHypnotizedState hypnotizedState;
-    private int stateIndex = 0;
+    public int stateIndex = 2;
     private BaseState[] states;
 
     // script component
@@ -42,14 +42,9 @@ public class NPCStateMachine : MonoBehaviour
     {
         currentState.UpdateState();
 
-        checkHypnotize();
+        // checkHypnotize();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            stateIndex = (stateIndex + 1) % states.Length;
-            TransitionToState(states[stateIndex]);
-            Debug.Log("Switching to state: " + currentState.GetType().Name);
-        }
+
     }
 
     public void TransitionToState(BaseState state)

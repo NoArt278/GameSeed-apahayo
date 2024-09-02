@@ -33,9 +33,8 @@ public class HypnotizeManager : MonoBehaviour
         isHypnotized = true;
         hypnotizeHealth--;
         if (hypnotizeHealth <= 0){
-            // TODO: Add hypnotize state change    
+            // TODO: Add hypnotize state change
         }
-
     }
 
     void CountDown(){
@@ -53,7 +52,7 @@ public class HypnotizeManager : MonoBehaviour
     }
 
     void CountdownEnd(){
-        isCountdownActive = false;
+        isCountdownActive = false;  
         isHypnotized = false;
         Debug.Log("Hypnotize effect has ended");
     }
