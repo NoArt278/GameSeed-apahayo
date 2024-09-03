@@ -14,11 +14,13 @@ public class NPCWayPointState : BaseState
     public float timewait = 0;
     private NavMeshAgent agent;
     private Transform transform;
+    private SpriteRenderer spriteRenderer;
 
     public NPCWayPointState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
         agent = monoBehaviour.GetComponent<NavMeshAgent>();
         transform = monoBehaviour.transform;
+        spriteRenderer = monoBehaviour.GetComponentInChildren<SpriteRenderer>();
 
         timewait = Random.Range(waitTimeMin, waitTimeMax);
     }
@@ -64,5 +66,9 @@ public class NPCWayPointState : BaseState
             transform.Rotate(0, 180, 0);
         }
         
+    }
+
+    void FlipSprite(){
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
     }
 }

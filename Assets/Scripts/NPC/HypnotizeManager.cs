@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HypnotizeManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class HypnotizeManager : MonoBehaviour
     private Collider capsuleCollider;
     public bool isHypnotized = false;
     public int hypnotizeHealth = 5;
+    [SerializeField] public Image healthBar;
 
     // Countdown fields
     public float countdownDuration = 1f; // Duration of the countdown in seconds

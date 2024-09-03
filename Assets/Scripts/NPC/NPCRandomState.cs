@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class NPCRandomState : BaseState
 {
@@ -10,15 +11,23 @@ public class NPCRandomState : BaseState
     private Transform transform;
     private Vector3 randomPoint;
     public float timewait = 0;
-    public int waitTimeMin = 2;
+    public int waitTimeMin = 0;
     public int waitTimeMax = 5;
 
     public bool isCountingDown = false;
+    private SpriteRenderer spriteRenderer;
+    private NavMeshSurface navMeshSurface;
+
+    
 
     public NPCRandomState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
         agent = monoBehaviour.GetComponent<NavMeshAgent>();
         transform = monoBehaviour.transform;
+        spriteRenderer = monoBehaviour.GetComponentInChildren<SpriteRenderer>();
+        navMeshSurface = GameObject.FindGameObjectWithTag("WalkableSurface").GetComponent<NavMeshSurface>();
+
+        GetRandomPositionOnNavMesh(out randomPoint);
     }
 
     public override void EnterState()
@@ -29,7 +38,7 @@ public class NPCRandomState : BaseState
 
     public override void UpdateState()
     {
-        FlipRotation();
+        FlipSprite();
         CheckArrival();
         if(!isCountingDown){
             agent.SetDestination(randomPoint);
@@ -38,27 +47,24 @@ public class NPCRandomState : BaseState
 
     private void CheckArrival()
     {
-        if (Vector3.Distance(transform.position, randomPoint) < 1.0f)
+        if (Vector3.Distance(transform.position, randomPoint) < 1.0f && GetRandomPositionOnNavMesh(out randomPoint))
         {
-            RandomPoint(transform.position, range, out randomPoint);
             monoBehaviour.StartCoroutine(Countdown());
         }
     }
 
     private IEnumerator Countdown() {
         isCountingDown = true;
-        Debug.Log("Waiting for " + timewait + " seconds");
+        // Debug.Log("Waiting for " + timewait + " seconds");
         yield return new WaitForSeconds(timewait);
         timewait = Random.Range(waitTimeMin, waitTimeMax);
         isCountingDown = false;
     }
     
-
     public override void ExitState()
     {
         
     }
-
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
@@ -75,6 +81,25 @@ public class NPCRandomState : BaseState
         return false;
     }
 
+    bool GetRandomPositionOnNavMesh(out Vector3 result)
+    {
+        Vector3 randomPosition = new Vector3(
+            Random.Range(navMeshSurface.transform.position.x - navMeshSurface.size.x / 2, navMeshSurface.transform.position.x + navMeshSurface.size.x / 2),
+            navMeshSurface.transform.position.y,
+            Random.Range(navMeshSurface.transform.position.z - navMeshSurface.size.z / 2, navMeshSurface.transform.position.z + navMeshSurface.size.z / 2)
+        );
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPosition, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            result = hit.position;
+            return true;
+        }
+
+        result = Vector3.zero; // Fallback in case no valid position is found
+        return false;
+    }
+
     void FlipRotation(){
         Vector3 direction = agent.velocity;
 
@@ -83,5 +108,9 @@ public class NPCRandomState : BaseState
             transform.Rotate(0, 180, 0);
         }
         
+    }
+
+    void FlipSprite(){
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
     }
 }

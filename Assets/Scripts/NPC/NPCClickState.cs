@@ -7,11 +7,13 @@ public class NPCClickState : BaseState
 {
     private NavMeshAgent agent;
     private Transform transform;
+    private SpriteRenderer spriteRenderer;
     
     public NPCClickState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
         agent = monoBehaviour.GetComponent<NavMeshAgent>();
         transform = monoBehaviour.transform;
+        spriteRenderer = monoBehaviour.GetComponentInChildren<SpriteRenderer>();
     }
 
     public override void EnterState()
@@ -21,12 +23,12 @@ public class NPCClickState : BaseState
 
     public override void UpdateState()
     {
-        FlipRotation();
+        FlipSprite();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
         {
-            agent.SetDestination(hit.point);   
+            agent.SetDestination(hit.point);
         }
     }
 
@@ -44,6 +46,10 @@ public class NPCClickState : BaseState
             transform.Rotate(0, 180, 0);
         }
         
+    }
+
+    void FlipSprite(){
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
     }
 }
 

@@ -15,6 +15,16 @@ public class NPCStateMachine : MonoBehaviour
     public int stateIndex = 2;
     private BaseState[] states;
 
+    public enum WaypointType { FemaleChild, Male, BuffDude}
+    [System.Serializable]
+    public class Waypoint
+    {
+        public WaypointType type;
+        public Transform[] position;
+    }
+    public WaypointType waypointType;
+    [SerializeField] public Waypoint[] waypoints;
+
     // script component
     private HypnotizeManager hypnotizeManager;
 
@@ -42,14 +52,12 @@ public class NPCStateMachine : MonoBehaviour
     {
         currentState.UpdateState();
 
-        // checkHypnotize();
-
-
+        checkHypnotize();
     }
 
     public void TransitionToState(BaseState state)
     {
-        Debug.Log("Switching to state: " + state.GetType().Name);
+        // Debug.Log("Switching to state: " + state.GetType().Name);
         currentState.ExitState();
         currentState = state;
         currentState.EnterState();
@@ -63,7 +71,7 @@ public class NPCStateMachine : MonoBehaviour
         }
         else
         {
-            TransitionToState(wayPointState);
+            TransitionToState(randomState);
         }
 
     }
