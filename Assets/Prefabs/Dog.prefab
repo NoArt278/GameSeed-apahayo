@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1712332675715662675}
   - component: {fileID: 7752524031374214084}
   - component: {fileID: 2962366968393680047}
-  - component: {fileID: 3739206907570816391}
   m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
@@ -83,29 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3739206907570816391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5219491079471215447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8baf2b46f0f23e349a31fe6a2f08c926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Radius: 5
-  Angle: 90
-  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
-  rayCount: 50
-  isPlayerVisible: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &5236969993969379902
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +180,7 @@ GameObject:
   - component: {fileID: 42821055568371919}
   - component: {fileID: 1665793085319407427}
   - component: {fileID: 3606688542080626351}
+  - component: {fileID: 620627452154065762}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Cat
@@ -300,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d742c74cfa1c8f74ea7455348a7fcd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 3739206907570816391}
+  fieldOfView: {fileID: 620627452154065762}
   spriteRenderer: {fileID: 8463139469125936459}
   currentState: 1
   speed: 3.5
@@ -323,6 +300,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f084c469538a4124fa9a846c3283c839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 3739206907570816391}
+  fieldOfView: {fileID: 620627452154065762}
   spriteRenderer: {fileID: 8463139469125936459}
+  chaseRange: 10
   shouldChase: 0
+  meshFilter: {fileID: 7752524031374214084}
+  meshRenderer: {fileID: 2962366968393680047}
+  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
+  rayCount: 50
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &620627452154065762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baf2b46f0f23e349a31fe6a2f08c926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 5
+  Angle: 90
+  meshFilter: {fileID: 7752524031374214084}
+  meshRenderer: {fileID: 2962366968393680047}
+  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
+  rayCount: 50
+  isPlayerVisible: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64

@@ -6,12 +6,15 @@ public class FieldOfView : MonoBehaviour
     public float Radius;
     public float Angle;
 
+    private GameObject Vision;
     private Mesh mesh;
-    private MeshFilter meshFilter;
+    [SerializeField] private MeshFilter meshFilter;
+    [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] public Material visionMaterial;
     [SerializeField] private int rayCount = 50;
 
     public bool isPlayerVisible = false;
+    public bool isChasing = false;
 
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
@@ -19,8 +22,8 @@ public class FieldOfView : MonoBehaviour
     private void Start()
     {
         mesh = new Mesh();
-        meshFilter = GetComponent<MeshFilter>();
-        GetComponent<MeshRenderer>().material = visionMaterial;
+        meshRenderer.material = visionMaterial;
+        Vision = meshFilter.gameObject;
         StartCoroutine(CheckRoutine());
     }
 
@@ -28,7 +31,7 @@ public class FieldOfView : MonoBehaviour
     {
         float theta = Mathf.Atan2(direction.x - currentPosition.x, direction.z - currentPosition.z);
         //print("angle: " + theta * Mathf.Rad2Deg);
-        transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
+        Vision.transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
     }
 
     void DrawVisionCone()
@@ -45,9 +48,9 @@ public class FieldOfView : MonoBehaviour
         {
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
-            Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
+            Vector3 RaycastDirection = (Vision.transform.forward * Cosine) + (Vision.transform.right * Sine);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-            if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, Radius, obstacleMask))
+            if (Physics.Raycast(Vision.transform.position, RaycastDirection, out RaycastHit hit, Radius, obstacleMask) && !isChasing)
             {
                 Vertices[i + 1] = VertForward * hit.distance;
             }
@@ -95,18 +98,18 @@ public class FieldOfView : MonoBehaviour
 
     private void CheckView()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, Radius, playerMask);
+        Collider[] colliders = Physics.OverlapSphere(Vision.transform.position, Radius, playerMask);
 
         if (colliders.Length > 0)
         {
             Transform target = colliders[0].transform;
-            Vector3 direction = (target.position - transform.position).normalized;
+            Vector3 direction = (target.position - Vision.transform.position).normalized;
 
-            if(Vector3.Angle(transform.forward, direction) < Angle / 2)
+            if(Vector3.Angle(Vision.transform.forward, direction) < Angle / 2)
             {
-                float distance = Vector3.Distance(transform.position, target.position);
+                float distance = Vector3.Distance(Vision.transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, direction, distance, obstacleMask))
+                if (!Physics.Raycast(Vision.transform.position, direction, distance, obstacleMask))
                 {
                     isPlayerVisible = true;
                 }
