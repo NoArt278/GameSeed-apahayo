@@ -12,6 +12,7 @@ public class NPCStateMachine : MonoBehaviour
     private NPCRandomState randomState;
     private NPCWayPointState wayPointState;
     private NPCHypnotizedState hypnotizedState;
+    private NPCCrazeState crazeState;
     public int stateIndex = 2;
     private BaseState[] states;
 
@@ -36,12 +37,13 @@ public class NPCStateMachine : MonoBehaviour
         randomState = new NPCRandomState(this);
         wayPointState = new NPCWayPointState(this);
         hypnotizedState = new NPCHypnotizedState(this);
+        crazeState = new NPCCrazeState(this);
 
         // reference another script    
         hypnotizeManager = GetComponent<HypnotizeManager>();
 
         // initialize state array
-        states = new BaseState[] {idleState, clickState, randomState, wayPointState, hypnotizedState};
+        states = new BaseState[] {idleState, clickState, randomState, wayPointState, hypnotizedState, crazeState};
 
         // set initial state
         currentState = states[stateIndex];
@@ -72,6 +74,11 @@ public class NPCStateMachine : MonoBehaviour
         else
         {
             TransitionToState(randomState);
+        }
+
+        if(hypnotizeManager.successHypnotize)
+        {
+            TransitionToState(crazeState);
         }
 
     }

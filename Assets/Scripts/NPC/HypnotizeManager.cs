@@ -42,7 +42,7 @@ public class HypnotizeManager : MonoBehaviour
         StartCountdown();
         isHypnotized = true;
         if (hypnotizeHealth <= hypnoMeter){
-            // TODO: Add hypnotize state change
+            successHypnotize = true;
         } else {
             hypnoMeter++;
         }
