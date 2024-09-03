@@ -1,6 +1,5 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
     private MeshRenderer mr;
-    private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
+    private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 0;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
     private float stamina, moveSpeed;
     private Transform currTrashBin;
@@ -85,10 +84,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
-            sprintParticle.Play();
+            // sprintParticle.Play();
             sprintTrail.Play();
+            catArmy.StartSprint(stats.sprintSpeed);
         }
-        catArmy.StartSprint(stats.sprintSpeed);
     }
 
     private void StopSprintInput(InputAction.CallbackContext ctx)
