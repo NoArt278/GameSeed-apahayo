@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cat
   - Hide
+  - Building
   layers:
   - Default
   - TransparentFX

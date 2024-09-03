@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     private void InitializePlayer() {
         Vector3 spawnPosition = GetValidSpawnPosition();
         GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-        player.transform.position += Vector3.up * 0.6f;
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         PlayerUI.Instance.Initialize(playerMovement);
 
@@ -62,6 +61,16 @@ public class GameManager : MonoBehaviour
 
             if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
             {
+                bool isInsideBuilding = false;
+                Collider[] colliders = Physics.OverlapSphere(hit.position, 0.1f);
+                foreach (Collider collider in colliders) {
+                    if (collider.CompareTag("Building")) {
+                        isInsideBuilding = true;
+                        break;
+                    }
+                }
+
+                if (isInsideBuilding) continue;
                 return hit.position;
             } 
         }
