@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerStats stats;
-    private Rigidbody rb;
+    private CharacterController cc;
     private CapsuleCollider capsuleCollider;
     private MeshRenderer mr;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 30;
@@ -16,20 +16,19 @@ public class PlayerMovement : MonoBehaviour
     private float stamina, moveSpeed;
     private Transform currTrashBin;
     private CatArmy catArmy;
-    private ParticleSystem sprintParticle;
-    private TrailRenderer sprintTrail;
+    private ParticleSystem sprintParticle, sprintTrail;
     public TMP_Text staminaText, catCountText, hideText;
     public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
-        rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
         mr = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         catArmy = GetComponent<CatArmy>();
         sprintParticle = GetComponent<ParticleSystem>();
-        sprintTrail = GetComponentInChildren<TrailRenderer>();
+        sprintTrail = GetComponentInChildren<ParticleSystem>();
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
     }
@@ -51,13 +50,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!cc.isGrounded)
+        {
+            cc.Move(new Vector3(0, moveSpeed * Time.deltaTime * -1, 0));
+        }
+
         if (canMove)
         {
             Vector2 moveInput = InputContainer.playerInputs.Player.Move.ReadValue<Vector2>();
-            rb.velocity = moveSpeed * new Vector3(moveInput.x, 0, moveInput.y);
+            cc.Move(new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed * Time.deltaTime);
         } else
         {
-            rb.velocity = Vector3.zero;
             StopSprint();
         }
 
@@ -83,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
             sprintParticle.Play();
-            sprintTrail.emitting = true;
+            sprintTrail.Play();
         }
         catArmy.StartSprint(stats.sprintSpeed);
     }
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = false;
         moveSpeed = stats.walkSpeed;
         catArmy.StopSprint();
-        sprintTrail.emitting = false;
+        sprintTrail.Stop();
     }
 
     private void Hide(InputAction.CallbackContext ctx)
@@ -109,15 +112,17 @@ public class PlayerMovement : MonoBehaviour
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 2;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 2;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 2;
-            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward;
             isHiding = true;
             canMove = false;
+            cc.enabled = false;
+            transform.position = currTrashBin.position + currTrashBin.forward;
+            cc.enabled = true;
             catArmy.HideCats(transform.position);
             StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
             StopAllCoroutines();
-            transform.position = new Vector3(currTrashBin.position.x, transform.position.y, currTrashBin.position.z) + currTrashBin.forward * 1f;
+            transform.position = currTrashBin.position + currTrashBin.forward;
             isHiding = false;
             mr.enabled = true;
             StartCoroutine(HideDelay());
