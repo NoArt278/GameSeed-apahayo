@@ -84,9 +84,10 @@ public class CatArmy : MonoBehaviour
         }
     }
 
-    public void QuitHiding() {
+    public void QuitHiding(Vector3 exitPosition) {
         foreach (ArmyCatBehaviour cat in cats) {
             cat.GetComponent<HidingCatBehaviour>().QuitHiding(
+                exitPosition,
                 onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
             );
         }

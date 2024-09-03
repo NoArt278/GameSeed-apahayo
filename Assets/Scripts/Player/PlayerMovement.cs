@@ -116,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
             cc.enabled = false;
             transform.position = currTrashBin.position + currTrashBin.forward;
             cc.enabled = true;
-            catArmy.HideCats(transform.position);
             StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
@@ -138,12 +137,13 @@ public class PlayerMovement : MonoBehaviour
             capsuleCollider.enabled = false;
             mr.enabled = false;
             hideText.text = "Press E to unhide";
+            catArmy.HideCats(currTrashBin.position);
         } else
         {
             canMove = true;
             capsuleCollider.enabled = true;
             hideText.text = "Press E to hide";
-            catArmy.QuitHiding();
+            catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;

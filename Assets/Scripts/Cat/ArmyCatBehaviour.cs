@@ -10,14 +10,17 @@ public class ArmyCatBehaviour : MonoBehaviour {
     [SerializeField] private SpriteRenderer catRenderer;
 
     [Header("Properties")]
+    [SerializeField] private RangeFloat speedDeviation = new(-0.3f, 0.3f);
     private Transform follow;
     private NavMeshAgent agent;
     private float followSpeed;
+    private float sprintSpeed;
 
     private bool followTheLeader = true;
     private bool onAction = false;
     private Vector3 towardsFleePosition;
     private Vector3 fleePosition;
+    private bool isSprinting = false;
 
     private void Awake() {
         agent = GetComponent<NavMeshAgent>();
@@ -48,11 +51,12 @@ public class ArmyCatBehaviour : MonoBehaviour {
     }
 
     public void Sprint(float speed) {
-        agent.speed = speed;
+        sprintSpeed = speed;
+        isSprinting = true;
     }
 
     public void StopSprint() {
-        agent.speed = followSpeed;
+        isSprinting = false;
     }
 
     private void Update() {
@@ -64,7 +68,11 @@ public class ArmyCatBehaviour : MonoBehaviour {
 
     private void Follow() {
         if (followTheLeader) {
-            if (follow != null) agent.SetDestination(follow.position);
+            if (follow != null) {
+                float baseSpeed = isSprinting ? sprintSpeed : followSpeed;
+                agent.speed = baseSpeed + speedDeviation.RandomValue();
+                agent.SetDestination(follow.position);
+            }
         } else {
             towardsFleePosition = Vector3.MoveTowards(towardsFleePosition, fleePosition, 0.5f);
             agent.SetDestination(towardsFleePosition);
