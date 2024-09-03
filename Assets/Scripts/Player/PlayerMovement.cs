@@ -16,8 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float stamina, moveSpeed;
     private Transform currTrashBin;
     private CatArmy catArmy;
-    private ParticleSystem sprintParticle;
-    private TrailRenderer sprintTrail;
+    private ParticleSystem sprintParticle, sprintTrail;
     public TMP_Text staminaText, catCountText, hideText;
     public CinemachineVirtualCamera virtualCamera;
 
@@ -29,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         catArmy = GetComponent<CatArmy>();
         sprintParticle = GetComponent<ParticleSystem>();
-        sprintTrail = GetComponentInChildren<TrailRenderer>();
+        sprintTrail = GetComponentInChildren<ParticleSystem>();
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
     }
@@ -87,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
             sprintParticle.Play();
-            sprintTrail.emitting = true;
+            sprintTrail.Play();
         }
         catArmy.StartSprint(stats.sprintSpeed);
     }
@@ -102,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = false;
         moveSpeed = stats.walkSpeed;
         catArmy.StopSprint();
-        sprintTrail.emitting = false;
+        sprintTrail.Stop();
     }
 
     private void Hide(InputAction.CallbackContext ctx)
