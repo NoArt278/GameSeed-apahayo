@@ -1,5 +1,7 @@
+using System.Collections;
 using DG.Tweening;
 using NaughtyAttributes;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,10 +30,10 @@ public class ArmyCatBehaviour : MonoBehaviour {
         agent.speed = followSpeed;
         agent.SetDestination(follow.position);
         agent.velocity = Vector3.zero;
-        LittleJump();
+        LittleJumpOnRegistered();
     }
 
-    private void LittleJump() {
+    private void LittleJumpOnRegistered() {
         onAction = true;
         float jumpDuration = 0.4f;
         float jumpHeight = 0.4f;
@@ -55,6 +57,8 @@ public class ArmyCatBehaviour : MonoBehaviour {
 
     private void Update() {
         if (!onAction) Follow();
+        if (agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
+
         AlignOrientation();
     }
 
@@ -87,6 +91,60 @@ public class ArmyCatBehaviour : MonoBehaviour {
 
     private void AlignOrientation() {
         if (agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = agent.velocity.x < 0;
+    }
+
+    private void StartJumpToPlatform() {
+        onAction = true;
+        NavMeshLink link = agent.navMeshOwner as NavMeshLink;
+        bool reverse = CheckIfJumpingFromEndToStart(link);
+        Spline spline = reverse ? link.GetComponent<NavMeshLinkSpline>().SplineDrop : link.GetComponent<NavMeshLinkSpline>().SplineJump;
+        StartCoroutine(JumpToPlatformCoroutine(spline, reverse));
+
+        // OnStartJump?.Invoke();
+    }
+
+
+    private IEnumerator JumpToPlatformCoroutine(Spline spline, bool reverseDirection) {
+        float currentTime = 0;
+        float jumpDuration = 0.2f;
+        Vector3 agentStartPosition = agent.transform.position;
+
+        while (currentTime < jumpDuration)
+        {
+            currentTime += Time.deltaTime;
+
+            float amount = Mathf.Clamp01(currentTime / jumpDuration);
+            amount = reverseDirection ? 1 - amount : amount;
+
+            agent.transform.position =
+                reverseDirection ?
+                spline.CalculatePositionCustomEnd(amount, agentStartPosition)
+                : spline.CalculatePositionCustomStart(amount, agentStartPosition);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        agent.CompleteOffMeshLink();
+
+        // OnLand?.Invoke();
+        yield return new WaitForSeconds(0.1f);
+        onAction = false;
+    }
+
+    private bool CheckIfJumpingFromEndToStart(NavMeshLink link)
+    {
+        Vector3 startPosWorld
+            = link.gameObject.transform.TransformPoint(link.startPoint);
+        Vector3 endPosWorld
+            = link.gameObject.transform.TransformPoint(link.endPoint);
+
+        float distancePlayerToStart 
+            = Vector3.Distance(agent.transform.position, startPosWorld);
+        float distancePlayerToEnd 
+            = Vector3.Distance(agent.transform.position, endPosWorld);
+
+
+        return distancePlayerToStart > distancePlayerToEnd;
     }
 
     #if UNITY_EDITOR
