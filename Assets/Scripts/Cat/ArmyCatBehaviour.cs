@@ -98,6 +98,11 @@ public class ArmyCatBehaviour : MonoBehaviour {
         NavMeshLink link = agent.navMeshOwner as NavMeshLink;
         bool reverse = CheckIfJumpingFromEndToStart(link);
         Spline spline = reverse ? link.GetComponent<NavMeshLinkSpline>().SplineDrop : link.GetComponent<NavMeshLinkSpline>().SplineJump;
+        if (spline == null) 
+        {
+            onAction = false;
+        }
+
         StartCoroutine(JumpToPlatformCoroutine(spline, reverse));
 
         // OnStartJump?.Invoke();
