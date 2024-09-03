@@ -7,6 +7,7 @@ using Unity.AI.Navigation;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] public NavMeshSurface navMeshSurface;
+    [SerializeField] public Canvas sceneCanvas;
     public GameObject prefab;
 
     public int spawnAmount = 10;
@@ -19,7 +20,16 @@ public class SpawnManager : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionOnNavMesh();
             if (randomPosition != Vector3.zero)
             {
-                Instantiate(prefab, randomPosition, Quaternion.identity);
+                GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity);
+                HypnotizeManager hypnotizeManager = npc.GetComponent<HypnotizeManager>();
+                if (hypnotizeManager != null)
+                {
+                    hypnotizeManager.SetupHypnoBar(sceneCanvas);
+                }
+                else
+                {
+                    Debug.LogError("HypnotizeManager component not found on the instantiated prefab.");
+                }
             }
         }
     }

@@ -8,11 +8,13 @@ public class HypnotizeManager : MonoBehaviour
 
     private Collider capsuleCollider;
     public bool isHypnotized = false;
-    public int hypnotizeHealth = 5;
-    [SerializeField] public Image healthBar;
+    public bool successHypnotize = false;
+    public float hypnotizeHealth = 10f; // number of clicks to hypnotize
+    [SerializeField] public Image hypnoBar;
+    private float hypnoMeter = 0f;
 
     // Countdown fields
-    public float countdownDuration = 1f; // Duration of the countdown in seconds
+    public float countdownMultiplier = 2f; // Duration of the countdown in seconds
     private float timeRemaining;
     private bool isCountdownActive = false;
 
@@ -25,7 +27,13 @@ public class HypnotizeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CountDown();   
+        CountDown();
+        UpdateHypnoBar();
+        
+    }
+
+    void UpdateHypnoBar(){
+        hypnoBar.fillAmount = (float)hypnoMeter / (float)hypnotizeHealth;
     }
 
     void OnMouseDown()
@@ -33,23 +41,23 @@ public class HypnotizeManager : MonoBehaviour
         Debug.Log("Clicked on NPC");
         StartCountdown();
         isHypnotized = true;
-        hypnotizeHealth--;
-        if (hypnotizeHealth <= 0){
+        if (hypnotizeHealth <= hypnoMeter){
             // TODO: Add hypnotize state change
+        } else {
+            hypnoMeter++;
         }
     }
 
-    void CountDown(){
+    void CountDown(){ // check if the countdown is over
         if(isCountdownActive){
-            timeRemaining -= Time.deltaTime;
-            if(timeRemaining <= 0){
+            hypnoMeter -= (Time.deltaTime * countdownMultiplier);
+            if(hypnoMeter <= 0){
                 CountdownEnd();
             }
         }
     }
 
     void StartCountdown(){
-        timeRemaining = countdownDuration;
         isCountdownActive = true;
     }
 
@@ -57,5 +65,9 @@ public class HypnotizeManager : MonoBehaviour
         isCountdownActive = false;  
         isHypnotized = false;
         Debug.Log("Hypnotize effect has ended");
+    }
+
+    public void SetupHypnoBar(Canvas canvas){
+        hypnoBar.transform.SetParent(canvas.transform);
     }
 }
