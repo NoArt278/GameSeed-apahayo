@@ -65,6 +65,8 @@ public class ArenaGeneration : MonoBehaviour {
         return new(startZ, endZ);
     }
 
+    public float GroundY => transform.position.y;
+
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);

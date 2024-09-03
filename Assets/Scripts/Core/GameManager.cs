@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         InitializePlayer();
 
         // Timer
-        GameTimer.Instance.SetDuration(60f);
+        GameTimer.Instance.SetDuration(180f);
         GameTimer.Instance.StartTimer();
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private void InitializePlayer() {
         Vector3 spawnPosition = GetValidSpawnPosition();
         GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-        player.transform.position += Vector3.up * player.transform.lossyScale.y;
+        player.transform.position += Vector3.up * 0.6f;
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         PlayerUI.Instance.Initialize(playerMovement);
 
@@ -57,9 +57,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 100; i++)
         {
             float x = ArenaGeneration.Instance.HorizontalBounds().RandomValue();
+            float y = ArenaGeneration.Instance.GroundY;
             float z = ArenaGeneration.Instance.VerticalBounds().RandomValue();
 
-            if (NavMesh.SamplePosition(new Vector3(x, 0f, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
             {
                 return hit.position;
             } 
