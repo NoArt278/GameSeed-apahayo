@@ -12,6 +12,7 @@ public class CatArmy : MonoBehaviour
     [SerializeField] private GameObject armyCatPrefab;
 
     private float catRadius;
+    private List<ArmyCatBehaviour> outsideCats = new();
 
     private void Awake() {
         // foreach (ArmyCatBehaviour cat in cats) {
@@ -85,12 +86,35 @@ public class CatArmy : MonoBehaviour
     }
 
     public void QuitHiding(Vector3 exitPosition) {
-        foreach (ArmyCatBehaviour cat in cats) {
+        for (int i = 0; i < cats.Count; i++) {
+            ArmyCatBehaviour cat = cats[i];
+            if (i == 0) {
+                outsideCats.Clear();
+                cat.GetComponent<HidingCatBehaviour>().QuitHiding(
+                    exitPosition,
+                    onQuitComplete: () => {
+                        cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
+                    }
+                );
+                outsideCats.Add(cat);
+                continue;
+            }
+
             cat.GetComponent<HidingCatBehaviour>().QuitHiding(
-                exitPosition,
-                onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
+                FindAppropriateSpawnLocation(),
+                onQuitComplete: () => {
+                    cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
+                }
             );
+            outsideCats.Add(cat);
         }
+
+        // foreach (ArmyCatBehaviour cat in cats) {
+        //     cat.GetComponent<HidingCatBehaviour>().QuitHiding(
+        //         exitPosition,
+        //         onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
+        //     );
+        // }
     }
 
     public void StartSprint(float speed) {
@@ -126,17 +150,17 @@ public class CatArmy : MonoBehaviour
     {
         if (follow == null) return Vector3.zero;
 
-        if (cats.Count == 0)
+        if (outsideCats.Count == 0)
         {
             return follow.position + 2 * catRadius * Random.insideUnitSphere;
         }
 
         Vector3 averagePosition = Vector3.zero;
-        foreach (ArmyCatBehaviour cat in cats)
+        foreach (ArmyCatBehaviour cat in outsideCats)
         {
             averagePosition += cat.transform.position;
         }
-        averagePosition /= cats.Count;
+        averagePosition /= outsideCats.Count;
 
         Vector3 followDirection = (follow.position - averagePosition).normalized;
         if (followDirection == Vector3.zero)

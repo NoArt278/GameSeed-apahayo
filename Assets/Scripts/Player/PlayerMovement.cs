@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = currTrashBin.position + currTrashBin.forward;
             isHiding = false;
             mr.enabled = true;
+            catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             StartCoroutine(HideDelay());
         }
     }
@@ -143,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
             canMove = true;
             capsuleCollider.enabled = true;
             hideText.text = "Press E to hide";
-            catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
