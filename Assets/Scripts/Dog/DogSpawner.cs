@@ -63,10 +63,18 @@ public class DogSpawner : MonoBehaviour
                 // Check if it is visible by player or not
 
                 Vector3 hitPosition = hit.position;
+                Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
+                float distanceToCamera = directionToCamera.magnitude;
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
                 {
-                    return hitPosition;
+                    if (Physics.Raycast(directionToCamera, hitPosition, out RaycastHit raycastHit, distanceToCamera))
+                    {
+                        if (raycastHit.collider.gameObject != Camera.main.gameObject)
+                        {
+                            return hitPosition;
+                        }
+                    }
                 }
             }
         }

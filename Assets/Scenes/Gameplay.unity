@@ -1446,8 +1446,9 @@ GameObject:
   - component: {fileID: 368581515}
   - component: {fileID: 368581514}
   - component: {fileID: 368581513}
+  - component: {fileID: 368581516}
   m_Layer: 2
-  m_Name: CatSpawnArea
+  m_Name: SpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1508,6 +1509,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &368581516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368581512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ed34c8398e846438d4c7c27a26f463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogPrefab: {fileID: 7700631295823998277, guid: 89ac29d2c1869b24eb965c31f004354e,
+    type: 3}
+  spawnAmount: 2
+  minDistanceFromPlayer: 10
+  maxLocationSearchAttempts: 30
 --- !u!1 &381374057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,7 +3173,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0

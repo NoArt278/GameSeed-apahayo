@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 823178364089568009}
   - component: {fileID: 4730944046883635546}
   - component: {fileID: -5861332081589572648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: lantai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
