@@ -67,6 +67,7 @@ public class PatrolState : DogState
 
     private void SwitchToIdle()
     {
+        if (agent == null) return;
         agent.ResetPath();
         timer = 0f;
         stopIdlingTime = Random.Range(idleDuration.min, idleDuration.max);
@@ -76,6 +77,7 @@ public class PatrolState : DogState
 
     private void SwitchToWander()
     {
+        if (agent == null) return;
         agent.speed = speed;
         agent.SetDestination(GetValidDestination());
 

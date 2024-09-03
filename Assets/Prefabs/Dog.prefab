@@ -99,6 +99,7 @@ MonoBehaviour:
   Angle: 90
   visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
   rayCount: 50
+  isPlayerVisible: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -284,7 +285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7362a37e74fd9a64aaa6b611371ae60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 3739206907570816391}
+  PatrolState: {fileID: 1665793085319407427}
+  ChaseState: {fileID: 3606688542080626351}
+  CurrentState: {fileID: 0}
 --- !u!114 &1665793085319407427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,9 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d742c74cfa1c8f74ea7455348a7fcd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
-  catRenderer: {fileID: 8463139469125936459}
   fieldOfView: {fileID: 3739206907570816391}
+  spriteRenderer: {fileID: 8463139469125936459}
+  currentState: 1
   speed: 3.5
   wanderRadius:
     min: 2
@@ -320,3 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f084c469538a4124fa9a846c3283c839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfView: {fileID: 3739206907570816391}
+  spriteRenderer: {fileID: 8463139469125936459}
+  shouldChase: 0
