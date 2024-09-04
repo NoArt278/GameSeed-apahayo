@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3949562314820202967}
   - component: {fileID: 8714830178685473612}
   - component: {fileID: -7481318646622417971}
+  - component: {fileID: 2358956750324140542}
   m_Layer: 0
   m_Name: BuildingBox
   m_TagString: Building
@@ -106,3 +107,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8678823145569952518, guid: a1ebe2704a5188848a5b31245b8741ad, type: 3}
+--- !u!208 &2358956750324140542
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097446749306178174}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.051, y: 66.40501, z: 1.524}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.702, y: 56.286003, z: -0.523}
+  m_TimeToStationary: 0.5
