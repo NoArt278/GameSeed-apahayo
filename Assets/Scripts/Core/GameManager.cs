@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject cameraPrefab;
     [SerializeField] private GameObject directionalLight;
+    private LayerMask obstacleMask;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
         } else {
             Instance = this;
         }
+
+        obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start() {
@@ -61,8 +64,7 @@ public class GameManager : MonoBehaviour
 
             if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
             {
-                LayerMask mask = LayerMask.GetMask("Obstacle");
-                if (Physics.OverlapSphere(hit.position, 0.1f, mask).Length > 0) continue;
+                if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
 
                 // bool isInsideBuilding = false;
                 // Collider[] colliders = Physics.OverlapSphere(hit.position, 0.1f);

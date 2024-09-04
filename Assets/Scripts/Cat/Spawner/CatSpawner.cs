@@ -17,9 +17,12 @@ public class CatSpawner : MonoBehaviour
     [SerializeField] private int bulkSpawnRate = 4;
     [SerializeField] private int maxLocationSearchAttempts = 30;
 
+    private LayerMask obstacleMask;
+
     private BoxCollider spawnArea;
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
+        obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start() {
@@ -70,16 +73,15 @@ public class CatSpawner : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 10, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;
-                LayerMask mask = LayerMask.GetMask("Obstacle");
 
                 // CASE 0: It is inside a building
-                if (Physics.OverlapSphere(hitPosition, 0.1f, mask).Length > 0) continue;
+                if (Physics.OverlapSphere(hitPosition, 0.1f, obstacleMask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
                 float distanceToCamera = directionToCamera.magnitude;
 
-                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera, mask))
+                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera, obstacleMask))
                 {
                     if (raycastHit.collider.gameObject != Camera.main.gameObject)
                     {

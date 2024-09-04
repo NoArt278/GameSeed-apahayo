@@ -15,6 +15,11 @@ public class DogSpawner : MonoBehaviour
     [SerializeField] private int maxLocationSearchAttempts = 30;
 
     private BoxCollider spawnArea;
+    private LayerMask obstacleMask;
+
+    private void Awake() {
+        obstacleMask = LayerMask.GetMask("Obstacle");
+    }
 
     private void Start()
     {
@@ -63,13 +68,12 @@ public class DogSpawner : MonoBehaviour
                 // Check if it is visible by player or not
 
                 Vector3 hitPosition = hit.position;
-                Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
-                float distanceToCamera = directionToCamera.magnitude;
+                // Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
+                // float distanceToCamera = directionToCamera.magnitude;
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
                 {
-                    LayerMask mask = LayerMask.GetMask("Obstacle");
-                    if (Physics.OverlapSphere(hit.position, 0.1f, mask).Length > 0) continue;
+                    if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
                     // bool isInsideBuilding = false;
                     // Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.1f);
                     // foreach(Collider collider in colliders)
