@@ -70,24 +70,16 @@ public class CatSpawner : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 10, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;
+                LayerMask mask = LayerMask.GetMask("Obstacle");
 
                 // CASE 0: It is inside a building
-                bool isInsideBuilding = false;
-                Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.1f);
-                foreach (Collider collider in colliders) {
-                    if (collider.CompareTag("Building")) {
-                        isInsideBuilding = true;
-                        break;
-                    }
-                }
-
-                if (isInsideBuilding) continue;
+                if (Physics.OverlapSphere(hitPosition, 0.1f, mask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
                 float distanceToCamera = directionToCamera.magnitude;
 
-                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera))
+                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera, mask))
                 {
                     if (raycastHit.collider.gameObject != Camera.main.gameObject)
                     {
