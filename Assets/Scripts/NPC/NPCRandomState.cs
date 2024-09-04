@@ -17,8 +17,7 @@ public class NPCRandomState : BaseState
     public bool isCountingDown = false;
     private SpriteRenderer spriteRenderer;
     private NavMeshSurface navMeshSurface;
-
-    
+    private NavMeshOptimization navMeshOptimization;
 
     public NPCRandomState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
@@ -28,16 +27,19 @@ public class NPCRandomState : BaseState
         navMeshSurface = GameObject.FindGameObjectWithTag("WalkableSurface").GetComponent<NavMeshSurface>();
 
         GetRandomPositionOnNavMesh(out randomPoint);
+
+        navMeshOptimization = monoBehaviour.GetComponent<NavMeshOptimization>();
     }
 
     public override void EnterState()
     {
-        agent.updateRotation = false;
+        // agent.updateRotation = false;
         timewait = Random.Range(waitTimeMin, waitTimeMax);
     }
 
     public override void UpdateState()
-    {
+    {   
+        spriteRenderer.transform.rotation = Quaternion.identity; // lock sprite orientation
         FlipSprite();
         CheckArrival();
         if(!isCountingDown){
@@ -45,7 +47,14 @@ public class NPCRandomState : BaseState
         }
 
         if(agent.pathStatus == NavMeshPathStatus.PathInvalid){
+            Debug.LogWarning("Invalid path");
             GetRandomPositionOnNavMesh(out randomPoint);
+        }
+
+        if(navMeshOptimization.changeDestination){
+            Debug.LogWarning("Change destination");
+            GetRandomPositionOnNavMesh(out randomPoint);
+            navMeshOptimization.changeDestination = false;
         }
     }
 

@@ -30,23 +30,44 @@ public class HypnotizeManager : MonoBehaviour
     {
         CountDown();
         UpdateHypnoBar();
+        ClickDetector();
     }
 
     void UpdateHypnoBar(){
         hypnoBar.fillAmount = (float)hypnoMeter / (float)hypnotizeHealth;
     }
 
-    void OnMouseDown()
-    {
-        Debug.Log("Clicked on NPC");
-        StartCountdown();
-        isHypnotized = true;
-        if (hypnotizeHealth <= hypnoMeter){
-            successHypnotize = true;
-        } else {
-            hypnoMeter++;
+    void ClickDetector() {
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit)) {
+                if (hit.collider == capsuleCollider) {
+                    Debug.Log("Clicked on NPC");
+                    StartCountdown();
+                    isHypnotized = true;
+                    if (hypnotizeHealth <= hypnoMeter){
+                        successHypnotize = true;
+                    } else {
+                        hypnoMeter++;
+                    }
+                }
+            }
         }
     }
+
+    // void OnMouseDown()
+    // {
+    //     Debug.Log("Clicked on NPC");
+    //     StartCountdown();
+    //     isHypnotized = true;
+    //     if (hypnotizeHealth <= hypnoMeter){
+    //         successHypnotize = true;
+    //     } else {
+    //         hypnoMeter++;
+    //     }
+    // }
 
     void CountDown(){ // check if the countdown is over
         if(isCountdownActive){

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3103650062240677007}
   - component: {fileID: 2666695732229117609}
   - component: {fileID: 7678415805159760347}
+  - component: {fileID: 9058638442405901667}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -69,7 +70,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1272540199784814790}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 0.3
+  m_Radius: 0.35
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -114,6 +115,19 @@ MonoBehaviour:
   hypnotizeHealth: 5
   hypnoBar: {fileID: 6037017770548434732}
   countdownMultiplier: 2
+--- !u!114 &9058638442405901667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272540199784814790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d13ee1cf439c542b6b2b40fdc536a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeDestination: 0
 --- !u!1 &3078107940759522863
 GameObject:
   m_ObjectHideFlags: 0
