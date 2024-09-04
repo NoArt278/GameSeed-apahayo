@@ -10,6 +10,7 @@ TagManager:
   - Undefined
   - WalkableSurface
   - Dog
+  - NPC
   layers:
   - Default
   - TransparentFX
