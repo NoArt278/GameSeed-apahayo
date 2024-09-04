@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2666695732229117609}
   - component: {fileID: 7678415805159760347}
   - component: {fileID: 9058638442405901667}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NPC
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -128,6 +128,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeDestination: 0
+  waitTimeMin: 2
+  waitTimeMax: 5
+  timeRemaining: 0
+  isCountingDown: 0
+  distanceAllowed: 0.2
 --- !u!1 &3078107940759522863
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +145,7 @@ GameObject:
   - component: {fileID: 3383085996699160879}
   - component: {fileID: 6037017770548434732}
   - component: {fileID: 7412584299348613684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6330607062609479635}
   - component: {fileID: 8398377628498058092}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpriteRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
