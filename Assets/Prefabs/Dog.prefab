@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 620627452154065762}
   m_Layer: 0
   m_Name: Dog
-  m_TagString: Cat
+  m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,10 +303,8 @@ MonoBehaviour:
   fieldOfView: {fileID: 620627452154065762}
   spriteRenderer: {fileID: 8463139469125936459}
   chaseRange: 10
+  chaseAngle: 0
   shouldChase: 0
-  meshFilter: {fileID: 7752524031374214084}
-  meshRenderer: {fileID: 2962366968393680047}
-  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
   rayCount: 50
   obstacleMask:
     serializedVersion: 2
@@ -330,6 +328,7 @@ MonoBehaviour:
   visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
   rayCount: 50
   isPlayerVisible: 0
+  isChasing: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 8

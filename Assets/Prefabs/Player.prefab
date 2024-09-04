@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5530326438173183243}
   - component: {fileID: 6772096108912146341}
   - component: {fileID: 759280200856417794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 6643072642407746269}
   - component: {fileID: 421882432981053638}
   - component: {fileID: 3549224445938390659}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprint Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

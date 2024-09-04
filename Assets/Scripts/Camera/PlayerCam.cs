@@ -25,7 +25,7 @@ public class PlayerCam : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Cat") && !hit.collider.CompareTag("Hide")) // Camera obstructed
+            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Cat") && !hit.collider.CompareTag("Dog") && !hit.collider.CompareTag("Hide")) // Camera obstructed
             {
                 if (Vector3.Distance(transform.position, player.position) > Vector3.Distance(transform.position, hit.point))
                 {
