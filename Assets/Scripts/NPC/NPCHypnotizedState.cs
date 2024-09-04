@@ -16,7 +16,7 @@ public class NPCHypnotizedState : BaseState
 
     public override void EnterState()
     {
-        agent.SetDestination(monoBehaviour.transform.position);
+        agent.isStopped = true;
         agent.updateRotation = false;
     }
 
@@ -27,5 +27,6 @@ public class NPCHypnotizedState : BaseState
 
     public override void ExitState()
     {
+        agent.isStopped = false;
     }
 }

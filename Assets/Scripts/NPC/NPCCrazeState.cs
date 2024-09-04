@@ -11,7 +11,8 @@ public class NPCCrazeState : BaseState
     private Vector3 cameraCenter;
     private Camera mainCamera;
     private Vector3 destination;
-    public int crazeSpeed = 8;
+    private List<Vector3> candidateDestinations;
+    public int crazeSpeed = 20;
 
     public NPCCrazeState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
     {
@@ -23,6 +24,10 @@ public class NPCCrazeState : BaseState
         cameraCenter = new Vector3(0.5f, 0.5f, mainCamera.nearClipPlane);
 
         cameraCenter = mainCamera.ViewportToWorldPoint(cameraCenter);
+
+        candidateDestinations = new List<Vector3> {GetLeftTopCorner(), GetLeftBottomCorner(), GetRightTopCorner(), GetRightBottomCorner()};
+
+        destination = candidateDestinations[0];
         
     }
 
@@ -35,15 +40,21 @@ public class NPCCrazeState : BaseState
     public override void EnterState()
     {
         agent.updateRotation = false;
-        destination = GetFurthestPoint();
+        GetFurthestPoint();
         agent.SetDestination(destination);
         agent.speed = crazeSpeed;
+        agent.acceleration = crazeSpeed * 2;
+        Debug.Log(destination);
     }
 
     public override void UpdateState()
     {
         if (IsObjectOutsideViewport(monoBehaviour.transform.position)){
             UnityEngine.Object.Destroy(monoBehaviour.gameObject);
+            HypnotizeManager hypnotizeManager = monoBehaviour.GetComponent<HypnotizeManager>();
+            GameObject hypnoBar = hypnotizeManager.hypnoBar.gameObject;
+
+            UnityEngine.Object.Destroy(hypnoBar);
         }
     }
 
@@ -67,25 +78,14 @@ public class NPCCrazeState : BaseState
     }
     
 
-    public Vector3 GetFurthestPoint(){
-        Vector3 leftTop = GetLeftTopCorner();
-        Vector3 leftBottom = GetLeftBottomCorner();
-        Vector3 rightTop = GetRightTopCorner();
-        Vector3 rightBottom = GetRightBottomCorner();
-
-        float distanceLeftTop = Vector3.Distance(leftTop, cameraCenter);
-        float distanceLeftBottom = Vector3.Distance(leftBottom, cameraCenter);
-        float distanceRightTop = Vector3.Distance(rightTop, cameraCenter);
-        float distanceRightBottom = Vector3.Distance(rightBottom, cameraCenter);
-
-        if(distanceLeftTop > distanceLeftBottom && distanceLeftTop > distanceRightTop && distanceLeftTop > distanceRightBottom){
-            return leftTop;
-        } else if(distanceLeftBottom > distanceRightTop && distanceLeftBottom > distanceRightBottom){
-            return leftBottom;
-        } else if(distanceRightTop > distanceRightBottom){
-            return rightTop;
-        } else {
-            return rightBottom;
+    public void GetFurthestPoint(){
+        
+        for (int i = 0; i < candidateDestinations.Count; i++){
+            if (Vector3.Distance(monoBehaviour.transform.position, candidateDestinations[i]) > Vector3.Distance(monoBehaviour.transform.position, destination)){
+                if(IsObjectOutsideViewport(candidateDestinations[i])){
+                    destination = candidateDestinations[i];
+                }
+            }
         }
     }
 

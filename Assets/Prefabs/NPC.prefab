@@ -113,6 +113,7 @@ MonoBehaviour:
   successHypnotize: 0
   hypnotizeHealth: 5
   hypnoBar: {fileID: 6037017770548434732}
+  bar: {fileID: 3078107940759522863}
   countdownMultiplier: 2
 --- !u!1 &3078107940759522863
 GameObject:

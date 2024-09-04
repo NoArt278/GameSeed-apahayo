@@ -8,13 +8,30 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] public NavMeshSurface navMeshSurface;
     [SerializeField] public Canvas sceneCanvas;
+    public int maxTry = 20;
+    private BoxCollider spawnArea;
     public GameObject prefab;
 
     public int spawnAmount = 10;
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(WaitForNavMeshBuild());
+        spawnArea = GetComponent<BoxCollider>();
+    }
 
+    private IEnumerator WaitForNavMeshBuild()
+    {
+        // Wait until the NavMeshSurface has been built
+        while (navMeshSurface.navMeshData == null)
+        {
+            Debug.Log("Waiting for NavMeshSurface to be built...");
+            yield return new WaitForSeconds(0.5f); // Check every 0.5 seconds
+        }
+
+        Debug.Log("NavMeshSurface has been built. Proceeding with spawning.");
+
+        // Execute the spawning logic
         for (int i = 0; i < spawnAmount; i++)
         {
             Vector3 randomPosition = GetRandomPositionOnNavMesh();
@@ -38,22 +55,32 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
+        
     }
 
     private Vector3 GetRandomPositionOnNavMesh()
     {
+        // Calculate the bounds of the collider
+        Bounds bounds = spawnArea.bounds;
+
+        // Generate a random position within the bounds
         Vector3 randomPosition = new Vector3(
-            Random.Range(navMeshSurface.transform.position.x - navMeshSurface.size.x / 2, navMeshSurface.transform.position.x + navMeshSurface.size.x / 2),
-            navMeshSurface.transform.position.y,
-            Random.Range(navMeshSurface.transform.position.z - navMeshSurface.size.z / 2, navMeshSurface.transform.position.z + navMeshSurface.size.z / 2)
+            Random.Range(bounds.min.x, bounds.max.x),
+            bounds.center.y,
+            Random.Range(bounds.min.z, bounds.max.z)
         );
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPosition, out hit, 1.0f, NavMesh.AllAreas))
+        for (int i = 0; i < maxTry; i++)
         {
-            return hit.position;
+            NavMeshHit hit;
+            float maxDistance = Mathf.Sqrt(Mathf.Pow(bounds.size.x, 2) + Mathf.Pow(bounds.size.z, 2));
+            if (NavMesh.SamplePosition(randomPosition, out hit, 5f, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
         }
 
-        return Vector3.zero; // Fallback in case no valid position is found
+        Debug.LogWarning("Failed to find a valid NavMesh position near the random position.");
+        return Vector3.zero;
     }
 }

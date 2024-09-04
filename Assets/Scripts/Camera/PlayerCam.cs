@@ -33,7 +33,7 @@ public class PlayerCam : MonoBehaviour
                     // Save previous material
                     MeshRenderer blockingObjRenderer = hit.collider.GetComponent<MeshRenderer>();
                     Material currMaterial = blockingObjRenderer.material;
-                    if (!blockingObjectsRenderer.Contains(blockingObjRenderer))
+                    if (!blockingObjectsRenderer.Contains(blockingObjRenderer) && blockingObjectsRenderer != null)
                     {
                         blockingObjectsRenderer.Add(blockingObjRenderer);
                         prevMaterials.Add(currMaterial);

@@ -43,6 +43,10 @@ public class NPCRandomState : BaseState
         if(!isCountingDown){
             agent.SetDestination(randomPoint);
         }
+
+        if(agent.pathStatus == NavMeshPathStatus.PathInvalid){
+            GetRandomPositionOnNavMesh(out randomPoint);
+        }
     }
 
     private void CheckArrival()
@@ -83,14 +87,16 @@ public class NPCRandomState : BaseState
 
     bool GetRandomPositionOnNavMesh(out Vector3 result)
     {
+        Bounds bounds = navMeshSurface.navMeshData.sourceBounds;
+
         Vector3 randomPosition = new Vector3(
-            Random.Range(navMeshSurface.transform.position.x - navMeshSurface.size.x / 2, navMeshSurface.transform.position.x + navMeshSurface.size.x / 2),
-            navMeshSurface.transform.position.y,
-            Random.Range(navMeshSurface.transform.position.z - navMeshSurface.size.z / 2, navMeshSurface.transform.position.z + navMeshSurface.size.z / 2)
+            Random.Range(bounds.min.x, bounds.max.x),
+            bounds.center.y,
+            Random.Range(bounds.min.z, bounds.max.z)
         );
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPosition, out hit, 1.0f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPosition, out hit, 5f, NavMesh.AllAreas))
         {
             result = hit.position;
             return true;

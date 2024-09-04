@@ -59,7 +59,7 @@ public class NPCStateMachine : MonoBehaviour
 
     public void TransitionToState(BaseState state)
     {
-        // Debug.Log("Switching to state: " + state.GetType().Name);
+        Debug.Log("Switching to state: " + state.GetType().Name);
         currentState.ExitState();
         currentState = state;
         currentState.EnterState();
@@ -71,13 +71,14 @@ public class NPCStateMachine : MonoBehaviour
         {
             TransitionToState(hypnotizedState); // TODO: hypnotizing state
         }
-        else
+        else if(currentState == hypnotizedState)
         {
             TransitionToState(randomState);
         }
 
         if(hypnotizeManager.successHypnotize)
         {
+            Debug.Log("Hypnotized!");
             TransitionToState(crazeState);
         }
 

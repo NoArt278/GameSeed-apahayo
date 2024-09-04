@@ -11,6 +11,7 @@ public class HypnotizeManager : MonoBehaviour
     public bool successHypnotize = false;
     public float hypnotizeHealth = 10f; // number of clicks to hypnotize
     [SerializeField] public Image hypnoBar;
+    
     private float hypnoMeter = 0f;
 
     // Countdown fields
@@ -29,7 +30,6 @@ public class HypnotizeManager : MonoBehaviour
     {
         CountDown();
         UpdateHypnoBar();
-        
     }
 
     void UpdateHypnoBar(){
@@ -62,7 +62,7 @@ public class HypnotizeManager : MonoBehaviour
     }
 
     void CountdownEnd(){
-        isCountdownActive = false;  
+        isCountdownActive = false;
         isHypnotized = false;
         Debug.Log("Hypnotize effect has ended");
     }
