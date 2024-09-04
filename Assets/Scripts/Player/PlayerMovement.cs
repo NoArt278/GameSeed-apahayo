@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats stats;
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
-    private MeshRenderer mr;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 0;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
     private float stamina, moveSpeed;
     private Transform currTrashBin;
     private CatArmy catArmy;
+    private Animator catGodAnimator;
+    private SpriteRenderer sr;
     private ParticleSystem sprintParticle, sprintTrail;
     public TMP_Text staminaText, catCountText, hideText;
     public CinemachineVirtualCamera virtualCamera;
@@ -23,11 +24,12 @@ public class PlayerMovement : MonoBehaviour
     {
         stats = GetComponent<PlayerStats>();
         cc = GetComponent<CharacterController>();
-        mr = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         catArmy = GetComponent<CatArmy>();
         sprintParticle = GetComponent<ParticleSystem>();
         sprintTrail = GetComponentInChildren<ParticleSystem>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        catGodAnimator = GetComponentInChildren<Animator>();
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
     }
@@ -57,9 +59,23 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             Vector2 moveInput = InputContainer.playerInputs.Player.Move.ReadValue<Vector2>();
+            if (moveInput != Vector2.zero)
+            {
+                catGodAnimator.SetBool("isWalking", true);
+
+                if (moveInput.x > 0) sr.flipX = true;
+                else if (moveInput.x < 0) sr.flipX = false;
+
+                if (moveInput.y > 0) catGodAnimator.SetBool("isMovingUp", true);
+                else catGodAnimator.SetBool("isMovingUp", false);
+            } else
+            {
+                catGodAnimator.SetBool("isWalking", false);
+            }
             cc.Move(new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed * Time.deltaTime);
         } else
         {
+            catGodAnimator.SetBool("isWalking", false);
             StopSprint();
         }
 
@@ -122,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
             StopAllCoroutines();
             transform.position = currTrashBin.position + currTrashBin.forward;
             isHiding = false;
-            mr.enabled = true;
+            sr.enabled = true;
             catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             StartCoroutine(HideDelay());
         }
@@ -136,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         if (isHiding)
         {
             capsuleCollider.enabled = false;
-            mr.enabled = false;
+            sr.enabled = false;
             hideText.text = "Press E to unhide";
             catArmy.HideCats(currTrashBin.position);
         } else
