@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6033150202448526388}
   m_Layer: 6
   m_Name: kantin
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -796,6 +796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949754531813783131, guid: 336a8840dbba35f47b0b441e600b1241,
+        type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

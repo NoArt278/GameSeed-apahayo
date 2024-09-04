@@ -68,13 +68,18 @@ public class DogSpawner : MonoBehaviour
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
                 {
-                    if (Physics.Raycast(directionToCamera, hitPosition, out RaycastHit raycastHit, distanceToCamera))
+                    bool isInsideBuilding = false;
+                    Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.1f);
+                    foreach(Collider collider in colliders)
                     {
-                        if (raycastHit.collider.gameObject != Camera.main.gameObject)
+                        if (collider.CompareTag("Building"))
                         {
-                            return hitPosition;
+                            isInsideBuilding = true;
+                            break;
                         }
                     }
+
+                    if (!isInsideBuilding) return hitPosition;
                 }
             }
         }
