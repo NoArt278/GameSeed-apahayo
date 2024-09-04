@@ -66,15 +66,15 @@ public class SpawnManager : MonoBehaviour
         // Generate a random position within the bounds
         Vector3 randomPosition = new Vector3(
             Random.Range(bounds.min.x, bounds.max.x),
-            bounds.center.y,
+            bounds.min.y,
             Random.Range(bounds.min.z, bounds.max.z)
         );
 
         for (int i = 0; i < maxTry; i++)
         {
             NavMeshHit hit;
-            float maxDistance = Mathf.Sqrt(Mathf.Pow(bounds.size.x, 2) + Mathf.Pow(bounds.size.z, 2));
-            if (NavMesh.SamplePosition(randomPosition, out hit, 5f, NavMesh.AllAreas))
+            float maxDistance = 5f;
+            if (NavMesh.SamplePosition(randomPosition, out hit, maxDistance, NavMesh.AllAreas))
             {
                 return hit.position;
             }
