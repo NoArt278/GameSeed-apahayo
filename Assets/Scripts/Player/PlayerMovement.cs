@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats stats;
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
-    private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, minSprintStamina = 0;
-    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true;
-    private float stamina, moveSpeed;
+    private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, staminalFillDelay = 5;
+    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true, canFillStamina = true;
+    private float stamina, moveSpeed, lastStaminaDepleteTime;
     private Transform currTrashBin;
     private CatArmy catArmy;
     private Animator catGodAnimator;
@@ -84,19 +84,31 @@ public class PlayerMovement : MonoBehaviour
             stamina = Mathf.Max(stamina - Time.deltaTime * staminaDrainRate, 0);
             if (stamina == 0)
             {
+                canFillStamina = false;
+                lastStaminaDepleteTime = Time.time;
                 StopSprint();
             }
         }
         else
         {
-            stamina = Mathf.Min(stamina + Time.deltaTime * staminaFillRate, maxStamina);
+            if (canFillStamina)
+            {
+                stamina = Mathf.Min(stamina + Time.deltaTime * staminaFillRate, maxStamina);
+            }
+            else
+            {
+                if (Time.time - lastStaminaDepleteTime > staminalFillDelay)
+                {
+                    canFillStamina = true;
+                }
+            }
         }
         staminaText.text = "Stamina : " + Mathf.RoundToInt(stamina).ToString();
     }
 
     private void StartSprint(InputAction.CallbackContext ctx)
     {
-         if (stamina > minSprintStamina && canMove)
+         if (stamina > 0 && canMove)
         {
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
