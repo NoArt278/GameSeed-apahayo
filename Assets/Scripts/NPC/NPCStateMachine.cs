@@ -32,6 +32,9 @@ public class NPCStateMachine : MonoBehaviour
     [SerializeField] private HypnotizeStats hypnotizeStats;
     public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
 
+    // SPAWNER =======================================
+    public NPCSpawner spawner;
+
     // Waypoints
     // public WaypointType waypointType;
     // [SerializeField] public Waypoint[] waypoints;
@@ -52,6 +55,7 @@ public class NPCStateMachine : MonoBehaviour
 
         STATE_CRAZE = new NPCCrazeState(this);
         // STATE_WAYPOINT = new NPCWayPointState(this);
+
     }
 
     public void Initialize(NavMeshSurface surface, HypnotizeStats stats = null) {
