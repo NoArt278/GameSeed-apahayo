@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 759280200856417794}
   - component: {fileID: 946255201310312523}
   - component: {fileID: 870834829157472607}
+  - component: {fileID: 1705172867844401616}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -90,9 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1cb7e4b783f9f749af32e86be4e1e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaText: {fileID: 0}
-  catCountText: {fileID: 0}
-  hideText: {fileID: 0}
   virtualCamera: {fileID: 0}
 --- !u!114 &6772096108912146341
 MonoBehaviour:
@@ -185,6 +183,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1705172867844401616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90248743401185210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aae5da3aa9c426479301670021c57ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767333884079697453
 GameObject:
   m_ObjectHideFlags: 0

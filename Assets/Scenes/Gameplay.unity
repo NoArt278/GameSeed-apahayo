@@ -433,6 +433,7 @@ MonoBehaviour:
   maxAttempt: 20
   prefab: {fileID: 1272540199784814790, guid: e208c3e5971ac224d9c96913842da3e4, type: 3}
   spawnAmount: 15
+  npcInScene: 0
 --- !u!1 &428376439
 GameObject:
   m_ObjectHideFlags: 0

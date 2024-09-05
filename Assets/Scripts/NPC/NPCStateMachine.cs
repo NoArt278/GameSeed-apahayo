@@ -32,6 +32,9 @@ public class NPCStateMachine : MonoBehaviour
     [SerializeField] private HypnotizeStats hypnotizeStats;
     public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
 
+    // SPAWNER =======================================
+    public NPCSpawner spawner;
+
     // Waypoints
     // public WaypointType waypointType;
     // [SerializeField] public Waypoint[] waypoints;
@@ -52,6 +55,7 @@ public class NPCStateMachine : MonoBehaviour
 
         STATE_CRAZE = new NPCCrazeState(this);
         // STATE_WAYPOINT = new NPCWayPointState(this);
+
     }
 
     public void Initialize(NavMeshSurface surface, HypnotizeStats stats = null) {
@@ -68,7 +72,6 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
-        CheckHypnotize();
     }
 
     public void TransitionToState(NPCBaseState state)
@@ -83,11 +86,14 @@ public class NPCStateMachine : MonoBehaviour
         TransitionToState(STATE_HYPNOTIZED);
     }
 
-    private void CheckHypnotize()
+    public bool CheckHypnotize()
     {
-        bool isHypnotized = currentState == STATE_HYPNOTIZED;
-        bool isCraze = currentState == STATE_CRAZE;
-        if (IsNPCClicked() && !isHypnotized && !isCraze) { StartHyponotize(); }
+        return currentState == STATE_HYPNOTIZED;
+    }
+
+    public bool CheckCrazed()
+    {
+        return currentState == STATE_CRAZE;
     }
 
     public bool IsNPCClicked()

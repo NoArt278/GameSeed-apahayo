@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,9 +7,9 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour {
     public static PlayerUI Instance;
 
-    [SerializeField] private TextMeshProUGUI catCountText, hideText;
+    [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
     [SerializeField] private Slider staminaSlider;
-    [SerializeField] private Image crosshair;
+    [SerializeField] private Image crosshair, staminaSliderImage;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -24,8 +26,11 @@ public class PlayerUI : MonoBehaviour {
 
         // Clamp crosshair position to screen bounds
         Vector2 mousePosition = Input.mousePosition;
-        mousePosition.x = Mathf.Clamp(mousePosition.x, 0, Camera.main.pixelWidth);
-        mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
+        if (Camera.main != null)
+        {
+            mousePosition.x = Mathf.Clamp(mousePosition.x, 0, Camera.main.pixelWidth);
+            mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
+        }
 
         crosshair.transform.position = mousePosition;
 
@@ -64,5 +69,28 @@ public class PlayerUI : MonoBehaviour {
 
     public void UpdateStamina(float stamina) {
         staminaSlider.value = stamina;
+    }
+
+    public void UpdateScore(int score)
+    {
+        scoreText.text = score.ToString();
+    }
+
+    public void StaminaDeplete()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeStaminaBar());
+    }
+
+    private IEnumerator FadeStaminaBar()
+    {
+        float startTime = Time.time;
+        while (Time.time - startTime < 5)
+        {
+            staminaSliderImage.DOFade(0, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+            staminaSliderImage.DOFade(1, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 }

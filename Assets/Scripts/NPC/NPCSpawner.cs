@@ -12,6 +12,8 @@ public class NPCSpawner : MonoBehaviour
 
     public int spawnAmount = 10;
 
+    public int npcInScene = 0;
+
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
     }
@@ -21,27 +23,44 @@ public class NPCSpawner : MonoBehaviour
         StartSpawning();
     }
 
+    void Update()
+    {
+        if (npcInScene < spawnAmount)
+        {
+            StartSpawning();
+        }
+    }
+
     private void StartSpawning()
     {
         // Execute the spawning logic
-        for (int i = 0; i < spawnAmount; i++)
+        while (npcInScene < spawnAmount)
         {
-            Vector3 randomPosition = GetRandomPositionOnNavMesh();
-            if (randomPosition != Vector3.zero)
-            {
-                GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity, transform);
-                npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+            Spawn();
+        }
+    }
 
-                HypnotizeUIManager hypnotizeManager = npc.GetComponent<HypnotizeUIManager>();
-                if (hypnotizeManager != null)
-                {
-                    hypnotizeManager.SetupHypnoBar(sceneCanvas);
-                }
-                else
-                {
-                    Debug.LogError("HypnotizeManager component not found on the instantiated prefab.");
-                }
+    private void Spawn(){
+
+        Vector3 randomPosition = GetRandomPositionOnNavMesh();
+        if (randomPosition != Vector3.zero)
+        {
+            GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity, transform);
+            npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+
+            npc.GetComponent<NPCStateMachine>().spawner = this;
+
+            HypnotizeUIManager hypnotizeManager = npc.GetComponent<HypnotizeUIManager>();
+            if (hypnotizeManager != null)
+            {
+                hypnotizeManager.SetupHypnoBar(sceneCanvas);
             }
+            else
+            {
+                Debug.LogError("HypnotizeManager component not found on the instantiated prefab.");
+            }
+
+            npcInScene++;
         }
     }
 
