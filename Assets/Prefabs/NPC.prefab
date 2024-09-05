@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.26, y: 1.26, z: 1.26}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6330607062609479635}
   - {fileID: 8006251272759040603}
@@ -97,6 +97,7 @@ MonoBehaviour:
   hypnotizeStats:
     hypnotizeHealth: 10
     maxHypnotizeDelay: 2
+  spawner: {fileID: 0}
 --- !u!114 &4051855954649681611
 MonoBehaviour:
   m_ObjectHideFlags: 0
