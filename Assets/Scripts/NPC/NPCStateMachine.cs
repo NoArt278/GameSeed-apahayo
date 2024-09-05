@@ -72,7 +72,6 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
-        CheckHypnotize();
     }
 
     public void TransitionToState(NPCBaseState state)
@@ -87,11 +86,14 @@ public class NPCStateMachine : MonoBehaviour
         TransitionToState(STATE_HYPNOTIZED);
     }
 
-    private void CheckHypnotize()
+    public bool CheckHypnotize()
     {
-        bool isHypnotized = currentState == STATE_HYPNOTIZED;
-        bool isCraze = currentState == STATE_CRAZE;
-        if (IsNPCClicked() && !isHypnotized && !isCraze) { StartHyponotize(); }
+        return currentState == STATE_HYPNOTIZED;
+    }
+
+    public bool CheckCrazed()
+    {
+        return currentState == STATE_CRAZE;
     }
 
     public bool IsNPCClicked()

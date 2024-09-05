@@ -146,6 +146,15 @@ public class CatArmy : MonoBehaviour
         cats.Remove(outerCat);
     }
 
+    public void DestroyCat()
+    {
+        if (cats.Count == 0) return;
+
+        ArmyCatBehaviour destroyedCat = cats[0];
+        cats.Remove(destroyedCat);
+        Destroy(destroyedCat.gameObject);
+    }
+
     private Vector3 FindAppropriateSpawnLocation()
     {
         if (follow == null) return Vector3.zero;

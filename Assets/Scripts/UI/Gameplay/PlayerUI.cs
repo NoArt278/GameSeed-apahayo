@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour {
     public static PlayerUI Instance;
 
-    [SerializeField] private TextMeshProUGUI catCountText, hideText;
+    [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
     [SerializeField] private Slider staminaSlider;
     [SerializeField] private Image crosshair;
 
@@ -24,8 +24,11 @@ public class PlayerUI : MonoBehaviour {
 
         // Clamp crosshair position to screen bounds
         Vector2 mousePosition = Input.mousePosition;
-        mousePosition.x = Mathf.Clamp(mousePosition.x, 0, Camera.main.pixelWidth);
-        mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
+        if (Camera.main != null)
+        {
+            mousePosition.x = Mathf.Clamp(mousePosition.x, 0, Camera.main.pixelWidth);
+            mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
+        }
 
         crosshair.transform.position = mousePosition;
     }
@@ -49,5 +52,10 @@ public class PlayerUI : MonoBehaviour {
 
     public void UpdateStamina(float stamina) {
         staminaSlider.value = stamina;
+    }
+
+    public void UpdateScore(int score)
+    {
+        scoreText.text = score.ToString();
     }
 }

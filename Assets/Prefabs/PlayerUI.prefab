@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catCountText: {fileID: 6975192237169805585}
   hideText: {fileID: 8252411072507813995}
+  scoreText: {fileID: 5530489909688681282}
   staminaSlider: {fileID: 7769289922632288850}
   crosshair: {fileID: 12451868042703282}
 --- !u!1 &2699884970990673725

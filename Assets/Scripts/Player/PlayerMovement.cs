@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private CatArmy catArmy;
     private Animator catGodAnimator;
     private SpriteRenderer sr;
+    private MeshRenderer mr;
     private ParticleSystem sprintParticle, sprintTrail;
     public CinemachineVirtualCamera virtualCamera;
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         sprintParticle = GetComponent<ParticleSystem>();
         sprintTrail = GetComponentInChildren<ParticleSystem>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        mr = GetComponent<MeshRenderer>();
         catGodAnimator = GetComponentInChildren<Animator>();
         stamina = maxStamina;
         moveSpeed = stats.walkSpeed;
@@ -131,6 +133,21 @@ public class PlayerMovement : MonoBehaviour
         sprintTrail.Stop();
     }
 
+    public void EnableMove()
+    {
+        canMove = true;
+    }
+
+    public void DisableMove()
+    {
+        canMove = false;
+    }
+
+    public bool IsHiding()
+    {
+        return isHiding;
+    }
+
     private void Hide(InputAction.CallbackContext ctx)
     {
         if (canHide && !isHiding && !justHid)
@@ -149,8 +166,9 @@ public class PlayerMovement : MonoBehaviour
         {
             StopAllCoroutines();
             transform.position = currTrashBin.position + currTrashBin.forward;
-            isHiding = false;
             sr.enabled = true;
+            mr.enabled = true;
+            isHiding = false;
             catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             StartCoroutine(HideDelay());
         }
@@ -165,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         {
             capsuleCollider.enabled = false;
             sr.enabled = false;
+            mr.enabled = false;
             PlayerUI.Instance.ChangeHideText("(E) Unhide");
             catArmy.HideCats(currTrashBin.position);
         } else
