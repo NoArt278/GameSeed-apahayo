@@ -97,7 +97,6 @@ MonoBehaviour:
   hypnotizeStats:
     hypnotizeHealth: 10
     maxHypnotizeDelay: 2
-    drainSpeed: 2
 --- !u!114 &4051855954649681611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,13 +225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7588648533899059606}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.10452846, y: 0, z: 0, w: 0.9945219}
+  m_LocalPosition: {x: 0, y: 0.015, z: -0.07}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6183228193253893456}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12, y: 0, z: 0}
 --- !u!212 &8398377628498058092
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -20,6 +20,8 @@ public class NPCCrazeState : NPCBaseState
         agent.speed = crazeSpeed;
         agent.acceleration = crazeSpeed * 2;
         agent.SetDestination(GetValidDestination());
+
+        stm.SpriteRenderer.color = Color.red;
     }
 
 

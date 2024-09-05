@@ -32,6 +32,7 @@ public class NPCHypnotizedState : NPCBaseState
         currentHypnotizeValue = 1f;
         timer = 0f;
 
+        stm.SpriteRenderer.color = Color.magenta;
         barUI.EnableHypnoBar();
     }
 

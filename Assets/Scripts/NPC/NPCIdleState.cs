@@ -1,17 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCIdleState : NPCBaseState 
 {
     public float timewait = 0;
     public RangeFloat waitTime = new RangeFloat(1, 5);
+    private readonly NavMeshAgent agent;
+    private Coroutine idleCoroutine;
 
-    public NPCIdleState(NPCStateMachine stm) : base(stm) {}
+    public NPCIdleState(NPCStateMachine stm) : base(stm) {
+        agent = stm.Agent;
+    }
 
     public override void EnterState()
     {
+        agent.ResetPath();
         timewait = waitTime.RandomValue();
-        stm.StartCoroutine(Idle());
+        idleCoroutine = stm.StartCoroutine(Idle());
+
+        stm.SpriteRenderer.color = Color.yellow;
     }
 
     private IEnumerator Idle()
@@ -19,5 +27,11 @@ public class NPCIdleState : NPCBaseState
         yield return new WaitForSeconds(timewait);
         stm.TransitionToState(stm.STATE_RANDOMMOVE);
     }
+
+    public override void ExitState()
+    {
+        if (idleCoroutine != null) stm.StopCoroutine(idleCoroutine);
+    }
+
 }
 

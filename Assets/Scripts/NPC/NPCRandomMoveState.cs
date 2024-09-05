@@ -23,6 +23,8 @@ public class NPCRandomMoveState : NPCBaseState
 
         agent.SetDestination(randomPoint);
         AlignOrientation();
+
+        spriteRenderer.color = Color.white;
     }
 
     public override void UpdateState()
@@ -33,10 +35,17 @@ public class NPCRandomMoveState : NPCBaseState
 
     private void CheckArrival()
     {
-        if (agent.remainingDistance < 0.3f)
+        if (HasArrived()) stm.TransitionToState(stm.STATE_IDLE);
+    }
+
+    private bool HasArrived()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            stm.TransitionToState(stm.STATE_IDLE);
+            return true;
         }
+
+        return false;
     }
 
     bool GetRandomPositionOnNavMesh(out Vector3 result)
@@ -51,8 +60,15 @@ public class NPCRandomMoveState : NPCBaseState
 
         if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
         {
-            result = hit.position;
-            return true;
+            var path = new NavMeshPath();
+            if (NavMesh.CalculatePath(stm.transform.position, hit.position, NavMesh.AllAreas, path))
+            {
+                if (path.status == NavMeshPathStatus.PathComplete)
+                {
+                    result = hit.position;
+                    return true;
+                }
+            }
         }
 
         result = Vector3.zero; // Fallback in case no valid position is found
@@ -61,5 +77,10 @@ public class NPCRandomMoveState : NPCBaseState
 
     void AlignOrientation(){
         if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(stm.transform.position, randomPoint);
     }
 }
