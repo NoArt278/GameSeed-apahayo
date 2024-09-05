@@ -21,6 +21,8 @@ public class NPCCrazeState : NPCBaseState
         agent.acceleration = crazeSpeed * 2;
         agent.SetDestination(GetValidDestination());
 
+        GameTimer.Instance.AddTime(5f);
+
         stm.SpriteRenderer.color = Color.red;
     }
 
@@ -73,7 +75,7 @@ public class NPCCrazeState : NPCBaseState
     }
 
     public bool IsOutOfCamera() {
-        Vector2 clipSpace = Camera.main.WorldToViewportPoint(stm.transform.position);
+        Vector2 clipSpace = Camera.main.WorldToViewportPoint(stm.transform.position + stm.SpriteRenderer.bounds.extents.y * Vector3.up);
         if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
         {
             return true;
