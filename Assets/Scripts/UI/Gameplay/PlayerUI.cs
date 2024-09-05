@@ -33,21 +33,6 @@ public class PlayerUI : MonoBehaviour {
         }
 
         crosshair.transform.position = mousePosition;
-
-        if (HoverOverNPC()) {
-            crosshair.color = Color.red;
-        } else {
-            crosshair.color = Color.white;
-        }
-    }
-
-    private bool HoverOverNPC() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("NPC")))
-        {
-            return true;
-        }
-        return false;
     }
 
     public void UpdateCatCount(int catCount) {

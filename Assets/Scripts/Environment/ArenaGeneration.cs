@@ -296,7 +296,7 @@ public class ArenaGeneration : MonoBehaviour {
                 position += transform.position;
 
                 // Place the floor
-                GameObject floor = Instantiate(floorPrefab, position, floorPrefab.transform.rotation);
+                GameObject floor = Instantiate(floorPrefab, position, Quaternion.identity);
                 floor.transform.SetParent(floorBorderParent);
             }
         }

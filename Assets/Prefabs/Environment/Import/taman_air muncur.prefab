@@ -3400,7 +3400,7 @@ GameObject:
   - component: {fileID: 4559298740674480952}
   - component: {fileID: 6195820766092184068}
   m_Layer: 6
-  m_Name: (old) taman_air muncur (old)
+  m_Name: taman_air muncur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

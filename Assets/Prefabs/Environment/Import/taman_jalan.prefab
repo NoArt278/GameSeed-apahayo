@@ -2602,7 +2602,7 @@ GameObject:
   - component: {fileID: 2762615125968978228}
   - component: {fileID: -2377522364244785957}
   m_Layer: 6
-  m_Name: (old) taman_jalan
+  m_Name: taman_jalan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
