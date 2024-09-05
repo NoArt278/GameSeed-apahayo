@@ -52,7 +52,6 @@ public class NPCRandomState : BaseState
         }
 
         if(navMeshOptimization.changeDestination){
-            Debug.LogWarning("Change destination");
             GetRandomPositionOnNavMesh(out randomPoint);
             navMeshOptimization.changeDestination = false;
         }

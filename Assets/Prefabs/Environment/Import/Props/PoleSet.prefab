@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8006349066774049362}
   - component: {fileID: 8113322930661613051}
   - component: {fileID: -1900014921915648731}
-  - component: {fileID: 6030018738401487029}
   m_Layer: 0
   m_Name: PoleSet
   m_TagString: Building
@@ -107,19 +106,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3541629673168548286, guid: a1ebe2704a5188848a5b31245b8741ad, type: 3}
---- !u!208 &6030018738401487029
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651987422752616219}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.497, y: 140.05101, z: 31.410002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.097, y: 129.155, z: 22.745}
-  m_TimeToStationary: 0.5

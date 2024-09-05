@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator catGodAnimator;
     private SpriteRenderer sr;
     private ParticleSystem sprintParticle, sprintTrail;
-    public TMP_Text staminaText, catCountText, hideText;
     public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
@@ -103,7 +102,8 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        staminaText.text = "Stamina : " + Mathf.RoundToInt(stamina).ToString();
+
+        PlayerUI.Instance.UpdateStamina(stamina / maxStamina);
     }
 
     private void StartSprint(InputAction.CallbackContext ctx)
@@ -159,19 +159,19 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator HideDelay()
     {
         justHid = true;
-        hideText.text = "";
+        PlayerUI.Instance.ChangeHideText("");
         yield return new WaitForSeconds(0.5f);
         if (isHiding)
         {
             capsuleCollider.enabled = false;
             sr.enabled = false;
-            hideText.text = "Press E to unhide";
+            PlayerUI.Instance.ChangeHideText("(E) Unhide");
             catArmy.HideCats(currTrashBin.position);
         } else
         {
             canMove = true;
             capsuleCollider.enabled = true;
-            hideText.text = "Press E to hide";
+            PlayerUI.Instance.ChangeHideText("(E) Hide");
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
@@ -185,12 +185,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ArmyCatBehaviour armyCat = other.gameObject.GetComponent<ArmyCatBehaviour>();
             catArmy.RegisterCat(armyCat, transform);
-            catCountText.text = "Cats : " + catArmy.GetCatCount().ToString();
+            PlayerUI.Instance.UpdateCatCount(catArmy.GetCatCount());
         } else if (other.CompareTag("Hide"))
         {
             currTrashBin = other.transform;
             canHide = true;
-            hideText.gameObject.SetActive(true);
+            PlayerUI.Instance.HideTextAppear("(E) Hide");
         }
     }
 
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currTrashBin = null;
             canHide = false;
-            hideText.gameObject.SetActive(false);
+            PlayerUI.Instance.HideTextDissapear();
         }
     }
 }

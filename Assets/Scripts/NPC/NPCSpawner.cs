@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 
-public class SpawnManager : MonoBehaviour
+public class NPCSpawner : MonoBehaviour
 {
     [SerializeField] public NavMeshSurface navMeshSurface;
     [SerializeField] public Canvas sceneCanvas;
@@ -14,10 +14,14 @@ public class SpawnManager : MonoBehaviour
 
     public int spawnAmount = 10;
     // Start is called before the first frame update
+
+    private void Awake() {
+        spawnArea = GetComponent<BoxCollider>();
+    }
+
     void Start()
     {
         StartCoroutine(WaitForNavMeshBuild());
-        spawnArea = GetComponent<BoxCollider>();
     }
 
     private IEnumerator WaitForNavMeshBuild()
@@ -37,7 +41,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 randomPosition = GetRandomPositionOnNavMesh();
             if (randomPosition != Vector3.zero)
             {
-                GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity);
+                GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity, transform);
                 HypnotizeManager hypnotizeManager = npc.GetComponent<HypnotizeManager>();
                 if (hypnotizeManager != null)
                 {
@@ -60,21 +64,17 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomPositionOnNavMesh()
     {
-        // Calculate the bounds of the collider
-        Bounds bounds = spawnArea.bounds;
+        Vector3 spawnPosition = transform.position;
+        Vector3 spawnSize = spawnArea.size;
 
-        // Generate a random position within the bounds
-        Vector3 randomPosition = new Vector3(
-            Random.Range(bounds.min.x, bounds.max.x),
-            bounds.min.y,
-            Random.Range(bounds.min.z, bounds.max.z)
-        );
+        spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
+        spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
         for (int i = 0; i < maxTry; i++)
         {
             NavMeshHit hit;
             float maxDistance = 5f;
-            if (NavMesh.SamplePosition(randomPosition, out hit, maxDistance, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(spawnPosition, out hit, maxDistance, NavMesh.AllAreas))
             {
                 return hit.position;
             }

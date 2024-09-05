@@ -34,7 +34,6 @@ public class NavMeshOptimization : MonoBehaviour
     { 
         if(distanceToDestination - agent.remainingDistance <= distanceAllowed){
             if(!isCountingDown){
-                Debug.Log("Start countdown");
                 StartCountdown();
             } else {
                 UpdateCountdown();

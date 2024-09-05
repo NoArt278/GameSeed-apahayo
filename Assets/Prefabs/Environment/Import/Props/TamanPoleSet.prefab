@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7301548734926002234}
   - component: {fileID: 8146628678552728123}
   - component: {fileID: -4319340675006240979}
-  - component: {fileID: -3051636914476650475}
   m_Layer: 0
   m_Name: TamanPoleSet
   m_TagString: Building
@@ -107,19 +106,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5741174448488666723, guid: 0fa0c14d47dee614dbc5e91cdcfca722, type: 3}
---- !u!208 &-3051636914476650475
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647180860880846087}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 17.753, y: 140.05101, z: 19.288}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -17.159, y: 129.155, z: 10.623}
-  m_TimeToStationary: 0.5

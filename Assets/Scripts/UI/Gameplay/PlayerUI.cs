@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
     public static PlayerUI Instance;
 
-    [SerializeField] private TextMeshProUGUI catCountText, hideText, staminaText;
+    [SerializeField] private TextMeshProUGUI catCountText, hideText;
+    [SerializeField] private Slider staminaSlider;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -14,9 +16,24 @@ public class PlayerUI : MonoBehaviour {
         }
     }
 
-    public void Initialize(PlayerMovement player) {
-        player.catCountText = catCountText;
-        player.hideText = hideText;
-        player.staminaText = staminaText;
+    public void UpdateCatCount(int catCount) {
+        catCountText.text = $"x {catCount}";
+    }
+
+    public void ChangeHideText(string text) {
+        hideText.text = text;
+    }
+
+    public void HideTextAppear(string text) {
+        ChangeHideText(text);
+        hideText.gameObject.SetActive(true);
+    }
+
+    public void HideTextDissapear() {
+        hideText.gameObject.SetActive(false);
+    }
+
+    public void UpdateStamina(float stamina) {
+        staminaSlider.value = stamina;
     }
 }

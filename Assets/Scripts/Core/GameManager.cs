@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        if (SceneLoader.Instance.CurrentSceneName == "Gameplay") OnGameplaySceneLoaded();
+        if (SceneLoader.Instance.CurrentSceneName != "MainMenu") OnGameplaySceneLoaded();
     }
 
     public void OnGameplaySceneLoaded()
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPosition = GetValidSpawnPosition();
         GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        PlayerUI.Instance.Initialize(playerMovement);
 
         GameObject camera = Instantiate(cameraPrefab);
         CinemachineVirtualCamera vcam = camera.GetComponentInChildren<CinemachineVirtualCamera>();
