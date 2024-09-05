@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(CatBehaviourManager))]
 [RequireComponent(typeof(StrayCatBehaviour))]
@@ -14,10 +15,15 @@ public class CatBehaviourManager : MonoBehaviour {
     public Action<State, State> OnStateChanged;
     public Action OnDestroyed;
 
+    [SerializeField] private Animator animator;
+    private NavMeshAgent agent;
+
     private void Awake() {
         armyCatBehaviour = GetComponent<ArmyCatBehaviour>();
         strayCatBehaviour = GetComponent<StrayCatBehaviour>();
         hidingCatBehaviour = GetComponent<HidingCatBehaviour>();
+
+        agent = GetComponent<NavMeshAgent>();
 
         BecomeStrayCat();
     }
@@ -52,6 +58,11 @@ public class CatBehaviourManager : MonoBehaviour {
         hidingCatBehaviour.enabled = true;
 
         ChangeState(State.Hiding);
+    }
+
+    private void Update() {
+        animator.SetFloat("Speed", agent.velocity.magnitude);
+        animator.SetFloat("SignZ", agent.velocity.z);
     }
 
     private void OnDestroy() {

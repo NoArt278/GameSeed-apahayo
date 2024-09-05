@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5236969993969379902
+--- !u!1 &3095400402822808411
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3319338359886630136}
-  - component: {fileID: 8463139469125936459}
+  - component: {fileID: 4591869385156017397}
+  - component: {fileID: 527617308162765455}
+  - component: {fileID: 3799112928120774700}
   m_Layer: 0
   m_Name: CatRenderer
   m_TagString: Untagged
@@ -17,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3319338359886630136
+--- !u!4 &4591869385156017397
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236969993969379902}
+  m_GameObject: {fileID: 3095400402822808411}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2121086, y: -0, z: -0, w: 0.9772461}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -0.017, y: 0.216, z: 0.065}
+  m_LocalScale: {x: 0.11, y: 0.11, z: 0.11}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4679402809595049987}
-  m_LocalEulerAnglesHint: {x: 24.492, y: 0, z: 0}
---- !u!212 &8463139469125936459
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!212 &527617308162765455
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236969993969379902}
+  m_GameObject: {fileID: 3095400402822808411}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f942f8272fdc38e44aab79646882dc4c, type: 3}
+  m_Sprite: {fileID: -440480535, guid: f5b4dac668cbf0848a1f97817649c0c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3799112928120774700
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095400402822808411}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e752d44a0655d4c4d9da149ce6abfdd2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7700631295823998277
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3319338359886630136}
+  - {fileID: 4591869385156017397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &5091378545787214062
@@ -163,7 +185,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}
@@ -179,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559bb52b5ee58bb45a11bdb20a42870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3799112928120774700}
 --- !u!114 &3170281281078992859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394127aaadded9047aecac1ae6acac4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catRenderer: {fileID: 8463139469125936459}
+  catRenderer: {fileID: 527617308162765455}
+  speedDeviation:
+    min: -0.3
+    max: 0.3
 --- !u!114 &5885072185051355139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 1
-  catRenderer: {fileID: 8463139469125936459}
+  catRenderer: {fileID: 527617308162765455}
   speed: 3
   wanderRadius:
     min: 3
@@ -226,7 +252,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dd823c0961b2344bf1a5c021a598cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDelay: 0.2
-  fadeDuration: 0.3
-  hideDuration: 0.5
-  catRenderer: {fileID: 8463139469125936459}
+  catRenderer: {fileID: 527617308162765455}
