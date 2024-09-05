@@ -48,9 +48,14 @@ public class GameManager : MonoBehaviour
 
         GameObject camera = Instantiate(cameraPrefab);
         CinemachineVirtualCamera vcam = camera.GetComponentInChildren<CinemachineVirtualCamera>();
-        vcam.Follow = player.transform;
-        vcam.LookAt = player.transform;
+
+        CinemachineTargetGroup targetGroup = player.GetComponentInChildren<CinemachineTargetGroup>();
+        vcam.Follow = targetGroup.transform;
+        vcam.LookAt = targetGroup.transform;
         playerMovement.virtualCamera = vcam;
+
+        WorldPosCrosshair crosshair = player.GetComponentInChildren<WorldPosCrosshair>();
+        crosshair.Initialize(camera.GetComponent<Camera>());
     }
 
     private Vector3 GetValidSpawnPosition()

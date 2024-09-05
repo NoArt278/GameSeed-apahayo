@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI catCountText, hideText;
     [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Image crosshair;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -14,6 +15,19 @@ public class PlayerUI : MonoBehaviour {
         } else {
             Instance = this;
         }
+
+        // Cursor.visible = false;
+    }
+
+    private void Update() {
+        crosshair.transform.position = Input.mousePosition;
+
+        // Clamp crosshair position to screen bounds
+        Vector2 mousePosition = Input.mousePosition;
+        mousePosition.x = Mathf.Clamp(mousePosition.x, 0, Camera.main.pixelWidth);
+        mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
+
+        crosshair.transform.position = mousePosition;
     }
 
     public void UpdateCatCount(int catCount) {
