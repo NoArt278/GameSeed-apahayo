@@ -33,6 +33,8 @@ public class Spline : MonoBehaviour
         }
     }
 
+    public Vector3 Direction => (end.position - start.position).normalized;
+
     private void OnDrawGizmos()
     {
         if (showGizmos && start != null && middle != null && end != null)

@@ -122,6 +122,9 @@ public class ArmyCatBehaviour : MonoBehaviour {
         float jumpDuration = 0.2f;
         Vector3 agentStartPosition = agent.transform.position;
 
+        Vector3 direction = spline.Direction;
+        catRenderer.flipX = direction.x <= 0 ^ reverseDirection;
+
         while (currentTime < jumpDuration)
         {
             currentTime += Time.deltaTime;
