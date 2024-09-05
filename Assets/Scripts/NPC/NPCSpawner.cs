@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 
 public class NPCSpawner : MonoBehaviour
 {
-    [SerializeField] public NavMeshSurface navMeshSurface;
-    [SerializeField] public Canvas sceneCanvas;
-    public int maxTry = 20;
+    [SerializeField] private NavMeshSurface navMeshSurface;
+    [SerializeField] private Canvas sceneCanvas;
+    public int maxAttempt = 20;
     private BoxCollider spawnArea;
     public GameObject prefab;
 
     public int spawnAmount = 10;
-    // Start is called before the first frame update
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
@@ -21,20 +18,11 @@ public class NPCSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForNavMeshBuild());
+        StartSpawning();
     }
 
-    private IEnumerator WaitForNavMeshBuild()
+    private void StartSpawning()
     {
-        // Wait until the NavMeshSurface has been built
-        while (navMeshSurface.navMeshData == null)
-        {
-            Debug.Log("Waiting for NavMeshSurface to be built...");
-            yield return new WaitForSeconds(0.5f); // Check every 0.5 seconds
-        }
-
-        Debug.Log("NavMeshSurface has been built. Proceeding with spawning.");
-
         // Execute the spawning logic
         for (int i = 0; i < spawnAmount; i++)
         {
@@ -42,7 +30,9 @@ public class NPCSpawner : MonoBehaviour
             if (randomPosition != Vector3.zero)
             {
                 GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity, transform);
-                HypnotizeManager hypnotizeManager = npc.GetComponent<HypnotizeManager>();
+                npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+
+                HypnotizeUIManager hypnotizeManager = npc.GetComponent<HypnotizeUIManager>();
                 if (hypnotizeManager != null)
                 {
                     hypnotizeManager.SetupHypnoBar(sceneCanvas);
@@ -55,13 +45,6 @@ public class NPCSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-
     private Vector3 GetRandomPositionOnNavMesh()
     {
         Vector3 spawnPosition = transform.position;
@@ -70,7 +53,7 @@ public class NPCSpawner : MonoBehaviour
         spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
         spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
-        for (int i = 0; i < maxTry; i++)
+        for (int i = 0; i < maxAttempt; i++)
         {
             NavMeshHit hit;
             float maxDistance = 5f;

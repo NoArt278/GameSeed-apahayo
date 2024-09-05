@@ -1,31 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class NPCIdleState : BaseState 
+public class NPCIdleState : NPCBaseState 
 {
-    private NavMeshAgent agent;
+    public float timewait = 0;
+    public RangeFloat waitTime = new RangeFloat(1, 5);
 
-    public NPCIdleState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
-    {
-        agent = monoBehaviour.GetComponent<NavMeshAgent>();
-    }
+    public NPCIdleState(NPCStateMachine stm) : base(stm) {}
 
     public override void EnterState()
     {
-        agent.updateRotation = false;
-        agent.SetDestination(monoBehaviour.transform.position);
+        timewait = waitTime.RandomValue();
+        stm.StartCoroutine(Idle());
     }
 
-    public override void UpdateState()
+    private IEnumerator Idle()
     {
+        yield return new WaitForSeconds(timewait);
+        stm.TransitionToState(stm.STATE_RANDOMMOVE);
     }
-
-    public override void ExitState()
-    {
-        
-    }
-
 }
 

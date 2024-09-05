@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 5275928204958545780}
   - component: {fileID: 3103650062240677007}
   - component: {fileID: 2666695732229117609}
-  - component: {fileID: 7678415805159760347}
-  - component: {fileID: 9058638442405901667}
+  - component: {fileID: 4051855954649681611}
   m_Layer: 7
   m_Name: NPC
   m_TagString: NPC
@@ -74,9 +73,9 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
@@ -95,10 +94,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299cd5830e5d6964f80e563905562162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateIndex: 2
-  waypointType: 0
-  waypoints: []
---- !u!114 &7678415805159760347
+  hypnotizeStats:
+    hypnotizeHealth: 10
+    maxHypnotizeDelay: 2
+    drainSpeed: 2
+--- !u!114 &4051855954649681611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,32 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1272540199784814790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb78ecf29524c344b8cc357a07d6e6a, type: 3}
+  m_Script: {fileID: 11500000, guid: c95042d8d37416c4f9d68166bfc1d41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHypnotized: 0
-  successHypnotize: 0
-  hypnotizeHealth: 5
   hypnoBar: {fileID: 6037017770548434732}
-  countdownMultiplier: 2
---- !u!114 &9058638442405901667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272540199784814790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08d13ee1cf439c542b6b2b40fdc536a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeDestination: 0
-  waitTimeMin: 2
-  waitTimeMax: 5
-  timeRemaining: 0
-  isCountingDown: 0
-  distanceAllowed: 0.2
 --- !u!1 &3078107940759522863
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,9 +122,9 @@ GameObject:
   - component: {fileID: 8006251272759040603}
   - component: {fileID: 3383085996699160879}
   - component: {fileID: 6037017770548434732}
-  - component: {fileID: 7412584299348613684}
+  - component: {fileID: 2688423734856840888}
   m_Layer: 7
-  m_Name: bar
+  m_Name: Hynotize Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +187,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7412584299348613684
+--- !u!114 &2688423734856840888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3078107940759522863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02ec900bdb87da4ea61d17aebf07e40, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a41aab3aec39a64784ac21ce52519fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6183228193253893456}

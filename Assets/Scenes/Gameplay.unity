@@ -430,9 +430,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshSurface: {fileID: 722721560}
   sceneCanvas: {fileID: 848660981}
-  maxTry: 20
+  maxAttempt: 20
   prefab: {fileID: 1272540199784814790, guid: e208c3e5971ac224d9c96913842da3e4, type: 3}
-  spawnAmount: 30
+  spawnAmount: 3
 --- !u!1 &428376439
 GameObject:
   m_ObjectHideFlags: 0

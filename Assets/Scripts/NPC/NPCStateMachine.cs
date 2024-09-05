@@ -1,86 +1,105 @@
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public class HypnotizeStats
+{
+    public float hypnotizeHealth = 10f;
+    public float maxHypnotizeDelay = 2f;
+}
+
 public class NPCStateMachine : MonoBehaviour
 {
-    // states
-    private BaseState currentState;
-    private NPCIdleState idleState;
-    private NPCClickState clickState;
-    private NPCRandomState randomState;
-    private NPCWayPointState wayPointState;
-    private NPCHypnotizedState hypnotizedState;
-    private NPCCrazeState crazeState;
-    public int stateIndex = 2;
-    private BaseState[] states;
+    [SerializeField, ReadOnly] private NPCBaseState currentState;
 
-    public enum WaypointType { FemaleChild, Male, BuffDude}
-    [System.Serializable]
-    public class Waypoint
-    {
-        public WaypointType type;
-        public Transform[] position;
+    // STATES ========================================
+    public  NPCIdleState        STATE_IDLE { get; private set; }
+    public  NPCRandomMoveState  STATE_RANDOMMOVE { get; private set; }
+    public  NPCWayPointState    STATE_WAYPOINT { get; private set; }
+    public  NPCHypnotizedState  STATE_HYPNOTIZED { get; private set; }
+    public  NPCCrazeState       STATE_CRAZE { get; private set; }
+
+    // COMPONENTS ====================================
+    public  NavMeshAgent        Agent { get; private set; }
+    public  NavMeshSurface      Surface { get; private set; }
+    public  HypnotizeUIManager  BarUI { get; private set; }
+    public  SpriteRenderer      SpriteRenderer { get; private set; }
+    public  Collider            Collider { get; private set; }
+
+    // STATS =========================================
+    [SerializeField] private HypnotizeStats hypnotizeStats;
+    public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
+
+    // Waypoints
+    // public WaypointType waypointType;
+    // [SerializeField] public Waypoint[] waypoints;
+
+    private void Awake() {
+        // COMPONENTS
+        BarUI = GetComponent<HypnotizeUIManager>();
+        Agent = GetComponent<NavMeshAgent>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Collider = GetComponent<Collider>();
+
+        // STATES
+        STATE_IDLE = new NPCIdleState(this);
+        STATE_RANDOMMOVE = new NPCRandomMoveState(this);
+
+        STATE_HYPNOTIZED = new NPCHypnotizedState(this);
+        STATE_HYPNOTIZED.SetHypnotizeStats(HypnotizeStats);
+
+        STATE_CRAZE = new NPCCrazeState(this);
+        // STATE_WAYPOINT = new NPCWayPointState(this);
     }
-    public WaypointType waypointType;
-    [SerializeField] public Waypoint[] waypoints;
 
-    // script component
-    private HypnotizeManager hypnotizeManager;
+    public void Initialize(NavMeshSurface surface, HypnotizeStats stats = null) {
+        Surface = surface;
+        if (stats != null) hypnotizeStats = stats;
+    }
 
     void Start()
     {
-        // initialize states
-        idleState = new NPCIdleState(this);
-        clickState = new NPCClickState(this);
-        randomState = new NPCRandomState(this);
-        wayPointState = new NPCWayPointState(this);
-        hypnotizedState = new NPCHypnotizedState(this);
-        crazeState = new NPCCrazeState(this);
-
-        // reference another script    
-        hypnotizeManager = GetComponent<HypnotizeManager>();
-
-        // initialize state array
-        states = new BaseState[] {idleState, clickState, randomState, wayPointState, hypnotizedState, crazeState};
-
-        // set initial state
-        currentState = states[stateIndex];
+        currentState = STATE_RANDOMMOVE;
         currentState.EnterState();
     }
 
     void Update()
     {
         currentState.UpdateState();
-
-        checkHypnotize();
+        CheckHypnotize();
     }
 
-    public void TransitionToState(BaseState state)
+    public void TransitionToState(NPCBaseState state)
     {
-        Debug.Log("Switching to state: " + state.GetType().Name);
         currentState.ExitState();
         currentState = state;
         currentState.EnterState();
     }
 
-    private void checkHypnotize()
+    public void StartHyponotize()
     {
-        if (hypnotizeManager.isHypnotized)
-        {
-            TransitionToState(hypnotizedState); // TODO: hypnotizing state
-        }
-        else if(currentState == hypnotizedState)
-        {
-            TransitionToState(randomState);
-        }
+        TransitionToState(STATE_HYPNOTIZED);
+    }
 
-        if(hypnotizeManager.successHypnotize)
-        {
-            Debug.Log("Hypnotized!");
-            TransitionToState(crazeState);
-        }
+    private void CheckHypnotize()
+    {
+        bool isHypnotized = currentState == STATE_HYPNOTIZED;
+        bool isCraze = currentState == STATE_CRAZE;
+        if (IsNPCClicked() && !isHypnotized && !isCraze) { StartHyponotize(); }
+    }
 
+    public bool IsNPCClicked()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("NPC")))
+            {
+                return hit.collider == Collider;
+            }
+        }
+        return false;
     }
 }

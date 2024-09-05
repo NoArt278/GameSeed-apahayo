@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ChaseState : DogState
 {
@@ -12,7 +10,6 @@ public class ChaseState : DogState
     private bool lostTimerStarted = false;
 
     private float prevAngle;
-    [SerializeField] private int rayCount = 50;
     [SerializeField] private LayerMask obstacleMask;
 
     private void AlignOrientation()

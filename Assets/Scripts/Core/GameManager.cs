@@ -64,25 +64,10 @@ public class GameManager : MonoBehaviour
             if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
             {
                 if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
-
-                // bool isInsideBuilding = false;
-                // Collider[] colliders = Physics.OverlapSphere(hit.position, 0.1f);
-                // foreach (Collider collider in colliders) {
-                //     if (collider.CompareTag("Building")) {
-                //         isInsideBuilding = true;
-                //         break;
-                //     }
-                // }
-
-                // if (isInsideBuilding) continue;
                 return hit.position;
             } 
         }
 
         return Vector3.zero;
     }
-
-    // private IEnumerator GameplaySetup() {
-    //     yield return null;
-    // }
 }

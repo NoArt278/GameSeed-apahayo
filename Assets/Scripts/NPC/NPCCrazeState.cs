@@ -1,113 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Unity.AI.Navigation;
 
-public class NPCCrazeState : BaseState
+public class NPCCrazeState : NPCBaseState
 {
-    private NavMeshAgent agent;
-    private NavMeshSurface navMeshSurface;
-    private Vector3 cameraCenter;
-    private Camera mainCamera;
-    private Vector3 destination;
-    private List<Vector3> candidateDestinations;
+    private readonly NavMeshAgent agent;
+    private readonly SpriteRenderer spriteRenderer;
+    private float wanderRadius = 10f;
     public int crazeSpeed = 20;
 
-    public NPCCrazeState(MonoBehaviour monoBehaviour) : base(monoBehaviour)
+    public NPCCrazeState(NPCStateMachine stm) : base(stm)
     {
-        agent = monoBehaviour.GetComponent<NavMeshAgent>();
-        navMeshSurface = GameObject.FindGameObjectWithTag("WalkableSurface").GetComponent<NavMeshSurface>();
-
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-        cameraCenter = new Vector3(0.5f, 0.5f, mainCamera.nearClipPlane);
-
-        cameraCenter = mainCamera.ViewportToWorldPoint(cameraCenter);
-
-        candidateDestinations = new List<Vector3> {GetLeftTopCorner(), GetLeftBottomCorner(), GetRightTopCorner(), GetRightBottomCorner()};
-
-        destination = candidateDestinations[0];
-        
+        agent = stm.Agent;
+        spriteRenderer = stm.SpriteRenderer;
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(cameraCenter, 0.5f);
-    }
 
     public override void EnterState()
     {
-        agent.updateRotation = false;
-        GetFurthestPoint();
-        agent.SetDestination(destination);
         agent.speed = crazeSpeed;
         agent.acceleration = crazeSpeed * 2;
-        Debug.Log(destination);
+        agent.SetDestination(GetValidDestination());
     }
 
-    public override void UpdateState()
-    {
-        if (IsObjectOutsideViewport(monoBehaviour.transform.position)){
-            UnityEngine.Object.Destroy(monoBehaviour.gameObject);
-            HypnotizeManager hypnotizeManager = monoBehaviour.GetComponent<HypnotizeManager>();
-            GameObject hypnoBar = hypnotizeManager.hypnoBar.gameObject;
 
-            UnityEngine.Object.Destroy(hypnoBar);
+    public override void UpdateState() {
+        if (agent.remainingDistance < 0.3f) {
+            agent.SetDestination(GetValidDestination());
         }
-    }
-
-    public override void ExitState()
-    {
         
+        AlignOrientation();
+
+        if (IsOutOfCamera()) Object.Destroy(stm.gameObject);
     }
 
-    public bool IsObjectOutsideViewport(Vector3 objectPosition)
-    {
-        // Convert the object's position to viewport coordinates
-        Vector3 viewportPoint = mainCamera.WorldToViewportPoint(objectPosition);
+    void AlignOrientation(){
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
+    }
 
-        // Check if the object is outside the viewport
-        if (viewportPoint.x < 0 || viewportPoint.x > 1 || viewportPoint.y < 0 || viewportPoint.y > 1)
+
+    private Vector3 GetValidDestination()
+    {
+        // EXPECTED: Get Random Destination inside the wander radius
+        for (int i = 0; i < 30; i++)
         {
-            return true;
-        }
+            Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
+            Vector3 targetPos = stm.transform.position + randomDirection;
 
-        return false;
-    }
-    
+            // Debug.DrawLine(transform.position, targetPos, Color.red, 2f);
 
-    public void GetFurthestPoint(){
-        
-        for (int i = 0; i < candidateDestinations.Count; i++){
-            if (Vector3.Distance(monoBehaviour.transform.position, candidateDestinations[i]) > Vector3.Distance(monoBehaviour.transform.position, destination)){
-                if(IsObjectOutsideViewport(candidateDestinations[i])){
-                    destination = candidateDestinations[i];
+            if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, wanderRadius, NavMesh.AllAreas))
+            {
+                // Debug.DrawLine(transform.position, hit.position, Color.green, 2f);
+                // Check if the path is full
+                var path = new NavMeshPath();
+                if (NavMesh.CalculatePath(stm.transform.position, hit.position, NavMesh.AllAreas, path)) {
+                    if (path.status == NavMeshPathStatus.PathComplete) return hit.position;
                 }
             }
         }
+
+        // FALLBACK 1: Get Random Destination in wherever
+        NavMeshHit randomHit;
+        if (NavMesh.SamplePosition(Random.insideUnitSphere * 1000f + stm.transform.position, out randomHit, 1000f, NavMesh.AllAreas))
+        {
+            return randomHit.position;
+        }
+
+        // FALLBACK 2: Stay in the same position
+        return stm.transform.position;
     }
 
-    public Vector3 GetLeftTopCorner(){
-        Bounds bounds = navMeshSurface.navMeshData.sourceBounds;
-        return new Vector3(bounds.min.x, bounds.max.y, bounds.min.z);
-
+    public bool IsOutOfCamera() {
+        Vector2 clipSpace = Camera.main.WorldToViewportPoint(stm.transform.position);
+        if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+        {
+            return true;
+        }
+        return false;
     }
-
-    public Vector3 GetLeftBottomCorner(){
-        Bounds bounds = navMeshSurface.navMeshData.sourceBounds;
-        return new Vector3(bounds.min.x, bounds.min.y, bounds.min.z);
-    }
-
-    public Vector3 GetRightTopCorner(){
-        Bounds bounds = navMeshSurface.navMeshData.sourceBounds;
-        return new Vector3(bounds.max.x, bounds.max.y, bounds.max.z);
-    }
-
-    public Vector3 GetRightBottomCorner(){
-        Bounds bounds = navMeshSurface.navMeshData.sourceBounds;
-        return new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);    
-    }
-
 }

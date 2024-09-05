@@ -31,7 +31,7 @@ public class DogSpawner : MonoBehaviour
     {
         if(Player != null)
         {
-            if (dogsSpawned < 2)
+            if (dogsSpawned < spawnAmount)
             {
                 Spawn();
             }
@@ -68,23 +68,10 @@ public class DogSpawner : MonoBehaviour
                 // Check if it is visible by player or not
 
                 Vector3 hitPosition = hit.position;
-                // Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
-                // float distanceToCamera = directionToCamera.magnitude;
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
                 {
                     if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
-                    // bool isInsideBuilding = false;
-                    // Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.1f);
-                    // foreach(Collider collider in colliders)
-                    // {
-                    //     if (collider.CompareTag("Building"))
-                    //     {
-                    //         isInsideBuilding = true;
-                    //         break;
-                    //     }
-                    // }
-
                     return hitPosition;
                 }
             }

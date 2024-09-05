@@ -32,7 +32,6 @@ public class PatrolState : DogState
         {
             SwitchToIdle();
         }
-        print("Enter Patrol State");
     }
 
     public override void UpdateState(DogStateMachine stateMachine)

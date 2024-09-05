@@ -1,36 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCWayPointState : NPCBaseState
+public class NPCRandomMoveState : NPCBaseState
 {
-    GameObject[] wayPoints;
+    private readonly NavMeshAgent agent;
+    private readonly SpriteRenderer spriteRenderer;
 
-    private NavMeshAgent agent;
-    private SpriteRenderer spriteRenderer;
-    private Vector3 randomWaypoint;
+    private Vector3 randomPoint;
 
-    public NPCWayPointState(NPCStateMachine stm) : base(stm)
+    public NPCRandomMoveState(NPCStateMachine stm) : base(stm)
     {
-        agent = stm.GetComponent<NavMeshAgent>();
-        spriteRenderer = stm.GetComponentInChildren<SpriteRenderer>();
+        agent = stm.Agent;
+        spriteRenderer = stm.SpriteRenderer;
     }
 
     public override void EnterState()
     {
         for (int i = 0; i < 30; i++)
         {
-            if (GetRandomWaypoint(out randomWaypoint)) break;
+            if (GetRandomPositionOnNavMesh(out randomPoint)) break;
         }
 
-        agent.SetDestination(randomWaypoint);
+        agent.SetDestination(randomPoint);
+        AlignOrientation();
     }
 
     public override void UpdateState()
     {   
-        CheckArrival();
         AlignOrientation();
+        CheckArrival();
     }
 
     private void CheckArrival()
@@ -41,10 +39,8 @@ public class NPCWayPointState : NPCBaseState
         }
     }
 
-    private bool GetRandomWaypoint(out Vector3 result)
+    bool GetRandomPositionOnNavMesh(out Vector3 result)
     {
-        // TODO: Ganti Ke Waypoint Randomnya
-
         Bounds bounds = stm.Surface.navMeshData.sourceBounds;
 
         Vector3 randomPosition = new Vector3(
@@ -63,7 +59,7 @@ public class NPCWayPointState : NPCBaseState
         return false;
     }
 
-    private void AlignOrientation(){
+    void AlignOrientation(){
         if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
     }
 }
