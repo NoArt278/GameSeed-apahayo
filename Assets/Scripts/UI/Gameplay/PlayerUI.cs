@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +9,7 @@ public class PlayerUI : MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
     [SerializeField] private Slider staminaSlider;
-    [SerializeField] private Image crosshair;
+    [SerializeField] private Image crosshair, staminaSliderImage;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -57,5 +59,23 @@ public class PlayerUI : MonoBehaviour {
     public void UpdateScore(int score)
     {
         scoreText.text = score.ToString();
+    }
+
+    public void StaminaDeplete()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeStaminaBar());
+    }
+
+    private IEnumerator FadeStaminaBar()
+    {
+        float startTime = Time.time;
+        while (Time.time - startTime < 5)
+        {
+            staminaSliderImage.DOFade(0, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+            staminaSliderImage.DOFade(1, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 }

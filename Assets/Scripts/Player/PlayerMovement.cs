@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 canFillStamina = false;
                 lastStaminaDepleteTime = Time.time;
+                PlayerUI.Instance.StaminaDeplete();
                 StopSprint();
             }
         }
