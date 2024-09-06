@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, staminalFillDelay = 5;
-    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true, canFillStamina = true;
+    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true, canFillStamina = true, isDead = false;
     private float stamina, moveSpeed, lastStaminaDepleteTime;
     private Transform currTrashBin;
     private CatArmy catArmy;
@@ -64,8 +64,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 catGodAnimator.SetBool("isWalking", true);
 
-                if (moveInput.x > 0) sr.flipX = true;
-                else if (moveInput.x < 0) sr.flipX = false;
+                if (moveInput.x > 0) sr.flipX = true && !isSprinting;
+                else if (moveInput.x < 0) sr.flipX = false || isSprinting;
 
                 if (moveInput.y > 0) catGodAnimator.SetBool("isMovingUp", true);
                 else catGodAnimator.SetBool("isMovingUp", false);
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isSprinting = true;
             moveSpeed = stats.sprintSpeed;
-            // sprintParticle.Play();
+            catGodAnimator.SetBool("isSprinting", true);
             sprintTrail.Play();
             catArmy.StartSprint(stats.sprintSpeed);
         }
@@ -130,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isSprinting = false;
         moveSpeed = stats.walkSpeed;
+        catGodAnimator.SetBool("isSprinting", false);
         catArmy.StopSprint();
         sprintTrail.Stop();
     }
@@ -147,6 +148,11 @@ public class PlayerMovement : MonoBehaviour
     public bool IsHiding()
     {
         return isHiding;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     private void Hide(InputAction.CallbackContext ctx)
@@ -211,7 +217,20 @@ public class PlayerMovement : MonoBehaviour
             currTrashBin = other.transform;
             canHide = true;
             PlayerUI.Instance.HideTextAppear("(E) Hide");
+        } else if (other.CompareTag("Dog"))
+        {
+            canMove = false;
+            catGodAnimator.SetTrigger("Die");
+            isDead = true;
+            StopAllCoroutines();
+            StartCoroutine(ShowGameOver());
         }
+    }
+
+    private IEnumerator ShowGameOver()
+    {
+        yield return new WaitForSeconds(1);
+        EndGameScreen.Instance.ShowEndGameScreen();
     }
 
     private void OnTriggerExit(Collider other)

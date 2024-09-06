@@ -5,7 +5,8 @@ public class PlayerHypnotize : MonoBehaviour
     private CatArmy catArmy;
     private NPCStateMachine currNPC, lastHypnotizedNPC, lastCrazedNPC;
     private PlayerMovement playerMovement;
-    private bool isCurrHypnotized = false;
+    private SpriteRenderer sr;
+    private Animator catGodAnimator;
     private float lastClickTime;
     private const float clickMoveDelay = 0.5f;
     private int score = 0;
@@ -14,12 +15,16 @@ public class PlayerHypnotize : MonoBehaviour
     {
         catArmy = GetComponent<CatArmy>();
         playerMovement = GetComponent<PlayerMovement>();
+        catGodAnimator = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         lastClickTime = 0;
         PlayerUI.Instance.UpdateScore(score);
     }
 
     void Update()
     {
+        if (playerMovement.IsHiding() || playerMovement.IsDead())
+            return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.SphereCast(ray.origin, 1, ray.direction, out hit, Mathf.Infinity, LayerMask.GetMask("NPC")))
@@ -31,6 +36,8 @@ public class PlayerHypnotize : MonoBehaviour
                 {
                     currNPC.StartHyponotize();
                     lastHypnotizedNPC = currNPC;
+                    catGodAnimator.SetTrigger("StartHypnotize");
+                    catGodAnimator.SetBool("isHypnotizing", true);
                 } else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
                     currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);
@@ -39,7 +46,8 @@ public class PlayerHypnotize : MonoBehaviour
                 {
                     playerMovement.DisableMove();
                     lastClickTime = Time.time;
-                } 
+                }
+                sr.flipX = currNPC.transform.position.x < transform.position.x;
             }
             if (currNPC.CheckCrazed() && currNPC == lastHypnotizedNPC && (lastCrazedNPC == null || lastCrazedNPC != currNPC))
             {
@@ -56,6 +64,7 @@ public class PlayerHypnotize : MonoBehaviour
 
         if (Time.time - lastClickTime > clickMoveDelay && !playerMovement.IsHiding())
         {
+            catGodAnimator.SetBool("isHypnotizing", false);
             playerMovement.EnableMove();
         }
         else if (playerMovement.IsHiding())
