@@ -680,6 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5618951033350312368}
+  - component: {fileID: -2951087461241915915}
   m_Layer: 0
   m_Name: Taman
   m_TagString: Untagged
@@ -718,6 +719,21 @@ Transform:
   - {fileID: 8285858030256535514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2951087461241915915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460119251278137264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc33c4d71e334248b558ed9ad1e4aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSpan: {x: 1, y: 1}
+  generationSlot: 7
+  mustAppear: 0
 --- !u!1 &4956540947846460448
 GameObject:
   m_ObjectHideFlags: 0

@@ -515,10 +515,10 @@ MonoBehaviour:
   gridSize: 18
   arenaGridDimension: {x: 5, y: 4}
   arenaPrefabs:
-  - {fileID: 6033150202448526388, guid: c4bf3938df4bc2f43bfda6d30c036892, type: 3}
-  - {fileID: 3688848780519522922, guid: 7a3fc1fe0e9fc944d9d066c34fecf6e4, type: 3}
-  - {fileID: 6195820766092184068, guid: 0680b46478e71cb49a769382661f468f, type: 3}
-  - {fileID: -2377522364244785957, guid: 7ac6f39df3b241345b5c8f012842a682, type: 3}
+  - {fileID: -7325833885050657960, guid: f81fafbd88ce12043832d54b3bdaeebf, type: 3}
+  - {fileID: 1528369242744519146, guid: 79bae502b699b0444be72be6b94ec0ae, type: 3}
+  - {fileID: 3399924501862464610, guid: bdd632abc0938c0408dded4d53a1c0d3, type: 3}
+  - {fileID: -2951087461241915915, guid: ba763983acefeb44b8f228b484ac0eae, type: 3}
   arenaPropsParent: {fileID: 8816734925484205805}
   maxGenerationAttempt: 20
 --- !u!1 &1033138497256787933
