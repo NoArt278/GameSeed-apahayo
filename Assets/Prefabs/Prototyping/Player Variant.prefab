@@ -249,6 +249,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8375476591511156791, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8389755691396096241, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
       propertyPath: m_LocalScale.y
