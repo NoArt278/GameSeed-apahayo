@@ -78,6 +78,7 @@ public class NPCSpawner : MonoBehaviour
             float maxDistance = 5f;
             if (NavMesh.SamplePosition(spawnPosition, out hit, maxDistance, NavMesh.AllAreas))
             {
+                if (hit.position.y > 0.5f) continue;
                 return hit.position;
             }
         }

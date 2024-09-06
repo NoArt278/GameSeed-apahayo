@@ -73,6 +73,7 @@ public class CatSpawner : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 10, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;
+                if (hit.position.y > 0.5f) continue;
 
                 // CASE 0: It is inside a building
                 if (Physics.OverlapSphere(hitPosition, 0.1f, obstacleMask).Length > 0) continue;

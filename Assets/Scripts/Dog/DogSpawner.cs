@@ -66,7 +66,7 @@ public class DogSpawner : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 10, 1))
             {
                 // Check if it is visible by player or not
-
+                if (hit.position.y > 0.5f) continue;
                 Vector3 hitPosition = hit.position;
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)

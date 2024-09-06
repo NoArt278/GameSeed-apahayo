@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 2506785156996506892}
   - component: {fileID: 5685519041676983125}
   - component: {fileID: 4142493233167706172}
+  - component: {fileID: 1038061131735171985}
   m_Layer: 6
   m_Name: Cube.034
   m_TagString: Untagged
@@ -245,3 +246,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6505552537926968463, guid: f1d3dc654ada98a458dfaf81ba77e0cf, type: 3}
+--- !u!114 &1038061131735171985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3685313466570677464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5685519041676983125}
+  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
