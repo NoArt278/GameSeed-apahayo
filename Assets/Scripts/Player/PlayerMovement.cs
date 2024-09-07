@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -177,7 +178,14 @@ public class PlayerMovement : MonoBehaviour
             mr.enabled = true;
             isHiding = false;
             catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
+            currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
             StartCoroutine(HideDelay());
+            Transform spriteTransform = currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
+            if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
+                    || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
+            {
+                spriteTransform.localScale = new Vector3(spriteTransform.localScale.z, spriteTransform.localScale.y, spriteTransform.localScale.x);
+            }
         }
     }
 
@@ -193,6 +201,14 @@ public class PlayerMovement : MonoBehaviour
             mr.enabled = false;
             PlayerUI.Instance.ChangeHideText("(E) Unhide");
             catArmy.HideCats(currTrashBin.position);
+            currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", true);
+            Transform spriteTransform = currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
+            spriteTransform.LookAt(new Vector3(spriteTransform.position.x, spriteTransform.position.y, spriteTransform.position.z + 5));
+            if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
+                    || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
+            {
+                spriteTransform.localScale = new Vector3(spriteTransform.localScale.z, spriteTransform.localScale.y, spriteTransform.localScale.x);
+            }
         } else
         {
             canMove = true;
