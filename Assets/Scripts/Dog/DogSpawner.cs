@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,20 +23,13 @@ public class DogSpawner : MonoBehaviour
     {
         spawnArea = GetComponent<BoxCollider>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void Update()
+    private void OnGameStateChanged(GameState prev, GameState current)
     {
-        if(Player != null)
-        {
-            if (dogsSpawned < spawnAmount)
-            {
-                Spawn();
-            }
-        }
-        else
-        {
-            Player = GameObject.FindGameObjectWithTag("Player");
+        if (current == GameState.InGame) {
+            while (dogsSpawned < spawnAmount) { Spawn(); }
         }
     }
 

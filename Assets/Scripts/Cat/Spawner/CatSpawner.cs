@@ -18,16 +18,26 @@ public class CatSpawner : MonoBehaviour
     [SerializeField] private int maxLocationSearchAttempts = 30;
 
     private LayerMask obstacleMask;
-
     private BoxCollider spawnArea;
+    private Coroutine spawnRoutine;
+
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
         obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start() {
-        StartCoroutine(SpawnRoutine());
+        GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
+
+    private void OnGameStateChanged(GameState prev, GameState current) {
+        if (current == GameState.InGame) {
+            spawnRoutine = StartCoroutine(SpawnRoutine());
+        } else {
+            if (spawnRoutine != null) StopCoroutine(spawnRoutine);
+        }
+    }
+
 
     private IEnumerator SpawnRoutine() {
         while (true) {

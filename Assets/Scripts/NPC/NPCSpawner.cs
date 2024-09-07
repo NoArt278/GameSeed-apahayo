@@ -11,37 +11,33 @@ public class NPCSpawner : MonoBehaviour
     public GameObject prefab;
 
     public int spawnAmount = 10;
-
     public int npcInScene = 0;
+
+    private bool spawnFlag = false;
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
     }
 
-    void Start()
-    {
-        StartSpawning();
+    private void Start() {
+        GameManager.Instance.OnGameStateChanged += 
+            (prev, current) => {
+                if (current == GameState.InGame) {
+                    spawnFlag = true;
+                }
+            };
     }
 
     void Update()
     {
+        if (!spawnFlag) return;
         if (npcInScene < spawnAmount)
-        {
-            StartSpawning();
-        }
-    }
-
-    private void StartSpawning()
-    {
-        // Execute the spawning logic
-        while (npcInScene < spawnAmount)
         {
             Spawn();
         }
     }
 
     private void Spawn(){
-
         Vector3 randomPosition = GetRandomPositionOnNavMesh();
         if (randomPosition != Vector3.zero)
         {
@@ -83,7 +79,6 @@ public class NPCSpawner : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("Failed to find a valid NavMesh position near the random position.");
         return Vector3.zero;
     }
 }

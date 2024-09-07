@@ -1,15 +1,16 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour {
-    public static PlayerUI Instance;
+public class GameplayUI : MonoBehaviour {
+    public static GameplayUI Instance;
 
     [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
     [SerializeField] private Slider staminaSlider;
-    [SerializeField] private Image crosshair, staminaSliderImage;
+    [SerializeField] private Image crosshair, staminaSliderImage, overlay;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -19,6 +20,24 @@ public class PlayerUI : MonoBehaviour {
         }
 
         // Cursor.visible = false;
+        overlay.gameObject.SetActive(false);
+        Color oColor = overlay.color;
+        oColor.a = 1;
+        overlay.color = oColor;
+    }
+
+    public void GameTransitionIn(Action onComplete = null) {
+        overlay.gameObject.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.AppendInterval(1);
+        sequence.Append(overlay.DOFade(0, 1).OnComplete(() => {
+            overlay.gameObject.SetActive(false);
+        }));
+
+        sequence.JoinCallback(() => {
+            onComplete?.Invoke();
+        }).SetDelay(0.7f);
     }
 
     private void Update() {

@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, staminalFillDelay = 5;
-    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = true, canFillStamina = true, isDead = false;
+    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = false, canFillStamina = true, isDead = false;
     private float stamina, moveSpeed, lastStaminaDepleteTime;
     private Transform currTrashBin;
     private CatArmy catArmy;
@@ -58,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
             cc.Move(new Vector3(0, moveSpeed * Time.deltaTime * -1, 0));
         }
 
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
+
         if (canMove)
         {
             Vector2 moveInput = InputContainer.playerInputs.Player.Move.ReadValue<Vector2>();
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 canFillStamina = false;
                 lastStaminaDepleteTime = Time.time;
-                PlayerUI.Instance.StaminaDeplete();
+                GameplayUI.Instance.StaminaDeplete();
                 StopSprint();
             }
         }
@@ -107,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        PlayerUI.Instance.UpdateStamina(stamina / maxStamina);
+        GameplayUI.Instance.UpdateStamina(stamina / maxStamina);
     }
 
     private void StartSprint(InputAction.CallbackContext ctx)
@@ -192,14 +194,14 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator HideDelay()
     {
         justHid = true;
-        PlayerUI.Instance.ChangeHideText("");
+        GameplayUI.Instance.ChangeHideText("");
         yield return new WaitForSeconds(0.5f);
         if (isHiding)
         {
             capsuleCollider.enabled = false;
             sr.enabled = false;
             mr.enabled = false;
-            PlayerUI.Instance.ChangeHideText("(E) Unhide");
+            GameplayUI.Instance.ChangeHideText("(E) Unhide");
             catArmy.HideCats(currTrashBin.position);
             currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", true);
             Transform spriteTransform = currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
@@ -213,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canMove = true;
             capsuleCollider.enabled = true;
-            PlayerUI.Instance.ChangeHideText("(E) Hide");
+            GameplayUI.Instance.ChangeHideText("(E) Hide");
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
@@ -227,12 +229,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ArmyCatBehaviour armyCat = other.gameObject.GetComponent<ArmyCatBehaviour>();
             catArmy.RegisterCat(armyCat, transform);
-            PlayerUI.Instance.UpdateCatCount(catArmy.GetCatCount());
+            GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
         } else if (other.CompareTag("Hide"))
         {
             currTrashBin = other.transform;
             canHide = true;
-            PlayerUI.Instance.HideTextAppear("(E) Hide");
+            GameplayUI.Instance.HideTextAppear("(E) Hide");
         } else if (other.CompareTag("Dog"))
         {
             canMove = false;
@@ -255,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currTrashBin = null;
             canHide = false;
-            PlayerUI.Instance.HideTextDissapear();
+            GameplayUI.Instance.HideTextDissapear();
         }
     }
 }

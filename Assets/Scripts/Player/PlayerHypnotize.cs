@@ -18,7 +18,7 @@ public class PlayerHypnotize : MonoBehaviour
         catGodAnimator = GetComponentInChildren<Animator>();
         sr = GetComponentInChildren<SpriteRenderer>();
         lastClickTime = 0;
-        PlayerUI.Instance.UpdateScore(score);
+        GameplayUI.Instance.UpdateScore(score);
     }
 
     void Update()
@@ -54,8 +54,8 @@ public class PlayerHypnotize : MonoBehaviour
                 lastCrazedNPC = currNPC;
                 catArmy.DestroyCat();
                 score += Mathf.RoundToInt(currNPC.HypnotizeStats.hypnotizeHealth * 10);
-                PlayerUI.Instance.UpdateCatCount(catArmy.GetCatCount());
-                PlayerUI.Instance.UpdateScore(score);
+                GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
+                GameplayUI.Instance.UpdateScore(score);
             }
         } else
         {

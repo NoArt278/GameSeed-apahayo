@@ -1,6 +1,10 @@
+using System;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+
+[System.Serializable]
+public enum GameState { PreGame, InGame, PostGame }
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +13,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject cameraPrefab;
     [SerializeField] private GameObject directionalLight;
     private LayerMask obstacleMask;
+    public GameState CurrentState { get; private set; } = GameState.PreGame;
+    public Action<GameState, GameState> OnGameStateChanged;
+
+    public void SetGameState(GameState state)
+    {
+        if (CurrentState == state) return;
+        GameState prev = CurrentState;
+        CurrentState = state;
+
+        OnGameStateChanged?.Invoke(prev, CurrentState);
+    }
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -28,17 +43,23 @@ public class GameManager : MonoBehaviour
     {
         ArenaGeneration.Instance.GenerateArena();
         NavMeshManager.Instance.BuildNavMesh();
+        StaticBatchingUtility.Combine(ArenaGeneration.Instance.gameObject);
+
         InitializePlayer();
 
         // Timer
         GameTimer.Instance.SetDuration(180f);
-        GameTimer.Instance.StartTimer();
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();
         };
 
-        StaticBatchingUtility.Combine(ArenaGeneration.Instance.ArenaPropsParent.gameObject);
-        StaticBatchingUtility.Combine(ArenaGeneration.Instance.FloorBorderParent.gameObject);
+        GameplayUI.Instance.GameTransitionIn(OnGameTransitionInComplete);
+    }
+
+    private void OnGameTransitionInComplete()
+    {
+        GameTimer.Instance.StartTimer();
+        SetGameState(GameState.InGame);
     }
 
     private void InitializePlayer() {
