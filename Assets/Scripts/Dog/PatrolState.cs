@@ -41,7 +41,7 @@ public class PatrolState : DogState
 
     public override void UpdateState(DogStateMachine stateMachine)
     {
-        if (!fieldOfView.isPlayerVisible || Player.GetComponent<PlayerMovement>().IsHiding())
+        if (!fieldOfView.isPlayerVisible || player.GetComponent<PlayerMovement>().IsHiding())
         {
             switch (currentState)
             {
