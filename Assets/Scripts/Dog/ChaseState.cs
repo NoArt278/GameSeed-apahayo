@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class ChaseState : DogState
 {
-    private GameObject Player;
+    private bool isPlayerHiding;
+    private bool isPlayerLost;
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseAngle;
     public bool shouldChase = false;
@@ -19,8 +20,12 @@ public class ChaseState : DogState
 
     public override void EnterState(DogStateMachine stateMachine)
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        agent.destination = Player.transform.position;
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        agent.destination = player.transform.position;
         shouldChase = true;
         prevAngle = fieldOfView.Angle;
         fieldOfView.Angle = 360;
@@ -31,16 +36,55 @@ public class ChaseState : DogState
 
     public override void UpdateState(DogStateMachine stateMachine)
     {
-        if (!fieldOfView.isPlayerVisible && !lostTimerStarted)
+        // Start countdown if player is lost or hiding
+        if (shouldChase && fieldOfView.isPlayerVisible && player.GetComponent<PlayerMovement>().IsHiding() && !lostTimerStarted)
         {
             lostTimerStarted = true;
+            isPlayerHiding = true;
+            StartCoroutine(TargetHidingRoutine());
+            return;
+        } 
+        else if (shouldChase && !fieldOfView.isPlayerVisible && !lostTimerStarted)
+        {
+            lostTimerStarted = true;
+            isPlayerLost = true;
             StartCoroutine(TargetLostRoutine());
+            return;
         }
+
+        // Check if player is still lost or hiding during countdown
+        if(lostTimerStarted && isPlayerHiding && !player.GetComponent<PlayerMovement>().IsHiding())
+        {
+
+            animator.SetBool("Chase", true);
+            StopAllCoroutines();
+            isPlayerHiding = false;
+            lostTimerStarted = false;
+            shouldChase = true;
+        }
+        if(lostTimerStarted && isPlayerLost && fieldOfView.isPlayerVisible)
+        {
+            StopAllCoroutines();
+            isPlayerLost = false;
+            lostTimerStarted = false;
+            shouldChase = true;
+        }
+
+        
+
 
         if (shouldChase)
         {
-            agent.destination = Player.transform.position;
-            fieldOfView.SetVisionDirection(transform.position, Player.transform.position);
+            if (isPlayerHiding && fieldOfView.isPlayerVisible)
+            {
+                agent.destination = transform.position;
+                animator.SetBool("Chase", false);
+            }
+            else
+            {
+                agent.destination = player.transform.position;
+            }
+            fieldOfView.SetVisionDirection(transform.position, player.transform.position);
             AlignOrientation();
         }
         else
@@ -55,6 +99,8 @@ public class ChaseState : DogState
         agent.ResetPath();
         fieldOfView.Angle = prevAngle;
         fieldOfView.isChasing = false;
+        isPlayerLost = false;
+        isPlayerHiding = false;
     }
 
     private IEnumerator TargetLostRoutine()
@@ -66,6 +112,18 @@ public class ChaseState : DogState
         shouldChase = fieldOfView.isPlayerVisible;
 
         lostTimerStarted = false;      
+    }
+
+    private IEnumerator TargetHidingRoutine()
+    {
+        WaitForSeconds delay = new WaitForSeconds(2);
+
+        yield return delay;
+
+        shouldChase = !player.GetComponent<PlayerMovement>().IsHiding();
+        print("Hiding routine finished. should chase: " + shouldChase);
+
+        lostTimerStarted = false;
     }
 
 
