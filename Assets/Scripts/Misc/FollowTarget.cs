@@ -3,7 +3,12 @@ using UnityEngine;
 public class FollowTarget : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset;
+    private Vector3 offset;
+
+    void Awake(){
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        offset = rectTransform.position - target.position;
+    }
 
     // Update is called once per frame
     void Update()

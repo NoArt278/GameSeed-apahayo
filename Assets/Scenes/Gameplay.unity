@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 368581513}
   - component: {fileID: 368581516}
   - component: {fileID: 368581517}
+  - component: {fileID: 368581519}
+  - component: {fileID: 368581518}
   m_Layer: 2
   m_Name: SpawnArea
   m_TagString: Untagged
@@ -300,6 +302,42 @@ MonoBehaviour:
   maxAttempt: 20
   prefab: {fileID: 1272540199784814790, guid: e208c3e5971ac224d9c96913842da3e4, type: 3}
   spawnAmount: 15
+  npcInScene: 0
+--- !u!114 &368581518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368581512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f984ae36f045d4b9fd6c4c67fcca32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshSurface: {fileID: 722721560}
+  sceneCanvas: {fileID: 848660981}
+  maxAttempt: 20
+  prefab: {fileID: 1272540199784814790, guid: d11390593f565fc43984aba29c6381b3, type: 3}
+  spawnAmount: 10
+  npcInScene: 0
+--- !u!114 &368581519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368581512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f984ae36f045d4b9fd6c4c67fcca32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshSurface: {fileID: 722721560}
+  sceneCanvas: {fileID: 848660981}
+  maxAttempt: 20
+  prefab: {fileID: 1272540199784814790, guid: f8e3d4b6b28b4c84ea68580fdbe6ecc5, type: 3}
+  spawnAmount: 10
   npcInScene: 0
 --- !u!1 &717965191
 GameObject:

@@ -76,7 +76,7 @@ public class NPCRandomMoveState : NPCBaseState
     }
 
     void AlignOrientation(){
-        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
+        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x < 0;
     }
 
     private void OnDrawGizmosSelected() {
