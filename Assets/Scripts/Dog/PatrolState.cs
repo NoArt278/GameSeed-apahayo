@@ -23,6 +23,11 @@ public class PatrolState : DogState
 
     public override void EnterState(DogStateMachine stateMachine)
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
         float random = Random.Range(0f, 1f);
         if (random < 0.5f)
         {
@@ -36,7 +41,7 @@ public class PatrolState : DogState
 
     public override void UpdateState(DogStateMachine stateMachine)
     {
-        if (!fieldOfView.isPlayerVisible)
+        if (!fieldOfView.isPlayerVisible || Player.GetComponent<PlayerMovement>().IsHiding())
         {
             switch (currentState)
             {

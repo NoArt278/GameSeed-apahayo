@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public abstract class DogState : MonoBehaviour
 {
     protected NavMeshAgent agent;
+    protected GameObject player;
     [SerializeField] protected FieldOfView fieldOfView;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Animator animator;
@@ -13,7 +14,7 @@ public abstract class DogState : MonoBehaviour
     protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        //animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public abstract void EnterState(DogStateMachine stateMachine);
