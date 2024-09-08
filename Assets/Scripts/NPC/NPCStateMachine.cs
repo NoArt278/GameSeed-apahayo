@@ -35,6 +35,10 @@ public class NPCStateMachine : MonoBehaviour
     // SPAWNER =======================================
     public NPCSpawner spawner;
 
+    // ANIMATION =====================================
+
+    public Animator animator;
+
     // Waypoints
     // public WaypointType waypointType;
     // [SerializeField] public Waypoint[] waypoints;
@@ -56,6 +60,9 @@ public class NPCStateMachine : MonoBehaviour
         STATE_CRAZE = new NPCCrazeState(this);
         // STATE_WAYPOINT = new NPCWayPointState(this);
 
+        // ANIMATION
+        animator = GetComponentInChildren<Animator>();
+
     }
 
     public void Initialize(NavMeshSurface surface, HypnotizeStats stats = null) {
@@ -72,6 +79,7 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
+        IsNPCWalking();
     }
 
     public void TransitionToState(NPCBaseState state)
@@ -107,5 +115,9 @@ public class NPCStateMachine : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void IsNPCWalking(){
+        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0.1f);
     }
 }
