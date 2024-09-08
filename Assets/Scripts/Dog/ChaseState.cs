@@ -25,6 +25,7 @@ public class ChaseState : DogState
         prevAngle = fieldOfView.Angle;
         fieldOfView.Angle = 360;
         fieldOfView.isChasing = true;
+        animator.SetBool("Chase", true);
         print("Enter Chase State");
     }
 
@@ -50,6 +51,7 @@ public class ChaseState : DogState
 
     public override void ExitState(DogStateMachine stateMachine)
     {
+        animator.SetBool("Chase", false);
         agent.ResetPath();
         fieldOfView.Angle = prevAngle;
         fieldOfView.isChasing = false;

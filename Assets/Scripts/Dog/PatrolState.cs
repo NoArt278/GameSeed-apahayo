@@ -56,6 +56,7 @@ public class PatrolState : DogState
 
     public override void ExitState(DogStateMachine stateMachine)
     {
+        animator.SetBool("Patrol", false);
         agent.ResetPath();
     }
 
@@ -67,6 +68,7 @@ public class PatrolState : DogState
     private void SwitchToIdle()
     {
         if (agent == null) return;
+        animator.SetBool("Patrol", false);
         agent.ResetPath();
         timer = 0f;
         stopIdlingTime = Random.Range(idleDuration.min, idleDuration.max);
@@ -79,6 +81,7 @@ public class PatrolState : DogState
         if (agent == null) return;
         agent.speed = speed;
         agent.SetDestination(GetValidDestination());
+        animator.SetBool("Patrol", true);
 
         currentState = State.Wander;
     }
