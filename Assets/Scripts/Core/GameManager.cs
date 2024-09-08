@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void OnGameplaySceneLoaded()
     {
+        SetGameState(GameState.PreGame);
         ArenaGeneration.Instance.GenerateArena();
         NavMeshManager.Instance.BuildNavMesh();
         StaticBatchingUtility.Combine(ArenaGeneration.Instance.gameObject);
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         InitializePlayer();
 
         // Timer
-        GameTimer.Instance.SetDuration(180f);
+        GameTimer.Instance.SetDuration(120f);
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();
         };

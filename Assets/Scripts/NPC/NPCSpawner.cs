@@ -20,12 +20,18 @@ public class NPCSpawner : MonoBehaviour
     }
 
     private void Start() {
-        GameManager.Instance.OnGameStateChanged += 
-            (prev, current) => {
-                if (current == GameState.InGame) {
-                    spawnFlag = true;
-                }
-            };
+        GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    private void OnDisable() {
+        GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
+
+    private void OnGameStateChanged(GameState prev, GameState current) {
+        if (current == GameState.InGame) {
+            spawnFlag = true;
+        }
     }
 
     void Update()

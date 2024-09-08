@@ -30,6 +30,10 @@ public class CatSpawner : MonoBehaviour
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
+    private void OnDisable() {
+        GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
     private void OnGameStateChanged(GameState prev, GameState current) {
         if (current == GameState.InGame) {
             spawnRoutine = StartCoroutine(SpawnRoutine());
@@ -37,7 +41,6 @@ public class CatSpawner : MonoBehaviour
             if (spawnRoutine != null) StopCoroutine(spawnRoutine);
         }
     }
-
 
     private IEnumerator SpawnRoutine() {
         while (true) {
