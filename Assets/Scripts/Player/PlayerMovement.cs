@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             cc.Move(new Vector3(0, moveSpeed * Time.deltaTime * -1, 0));
         }
 
-        if (GameManager.Instance.CurrentState != GameState.InGame) return;
+        if (GameManager.Instance && GameManager.Instance.CurrentState != GameState.InGame) return;
 
         if (canMove)
         {

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -27,12 +26,12 @@ public class ArenaGeneration : MonoBehaviour {
     [SerializeField] private float gridSize = 10f;
     [SerializeField] private Vector2Int arenaGridDimension = new(8, 5);
     [SerializeField] private Arena[] arenaPrefabs;
+    [SerializeField] private Arena museumPrefab;
     [SerializeField] private Transform arenaPropsParent;
+    [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private int maxGenerationAttempt = 20;
 
-    public Transform ArenaPropsParent => arenaPropsParent;
-    public Transform FloorBorderParent => floorBorderParent;
-
+    public Vector3 PlayerSpawnPoint => playerSpawnPoint.position;
     
     // Notes for Grid Coordinate
     // Grid Coordinate starts from top left corner at (0, 0)
@@ -92,6 +91,8 @@ public class ArenaGeneration : MonoBehaviour {
         for (int i = 0; i < arenaPrefabs.Length; i++) {
             arenaMustAppear[i] = arenaPrefabs[i].MustAppear;
         }
+
+        PlaceMuseum();
 
         // STEP 1: RANDOMLY GENERATE THE ARENA
         for (int z = 0; z < arenaGridDimension.y; z++) {
@@ -177,6 +178,18 @@ public class ArenaGeneration : MonoBehaviour {
         }
     }
 
+    public void PlaceMuseum() {
+        Vector2Int coord = new(1, 1);
+        SpawnArenaAt(coord, museumPrefab, faceCamera: true);
+
+        for (int i = 0; i < museumPrefab.GridSpan.x; i++) {
+            for (int j = 0; j < museumPrefab.GridSpan.y; j++) {
+                if (coord.x + i >= arenaGridDimension.x || coord.y + j >= arenaGridDimension.y) return;
+                isGridOccupied[coord.x + i, coord.y + j] = true;
+            }
+        }
+    }
+
     private bool CanBePlaced(Vector2Int coord, Vector2Int gridSpan, Orientation orientation = Orientation.Default) {
         int spanX = orientation == Orientation.Default ? gridSpan.x : gridSpan.y;
         int spanZ = orientation == Orientation.Default ? gridSpan.y : gridSpan.x;
@@ -217,13 +230,13 @@ public class ArenaGeneration : MonoBehaviour {
         }
     }
 
-    private Quaternion GetRotation(Orientation orientation) {
+    private Quaternion GetRandom180Rotation(Orientation orientation) {
         return orientation == Orientation.Default ? 
             Quaternion.Euler(0, 0 + Random.Range(0, 2) * 180, 0) :
             Quaternion.Euler(0, 90 + Random.Range(0, 2) * 180, 0);
     }
 
-    private void SpawnArenaAt(Vector2Int coord, Arena arena, Orientation orientation = Orientation.Default) {
+    private void SpawnArenaAt(Vector2Int coord, Arena arena, Orientation orientation = Orientation.Default, bool faceCamera = false) {
         // Calculate the position
         Vector3 position = GridToWorldCoordinate(coord);
 
@@ -238,8 +251,10 @@ public class ArenaGeneration : MonoBehaviour {
         position += transform.position;
         position += originOffset;
 
+        Quaternion rotation = faceCamera ? Quaternion.Euler(0, 180, 0) : GetRandom180Rotation(orientation);
+
         // Put the arena
-        GameObject arenaObj = Instantiate(arena.gameObject, position, GetRotation(orientation));
+        GameObject arenaObj = Instantiate(arena.gameObject, position, rotation);
         arenaObj.GetComponent<Arena>().Init(coord);
         arenaObj.transform.SetParent(arenaPropsParent);
 
