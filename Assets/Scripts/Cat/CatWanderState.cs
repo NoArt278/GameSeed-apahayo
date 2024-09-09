@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CatWanderState : CatBaseState {
-    public CatWanderState(CatStateMachine stm) : base(stm) { }
+public class CatStrayWanderState : CatBaseState {
+    public CatStrayWanderState(CatStateMachine stm) : base(stm) { }
 
     public override void EnterState()
     {
@@ -17,7 +17,7 @@ public class CatWanderState : CatBaseState {
         bool isDestinationReached = stm.Agent.remainingDistance <= stm.Agent.stoppingDistance;
 
         if (isPathStale || isPathPending || isDestinationReached) {
-            stm.ChangeState(stm.STATE_WANDER);
+            stm.ChangeState(stm.STATE_STRAYWANDER);
         }
 
         stm.AlignOrientation();

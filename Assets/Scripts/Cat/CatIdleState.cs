@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class CatIdleState : CatBaseState {
+public class CatStrayIdleState : CatBaseState {
     private Coroutine idleCoroutine;
-    public CatIdleState(CatStateMachine stm) : base(stm) { }
+    public CatStrayIdleState(CatStateMachine stm) : base(stm) { }
 
     public override void EnterState() {
         stm.Agent.ResetPath();
@@ -12,7 +12,7 @@ public class CatIdleState : CatBaseState {
 
     private IEnumerator Idle(float duration) {
         yield return new WaitForSeconds(duration);
-        stm.ChangeState(stm.STATE_WANDER);
+        stm.ChangeState(stm.STATE_STRAYWANDER);
     }
 
     public override void ExitState() {

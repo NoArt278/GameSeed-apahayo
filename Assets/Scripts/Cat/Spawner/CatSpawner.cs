@@ -66,12 +66,22 @@ public class CatSpawner : MonoBehaviour
         strayCatCount++;
         catsInSceneCount++;
 
-        strayCat.GetComponent<CatBehaviourManager>().OnStateChanged += (prev, _) => {
-            if (prev == CatBehaviourManager.State.Stray) strayCatCount--;
+        CatStateMachine stm = strayCat.GetComponent<CatStateMachine>();
+
+        stm.OnStateChanged += (prev, current) => {
+            if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
+                strayCatCount--;
+            }
+
+            if (current == stm.STATE_STRAYIDLE || current == stm.STATE_STRAYWANDER) {
+                strayCatCount++;
+            }
         };
 
-        strayCat.GetComponent<CatBehaviourManager>().OnDestroyed += () => { 
-            strayCatCount--; 
+        stm.OnDestroyed += () => { 
+            if (stm.CurrentState == stm.STATE_STRAYIDLE || stm.CurrentState == stm.STATE_STRAYWANDER) {
+                strayCatCount--;
+            }
             catsInSceneCount--;
         };
     }

@@ -5,27 +5,26 @@ using UnityEngine.AI;
 
 public class CatArmy : MonoBehaviour
 {
-    // [SerializeField] private Transform follow;
     private Transform follow;
 
-    [ReadOnly] [SerializeField] private List<ArmyCatBehaviour> cats;
+    [ReadOnly] [SerializeField] private List<CatStateMachine> cats;
     [SerializeField] private GameObject armyCatPrefab;
 
     private float catRadius;
-    private List<ArmyCatBehaviour> outsideCats = new();
+    private readonly List<CatStateMachine> outsideCats = new();
 
     private void Awake() {
         catRadius = armyCatPrefab.GetComponent<NavMeshAgent>().radius;
     }
 
-    public bool RegisterCat(ArmyCatBehaviour cat, Transform follow) 
+    public bool RegisterCat(CatStateMachine cat, Transform player) 
     {
         if (cats.Contains(cat)) return false;
 
-        this.follow = follow == null ? this.follow : follow;
+        this.follow = player == null ? this.follow : player;
 
-        cat.Initialize(follow, follow.GetComponent<PlayerStats>().walkSpeed);
-        cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
+        PlayerStats stats = player.GetComponent<PlayerStats>();
+        cat.BecomeFollower(player, stats.walkSpeed, stats.sprintSpeed);
 
         cats.Add(cat);
         RecalculateStoppingDistance();
@@ -54,8 +53,8 @@ public class CatArmy : MonoBehaviour
 
         if (stoppingDistance == cats[0].GetComponent<NavMeshAgent>().stoppingDistance) return;
 
-        foreach (ArmyCatBehaviour armyCat in cats) {
-            armyCat.GetComponent<NavMeshAgent>().stoppingDistance = stoppingDistance;
+        foreach (CatStateMachine cat in cats) {
+            cat.Agent.stoppingDistance = stoppingDistance;
         }
     }
 
@@ -65,86 +64,50 @@ public class CatArmy : MonoBehaviour
     }
 
     public void HideCats(Vector3 hidePosition) {
-        foreach (ArmyCatBehaviour cat in cats) {
-            cat.GetComponent<CatBehaviourManager>().BecomeHidingCat();
-            cat.GetComponent<HidingCatBehaviour>().StartHiding(hidePosition);
+        foreach (CatStateMachine cat in cats) {
+            cat.GoHiding(hidePosition);
         }
     }
 
     public void UseCatForHypnotize(Vector3 endLocation) {
         if (cats.Count == 0) return;
 
-        ArmyCatBehaviour cat = cats[0];
-        // cats.Remove(cat);
-        // Destroy(cat.gameObject);
+        CatStateMachine cat = cats[0];
+        cats.Remove(cat);
+        Destroy(cat.gameObject);
     }
 
     public void QuitHiding(Vector3 exitPosition) {
         for (int i = 0; i < cats.Count; i++) {
-            ArmyCatBehaviour cat = cats[i];
+            CatStateMachine cat = cats[i];
             if (i == 0) {
                 outsideCats.Clear();
-                cat.GetComponent<HidingCatBehaviour>().QuitHiding(
-                    exitPosition,
-                    onQuitComplete: () => {
-                        cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
-                    }
-                );
+                cat.QuitHiding(exitPosition);
                 outsideCats.Add(cat);
                 continue;
             }
 
-            cat.GetComponent<HidingCatBehaviour>().QuitHiding(
-                FindAppropriateSpawnLocation(),
-                onQuitComplete: () => {
-                    cat.GetComponent<CatBehaviourManager>().BecomeArmyCat();
-                }
-            );
+            cat.QuitHiding( FindAppropriateSpawnLocation() );
             outsideCats.Add(cat);
         }
-
-        // foreach (ArmyCatBehaviour cat in cats) {
-        //     cat.GetComponent<HidingCatBehaviour>().QuitHiding(
-        //         exitPosition,
-        //         onQuitComplete: () => cat.GetComponent<CatBehaviourManager>().BecomeArmyCat()
-        //     );
-        // }
     }
 
-    public void StartSprint(float speed) {
-        foreach (ArmyCatBehaviour cat in cats) {
-            cat.Sprint(speed);
+    public void StartSprint() {
+        foreach (CatStateMachine cat in cats) {
+            cat.StartSprint();
         }
     }
 
     public void StopSprint() {
-        foreach (ArmyCatBehaviour cat in cats) {
+        foreach (CatStateMachine cat in cats) {
             cat.StopSprint();
         }
     }
-
-    public void FleeOuterCat() {
-        if (cats.Count == 0) return;
-
-        ArmyCatBehaviour outerCat = cats[0];
-        float maxDistance = Vector3.Distance(outerCat.transform.position, follow.position);
-        foreach (ArmyCatBehaviour cat in cats) {
-            float distance = Vector3.Distance(cat.transform.position, follow.position);
-            if (distance > maxDistance) {
-                outerCat = cat;
-                maxDistance = distance;
-            }
-        }
-
-        outerCat.Flee();
-        cats.Remove(outerCat);
-    }
-
     public void DestroyCat()
     {
         if (cats.Count == 0) return;
 
-        ArmyCatBehaviour destroyedCat = cats[0];
+        CatStateMachine destroyedCat = cats[0];
         cats.Remove(destroyedCat);
         Destroy(destroyedCat.gameObject);
     }
@@ -159,7 +122,7 @@ public class CatArmy : MonoBehaviour
         }
 
         Vector3 averagePosition = Vector3.zero;
-        foreach (ArmyCatBehaviour cat in outsideCats)
+        foreach (CatStateMachine cat in outsideCats)
         {
             averagePosition += cat.transform.position;
         }

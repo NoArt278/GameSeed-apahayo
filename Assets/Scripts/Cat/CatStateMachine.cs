@@ -36,11 +36,12 @@ public class CatStateMachine : MonoBehaviour {
     public HideProperties Hide;
     [HideInInspector] public FollowProperties Follow;
 
+    [SerializeField, ReadOnly] private  CatBaseState previousState;
     [SerializeField, ReadOnly] private CatBaseState currentState;
     public CatBaseState CurrentState;
     // STATES ========================================
-    public  CatIdleState        STATE_IDLE { get; private set; }
-    public  CatWanderState      STATE_WANDER { get; private set; }
+    public  CatStrayIdleState   STATE_STRAYIDLE { get; private set; }
+    public  CatStrayWanderState STATE_STRAYWANDER { get; private set; }
     public  CatFollowState      STATE_FOLLOW { get; private set; }
     public  CatHidingState      STATE_HIDING { get; private set; }
     public  CatHypnotizeState   STATE_HYPNOTIZE { get; private set; }
@@ -62,20 +63,45 @@ public class CatStateMachine : MonoBehaviour {
         Agent = GetComponent<NavMeshAgent>();
 
         // STATES
-        STATE_IDLE = new CatIdleState(this);
-        STATE_WANDER = new CatWanderState(this);
+        STATE_STRAYIDLE = new CatStrayIdleState(this);
+        STATE_STRAYWANDER = new CatStrayWanderState(this);
         STATE_FOLLOW = new CatFollowState(this);
         STATE_HIDING = new CatHidingState(this);
         STATE_HYPNOTIZE = new CatHypnotizeState(this);
 
         // Set initial state
-        ChangeState(STATE_IDLE);
+        ChangeState(STATE_STRAYIDLE);
+    }
+
+    public void BecomeFollower(Transform target, float baseSpeed, float sprintSpeed) {
+        Follow.Target = target;
+        Follow.BaseSpeed = baseSpeed;
+        Follow.SprintSpeed = sprintSpeed;
+
+        ChangeState(STATE_FOLLOW);
+    }
+
+    public void GoHiding(Vector3 position) {
+        ChangeState(STATE_HIDING);
+        STATE_HIDING.StartHiding(position);
+    }
+
+    public void QuitHiding(Vector3 position) {
+        STATE_HIDING.QuitHiding(position, () => ChangeState(previousState));
+    }
+
+    public void StartSprint() {
+        STATE_FOLLOW.StartSprint(Follow.SprintSpeed);
+    }
+
+    public void StopSprint() {
+        STATE_FOLLOW.StopSprint();
     }
 
     private void Start() {
         float random = UnityEngine.Random.Range(0f, 1f);
-        if (random < 0.5f) ChangeState(STATE_WANDER);
-        else ChangeState(STATE_IDLE);
+        if (random < 0.5f) ChangeState(STATE_STRAYWANDER);
+        else ChangeState(STATE_STRAYIDLE);
     }
 
     private void Update() {
@@ -88,11 +114,13 @@ public class CatStateMachine : MonoBehaviour {
     public void ChangeState(CatBaseState newState) {
         if (currentState == newState) return;
 
+        previousState = currentState;
+
         currentState?.UpdateState();
         currentState = newState;
         currentState.EnterState();
 
-        OnStateChanged?.Invoke(currentState, newState);
+        OnStateChanged?.Invoke(previousState, newState);
     }
 
     public void AlignOrientation() {

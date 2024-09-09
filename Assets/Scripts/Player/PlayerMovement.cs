@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = stats.sprintSpeed;
             catGodAnimator.SetBool("isSprinting", true);
             sprintTrail.Play();
-            catArmy.StartSprint(stats.sprintSpeed);
+            catArmy.StartSprint();
         }
     }
 
@@ -227,8 +227,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Cat"))
         {
-            ArmyCatBehaviour armyCat = other.gameObject.GetComponent<ArmyCatBehaviour>();
-            catArmy.RegisterCat(armyCat, transform);
+            CatStateMachine cat = other.gameObject.GetComponent<CatStateMachine>();
+            catArmy.RegisterCat(cat, transform);
             GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
         } else if (other.CompareTag("Hide"))
         {

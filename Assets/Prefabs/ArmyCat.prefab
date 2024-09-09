@@ -117,10 +117,6 @@ GameObject:
   - component: {fileID: 4679402809595049987}
   - component: {fileID: 5091378545787214062}
   - component: {fileID: 7480164201256537380}
-  - component: {fileID: 3132226445340389964}
-  - component: {fileID: 3170281281078992859}
-  - component: {fileID: 5885072185051355139}
-  - component: {fileID: 6907944684644577778}
   - component: {fileID: 5205804573859854808}
   m_Layer: 0
   m_Name: ArmyCat
@@ -190,69 +186,6 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}
---- !u!114 &3132226445340389964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700631295823998277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559bb52b5ee58bb45a11bdb20a42870c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catRenderer: {fileID: 527617308162765455}
-  animator: {fileID: 3799112928120774700}
---- !u!114 &3170281281078992859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700631295823998277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394127aaadded9047aecac1ae6acac4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedDeviation:
-    min: -0.3
-    max: 0.3
---- !u!114 &5885072185051355139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700631295823998277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffb3336419c4ad4c9852290ebf85fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 1
-  catRenderer: {fileID: 527617308162765455}
-  speed: 3
-  wanderRadius:
-    min: 3
-    max: 7
-  idleDuration:
-    min: 1
-    max: 3
-  maxAttempts: 30
---- !u!114 &6907944684644577778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7700631295823998277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4dd823c0961b2344bf1a5c021a598cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5205804573859854808
 MonoBehaviour:
   m_ObjectHideFlags: 0

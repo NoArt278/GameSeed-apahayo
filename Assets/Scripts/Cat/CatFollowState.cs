@@ -47,14 +47,13 @@ public class CatFollowState : CatBaseState {
     }
 
     private void Follow() {
-        if (stm.Follow.Target == null) {
-            stm.ChangeState(stm.STATE_IDLE);
-            return;
-        }
+        if (stm.Follow.Target == null) return;
 
         float speed = isSprinting ? stm.Follow.SprintSpeed : stm.Follow.BaseSpeed;
         speed += stm.Follow.SpeedDeviation.RandomValue();
         stm.Agent.speed = speed;
+
+        stm.Agent.SetDestination(stm.Follow.Target.position);
     }
 
     private void StartJumpToPlatform() {
