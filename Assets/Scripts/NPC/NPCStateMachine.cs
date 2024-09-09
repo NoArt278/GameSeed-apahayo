@@ -36,7 +36,6 @@ public class NPCStateMachine : MonoBehaviour
     public NPCSpawner spawner;
 
     // ANIMATION =====================================
-
     public Animator animator;
 
     // Waypoints
@@ -118,6 +117,7 @@ public class NPCStateMachine : MonoBehaviour
     }
 
     public void IsNPCWalking(){
-        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0.1f);
+        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0.1f);
+        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 }
