@@ -51,7 +51,7 @@ public class NPCHypnotizedState : NPCBaseState
             timer = 0f;
             currentHypnotizeValue += 1f;
             if (hypnotizeHealth <= currentHypnotizeValue) {
-                stm.TransitionToState(stm.STATE_CRAZE);
+                stm.TransitionToState(stm.STATE_WANDER);
             }
         }
 

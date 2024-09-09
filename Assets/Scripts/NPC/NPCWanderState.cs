@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCRandomMoveState : NPCBaseState
+public class NPCWanderState : NPCBaseState
 {
     private readonly NavMeshAgent agent;
     private readonly SpriteRenderer spriteRenderer;
 
     private Vector3 randomPoint;
 
-    public NPCRandomMoveState(NPCStateMachine stm) : base(stm)
+    public NPCWanderState(NPCStateMachine stm) : base(stm)
     {
         agent = stm.Agent;
         spriteRenderer = stm.SpriteRenderer;
@@ -25,13 +25,16 @@ public class NPCRandomMoveState : NPCBaseState
         AlignOrientation();
 
         spriteRenderer.color = Color.white;
+
+        GameTimer.Instance.AddTime(5f);
+
+        stm.Collider.enabled = false;
     }
 
     public override void UpdateState()
     {   
         AlignOrientation();
         CheckArrival();
-        stm.IsNPCWalking();
     }
 
     private void CheckArrival()
