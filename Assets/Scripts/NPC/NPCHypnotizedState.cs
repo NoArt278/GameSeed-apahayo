@@ -32,6 +32,8 @@ public class NPCHypnotizedState : NPCBaseState
         currentHypnotizeValue = 1f;
         timer = 0f;
 
+        stm.animator.SetBool("isHypno", true);
+
         stm.SpriteRenderer.color = Color.magenta;
         barUI.EnableHypnoBar();
     }
@@ -49,7 +51,7 @@ public class NPCHypnotizedState : NPCBaseState
             timer = 0f;
             currentHypnotizeValue += 1f;
             if (hypnotizeHealth <= currentHypnotizeValue) {
-                stm.TransitionToState(stm.STATE_CRAZE);
+                stm.TransitionToState(stm.STATE_WANDER);
             }
         }
 
@@ -58,6 +60,7 @@ public class NPCHypnotizedState : NPCBaseState
 
     private void TimerUpdate() {
         if (timer >= maxHypnotizeDelay) {
+            stm.animator.SetBool("isHypno", false);
             stm.TransitionToState(stm.STATE_RANDOMMOVE);
         }
 

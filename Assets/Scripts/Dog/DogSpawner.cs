@@ -26,6 +26,10 @@ public class DogSpawner : MonoBehaviour
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
+    private void OnDisable() {
+        GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
     private void OnGameStateChanged(GameState prev, GameState current)
     {
         if (current == GameState.InGame) {
@@ -59,6 +63,10 @@ public class DogSpawner : MonoBehaviour
                 // Check if it is visible by player or not
                 if (hit.position.y > 0.5f) continue;
                 Vector3 hitPosition = hit.position;
+
+                if (Player == null) {
+                    Player = GameObject.FindGameObjectWithTag("Player");
+                }
 
                 if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
                 {

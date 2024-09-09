@@ -20,6 +20,7 @@ public class NPCStateMachine : MonoBehaviour
     public  NPCWayPointState    STATE_WAYPOINT { get; private set; }
     public  NPCHypnotizedState  STATE_HYPNOTIZED { get; private set; }
     public  NPCCrazeState       STATE_CRAZE { get; private set; }
+    public  NPCWanderState       STATE_WANDER { get; private set; }
 
     // COMPONENTS ====================================
     public  NavMeshAgent        Agent { get; private set; }
@@ -36,7 +37,6 @@ public class NPCStateMachine : MonoBehaviour
     public NPCSpawner spawner;
 
     // ANIMATION =====================================
-
     public Animator animator;
 
     // Waypoints
@@ -58,6 +58,7 @@ public class NPCStateMachine : MonoBehaviour
         STATE_HYPNOTIZED.SetHypnotizeStats(HypnotizeStats);
 
         STATE_CRAZE = new NPCCrazeState(this);
+        STATE_WANDER = new NPCWanderState(this);
         // STATE_WAYPOINT = new NPCWayPointState(this);
 
         // ANIMATION
@@ -79,7 +80,6 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
-        IsNPCWalking();
     }
 
     public void TransitionToState(NPCBaseState state)
@@ -118,6 +118,7 @@ public class NPCStateMachine : MonoBehaviour
     }
 
     public void IsNPCWalking(){
-        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0.1f);
+        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0.1f);
+        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 }

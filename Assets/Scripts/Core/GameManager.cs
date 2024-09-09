@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void OnGameplaySceneLoaded()
     {
+        SetGameState(GameState.PreGame);
         ArenaGeneration.Instance.GenerateArena();
         NavMeshManager.Instance.BuildNavMesh();
         StaticBatchingUtility.Combine(ArenaGeneration.Instance.gameObject);
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         InitializePlayer();
 
         // Timer
-        GameTimer.Instance.SetDuration(180f);
+        GameTimer.Instance.SetDuration(120f);
         GameTimer.Instance.OnTimeUp += () => {
             EndGameScreen.Instance.ShowEndGameScreen();
         };
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void InitializePlayer() {
-        Vector3 spawnPosition = GetValidSpawnPosition();
+        Vector3 spawnPosition = ArenaGeneration.Instance.PlayerSpawnPoint;
         GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
@@ -79,21 +80,21 @@ public class GameManager : MonoBehaviour
         crosshair.Initialize(camera.GetComponent<Camera>());
     }
 
-    private Vector3 GetValidSpawnPosition()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            float x = ArenaGeneration.Instance.HorizontalBounds().RandomValue();
-            float y = ArenaGeneration.Instance.GroundY;
-            float z = ArenaGeneration.Instance.VerticalBounds().RandomValue();
+    // private Vector3 GetValidSpawnPosition()
+    // {
+    //     for (int i = 0; i < 100; i++)
+    //     {
+    //         float x = ArenaGeneration.Instance.HorizontalBounds().RandomValue();
+    //         float y = ArenaGeneration.Instance.GroundY;
+    //         float z = ArenaGeneration.Instance.VerticalBounds().RandomValue();
 
-            if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
-            {
-                if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
-                return hit.position;
-            } 
-        }
+    //         if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
+    //         {
+    //             if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
+    //             return hit.position;
+    //         } 
+    //     }
 
-        return Vector3.zero;
-    }
+    //     return Vector3.zero;
+    // }
 }
