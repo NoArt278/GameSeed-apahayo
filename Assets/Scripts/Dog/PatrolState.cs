@@ -12,6 +12,7 @@ public class PatrolState : DogState
     [Header("Properties")]
     [SerializeField] private float speed = 3.5f;
     [SerializeField] private float rotateDuration = 1f;
+    [SerializeField] private float biasTowardsPlayer = 0.7f;
 
     // Wander
     [SerializeField] private RangeFloat wanderRadius = new(.5f, 2f);
@@ -100,7 +101,7 @@ public class PatrolState : DogState
 
     private void SwitchToWander()
     {
-        print("Switching to wander");
+        //print("Switching to wander");
         StartCoroutine(WaitDelay());
         if (agent == null) return;
 
@@ -141,9 +142,8 @@ public class PatrolState : DogState
         }
         else
         {
-            print("Rotating target: " + nextDestination);
-            print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
-            //print("");
+            //print("Rotating target: " + nextDestination);
+            //print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
             fieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(prevPosition == null ? Vector3.forward : transform.position + (transform.position -  prevPosition).normalized, nextDestination, timer / stopIdlingTime));
         }
     }
@@ -155,7 +155,11 @@ public class PatrolState : DogState
         {
             float radius = wanderRadius.RandomValue();
             Vector3 randomDirection = Random.insideUnitSphere * radius;
-            Vector3 targetPos = transform.position + randomDirection;
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            Vector3 biasedDirection = Vector3.Lerp(randomDirection, directionToPlayer * radius, biasTowardsPlayer);
+            Vector3 targetPos = transform.position + biasedDirection;
+
+            
 
             // Debug.DrawLine(transform.position, targetPos, Color.red, 2f);
 
@@ -169,6 +173,8 @@ public class PatrolState : DogState
                     if (path.status == NavMeshPathStatus.PathComplete)
                     {
                         fieldOfView.SetVisionDirection(transform.position, hit.position);
+
+                        
                         return hit.position;
                     }
                 }

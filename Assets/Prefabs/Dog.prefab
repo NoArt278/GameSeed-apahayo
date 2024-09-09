@@ -388,6 +388,7 @@ MonoBehaviour:
   currentState: 1
   speed: 3.5
   rotateDuration: 2
+  biasTowardsPlayer: 0.7
   wanderRadius:
     min: 2
     max: 5

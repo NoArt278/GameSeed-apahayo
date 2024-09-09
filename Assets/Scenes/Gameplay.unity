@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogPrefab: {fileID: 7700631295823998277, guid: 89ac29d2c1869b24eb965c31f004354e,
     type: 3}
-  spawnAmount: 1
+  spawnAmount: 3
   minDistanceFromPlayer: 10
   maxLocationSearchAttempts: 30
 --- !u!114 &368581517
@@ -848,9 +848,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMeshSurfaces
       objectReference: {fileID: 0}
+    - target: {fileID: 3878401144797421449, guid: 187c3f799dde33a46baa7473e17fcda2,
+        type: 3}
+      propertyPath: dogSurface
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4272673746065771314, guid: 187c3f799dde33a46baa7473e17fcda2,
         type: 3}
       propertyPath: m_UseGeometry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936661664522713027, guid: 187c3f799dde33a46baa7473e17fcda2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767249112005503563, guid: 187c3f799dde33a46baa7473e17fcda2,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
