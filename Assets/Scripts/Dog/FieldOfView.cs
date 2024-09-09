@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float Radius;
+    public float outerRadius;
+    public float innerRadius;
     public float Angle;
 
     private GameObject Vision;
     private Mesh mesh;
     [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private MeshRenderer meshRenderer;
+
+    private Mesh innerMesh;
+    [SerializeField] private MeshFilter innerMeshFilter;
+    [SerializeField] private MeshRenderer innerMeshRenderer;
+
+
     [SerializeField] public Material visionMaterial;
     [SerializeField] private int rayCount = 50;
 
@@ -22,9 +29,12 @@ public class FieldOfView : MonoBehaviour
     private void Start()
     {
         mesh = new Mesh();
+        innerMesh = new Mesh();
         meshRenderer.material = visionMaterial;
+        innerMeshRenderer.material = visionMaterial;
         Vision = meshFilter.gameObject;
         StartCoroutine(CheckRoutine());
+        DrawVisionCircle();
     }
 
     public void SetVisionDirection(Vector3 currentPosition, Vector3 direction)
@@ -34,7 +44,40 @@ public class FieldOfView : MonoBehaviour
         Vision.transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
     }
 
-    void DrawVisionCone()
+    private void DrawVisionCircle()
+    {
+        int[] triangles = new int[(rayCount - 1) * 3];
+        Vector3[] Vertices = new Vector3[rayCount + 1];
+        Vertices[0] = Vector3.zero;
+        float Currentangle = (0 * Mathf.Deg2Rad) / 2;
+        float angleIcrement = (360 * Mathf.Deg2Rad) / (rayCount - 1);
+        float Sine;
+        float Cosine;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            Sine = Mathf.Sin(Currentangle);
+            Cosine = Mathf.Cos(Currentangle);
+            Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
+            Vertices[i + 1] = VertForward * innerRadius;
+
+            Currentangle += angleIcrement;
+        }
+
+        for (int i = 0, j = 0; i < triangles.Length; i += 3, j++)
+        {
+            triangles[i] = 0;
+            triangles[i + 1] = j + 1;
+            triangles[i + 2] = j + 2;
+        }
+
+        innerMesh.Clear();
+        innerMesh.vertices = Vertices;
+        innerMesh.triangles = triangles;
+        innerMeshFilter.mesh = innerMesh;
+    }
+
+    private void DrawVisionCone()
     {
         int[] triangles = new int[(rayCount - 1) * 3];
         Vector3[] Vertices = new Vector3[rayCount + 1];
@@ -50,13 +93,13 @@ public class FieldOfView : MonoBehaviour
             Cosine = Mathf.Cos(Currentangle);
             Vector3 RaycastDirection = (Vision.transform.forward * Cosine) + (Vision.transform.right * Sine);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-            if (Physics.Raycast(Vision.transform.position, RaycastDirection, out RaycastHit hit, Radius, obstacleMask) && !isChasing)
+            if (Physics.Raycast(Vision.transform.position, RaycastDirection, out RaycastHit hit, outerRadius, obstacleMask) && !isChasing)
             {
                 Vertices[i + 1] = VertForward * hit.distance;
             }
             else
             {
-                Vertices[i + 1] = VertForward * Radius;
+                Vertices[i + 1] = VertForward * outerRadius;
             }
 
 
@@ -98,11 +141,16 @@ public class FieldOfView : MonoBehaviour
 
     private void CheckView()
     {
-        Collider[] colliders = Physics.OverlapSphere(Vision.transform.position, Radius, playerMask);
+        Collider[] outerColliders = Physics.OverlapSphere(Vision.transform.position, outerRadius, playerMask);
+        Collider[] innerColliders = Physics.OverlapSphere(Vision.transform.position, innerRadius, playerMask);
 
-        if (colliders.Length > 0)
+        if (innerColliders.Length > 0)
         {
-            Transform target = colliders[0].transform;
+            isPlayerVisible = true;
+        }
+        else if (outerColliders.Length > 0)
+        {
+            Transform target = outerColliders[0].transform;
             Vector3 direction = (target.position - Vision.transform.position).normalized;
 
             if(Vector3.Angle(Vision.transform.forward, direction) < Angle / 2)
