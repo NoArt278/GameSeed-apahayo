@@ -3,16 +3,11 @@ using DG.Tweening;
 using NaughtyAttributes;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ArmyCatBehaviour : MonoBehaviour {
-    [Header("References")]
-    [SerializeField] private SpriteRenderer catRenderer;
-
     [Header("Properties")]
     [SerializeField] private RangeFloat speedDeviation = new(-0.3f, 0.3f);
     private Transform follow;
-    private NavMeshAgent agent;
     private float followSpeed;
     private float sprintSpeed;
 
@@ -21,18 +16,19 @@ public class ArmyCatBehaviour : MonoBehaviour {
     private Vector3 towardsFleePosition;
     private Vector3 fleePosition;
     private bool isSprinting = false;
+    private CatBehaviourManager cbm;
 
     private void Awake() {
-        agent = GetComponent<NavMeshAgent>();
+        cbm = GetComponent<CatBehaviourManager>();
     }
 
     public void Initialize(Transform follow, float followSpeed) {
         this.follow = follow;
         this.followSpeed = followSpeed;
 
-        agent.speed = followSpeed;
-        agent.SetDestination(follow.position);
-        agent.velocity = Vector3.zero;
+        cbm.Agent.speed = followSpeed;
+        cbm.Agent.SetDestination(follow.position);
+        cbm.Agent.velocity = Vector3.zero;
         LittleJumpOnRegistered();
     }
 
@@ -47,21 +43,23 @@ public class ArmyCatBehaviour : MonoBehaviour {
     }
     
     private void OnEnable() {
-        agent.speed = followSpeed;
+        cbm.Agent.speed = followSpeed;
     }
 
     public void Sprint(float speed) {
         sprintSpeed = speed;
+        cbm.Animator.speed = sprintSpeed / followSpeed;
         isSprinting = true;
     }
 
     public void StopSprint() {
+        cbm.Animator.speed = 1;
         isSprinting = false;
     }
 
     private void Update() {
         if (!onAction) Follow();
-        if (agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
+        if (cbm.Agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
 
         AlignOrientation();
     }
@@ -70,12 +68,12 @@ public class ArmyCatBehaviour : MonoBehaviour {
         if (followTheLeader) {
             if (follow != null) {
                 float baseSpeed = isSprinting ? sprintSpeed : followSpeed;
-                agent.speed = baseSpeed + speedDeviation.RandomValue();
-                agent.SetDestination(follow.position);
+                cbm.Agent.speed = baseSpeed + speedDeviation.RandomValue();
+                cbm.Agent.SetDestination(follow.position);
             }
         } else {
             towardsFleePosition = Vector3.MoveTowards(towardsFleePosition, fleePosition, 0.5f);
-            agent.SetDestination(towardsFleePosition);
+            cbm.Agent.SetDestination(towardsFleePosition);
         }
     }
 
@@ -83,27 +81,27 @@ public class ArmyCatBehaviour : MonoBehaviour {
         followTheLeader = false;
 
         Vector3 fleeDirection = (transform.position - follow.position).normalized;
-        fleePosition = follow.position + 100f * agent.radius * fleeDirection;
+        fleePosition = follow.position + 100f * cbm.Agent.radius * fleeDirection;
         towardsFleePosition = transform.position;
 
         Debug.DrawLine(transform.position, fleePosition, Color.red, 5f);
 
-        agent.SetDestination(towardsFleePosition);
+        cbm.Agent.SetDestination(towardsFleePosition);
 
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(1.2f);
-        sequence.Append(catRenderer.DOFade(0, 0.4f));
+        sequence.Append(cbm.CatRenderer.DOFade(0, 0.4f));
 
         sequence.Play();
     }
 
     private void AlignOrientation() {
-        if (agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = agent.velocity.x < 0;
+        if (cbm.Agent.velocity.sqrMagnitude > 0.1f) cbm.CatRenderer.flipX = cbm.Agent.velocity.x < 0;
     }
 
     private void StartJumpToPlatform() {
         onAction = true;
-        NavMeshLink link = agent.navMeshOwner as NavMeshLink;
+        NavMeshLink link = cbm.Agent.navMeshOwner as NavMeshLink;
         bool reverse = CheckIfJumpingFromEndToStart(link);
         Spline spline = reverse ? link.GetComponent<NavMeshLinkSpline>().SplineDrop : link.GetComponent<NavMeshLinkSpline>().SplineJump;
         if (spline == null) 
@@ -112,18 +110,16 @@ public class ArmyCatBehaviour : MonoBehaviour {
         }
 
         StartCoroutine(JumpToPlatformCoroutine(spline, reverse));
-
-        // OnStartJump?.Invoke();
     }
 
 
     private IEnumerator JumpToPlatformCoroutine(Spline spline, bool reverseDirection) {
         float currentTime = 0;
         float jumpDuration = 0.2f;
-        Vector3 agentStartPosition = agent.transform.position;
+        Vector3 agentStartPosition = cbm.Agent.transform.position;
 
         Vector3 direction = spline.Direction;
-        catRenderer.flipX = direction.x <= 0 ^ reverseDirection;
+        cbm.CatRenderer.flipX = direction.x <= 0 ^ reverseDirection;
 
         while (currentTime < jumpDuration)
         {
@@ -132,7 +128,7 @@ public class ArmyCatBehaviour : MonoBehaviour {
             float amount = Mathf.Clamp01(currentTime / jumpDuration);
             amount = reverseDirection ? 1 - amount : amount;
 
-            agent.transform.position =
+            cbm.Agent.transform.position =
                 reverseDirection ?
                 spline.CalculatePositionCustomEnd(amount, agentStartPosition)
                 : spline.CalculatePositionCustomStart(amount, agentStartPosition);
@@ -140,7 +136,7 @@ public class ArmyCatBehaviour : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
-        agent.CompleteOffMeshLink();
+        cbm.Agent.CompleteOffMeshLink();
 
         // OnLand?.Invoke();
         yield return new WaitForSeconds(0.1f);
@@ -155,9 +151,9 @@ public class ArmyCatBehaviour : MonoBehaviour {
             = link.gameObject.transform.TransformPoint(link.endPoint);
 
         float distancePlayerToStart 
-            = Vector3.Distance(agent.transform.position, startPosWorld);
+            = Vector3.Distance(cbm.Agent.transform.position, startPosWorld);
         float distancePlayerToEnd 
-            = Vector3.Distance(agent.transform.position, endPosWorld);
+            = Vector3.Distance(cbm.Agent.transform.position, endPosWorld);
 
 
         return distancePlayerToStart > distancePlayerToEnd;
@@ -171,7 +167,7 @@ public class ArmyCatBehaviour : MonoBehaviour {
             float xAngle = Mathf.Atan2(direction.y, -direction.z) * Mathf.Rad2Deg;
             float yAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
 
-            catRenderer.transform.rotation = Quaternion.Euler(xAngle, yAngle, 0);
+            cbm.CatRenderer.transform.rotation = Quaternion.Euler(xAngle, yAngle, 0);
         } else {
             Debug.LogWarning("Main camera not found");
         }
