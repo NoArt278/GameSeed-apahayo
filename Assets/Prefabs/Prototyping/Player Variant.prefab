@@ -101,6 +101,37 @@ MonoBehaviour:
   - target: {fileID: 837075017803542276}
     weight: 1
     radius: 0
+--- !u!1 &8060110862525091432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 376115042901383202}
+  m_Layer: 3
+  m_Name: Cat Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &376115042901383202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060110862525091432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.386, y: 2.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8244334410090069666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2972212238702343814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1705172867844401616, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      propertyPath: armyCatPos
+      value: 
+      objectReference: {fileID: 376115042901383202}
     - target: {fileID: 4857635434799328383, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
       propertyPath: field of view
@@ -298,6 +334,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 6704382841649628719}
+    - targetCorrespondingSourceObject: {fileID: 6581633996417484836, guid: 8dff4f84775630947a58221ce2cbf438,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 376115042901383202}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dff4f84775630947a58221ce2cbf438, type: 3}
 --- !u!4 &8244334410090069666 stripped

@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 3170281281078992859}
   - component: {fileID: 5885072185051355139}
   - component: {fileID: 6907944684644577778}
+  - component: {fileID: 5205804573859854808}
   m_Layer: 0
   m_Name: ArmyCat
   m_TagString: Cat
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559bb52b5ee58bb45a11bdb20a42870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  catRenderer: {fileID: 527617308162765455}
   animator: {fileID: 3799112928120774700}
 --- !u!114 &3170281281078992859
 MonoBehaviour:
@@ -214,7 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394127aaadded9047aecac1ae6acac4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catRenderer: {fileID: 527617308162765455}
   speedDeviation:
     min: -0.3
     max: 0.3
@@ -252,4 +253,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dd823c0961b2344bf1a5c021a598cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5205804573859854808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700631295823998277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33545ab62a2d5b46b89d0c2e1754461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wander:
+    Speed: 3.5
+    Radius:
+      min: 0.5
+      max: 2
+  Idle:
+    Duration:
+      min: 1
+      max: 4
+  Hide:
+    FadeDelay: 0
+    FadeDuration: 0.2
+    Duration: 0.5
+  Follow:
+    SpeedDeviation:
+      min: -0.3
+      max: 0.3
+    Target: {fileID: 0}
+    BaseSpeed: 0
+    SprintSpeed: 0
   catRenderer: {fileID: 527617308162765455}
+  animator: {fileID: 3799112928120774700}

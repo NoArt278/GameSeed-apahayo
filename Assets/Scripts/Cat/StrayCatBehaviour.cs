@@ -17,16 +17,14 @@ public class StrayCatBehaviour : MonoBehaviour {
     [Header("Wander Lookup")]
     [SerializeField] private int maxAttempts;
 
+    private CatBehaviourManager cbm;
+
     // Idle
     private float timer;
     private float stopIdlingTime;
 
-    // Wander
-
-    private NavMeshAgent agent;
-
     private void Awake() {
-        agent = GetComponent<NavMeshAgent>();
+        cbm = GetComponent<CatBehaviourManager>();
     }
 
     private void OnEnable() {
@@ -50,11 +48,11 @@ public class StrayCatBehaviour : MonoBehaviour {
     }
 
     private void AlignOrientation() {
-        if (agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = agent.velocity.x < 0;
+        if (cbm.Agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = cbm.Agent.velocity.x < 0;
     }
 
     private void SwitchToIdle() {
-        agent.ResetPath();
+        cbm.Agent.ResetPath();
         timer = 0f;
         stopIdlingTime = Random.Range(idleDuration.min, idleDuration.max);
 
@@ -62,8 +60,8 @@ public class StrayCatBehaviour : MonoBehaviour {
     }
 
     private void SwitchToWander() {
-        agent.speed = speed;
-        agent.SetDestination(GetValidDestination());
+        cbm.Agent.speed = speed;
+        cbm.Agent.SetDestination(GetValidDestination());
 
         currentState = State.Wander;
     }
@@ -71,9 +69,9 @@ public class StrayCatBehaviour : MonoBehaviour {
     private void WanderLoop() {
         AlignOrientation();
 
-        bool isPathStale = agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.pathStatus == NavMeshPathStatus.PathPartial;
-        bool isPathPending = agent.pathPending;
-        bool isDestinationReached = agent.remainingDistance <= agent.stoppingDistance;
+        bool isPathStale = cbm.Agent.pathStatus == NavMeshPathStatus.PathInvalid || cbm.Agent.pathStatus == NavMeshPathStatus.PathPartial;
+        bool isPathPending = cbm.Agent.pathPending;
+        bool isDestinationReached = cbm.Agent.remainingDistance <= cbm.Agent.stoppingDistance;
 
         if (isPathStale || isPathPending || isDestinationReached) {
             SwitchToIdle();

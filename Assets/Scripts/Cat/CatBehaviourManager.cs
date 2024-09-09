@@ -15,8 +15,13 @@ public class CatBehaviourManager : MonoBehaviour {
     public Action<State, State> OnStateChanged;
     public Action OnDestroyed;
 
+    [SerializeField] private SpriteRenderer catRenderer;
     [SerializeField] private Animator animator;
     private NavMeshAgent agent;
+
+    public SpriteRenderer CatRenderer => catRenderer;
+    public Animator Animator => animator;
+    public NavMeshAgent Agent => agent;
 
     private void Awake() {
         armyCatBehaviour = GetComponent<ArmyCatBehaviour>();

@@ -15,21 +15,7 @@ public class CatArmy : MonoBehaviour
     private List<ArmyCatBehaviour> outsideCats = new();
 
     private void Awake() {
-        // foreach (ArmyCatBehaviour cat in cats) {
-        //     cat.Initialize(follow);
-        // }
-
         catRadius = armyCatPrefab.GetComponent<NavMeshAgent>().radius;
-    }
-    
-    [Button]
-    public void AddCat()
-    {
-        // GameObject newCat = Instantiate(armyCatPrefab, transform);
-        // newCat.transform.position = FindAppropriateSpawnLocation();
-        // ArmyCatBehaviour catBehaviour = newCat.GetComponent<ArmyCatBehaviour>();
-        // catBehaviour.Initialize(follow);
-        // cats.Add(catBehaviour);
     }
 
     public bool RegisterCat(ArmyCatBehaviour cat, Transform follow) 
@@ -83,6 +69,14 @@ public class CatArmy : MonoBehaviour
             cat.GetComponent<CatBehaviourManager>().BecomeHidingCat();
             cat.GetComponent<HidingCatBehaviour>().StartHiding(hidePosition);
         }
+    }
+
+    public void UseCatForHypnotize(Vector3 endLocation) {
+        if (cats.Count == 0) return;
+
+        ArmyCatBehaviour cat = cats[0];
+        // cats.Remove(cat);
+        // Destroy(cat.gameObject);
     }
 
     public void QuitHiding(Vector3 exitPosition) {

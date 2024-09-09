@@ -141,8 +141,8 @@ public class PatrolState : DogState
         }
         else
         {
-            print("Rotating target: " + nextDestination);
-            print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
+            // print("Rotating target: " + nextDestination);
+            // print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
             //print("");
             fieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(prevPosition == null ? Vector3.forward : transform.position + (transform.position -  prevPosition).normalized, nextDestination, timer / stopIdlingTime));
         }
