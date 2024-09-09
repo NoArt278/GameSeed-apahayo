@@ -11,12 +11,9 @@ public class NPCHypnotizedState : NPCBaseState
     private float maxHypnotizeDelay = 2f;
     private float initialSpeed;
 
-    private HypnotizeUIManager barUI;
-
     public NPCHypnotizedState(NPCStateMachine stm) : base(stm)
     {
         agent = stm.Agent;
-        barUI = stm.BarUI;
     }
 
     public void SetHypnotizeStats(HypnotizeStats stats) {
@@ -35,7 +32,7 @@ public class NPCHypnotizedState : NPCBaseState
         stm.animator.SetBool("isHypno", true);
 
         stm.SpriteRenderer.color = Color.magenta;
-        barUI.EnableHypnoBar();
+        GameplayUI.Instance.EnableHypnoBar();
     }
 
     public override void UpdateState()
@@ -55,7 +52,7 @@ public class NPCHypnotizedState : NPCBaseState
             }
         }
 
-        barUI.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
+        GameplayUI.Instance.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
     }
 
     private void TimerUpdate() {
@@ -68,7 +65,7 @@ public class NPCHypnotizedState : NPCBaseState
 
     public override void ExitState()
     {
-        barUI.DisableHypnoBar();
+        GameplayUI.Instance.DisableHypnoBar();    
         agent.speed = initialSpeed;
     }
 }

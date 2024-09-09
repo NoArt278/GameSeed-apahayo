@@ -430,9 +430,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshSurface: {fileID: 722721560}
   sceneCanvas: {fileID: 848660981}
-  maxTry: 20
+  maxAttempt: 20
   prefab: {fileID: 1272540199784814790, guid: e208c3e5971ac224d9c96913842da3e4, type: 3}
   spawnAmount: 30
+  npcInScene: 0
 --- !u!1 &428376439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1615,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1628945342457944521, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1633154092459937317, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
       propertyPath: m_Name
@@ -1717,6 +1723,21 @@ PrefabInstance:
     - target: {fileID: 2483704034507516183, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312723939550282110, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869345579148371651, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869345579148371651, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

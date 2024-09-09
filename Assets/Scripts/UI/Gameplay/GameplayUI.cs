@@ -9,7 +9,7 @@ public class GameplayUI : MonoBehaviour {
     public static GameplayUI Instance;
 
     [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
-    [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Slider staminaSlider, hypnotizeBar;
     [SerializeField] private Image crosshair, staminaSliderImage, overlay;
 
     private void Awake() {
@@ -73,6 +73,22 @@ public class GameplayUI : MonoBehaviour {
 
     public void UpdateStamina(float stamina) {
         staminaSlider.value = stamina;
+    }
+
+    public void EnableHypnoBar()
+    {
+        hypnotizeBar.enabled = true;
+        hypnotizeBar.value = 0;
+    }
+
+    public void UpdateHypnoBar(float t)
+    {
+        hypnotizeBar.value = t;
+    }
+
+    public void DisableHypnoBar()
+    {
+        hypnotizeBar.enabled = false;
     }
 
     public void UpdateScore(int score)
