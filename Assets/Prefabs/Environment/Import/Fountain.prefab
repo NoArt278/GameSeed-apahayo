@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9218191900069019209}
   - component: {fileID: 1496652431406519873}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LampPole (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &660223428932627036
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &937505247059635547
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722762173951576271}
   - component: {fileID: 40351070255069755}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LampPole (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1724618168207746572}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &1729521504769498180
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +634,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1724618168207746572}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &2090166064617119641
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4187122391025256038}
   - component: {fileID: 8400413054907155788}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FountainBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5856166516491147260}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &2168614721672175427
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &2322211237603590978
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &2785164732047473393
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9115217507066775416}
   - component: {fileID: 1834867504202662265}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FountainGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &3230505303238219334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &3760828474524230467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,7 +1322,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5856166516491147260}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &4455248687345712333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5856166516491147260}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &5006212408012892731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,7 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9018271212249005025}
   - component: {fileID: 8331965354962250535}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LampPole (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1549,7 +1538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3610450575824525687}
   - component: {fileID: 7169385572273599702}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LampPole (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,7 +1733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1724618168207746572}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &5903054240637607700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,7 +1800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &5915307748796460007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,7 +1867,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &5956879516984799416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 7269163707905264857}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &6124327666257534674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &6233835095140895661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,7 +2288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &7935214112085325770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,7 +2440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &8335078738265201800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1724618168207746572}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &8556135149143810679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 5856166516491147260}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1 &8844643533512508876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,7 +2892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 681001238427473629}
-  transparentMaterial: {fileID: 2100000, guid: a01b04b9b85b7fd40a72168e51d83b2a, type: 2}
 --- !u!1001 &5932340879282746246
 PrefabInstance:
   m_ObjectHideFlags: 0
