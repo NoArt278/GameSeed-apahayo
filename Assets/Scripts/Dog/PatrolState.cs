@@ -1,4 +1,6 @@
 using NaughtyAttributes;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +11,8 @@ public class PatrolState : DogState
 
     [Header("Properties")]
     [SerializeField] private float speed = 3.5f;
+    [SerializeField] private float rotateDuration = 1f;
+
     // Wander
     [SerializeField] private RangeFloat wanderRadius = new(.5f, 2f);
     // Idle
@@ -20,6 +24,10 @@ public class PatrolState : DogState
     // Idle
     private float timer;
     private float stopIdlingTime;
+    private Vector3 nextDestination;
+    private Vector3 prevDestination;
+    private Vector3 prevPosition;
+
 
     public override void EnterState(DogStateMachine stateMachine)
     {
@@ -72,7 +80,9 @@ public class PatrolState : DogState
 
     private void SwitchToIdle()
     {
+        //print("Switching to idle");
         if (agent == null) return;
+        nextDestination = GetValidDestination();
         animator.SetBool("Patrol", false);
         agent.ResetPath();
         timer = 0f;
@@ -81,11 +91,28 @@ public class PatrolState : DogState
         currentState = State.Idle;
     }
 
+    private IEnumerator WaitDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(rotateDuration);
+
+        yield return wait;
+    }
+
     private void SwitchToWander()
     {
+        print("Switching to wander");
+        StartCoroutine(WaitDelay());
         if (agent == null) return;
+
+        if (nextDestination == null)
+        {
+            nextDestination = GetValidDestination();
+        }
+
+        prevPosition = transform.position;
         agent.speed = speed;
-        agent.SetDestination(GetValidDestination());
+        fieldOfView.SetVisionDirection(transform.position, nextDestination);
+        agent.SetDestination(nextDestination);
         animator.SetBool("Patrol", true);
 
         currentState = State.Wander;
@@ -111,6 +138,13 @@ public class PatrolState : DogState
         if (timer >= stopIdlingTime)
         {
             SwitchToWander();
+        }
+        else
+        {
+            print("Rotating target: " + nextDestination);
+            print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
+            //print("");
+            fieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(prevPosition == null ? Vector3.forward : transform.position + (transform.position -  prevPosition).normalized, nextDestination, timer / stopIdlingTime));
         }
     }
 
