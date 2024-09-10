@@ -2172,7 +2172,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2789856148323459568}
   - component: {fileID: 5953966006365806044}
-  m_Layer: 0
+  - component: {fileID: 5146853258952383561}
+  m_Layer: 6
   m_Name: Umbrella (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,6 +2217,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9156829549925205466, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
+--- !u!114 &5146853258952383561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553681814409442841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7668698254162328467}
 --- !u!1 &5703019381323905565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,7 +2240,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8901872589651077342}
   - component: {fileID: 1285609024805569653}
-  m_Layer: 0
+  - component: {fileID: 5258041156821680657}
+  m_Layer: 6
   m_Name: Umbrella (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2270,6 +2285,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9156829549925205466, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
+--- !u!114 &5258041156821680657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703019381323905565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7879472806698055504}
 --- !u!1 &5777156538377188045
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,7 +4050,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7313972019145149413}
   - component: {fileID: 8324579770584221766}
-  m_Layer: 0
+  - component: {fileID: 8229500944512864428}
+  m_Layer: 6
   m_Name: Umbrella (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4066,6 +4095,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9156829549925205466, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
+--- !u!114 &8229500944512864428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121011897563803615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 6666473964529636552}
 --- !u!1001 &2218260326693596005
 PrefabInstance:
   m_ObjectHideFlags: 0
