@@ -1,12 +1,14 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
     public static GameTimer Instance { get; private set; }
     [SerializeField] private float duration = 60f;
-    [SerializeField] private TextMeshProUGUI timerDisplay;
+    // [SerializeField] private TextMeshProUGUI timerDisplay;
+    [SerializeField] private Slider timerDisplay;
     [SerializeField] private bool playOnStart = false;
     public Action OnTimeUp;
 
@@ -86,16 +88,10 @@ public class GameTimer : MonoBehaviour
 
         private void UpdateTimerDisplay()
         {
-            int minutes = Mathf.FloorToInt(remainingTime / 60);
-            int seconds = Mathf.CeilToInt(remainingTime % 60);
-            seconds = ClampTime(seconds);
-                
-            string timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
-            
             if (timerDisplay != null) {
-                timerDisplay.text = timeString;
+                timerDisplay.value = remainingTime / duration;
             } else {
-                Debug.LogWarning("Timer Display (TextMeshProUGUI) is not assigned!");
+                Debug.LogWarning("No timer display found.");
             }
         }
 }

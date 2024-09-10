@@ -1,9 +1,8 @@
 using System;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.AI;
 
-[System.Serializable]
+[Serializable]
 public enum GameState { PreGame, InGame, PostGame }
 
 public class GameManager : MonoBehaviour
@@ -12,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject cameraPrefab;
     [SerializeField] private GameObject directionalLight;
-    private LayerMask obstacleMask;
     public GameState CurrentState { get; private set; } = GameState.PreGame;
     public Action<GameState, GameState> OnGameStateChanged;
 
@@ -31,8 +29,6 @@ public class GameManager : MonoBehaviour
         } else {
             Instance = this;
         }
-
-        obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start() {
