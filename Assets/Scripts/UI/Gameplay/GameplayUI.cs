@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +9,8 @@ public class GameplayUI : MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
     [SerializeField] private Slider staminaSlider, hypnotizeBar;
-    [SerializeField] private Image crosshair, staminaSliderImage, overlay;
+    [SerializeField] private Image crosshair, overlay;
+    [SerializeField] private CanvasGroup staminaSliderCG;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -55,7 +55,7 @@ public class GameplayUI : MonoBehaviour {
     }
 
     public void UpdateCatCount(int catCount) {
-        catCountText.text = $"x {catCount}";
+        catCountText.text = $"{catCount}";
     }
 
     public void ChangeHideText(string text) {
@@ -99,18 +99,11 @@ public class GameplayUI : MonoBehaviour {
     public void StaminaDeplete()
     {
         StopAllCoroutines();
-        StartCoroutine(FadeStaminaBar());
-    }
-
-    private IEnumerator FadeStaminaBar()
-    {
-        float startTime = Time.time;
-        while (Time.time - startTime < 5)
-        {
-            staminaSliderImage.DOFade(0, 0.3f);
-            yield return new WaitForSeconds(0.3f);
-            staminaSliderImage.DOFade(1, 0.3f);
-            yield return new WaitForSeconds(0.3f);
-        }
+        // StartCoroutine(FadeStaminaBar());
+        Sequence blinkSq = DOTween.Sequence();
+        blinkSq.Append(staminaSliderCG.DOFade(0, 0.3f));
+        blinkSq.Append(staminaSliderCG.DOFade(1, 0.3f));
+        blinkSq.SetLoops(8);
+        blinkSq.Play();
     }
 }

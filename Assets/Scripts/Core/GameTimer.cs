@@ -81,11 +81,6 @@ public class GameTimer : MonoBehaviour
             OnTimeUp?.Invoke();
         }
 
-        private int ClampTime(int time)
-        {
-            return Mathf.Clamp(time, 0, 59);
-        }
-
         private void UpdateTimerDisplay()
         {
             if (timerDisplay != null) {
