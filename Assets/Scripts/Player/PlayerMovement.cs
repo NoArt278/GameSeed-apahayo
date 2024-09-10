@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, staminalFillDelay = 5;
     private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = false, canFillStamina = true, isDead = false;
     private float stamina, moveSpeed, lastStaminaDepleteTime;
-    private Transform currTrashBin;
+    private Transform currTrashBin, prevTrashBin;
     private CatArmy catArmy;
     private Animator catGodAnimator;
     private SpriteRenderer sr;
@@ -182,12 +182,6 @@ public class PlayerMovement : MonoBehaviour
             catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
             currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
             StartCoroutine(HideDelay());
-            Transform spriteTransform = currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
-            if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
-                    || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
-            {
-                spriteTransform.localScale = new Vector3(spriteTransform.localScale.z, spriteTransform.localScale.y, spriteTransform.localScale.x);
-            }
         }
     }
 
@@ -219,6 +213,12 @@ public class PlayerMovement : MonoBehaviour
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+            Transform spriteTransform = prevTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
+            if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
+                    || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
+            {
+                spriteTransform.localScale = new Vector3(spriteTransform.localScale.z, spriteTransform.localScale.y, spriteTransform.localScale.x);
+            }
         }
         justHid = false;
     }
@@ -233,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (other.CompareTag("Hide"))
         {
             currTrashBin = other.transform;
+            prevTrashBin = currTrashBin;
             canHide = true;
             GameplayUI.Instance.HideTextAppear("(E) Hide");
         } else if (other.CompareTag("Dog"))
