@@ -15,14 +15,15 @@ public class PlayerCam : MonoBehaviour
     private void Start()
     {
         CinemachineVirtualCamera vcam = GetComponentInChildren<CinemachineVirtualCamera>();
-        player = vcam.Follow;
+        player = vcam.Follow.GetComponentInParent<PlayerMovement>().transform;
         transparentables = new List<Transparentable>();
         blockingObjectsRenderer = new List<MeshRenderer>();
     }
 
     private void Update()
     {
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
+        Vector3 direction = player.position - transform.position;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
         bool isBlocked = false;
 
         foreach (var hit in hits)
