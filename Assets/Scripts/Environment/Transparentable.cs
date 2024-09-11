@@ -31,6 +31,7 @@ public class Transparentable : MonoBehaviour {
                 continue;
             }
             storedMaterials[i].DOFade(0.2f, 0.2f);
+            storedMaterials[i].SetFloat("_ZWrite", 0);
         }
     }
     public void BeOpaque() {
@@ -43,6 +44,7 @@ public class Transparentable : MonoBehaviour {
                 continue;
             }
             storedMaterials[i].DOFade(1f, 0.2f);
+            storedMaterials[i].SetFloat("_ZWrite", 1);
         }
     }
 
