@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = currTrashBin.position + currTrashBin.forward;
             sr.enabled = true;
             isHiding = false;
-            catArmy.QuitHiding(currTrashBin.position + currTrashBin.forward);
+            catArmy.QuitHiding(currTrashBin.GetComponent<TrashBin>().GroundPoint.position + currTrashBin.forward * 1.5f);
             currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
             StartCoroutine(HideDelay());
         }

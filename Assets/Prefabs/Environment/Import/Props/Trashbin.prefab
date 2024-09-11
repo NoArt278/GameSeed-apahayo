@@ -106,6 +106,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1511481649507959689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8258165544702372103}
+  m_Layer: 0
+  m_Name: GroundPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8258165544702372103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511481649507959689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -12.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6440499696461601130}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2922869958088545126
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +149,7 @@ GameObject:
   - component: {fileID: 4356027512813759658}
   - component: {fileID: 1550277285593549177}
   - component: {fileID: 5119061714026414256}
+  - component: {fileID: 9007794601916087918}
   m_Layer: 0
   m_Name: Trashbin
   m_TagString: Hide
@@ -140,6 +172,7 @@ Transform:
   m_Children:
   - {fileID: 522326496258940256}
   - {fileID: 6066100493502409655}
+  - {fileID: 8258165544702372103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4356027512813759658
@@ -214,6 +247,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.461838, y: 51.190647, z: 8.675386}
   m_Center: {x: 0.000015162822, y: 13.198644, z: 2.6637125}
+--- !u!114 &9007794601916087918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2922869958088545126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3664b332deca44492b8e08489fcea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundPoint: {fileID: 8258165544702372103}
 --- !u!1 &8346782607720613795
 GameObject:
   m_ObjectHideFlags: 0

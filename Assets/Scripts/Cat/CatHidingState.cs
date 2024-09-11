@@ -2,9 +2,10 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CatHidingState : CatBaseState {
+    private Sequence sq;
+
     public CatHidingState(CatStateMachine stm) : base(stm) { }
 
     public override void EnterState() {
@@ -17,21 +18,20 @@ public class CatHidingState : CatBaseState {
         fadeSq.AppendInterval(stm.Hide.FadeDelay);
         fadeSq.Append(stm.Renderer.DOFade(0, stm.Hide.FadeDuration));
 
-        Sequence wholeSq = DOTween.Sequence();
-        wholeSq.Append(stm.transform.DOMove(position, stm.Hide.Duration).SetEase(Ease.InOutSine));
-        wholeSq.Join(fadeSq);
+        sq = DOTween.Sequence();
+        sq.Append(stm.transform.DOMove(position, stm.Hide.Duration).SetEase(Ease.InOutSine));
+        sq.Join(fadeSq);
 
-        wholeSq.Play();
+        sq.Play();
     }
 
     public void QuitHiding(Vector3 position, Action onComplete) {
+        sq?.Kill(complete: true);
 
+        stm.transform.position = position;
         stm.Renderer.DOFade(1, stm.Hide.FadeDuration).OnComplete(
         () => {
             stm.Agent.enabled = true;
-            if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1f, NavMesh.AllAreas)) {
-                stm.transform.position = hit.position;
-            }
             onComplete?.Invoke();
         });
     }

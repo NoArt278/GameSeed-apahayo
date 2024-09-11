@@ -2,11 +2,11 @@ using System.Collections;
 using DG.Tweening;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CatFollowState : CatBaseState {
     private bool onAction = false;
     private bool isSprinting = false;
+    private bool firstFollow = true;
 
     public CatFollowState(CatStateMachine stm) : base(stm) { }
 
@@ -15,7 +15,10 @@ public class CatFollowState : CatBaseState {
         stm.Agent.SetDestination(stm.Follow.Target.position);
         stm.Agent.velocity = Vector3.zero;
 
-        LittleJumpOnRegistered();
+        if (firstFollow) {
+            LittleJumpOnRegistered();
+            firstFollow = false;
+        }
     }
 
     public override void ExitState() {

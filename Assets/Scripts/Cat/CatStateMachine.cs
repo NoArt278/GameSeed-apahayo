@@ -64,8 +64,9 @@ public class CatStateMachine : MonoBehaviour {
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
+    }
 
-        // STATES
+    private void OnEnable() {
         STATE_STRAYIDLE = new CatStrayIdleState(this);
         STATE_STRAYWANDER = new CatStrayWanderState(this);
         STATE_FOLLOW = new CatFollowState(this);
@@ -87,6 +88,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void QuitHiding(Vector3 position) {
+        if (NavMesh.SamplePosition(position, out NavMeshHit hit, 10, NavMesh.AllAreas)) position = hit.position;
         STATE_HIDING.QuitHiding(position, () => ChangeState(PreviousState));
     }
 

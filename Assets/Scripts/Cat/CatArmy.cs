@@ -81,7 +81,7 @@ public class CatArmy : MonoBehaviour
     public void CancelHypnotize() {
         if (cats.Count == 0) return;
 
-        usedCat.CancelHypnotize(FindAppropriateSpawnLocation());
+        usedCat.CancelHypnotize( FindAppropriateSpawnLocation(follow ? follow.position : Vector3.zero) );
         cats.Add(usedCat);
     }
 
@@ -99,12 +99,12 @@ public class CatArmy : MonoBehaviour
             CatStateMachine cat = cats[i];
             if (i == 0) {
                 outsideCats.Clear();
-                cat.QuitHiding(exitPosition);
+                cat.QuitHiding( FindAppropriateSpawnLocation(exitPosition) );
                 outsideCats.Add(cat);
                 continue;
             }
 
-            cat.QuitHiding( FindAppropriateSpawnLocation() );
+            cat.QuitHiding( FindAppropriateSpawnLocation(exitPosition) );
             outsideCats.Add(cat);
         }
     }
@@ -121,13 +121,11 @@ public class CatArmy : MonoBehaviour
         }
     }
 
-    private Vector3 FindAppropriateSpawnLocation()
+    private Vector3 FindAppropriateSpawnLocation(Vector3 center)
     {
-        if (follow == null) return Vector3.zero;
-
         if (outsideCats.Count == 0)
         {
-            return follow.position + 2 * catRadius * Random.insideUnitSphere;
+            return center + 2 * catRadius * Random.insideUnitSphere;
         }
 
         Vector3 averagePosition = Vector3.zero;
