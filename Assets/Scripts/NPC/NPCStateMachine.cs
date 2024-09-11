@@ -13,7 +13,8 @@ public class HypnotizeStats
 
 public class NPCStateMachine : MonoBehaviour
 {
-    [SerializeField, ReadOnly] private NPCBaseState currentState;
+    private NPCBaseState currentState;
+    [ShowNativeProperty] public string CurrentStateName => currentState != null ? currentState.GetType().Name : "None";
 
     // STATES ========================================
     public  NPCIdleState        STATE_IDLE { get; private set; }

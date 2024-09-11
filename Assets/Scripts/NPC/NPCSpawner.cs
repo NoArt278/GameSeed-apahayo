@@ -110,16 +110,16 @@ public class NPCSpawner : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPosition, out hit, 5f, NavMesh.AllAreas))
             {
                 Vector3 hitPosition = hit.position;
-                if (hit.position.y > 0.5f) continue;
+                if (hit.position.y > 0.3f) continue;
 
                 // CASE 0: It is inside a building
                 if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
-                Vector3 directionToCamera = Camera.main.transform.position - hit.position;
-                float distanceToCamera = directionToCamera.magnitude;
+                Vector3 directionToHit = hitPosition - Camera.main.transform.position;
+                float distance = directionToHit.magnitude;
 
-                if (Physics.Raycast(hitPosition, directionToCamera, distanceToCamera, obstacleMask))
+                if (Physics.Raycast(Camera.main.transform.position, directionToHit, distance, obstacleMask))
                 {
                     return hitPosition;
                 }

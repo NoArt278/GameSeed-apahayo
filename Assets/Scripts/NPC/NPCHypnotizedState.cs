@@ -30,7 +30,9 @@ public class NPCHypnotizedState : NPCBaseState
         timer = 0f;
 
         stm.animator.SetBool("isHypno", true);
-        GameplayUI.Instance.EnableHypnoBar();
+        GameplayUI.Instance.StartHypnotize();
+
+        stm.SpriteRenderer.color = Color.blue;
     }
 
     public override void UpdateState()
@@ -63,7 +65,7 @@ public class NPCHypnotizedState : NPCBaseState
 
     public override void ExitState()
     {
-        GameplayUI.Instance.DisableHypnoBar();    
+        GameplayUI.Instance.StopHypnotize();
         agent.speed = initialSpeed;
     }
 }

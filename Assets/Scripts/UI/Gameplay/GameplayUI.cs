@@ -7,9 +7,24 @@ using UnityEngine.UI;
 public class GameplayUI : MonoBehaviour {
     public static GameplayUI Instance;
 
-    [SerializeField] private TextMeshProUGUI catCountText, hideText, scoreText;
-    [SerializeField] private Slider staminaSlider, hypnotizeBar;
-    [SerializeField] private Image crosshair, overlay;
+    [Header("Parent Objects")]
+    [SerializeField] private RectTransform hypnoBarParent;
+
+    [Header("Texts")]
+    [SerializeField] private TextMeshProUGUI catCountText;
+    [SerializeField] private TextMeshProUGUI hideText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Bars")]
+    [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Slider hypnotizeBar;
+
+    [Header("Images")]
+    [SerializeField] private Image crosshair;
+    [SerializeField] private Image overlay;
+    [SerializeField] private Image hypnoVignette;
+
+    [Header("CG")]
     [SerializeField] private CanvasGroup staminaSliderCG;
 
     private void Awake() {
@@ -75,10 +90,19 @@ public class GameplayUI : MonoBehaviour {
         staminaSlider.value = stamina;
     }
 
-    public void EnableHypnoBar()
-    {
-        hypnotizeBar.enabled = true;
+    public void StartHypnotize() {
+        hypnoBarParent.gameObject.SetActive(true);
         hypnotizeBar.value = 0;
+
+        hypnoVignette.gameObject.SetActive(true);
+        hypnoVignette.color = new Color(1, 1, 1, 0);
+
+        hypnoVignette.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(() => {
+            hypnoVignette.DOFade(0.3f, 1.4f).SetEase(Ease.Linear).OnComplete(() => {
+                hypnoVignette.DOFade(1, 1.4f).SetEase(Ease.Linear);
+            }).SetLoops(-1);
+        });
+
     }
 
     public void UpdateHypnoBar(float t)
@@ -86,9 +110,11 @@ public class GameplayUI : MonoBehaviour {
         hypnotizeBar.value = t;
     }
 
-    public void DisableHypnoBar()
+    public void StopHypnotize()
     {
-        hypnotizeBar.enabled = false;
+        hypnoBarParent.gameObject.SetActive(false);
+        hypnoVignette.DOKill();
+        hypnoVignette.DOFade(0, 0.5f).OnComplete(() => hypnoVignette.gameObject.SetActive(false));
     }
 
     public void UpdateScore(int score)

@@ -386,7 +386,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8463139469125936459}
   animator: {fileID: 5441396264215612490}
   currentState: 1
-  speed: 3.5
+  speed: 4.1
   rotateDuration: 2
   biasTowardsPlayer: 0.7
   wanderRadius:
