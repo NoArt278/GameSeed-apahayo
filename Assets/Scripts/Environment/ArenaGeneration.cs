@@ -9,9 +9,9 @@ public class ArenaGeneration : MonoBehaviour {
     #if UNITY_EDITOR
     [System.Serializable]
     public class BorderPrefabs {
-        public GameObject bottom;
         public GameObject side;
         public GameObject corner;
+        public GameObject bottom;
     }
 
     [Header("Editor")]
@@ -329,7 +329,7 @@ public class ArenaGeneration : MonoBehaviour {
                 GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 90, 0));
                 border.transform.SetParent(floorBorderParent);
             } else {
-                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.Euler(0, 180, 0));
+                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.Euler(0, 90, 0));
                 border.transform.SetParent(floorBorderParent);
             }
 
@@ -345,7 +345,7 @@ public class ArenaGeneration : MonoBehaviour {
                 GameObject border = Instantiate(borderPrefabs.corner, position, Quaternion.Euler(0, 0, 0));
                 border.transform.SetParent(floorBorderParent);
             } else {
-                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.identity);
+                GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.Euler(0, 270, 0));
                 border.transform.SetParent(floorBorderParent);
             }
         }
@@ -356,7 +356,7 @@ public class ArenaGeneration : MonoBehaviour {
             position += transform.position;
 
             // Place the border
-            GameObject border = Instantiate(borderPrefabs.bottom, position, Quaternion.Euler(0, 180, 0));
+            GameObject border = Instantiate(borderPrefabs.side, position, Quaternion.Euler(0, 180, 0));
             border.transform.SetParent(floorBorderParent);
 
             coord = new(x, arenaGridDimension.y);
@@ -364,7 +364,7 @@ public class ArenaGeneration : MonoBehaviour {
             position += transform.position;
 
             // Place the border
-            GameObject border2 = Instantiate(borderPrefabs.bottom, position, Quaternion.Euler(0, 0, 0));
+            GameObject border2 = Instantiate(borderPrefabs.bottom, position, Quaternion.Euler(0, 180, 0));
             border2.transform.SetParent(floorBorderParent);
         }
     }
