@@ -302,7 +302,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764218141890533413}
-  - component: {fileID: 8874276264380166682}
   - component: {fileID: 5450583318396059527}
   m_Layer: 0
   m_Name: Planter (1)
@@ -330,28 +329,6 @@ Transform:
   - {fileID: 5523815504771398412}
   m_Father: {fileID: 3356901104637269521}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &8874276264380166682
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668100217801528372}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
 --- !u!208 &5450583318396059527
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -535,7 +512,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673793024980646099}
-  - component: {fileID: 2294478202037374554}
   - component: {fileID: 7356394612331841565}
   m_Layer: 0
   m_Name: Planter (2)
@@ -563,28 +539,6 @@ Transform:
   - {fileID: 4419271376180954026}
   m_Father: {fileID: 3356901104637269521}
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
---- !u!64 &2294478202037374554
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218136582849254223}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
 --- !u!208 &7356394612331841565
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1088,7 +1042,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714078656105363046}
-  - component: {fileID: 8121459403135774842}
   - component: {fileID: 3245146937473520516}
   m_Layer: 0
   m_Name: Planter (0)
@@ -1116,28 +1069,6 @@ Transform:
   - {fileID: 7539030023078445795}
   m_Father: {fileID: 3356901104637269521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &8121459403135774842
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2700329633079377703}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
 --- !u!208 &3245146937473520516
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1887,7 +1818,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5558906972910720114}
-  - component: {fileID: 1082461218854574911}
   - component: {fileID: 3752804597739375505}
   m_Layer: 0
   m_Name: Planter (3)
@@ -1915,28 +1845,6 @@ Transform:
   - {fileID: 382220420838867315}
   m_Father: {fileID: 3356901104637269521}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!64 &1082461218854574911
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4091098998822097515}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
 --- !u!208 &3752804597739375505
 NavMeshObstacle:
   m_ObjectHideFlags: 0
