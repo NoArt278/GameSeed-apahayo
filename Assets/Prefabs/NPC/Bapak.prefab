@@ -97,7 +97,7 @@ MonoBehaviour:
   hypnotizeStats:
     hypnotizeHealth: 10
     maxHypnotizeDelay: 2
-  spawner: {fileID: 0}
+  Spawner: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &4051855954649681611
 MonoBehaviour:
@@ -274,7 +274,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d83408f241ccebb4f999c049ed70c2e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

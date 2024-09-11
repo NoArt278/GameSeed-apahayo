@@ -87,6 +87,7 @@ public class CatSpawner : MonoBehaviour
         catsInSceneCount++;
 
         CatStateMachine stm = cat.GetComponent<CatStateMachine>();
+        stm.Spawner = this;
 
         stm.OnStateChanged += (prev, current) => {
             if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {

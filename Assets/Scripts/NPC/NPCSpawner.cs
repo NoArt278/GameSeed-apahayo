@@ -107,21 +107,32 @@ public class NPCSpawner : MonoBehaviour
         for (int i = 0; i < maxLocationSearchAttempts; i++)
         {
             NavMeshHit hit;
-            float maxDistance = 5f;
-            if (NavMesh.SamplePosition(spawnPosition, out hit, maxDistance, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 5f, NavMesh.AllAreas))
             {
+                Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.5f) continue;
+
+                // CASE 0: It is inside a building
                 if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
 
+                // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToCamera = Camera.main.transform.position - hit.position;
                 float distanceToCamera = directionToCamera.magnitude;
 
-                if (Physics.Raycast(hit.position, directionToCamera, distanceToCamera, obstacleMask))
+                if (Physics.Raycast(hitPosition, directionToCamera, distanceToCamera, obstacleMask))
                 {
-                    return hit.position;
+                    return hitPosition;
                 }
 
-                return hit.position;
+                // CASE 2: It is outside of the camera view
+                else
+                {
+                    Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
+                    if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+                    {
+                        return hitPosition;
+                    }
+                }
             }
         }
 
