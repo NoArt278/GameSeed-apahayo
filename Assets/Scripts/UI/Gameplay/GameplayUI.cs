@@ -98,11 +98,11 @@ public class GameplayUI : MonoBehaviour {
         hypnoVignette.color = new Color(1, 1, 1, 0);
 
         hypnoVignette.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(() => {
-            hypnoVignette.DOFade(0.3f, 1.4f).SetEase(Ease.Linear).OnComplete(() => {
-                hypnoVignette.DOFade(1, 1.4f).SetEase(Ease.Linear);
-            }).SetLoops(-1);
+            DOTween.Sequence()
+                .Append(hypnoVignette.DOFade(0.7f, 0.6f).SetEase(Ease.Linear))
+                .Append(hypnoVignette.DOFade(1f, 0.6f).SetEase(Ease.Linear))
+                .SetLoops(-1, LoopType.Restart);
         });
-
     }
 
     public void UpdateHypnoBar(float t)
@@ -114,7 +114,7 @@ public class GameplayUI : MonoBehaviour {
     {
         hypnoBarParent.gameObject.SetActive(false);
         hypnoVignette.DOKill();
-        hypnoVignette.DOFade(0, 0.5f).OnComplete(() => hypnoVignette.gameObject.SetActive(false));
+        hypnoVignette.DOFade(0, hypnoVignette.color.a * 2).OnComplete(() => hypnoVignette.gameObject.SetActive(false));
     }
 
     public void UpdateScore(int score)
