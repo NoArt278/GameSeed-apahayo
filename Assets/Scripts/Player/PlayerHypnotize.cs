@@ -11,6 +11,8 @@ public class PlayerHypnotize : MonoBehaviour
     private const float clickMoveDelay = 0.5f;
     private int score = 0;
 
+    [SerializeField] private Transform catFloatPosition;
+
     private void Awake()
     {
         catArmy = GetComponent<CatArmy>();
@@ -32,12 +34,17 @@ public class PlayerHypnotize : MonoBehaviour
             currNPC = hit.collider.GetComponent<NPCStateMachine>();
             if (InputContainer.playerInputs.Player.Fire.WasPerformedThisFrame())
             {
+                sr.flipX = currNPC.transform.position.x < transform.position.x;
                 if (catArmy.GetCatCount() > 0 && !currNPC.CheckHypnotize() && !currNPC.CheckCrazed())
                 {
                     currNPC.StartHyponotize();
                     lastHypnotizedNPC = currNPC;
                     catGodAnimator.SetTrigger("StartHypnotize");
                     catGodAnimator.SetBool("isHypnotizing", true);
+
+                    // Vector3 catFloatPos = catFloatPosition.position;
+                    // if (sr.flipX) catFloatPos.x *= -1;
+                    // catArmy.StartHypnotize(catFloatPos);
                 } else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
                     currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);
@@ -47,7 +54,6 @@ public class PlayerHypnotize : MonoBehaviour
                     playerMovement.DisableMove();
                     lastClickTime = Time.time;
                 }
-                sr.flipX = currNPC.transform.position.x < transform.position.x;
             }
             if (currNPC.CheckCrazed() && currNPC == lastHypnotizedNPC && (lastCrazedNPC == null || lastCrazedNPC != currNPC))
             {

@@ -12,6 +12,7 @@ public class CatArmy : MonoBehaviour
 
     private float catRadius;
     private readonly List<CatStateMachine> outsideCats = new();
+    private CatStateMachine usedCat;
 
     private void Awake() {
         catRadius = armyCatPrefab.GetComponent<NavMeshAgent>().radius;
@@ -69,12 +70,28 @@ public class CatArmy : MonoBehaviour
         }
     }
 
-    public void UseCatForHypnotize(Vector3 endLocation) {
+    public void StartHypnotize(Vector3 catFloatPos) {
         if (cats.Count == 0) return;
 
-        CatStateMachine cat = cats[0];
-        cats.Remove(cat);
-        Destroy(cat.gameObject);
+        usedCat = cats[0];
+        usedCat.UseCatForHypnotize(catFloatPos);
+        cats.Remove(usedCat);
+    }
+
+    public void CancelHypnotize() {
+        if (cats.Count == 0) return;
+
+        usedCat.CancelHypnotize(FindAppropriateSpawnLocation());
+        cats.Add(usedCat);
+    }
+
+    public void DestroyCat()
+    {
+        if (cats.Count == 0) return;
+
+        CatStateMachine destroyedCat = cats[0];
+        cats.Remove(destroyedCat);
+        destroyedCat.ReturnToSpawner();
     }
 
     public void QuitHiding(Vector3 exitPosition) {
@@ -102,14 +119,6 @@ public class CatArmy : MonoBehaviour
         foreach (CatStateMachine cat in cats) {
             cat.StopSprint();
         }
-    }
-    public void DestroyCat()
-    {
-        if (cats.Count == 0) return;
-
-        CatStateMachine destroyedCat = cats[0];
-        cats.Remove(destroyedCat);
-        Destroy(destroyedCat.gameObject);
     }
 
     private Vector3 FindAppropriateSpawnLocation()

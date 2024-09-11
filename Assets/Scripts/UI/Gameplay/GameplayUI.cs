@@ -55,7 +55,7 @@ public class GameplayUI : MonoBehaviour {
     }
 
     public void UpdateCatCount(int catCount) {
-        catCountText.text = $"{catCount}";
+        catCountText.text = catCount.ToString();
     }
 
     public void ChangeHideText(string text) {

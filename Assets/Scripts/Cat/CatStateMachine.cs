@@ -58,6 +58,7 @@ public class CatStateMachine : MonoBehaviour {
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
     public Action OnDestroyed;
+    public CatSpawner spawner;
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
@@ -98,6 +99,16 @@ public class CatStateMachine : MonoBehaviour {
         STATE_FOLLOW.StopSprint();
     }
 
+    public void UseCatForHypnotize(Vector3 catFloatPos) {
+        if (currentState == STATE_HYPNOTIZE) return;
+
+        STATE_HYPNOTIZE.StartHypnotize(catFloatPos);
+    }
+
+    public void CancelHypnotize(Vector3 backPosition) {
+        STATE_HYPNOTIZE.CancelHypnotize(backPosition);
+    }
+
     private void Start() {
         float random = UnityEngine.Random.Range(0f, 1f);
         if (random < 0.5f) ChangeState(STATE_STRAYWANDER);
@@ -127,7 +138,8 @@ public class CatStateMachine : MonoBehaviour {
         if (Agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = Agent.velocity.x < 0;
     }
 
-    private void OnDestroy() {
+    public void ReturnToSpawner() {
+        spawner.Return(gameObject);
         OnDestroyed?.Invoke();
     }
 }

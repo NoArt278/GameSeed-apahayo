@@ -8,7 +8,7 @@ public class CatSpawner : MonoBehaviour
     private static int strayCatCount = 0;
     private static int catsInSceneCount = 0;
 
-    [SerializeField] private GameObject strayCatPrefab;
+    [SerializeField] private GameObject catPrefab;
     [SerializeField] private int maxStrayCats = 20;
     [SerializeField] private int maxCatsInScene = 25;
 
@@ -21,12 +21,19 @@ public class CatSpawner : MonoBehaviour
     private BoxCollider spawnArea;
     private Coroutine spawnRoutine;
 
+    private ObjectPool strayCatPool;
+    private int it = 0;
+
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
         obstacleMask = LayerMask.GetMask("Obstacle");
+
+        strayCatCount = 0;
+        catsInSceneCount = 0;
     }
 
     private void Start() {
+        strayCatPool = new ObjectPool(catPrefab, 50, transform);
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
@@ -36,6 +43,7 @@ public class CatSpawner : MonoBehaviour
 
     private void OnGameStateChanged(GameState prev, GameState current) {
         if (current == GameState.InGame) {
+            Debug.Log("Game State Changed to InGame");
             spawnRoutine = StartCoroutine(SpawnRoutine());
         } else {
             if (spawnRoutine != null) StopCoroutine(spawnRoutine);
@@ -61,12 +69,16 @@ public class CatSpawner : MonoBehaviour
         Vector3 spawnPosition = GetSpawnPosition();
         if (spawnPosition == Vector3.zero) return;
 
-        GameObject strayCat = Instantiate(strayCatPrefab, spawnPosition, Quaternion.identity);
-        strayCat.transform.SetParent(transform);
+        GameObject cat = strayCatPool.GetObject();
+        cat.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        cat.transform.SetParent(transform);
+
+        it += 1;
+
         strayCatCount++;
         catsInSceneCount++;
 
-        CatStateMachine stm = strayCat.GetComponent<CatStateMachine>();
+        CatStateMachine stm = cat.GetComponent<CatStateMachine>();
 
         stm.OnStateChanged += (prev, current) => {
             if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
@@ -84,6 +96,10 @@ public class CatSpawner : MonoBehaviour
             }
             catsInSceneCount--;
         };
+    }
+
+    public void Return(GameObject cat) {
+        strayCatPool.ReturnObject(cat);
     }
 
     private Vector3 GetSpawnPosition() {
