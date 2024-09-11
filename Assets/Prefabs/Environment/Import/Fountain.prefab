@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9218191900069019209}
   - component: {fileID: 1496652431406519873}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1148072219373236668}
   - component: {fileID: 8858474120201104025}
-  - component: {fileID: 168171641839746672}
   m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
@@ -193,19 +192,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9998702, y: 2.0361762, z: 1.9685675}
   m_Center: {x: 0.000060667702, y: 1.000748, z: 0.0031607249}
---- !u!114 &168171641839746672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429639043224319581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &660223428932627036
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8107162515647701422}
   - component: {fileID: 1825757387318778316}
-  - component: {fileID: 5437920277726582546}
   m_Layer: 6
   m_Name: HeadRest
   m_TagString: Untagged
@@ -260,19 +245,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2954974, y: 4.200267, z: 0.34832698}
   m_Center: {x: 0.006679569, y: 4.088051, z: -0.43125266}
---- !u!114 &5437920277726582546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660223428932627036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &937505247059635547
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722762173951576271}
   - component: {fileID: 40351070255069755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +419,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1226279133168422257}
   - component: {fileID: 6867884555411759291}
-  - component: {fileID: 4313909514877731135}
   m_Layer: 6
   m_Name: FountainBush (2)
   m_TagString: Untagged
@@ -491,19 +462,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.3814116, y: 1.49575, z: 3.55601}
   m_Center: {x: -0.00000011920929, y: 0.747875, z: 0}
---- !u!114 &4313909514877731135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695255350580748525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1724618168207746572}
 --- !u!1 &1729521504769498180
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8246501663456768158}
   - component: {fileID: 6104830631583089312}
-  - component: {fileID: 113439524801309327}
   m_Layer: 6
   m_Name: FountainBush (0)
   m_TagString: Untagged
@@ -621,19 +578,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.3814116, y: 1.49575, z: 3.55601}
   m_Center: {x: -0.00000011920929, y: 0.747875, z: 0}
---- !u!114 &113439524801309327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825365959878529522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1724618168207746572}
 --- !u!1 &2090166064617119641
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4187122391025256038}
   - component: {fileID: 8400413054907155788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FountainBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +642,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6311973505203525662}
   - component: {fileID: 6649502671651728938}
-  - component: {fileID: 8542579736765469636}
   m_Layer: 6
   m_Name: Planter (0)
   m_TagString: Untagged
@@ -743,19 +686,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &8542579736765469636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132050286764347562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 5856166516491147260}
 --- !u!1 &2168614721672175427
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2691769736683801357}
   - component: {fileID: 884823393539784893}
-  - component: {fileID: 1966808055336977032}
   m_Layer: 6
   m_Name: BenchSeat (2)
   m_TagString: Untagged
@@ -812,19 +741,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2999156, y: 0.92944664, z: 1.9999996}
   m_Center: {x: 0.0021670656, y: 2.479928, z: 0}
---- !u!114 &1966808055336977032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2168614721672175427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &2322211237603590978
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +751,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8245517058396977641}
   - component: {fileID: 455221401371530408}
-  - component: {fileID: 8245802762673313286}
   m_Layer: 6
   m_Name: HeadRest
   m_TagString: Untagged
@@ -879,19 +794,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2954974, y: 4.200267, z: 0.34832698}
   m_Center: {x: 0.006679569, y: 4.088051, z: -0.43125266}
---- !u!114 &8245802762673313286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2322211237603590978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &2785164732047473393
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9115217507066775416}
   - component: {fileID: 1834867504202662265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FountainGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +858,6 @@ GameObject:
   m_Component:
   - component: {fileID: 704468624806680891}
   - component: {fileID: 5220657441379403234}
-  - component: {fileID: 3687310873192394863}
   m_Layer: 6
   m_Name: BenchSeat (3)
   m_TagString: Untagged
@@ -1002,19 +903,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2999156, y: 0.92944664, z: 1.9999996}
   m_Center: {x: 0.0021670656, y: 2.479928, z: 0}
---- !u!114 &3687310873192394863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065162716847627445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &3230505303238219334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1083,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1483343871253604001}
   - component: {fileID: 4787805103391584274}
-  - component: {fileID: 5056933918475966915}
   m_Layer: 6
   m_Name: BenchSeat (0)
   m_TagString: Untagged
@@ -1241,19 +1128,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2999156, y: 0.92944664, z: 1.9999996}
   m_Center: {x: 0.0021670656, y: 2.479928, z: 0}
---- !u!114 &5056933918475966915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3588463811814245336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &3760828474524230467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7721072279789003436}
   - component: {fileID: 2535889803343005314}
-  - component: {fileID: 5229023892026297790}
   m_Layer: 6
   m_Name: Planter (1)
   m_TagString: Untagged
@@ -1309,19 +1182,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &5229023892026297790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3760828474524230467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 5856166516491147260}
 --- !u!1 &4455248687345712333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 168663728750148106}
   - component: {fileID: 1913433251501717613}
-  - component: {fileID: 7704376054112426649}
   m_Layer: 6
   m_Name: Planter (2)
   m_TagString: Untagged
@@ -1377,19 +1236,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &7704376054112426649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4455248687345712333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 5856166516491147260}
 --- !u!1 &5006212408012892731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9018271212249005025}
   - component: {fileID: 8331965354962250535}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1538,7 +1384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3610450575824525687}
   - component: {fileID: 7169385572273599702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1676,7 +1522,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7271246032241368842}
   - component: {fileID: 3916409214814490110}
-  - component: {fileID: 2733625046721465102}
   m_Layer: 6
   m_Name: FountainBush (1)
   m_TagString: Untagged
@@ -1720,19 +1565,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.3814116, y: 1.49575, z: 3.55601}
   m_Center: {x: -0.00000011920929, y: 0.747875, z: 0}
---- !u!114 &2733625046721465102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5551540748385925896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1724618168207746572}
 --- !u!1 &5903054240637607700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1575,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6336701049705783365}
   - component: {fileID: 292243689444623484}
-  - component: {fileID: 3338600891027948475}
   m_Layer: 6
   m_Name: HeadRest
   m_TagString: Untagged
@@ -1787,19 +1618,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2954974, y: 4.200267, z: 0.34832698}
   m_Center: {x: 0.006679569, y: 4.088051, z: -0.43125266}
---- !u!114 &3338600891027948475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5903054240637607700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &5915307748796460007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1628,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2334705007788725644}
   - component: {fileID: 6756711181146922633}
-  - component: {fileID: 6843764473820766038}
   m_Layer: 6
   m_Name: HeadRest
   m_TagString: Untagged
@@ -1854,19 +1671,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2954974, y: 4.200267, z: 0.34832698}
   m_Center: {x: 0.006679569, y: 4.088051, z: -0.43125266}
---- !u!114 &6843764473820766038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915307748796460007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &5956879516984799416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,7 +1749,6 @@ GameObject:
   m_Component:
   - component: {fileID: 435510536284412623}
   - component: {fileID: 657588489554136071}
-  - component: {fileID: 764067048304616808}
   m_Layer: 6
   m_Name: BenchSeat (1)
   m_TagString: Untagged
@@ -1991,19 +1794,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2999156, y: 0.92944664, z: 1.9999996}
   m_Center: {x: 0.0021670656, y: 2.479928, z: 0}
---- !u!114 &764067048304616808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6124327666257534674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &6233835095140895661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,7 +2021,6 @@ GameObject:
   m_Component:
   - component: {fileID: 502957052105609926}
   - component: {fileID: 8230302626429094434}
-  - component: {fileID: 3712830652656104372}
   m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
@@ -2275,19 +2064,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9998702, y: 2.0361762, z: 1.9685675}
   m_Center: {x: 0.000060667702, y: 1.000748, z: 0.0031607249}
---- !u!114 &3712830652656104372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6813979466349334163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &7935214112085325770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,7 +2159,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4723086066465829770}
   - component: {fileID: 1151786723922223201}
-  - component: {fileID: 5654494038341003283}
   m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
@@ -2427,19 +2202,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9998702, y: 2.0361762, z: 1.9685675}
   m_Center: {x: 0.000060667702, y: 1.000748, z: 0.0031607249}
---- !u!114 &5654494038341003283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8102984853427255277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1 &8335078738265201800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2295,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6791101800707527711}
   - component: {fileID: 7996062523498942399}
-  - component: {fileID: 6343482937996991979}
   m_Layer: 6
   m_Name: FountainBush (3)
   m_TagString: Untagged
@@ -2577,19 +2338,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.3814116, y: 1.49575, z: 3.55601}
   m_Center: {x: -0.00000011920929, y: 0.747875, z: 0}
---- !u!114 &6343482937996991979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8513485619326344004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1724618168207746572}
 --- !u!1 &8556135149143810679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,7 +2348,6 @@ GameObject:
   m_Component:
   - component: {fileID: 216211365870014026}
   - component: {fileID: 8084724071601022700}
-  - component: {fileID: 6951827444717327478}
   m_Layer: 6
   m_Name: Planter (3)
   m_TagString: Untagged
@@ -2645,19 +2392,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6129358574221967040, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &6951827444717327478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8556135149143810679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 5856166516491147260}
 --- !u!1 &8844643533512508876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,7 +2569,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7179472766188148281}
   - component: {fileID: 8863956409782959407}
-  - component: {fileID: 4717846590165203506}
   m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
@@ -2879,19 +2612,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9998702, y: 2.0361762, z: 1.9685675}
   m_Center: {x: 0.000060667702, y: 1.000748, z: 0.0031607249}
---- !u!114 &4717846590165203506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9198456596291921445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 681001238427473629}
 --- !u!1001 &5932340879282746246
 PrefabInstance:
   m_ObjectHideFlags: 0

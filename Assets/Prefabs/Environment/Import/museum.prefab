@@ -233,7 +233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7468356582441656591}
   - component: {fileID: 6021136216008196654}
-  - component: {fileID: 1911479800905251073}
   m_Layer: 6
   m_Name: 3Bush (6)
   m_TagString: Untagged
@@ -277,19 +276,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &1911479800905251073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468018239239112947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 7741295135833396556}
 --- !u!1 &907603742907116360
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +286,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1293019444943563762}
   - component: {fileID: 5798853894349347528}
-  - component: {fileID: 9176642282348545469}
   m_Layer: 6
   m_Name: TallPlantBush (4)
   m_TagString: Untagged
@@ -344,19 +329,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &9176642282348545469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907603742907116360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &961456540118401777
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +339,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8747012379008009641}
   - component: {fileID: 8317630440870039559}
-  - component: {fileID: 4707234660694728598}
   m_Layer: 6
   m_Name: TallPlantPole (2)
   m_TagString: Untagged
@@ -411,19 +382,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &4707234660694728598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961456540118401777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &1327731811726971391
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +544,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3104514350506552196}
   - component: {fileID: 7491750422077821816}
-  - component: {fileID: 8408973703347408113}
   m_Layer: 6
   m_Name: 3Bush (9)
   m_TagString: Untagged
@@ -630,19 +587,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &8408973703347408113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567398191027120789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 8832144883423194038}
 --- !u!1 &1608889613636964856
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +597,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5103611708641779290}
   - component: {fileID: 2062762025060732700}
-  - component: {fileID: 3705519745890803018}
   m_Layer: 6
   m_Name: TallPlantPole (1)
   m_TagString: Untagged
@@ -697,19 +640,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &3705519745890803018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608889613636964856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &1964081300525027493
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +650,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6040092330928635721}
   - component: {fileID: 3951819786886433903}
-  - component: {fileID: 6735218488335037243}
   m_Layer: 6
   m_Name: TallPlantPole (6)
   m_TagString: Untagged
@@ -764,19 +693,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &6735218488335037243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964081300525027493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &2300728199684865499
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4754718907742749087}
   - component: {fileID: 6875683067867571457}
-  - component: {fileID: 3599511672427000408}
   m_Layer: 6
   m_Name: 3Bush (2)
   m_TagString: Untagged
@@ -831,19 +746,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &3599511672427000408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300728199684865499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 8832144883423194038}
 --- !u!1 &2472289560298715629
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2366273810571368595}
   - component: {fileID: 2870476089769927627}
-  - component: {fileID: 2190888049462634787}
   m_Layer: 6
   m_Name: MuseumBench (0)
   m_TagString: Untagged
@@ -984,19 +885,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7405011471976298039, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &2190888049462634787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504449005463488252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 6020538094966468582}
 --- !u!1 &2511660237801920490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +895,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3791123597340521999}
   - component: {fileID: 3177314953157755443}
-  - component: {fileID: 7224121687836327511}
   m_Layer: 6
   m_Name: TallPlantPole (3)
   m_TagString: Untagged
@@ -1051,19 +938,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &7224121687836327511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2511660237801920490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &2591511022176961385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1032,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6823101349469025187}
   - component: {fileID: 3999338075334635356}
-  - component: {fileID: 5448631076582654125}
   m_Layer: 6
   m_Name: TallPlantBush (1)
   m_TagString: Untagged
@@ -1202,19 +1075,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &5448631076582654125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2647921957700790526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &2764623258526766218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1085,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7132417688931088505}
   - component: {fileID: 1960882547051434657}
-  - component: {fileID: 1245427069590789006}
   m_Layer: 6
   m_Name: 3Bush (10)
   m_TagString: Untagged
@@ -1269,19 +1128,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &1245427069590789006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2764623258526766218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 147538683540148359}
 --- !u!1 &2876882436233756977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1003616995144927138}
   - component: {fileID: 822992273859108508}
-  - component: {fileID: 3205254298962746710}
   m_Layer: 6
   m_Name: 3Planter (0)
   m_TagString: Untagged
@@ -1505,19 +1350,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &3205254298962746710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142039778112302994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &3430546719856673022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,7 +1360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6725071164895252004}
   - component: {fileID: 379483011153082754}
-  - component: {fileID: 390914877177532995}
   m_Layer: 6
   m_Name: MuseumBench (1)
   m_TagString: Untagged
@@ -1573,19 +1404,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7405011471976298039, guid: 3afb5dd97439b5745a6a2a45aa2bcffa, type: 3}
---- !u!114 &390914877177532995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3430546719856673022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 6020538094966468582}
 --- !u!1 &3516799412999633711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1414,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8484096604326749330}
   - component: {fileID: 8431443554374070513}
-  - component: {fileID: 3758791395076258420}
   m_Layer: 6
   m_Name: 3Bush (0)
   m_TagString: Untagged
@@ -1640,19 +1457,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &3758791395076258420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3516799412999633711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 7741295135833396556}
 --- !u!1 &3634607548928164191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6144793884607375336}
   - component: {fileID: 8843356355635652392}
-  - component: {fileID: 6716064175041186468}
   m_Layer: 6
   m_Name: 3Planter (10)
   m_TagString: Untagged
@@ -1786,19 +1589,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &6716064175041186468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3891462920306562721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &4032561982381163632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1599,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6580048825576954286}
   - component: {fileID: 6234857965191468141}
-  - component: {fileID: 7365860950587456992}
   m_Layer: 6
   m_Name: 3Bush (11)
   m_TagString: Untagged
@@ -1853,19 +1642,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &7365860950587456992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032561982381163632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 147538683540148359}
 --- !u!1 &4094465081535942186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +1772,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8486256558707033762}
   - component: {fileID: 7078688478979067426}
-  - component: {fileID: 873500175376113802}
   m_Layer: 6
   m_Name: 3Planter (8)
   m_TagString: Untagged
@@ -2040,19 +1815,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &873500175376113802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4139842273325515365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &4631640721901287185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,7 +1826,7 @@ GameObject:
   - component: {fileID: 49630239875162357}
   - component: {fileID: 4929413639937518533}
   - component: {fileID: 6167884931612952139}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuseumFloor.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2131,7 +1893,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6234698806255525193}
   - component: {fileID: 3773777741883689341}
-  - component: {fileID: 8563560480232773806}
   m_Layer: 6
   m_Name: TallPlantBush (0)
   m_TagString: Untagged
@@ -2175,19 +1936,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &8563560480232773806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4769123079608272094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &4826273112584049213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,7 +2032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3915431668648450100}
   - component: {fileID: 9195815640583712463}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2338,7 +2086,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3723818320110529013}
   - component: {fileID: 8842562550326836331}
-  - component: {fileID: 8061044609170440976}
   m_Layer: 6
   m_Name: TallPlantPole (5)
   m_TagString: Untagged
@@ -2382,19 +2129,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &8061044609170440976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5331193899704144589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &5359993302188663647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,7 +2139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4586417167337450615}
   - component: {fileID: 8968412041130475702}
-  - component: {fileID: 6541915461756312898}
   m_Layer: 6
   m_Name: 3Planter (3)
   m_TagString: Untagged
@@ -2449,19 +2182,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &6541915461756312898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5359993302188663647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &5555914279907695453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8928226720461127713}
   - component: {fileID: 1885693799764723054}
-  - component: {fileID: 6113257459306523128}
   m_Layer: 6
   m_Name: 3Bush (4)
   m_TagString: Untagged
@@ -2516,19 +2235,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &6113257459306523128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5555914279907695453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 147538683540148359}
 --- !u!1 &5572068322873716504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,7 +2245,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6478190982668870009}
   - component: {fileID: 7469226865737106752}
-  - component: {fileID: 8927140184378901665}
   m_Layer: 6
   m_Name: 3Bush (1)
   m_TagString: Untagged
@@ -2583,19 +2288,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &8927140184378901665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5572068322873716504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 7409201814788031245}
 --- !u!1 &5718864844859959307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2413969315721747553}
   - component: {fileID: 3340113066481801811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2660,7 +2352,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3889377505193188467}
   - component: {fileID: 8943046832450988842}
-  - component: {fileID: 1181911885264040960}
   m_Layer: 6
   m_Name: TallPlantPole (0)
   m_TagString: Untagged
@@ -2704,19 +2395,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &1181911885264040960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5739902194645666891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &5772536564512638860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,7 +2573,6 @@ GameObject:
   m_Component:
   - component: {fileID: 296750366658083514}
   - component: {fileID: 1885580166392997688}
-  - component: {fileID: 4901581047538213302}
   m_Layer: 6
   m_Name: TallPlantBush (6)
   m_TagString: Untagged
@@ -2939,19 +2616,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &4901581047538213302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6022100358258169042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &6044879715043824818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,7 +2626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5961175479262724226}
   - component: {fileID: 847874226431756179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3016,7 +2680,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3323745238675185859}
   - component: {fileID: 3769152208180330586}
-  - component: {fileID: 1179226472669805355}
   m_Layer: 6
   m_Name: 3Planter (5)
   m_TagString: Untagged
@@ -3060,19 +2723,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &1179226472669805355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6099131284360453233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &6107702010255562276
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +2983,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2542438278624180898}
   - component: {fileID: 2572037171199412603}
-  - component: {fileID: 4740279404048905212}
   m_Layer: 6
   m_Name: TallPlantBush (2)
   m_TagString: Untagged
@@ -3377,19 +3026,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &4740279404048905212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6738597516677349993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &6763250209471804303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,7 +3036,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5882286606149636831}
   - component: {fileID: 2949437237417931859}
-  - component: {fileID: 2821747065295725790}
   m_Layer: 6
   m_Name: 3Planter (9)
   m_TagString: Untagged
@@ -3444,19 +3079,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &2821747065295725790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6763250209471804303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &6787056631323186730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,7 +3172,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2460573671092395318}
   - component: {fileID: 7383901960484065155}
-  - component: {fileID: 7513837742252715694}
   m_Layer: 6
   m_Name: 3Planter (1)
   m_TagString: Untagged
@@ -3594,19 +3215,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &7513837742252715694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6869149324259371600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &6920893210944785875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3617,7 +3225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8287423333127005904}
   - component: {fileID: 6735273420215322964}
-  - component: {fileID: 6585409800816400014}
   m_Layer: 6
   m_Name: 3Planter (2)
   m_TagString: Untagged
@@ -3661,19 +3268,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &6585409800816400014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6920893210944785875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &6943051185471933853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,7 +3278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5083901818868146841}
   - component: {fileID: 8580639330869551448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LampPole (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3738,7 +3332,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5037158784441315742}
   - component: {fileID: 263107260324772711}
-  - component: {fileID: 345753325242607047}
   m_Layer: 6
   m_Name: 3Planter (4)
   m_TagString: Untagged
@@ -3782,19 +3375,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &345753325242607047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7093960589129049717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 3718558810901427891}
 --- !u!1 &7222348835953509247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,7 +3468,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5266851321323115023}
   - component: {fileID: 4477516832349787202}
-  - component: {fileID: 1226556568150221280}
   m_Layer: 6
   m_Name: 3Planter (7)
   m_TagString: Untagged
@@ -3932,19 +3511,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &1226556568150221280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7349577313823470989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &7379399781161092208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3955,7 +3521,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2343084582787363817}
   - component: {fileID: 3052745086514255364}
-  - component: {fileID: 5793831985462962882}
   m_Layer: 6
   m_Name: 3Bush (7)
   m_TagString: Untagged
@@ -3999,19 +3564,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &5793831985462962882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379399781161092208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 7409201814788031245}
 --- !u!1 &7809084095459328856
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,7 +3574,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7843695226226810348}
   - component: {fileID: 3666302100804803602}
-  - component: {fileID: 4011124882334872715}
   m_Layer: 6
   m_Name: 3Bush (3)
   m_TagString: Untagged
@@ -4066,19 +3617,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &4011124882334872715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809084095459328856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 8832144883423194038}
 --- !u!1 &7973993493872903805
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,7 +3627,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2036595578052693326}
   - component: {fileID: 7529336870424527201}
-  - component: {fileID: 2590570695487489277}
   m_Layer: 6
   m_Name: 3Bush (5)
   m_TagString: Untagged
@@ -4133,19 +3670,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &2590570695487489277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973993493872903805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 147538683540148359}
 --- !u!1 &8140716946927798192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4156,7 +3680,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7128645734707384114}
   - component: {fileID: 8612406775377181907}
-  - component: {fileID: 7942723260763817489}
   m_Layer: 6
   m_Name: TallPlantBush (3)
   m_TagString: Untagged
@@ -4200,19 +3723,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &7942723260763817489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8140716946927798192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &8320782818236360282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,7 +3733,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8033055444273832814}
   - component: {fileID: 2443860100995052417}
-  - component: {fileID: 1967489844989541623}
   m_Layer: 6
   m_Name: 3Planter (6)
   m_TagString: Untagged
@@ -4267,19 +3776,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &1967489844989541623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8320782818236360282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &8322268045912815001
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,7 +3786,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2990559977951170773}
   - component: {fileID: 840696376618002295}
-  - component: {fileID: 5720285371967693279}
   m_Layer: 6
   m_Name: 3Planter (11)
   m_TagString: Untagged
@@ -4334,19 +3829,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 0.34945655, z: 2.0000002}
   m_Center: {x: 0, y: 0.17472829, z: 0}
---- !u!114 &5720285371967693279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8322268045912815001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 1181355213847839840}
 --- !u!1 &8634960975405206548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,7 +3906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1500484857205493173}
   - component: {fileID: 5395305819041438957}
-  - component: {fileID: 5098335475192167635}
   m_Layer: 6
   m_Name: TallPlantPole (4)
   m_TagString: Untagged
@@ -4468,19 +3949,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1814464, y: 3.4244127, z: 1.1814464}
   m_Center: {x: -0.0000004172325, y: 1.7122064, z: -0.0000005364418}
---- !u!114 &5098335475192167635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675445561352623180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &8688622875241303070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,7 +4042,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7440819814613068316}
   - component: {fileID: 6212598960660327654}
-  - component: {fileID: 5987246591842619223}
   m_Layer: 6
   m_Name: 3Bush (8)
   m_TagString: Untagged
@@ -4618,19 +4085,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.4265058, z: 2}
   m_Center: {x: 0, y: 0.71325296, z: -0.0000009536743}
---- !u!114 &5987246591842619223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8719547194927639164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 8832144883423194038}
 --- !u!1 &8853008168242590377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,7 +4095,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6336703846784013410}
   - component: {fileID: 5876886545695026127}
-  - component: {fileID: 5772393370065785980}
   m_Layer: 6
   m_Name: TallPlantBush (5)
   m_TagString: Untagged
@@ -4685,19 +4138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3.3078508, z: 2}
   m_Center: {x: -0.0000009536743, y: 1.6539254, z: 0}
---- !u!114 &5772393370065785980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853008168242590377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c30505cbec56afa4f99495813a5489e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2495102216731049878}
 --- !u!1 &9027736530608813074
 GameObject:
   m_ObjectHideFlags: 0

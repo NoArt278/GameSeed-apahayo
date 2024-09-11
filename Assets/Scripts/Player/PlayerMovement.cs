@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
             prevTrashBin = currTrashBin;
             canHide = true;
             GameplayUI.Instance.HideTextAppear("(E) Hide");
-        } else if (other.CompareTag("Dog"))
+        } else if (other.CompareTag("Dog") && !isHiding)
         {
             canMove = false;
             catGodAnimator.SetTrigger("Die");
