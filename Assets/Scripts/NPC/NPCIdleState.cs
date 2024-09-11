@@ -18,8 +18,6 @@ public class NPCIdleState : NPCBaseState
         agent.ResetPath();
         timewait = waitTime.RandomValue();
         idleCoroutine = stm.StartCoroutine(Idle());
-
-        stm.SpriteRenderer.color = Color.yellow;
     }
 
     private IEnumerator Idle()

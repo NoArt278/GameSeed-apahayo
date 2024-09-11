@@ -30,8 +30,6 @@ public class NPCHypnotizedState : NPCBaseState
         timer = 0f;
 
         stm.animator.SetBool("isHypno", true);
-
-        stm.SpriteRenderer.color = Color.magenta;
         GameplayUI.Instance.EnableHypnoBar();
     }
 

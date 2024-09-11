@@ -22,8 +22,6 @@ public class NPCCrazeState : NPCBaseState
         agent.SetDestination(GetValidDestination());
 
         GameTimer.Instance.AddTime(5f);
-
-        stm.SpriteRenderer.color = Color.red;
     }
 
 
