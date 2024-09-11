@@ -36,7 +36,6 @@ public class NPCCrazeState : NPCBaseState
 
         if (IsOutOfCamera()){
             Object.Destroy(stm.gameObject);
-            stm.spawner.npcInScene--;
         } 
     }
 

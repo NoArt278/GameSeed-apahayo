@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using Unity.AI.Navigation;
 using UnityEngine;
@@ -34,14 +35,10 @@ public class NPCStateMachine : MonoBehaviour
     public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
 
     // SPAWNER =======================================
-    public NPCSpawner spawner;
+    public NPCSpawner Spawner;
 
     // ANIMATION =====================================
     public Animator animator;
-
-    // Waypoints
-    // public WaypointType waypointType;
-    // [SerializeField] public Waypoint[] waypoints;
 
     private void Awake() {
         // COMPONENTS
@@ -120,5 +117,10 @@ public class NPCStateMachine : MonoBehaviour
     public void IsNPCWalking(){
         // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0.1f);
         animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
+    }
+
+    private void OnDestroy() {
+        if (Spawner != null) Spawner.Return(gameObject);
+        else Destroy(gameObject);
     }
 }

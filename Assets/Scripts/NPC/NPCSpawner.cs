@@ -1,69 +1,99 @@
 using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
+using System.Collections;
+using NaughtyAttributes;
 
 public class NPCSpawner : MonoBehaviour
 {
+    private static int npcInScene = 0;
+
+    [Header("NPC")]
+    [SerializeField] private GameObject[] npcPrefabs;
+    [SerializeField] private int maxNPCInScene = 25;
+
+    [Header("Spawn")]
+    [SerializeField] private float spawnDelay = 10f;
+    [SerializeField] private int bulkSpawnRate = 4;
+    [SerializeField] private int maxLocationSearchAttempts = 30;
+    [SerializeField] private Transform spawnParent;
+
+    [Header("Others")]
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private Canvas sceneCanvas;
-    public int maxAttempt = 20;
+
     private BoxCollider spawnArea;
-    public GameObject prefab;
-
-    public int spawnAmount = 10;
-    public int npcInScene = 0;
-
-    private bool spawnFlag = false;
+    private LayerMask obstacleMask;
+    private Coroutine spawnRoutine;
+    [SerializeField, ReadOnly] private ObjectPool npcPool;
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
+        obstacleMask = LayerMask.GetMask("Obstacle");
+
+        npcInScene = 0;
     }
 
     private void Start() {
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
+    [Button]
+    private void SerializeObjectPool() {
+        npcPool = new ObjectPool(npcPrefabs, 50, spawnParent);
+    }
+
+    [Button]
+    private void ClearObjectPool() {
+        while (spawnParent.childCount > 0) {
+            DestroyImmediate(spawnParent.GetChild(0).gameObject);
+        }
+    }
+
     private void OnDisable() {
         GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
 
-
     private void OnGameStateChanged(GameState prev, GameState current) {
         if (current == GameState.InGame) {
-            spawnFlag = true;
+            spawnRoutine = StartCoroutine(SpawnRoutine());
+        } else {
+            if (spawnRoutine != null) StopCoroutine(spawnRoutine);
         }
     }
 
-    void Update()
-    {
-        if (!spawnFlag) return;
-        if (npcInScene < spawnAmount)
-        {
-            Spawn();
+    private IEnumerator SpawnRoutine() {
+        while (true) {
+            for (int i = 0; i < bulkSpawnRate; i++) {
+                Spawn();
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(spawnDelay);
         }
+    }
+    
+    public void Return(GameObject npc){
+        npcInScene--;
+        npcPool.ReturnObject(npc);
     }
 
     private void Spawn(){
+        if (npcInScene >= maxNPCInScene) return;
+        if (!Camera.main) return;
+
         Vector3 randomPosition = GetRandomPositionOnNavMesh();
-        if (randomPosition != Vector3.zero)
-        {
-            GameObject npc = Instantiate(prefab, randomPosition, Quaternion.identity, transform);
-            npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+        if (randomPosition == Vector3.zero) return;
 
-            npc.GetComponent<NPCStateMachine>().spawner = this;
+        // Instantiate NPC
+        GameObject npc = npcPool.GetObject();
+        npc.transform.SetPositionAndRotation(randomPosition, Quaternion.identity);
 
-            HypnotizeUIManager hypnotizeManager = npc.GetComponent<HypnotizeUIManager>();
-            if (hypnotizeManager != null)
-            {
-                hypnotizeManager.SetupHypnoBar(sceneCanvas);
-            }
-            else
-            {
-                Debug.LogError("HypnotizeManager component not found on the instantiated prefab.");
-            }
+        npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+        npc.GetComponent<NPCStateMachine>().Spawner = this;
+        npc.GetComponent<HypnotizeUIManager>().SetupHypnoBar(sceneCanvas);
 
-            npcInScene++;
-        }
+        npcInScene++;
     }
 
     private Vector3 GetRandomPositionOnNavMesh()
@@ -74,13 +104,23 @@ public class NPCSpawner : MonoBehaviour
         spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
         spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
-        for (int i = 0; i < maxAttempt; i++)
+        for (int i = 0; i < maxLocationSearchAttempts; i++)
         {
             NavMeshHit hit;
             float maxDistance = 5f;
             if (NavMesh.SamplePosition(spawnPosition, out hit, maxDistance, NavMesh.AllAreas))
             {
                 if (hit.position.y > 0.5f) continue;
+                if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
+
+                Vector3 directionToCamera = Camera.main.transform.position - hit.position;
+                float distanceToCamera = directionToCamera.magnitude;
+
+                if (Physics.Raycast(hit.position, directionToCamera, distanceToCamera, obstacleMask))
+                {
+                    return hit.position;
+                }
+
                 return hit.position;
             }
         }

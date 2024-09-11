@@ -1,4 +1,5 @@
 using System.Collections;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,13 +17,13 @@ public class CatSpawner : MonoBehaviour
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private int bulkSpawnRate = 4;
     [SerializeField] private int maxLocationSearchAttempts = 30;
+    [SerializeField] private Transform spawnParent;
 
     private LayerMask obstacleMask;
     private BoxCollider spawnArea;
     private Coroutine spawnRoutine;
 
-    private ObjectPool strayCatPool;
-    private int it = 0;
+    [SerializeField, ReadOnly] private ObjectPool strayCatPool;
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
@@ -33,8 +34,19 @@ public class CatSpawner : MonoBehaviour
     }
 
     private void Start() {
-        strayCatPool = new ObjectPool(catPrefab, 50, transform);
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+
+    [Button]
+    private void SerializeObjectPool() {
+        strayCatPool = new ObjectPool(new[]{ catPrefab }, 50, spawnParent);
+    }
+
+    [Button]
+    private void ClearObjectPool() {
+        while (spawnParent.childCount > 0) {
+            DestroyImmediate(spawnParent.GetChild(0).gameObject);
+        }
     }
 
     private void OnDisable() {
@@ -43,7 +55,6 @@ public class CatSpawner : MonoBehaviour
 
     private void OnGameStateChanged(GameState prev, GameState current) {
         if (current == GameState.InGame) {
-            Debug.Log("Game State Changed to InGame");
             spawnRoutine = StartCoroutine(SpawnRoutine());
         } else {
             if (spawnRoutine != null) StopCoroutine(spawnRoutine);
@@ -71,9 +82,6 @@ public class CatSpawner : MonoBehaviour
 
         GameObject cat = strayCatPool.GetObject();
         cat.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
-        cat.transform.SetParent(transform);
-
-        it += 1;
 
         strayCatCount++;
         catsInSceneCount++;
@@ -89,16 +97,15 @@ public class CatSpawner : MonoBehaviour
                 strayCatCount++;
             }
         };
-
-        stm.OnDestroyed += () => { 
-            if (stm.CurrentState == stm.STATE_STRAYIDLE || stm.CurrentState == stm.STATE_STRAYWANDER) {
-                strayCatCount--;
-            }
-            catsInSceneCount--;
-        };
     }
 
     public void Return(GameObject cat) {
+        catsInSceneCount--;
+        if (cat.TryGetComponent(out CatStateMachine stm)) {
+            if (stm.CurrentState == stm.STATE_STRAYIDLE || stm.CurrentState == stm.STATE_STRAYWANDER) {
+                strayCatCount--;
+            }
+        }
         strayCatPool.ReturnObject(cat);
     }
 
@@ -121,12 +128,9 @@ public class CatSpawner : MonoBehaviour
                 Vector3 directionToCamera = Camera.main.transform.position - hitPosition;
                 float distanceToCamera = directionToCamera.magnitude;
 
-                if (Physics.Raycast(hitPosition, directionToCamera, out RaycastHit raycastHit, distanceToCamera, obstacleMask))
+                if (Physics.Raycast(hitPosition, directionToCamera, distanceToCamera, obstacleMask))
                 {
-                    if (raycastHit.collider.gameObject != Camera.main.gameObject)
-                    {
-                        return hitPosition;
-                    }
+                    return hitPosition;
                 }
 
                 // CASE 2: It is outside of the camera view

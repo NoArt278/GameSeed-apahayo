@@ -57,8 +57,7 @@ public class CatStateMachine : MonoBehaviour {
     public NavMeshAgent Agent { get; private set; }
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
-    public Action OnDestroyed;
-    public CatSpawner spawner;
+    public CatSpawner Spawner;
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
@@ -139,7 +138,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void ReturnToSpawner() {
-        spawner.Return(gameObject);
-        OnDestroyed?.Invoke();
+        if (Spawner) Spawner.Return(gameObject);
+        else Destroy(gameObject);
     }
 }

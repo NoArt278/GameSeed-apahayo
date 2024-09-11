@@ -1,17 +1,19 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
+[System.Serializable]
 public class ObjectPool
 {
-    private readonly GameObject prefab;
-    private readonly List<GameObject> inactiveObjects = new();
+    [SerializeField, ReadOnly] private GameObject[] prefabs;
+    [SerializeField, ReadOnly] private List<GameObject> inactiveObjects = new();
 
-    public ObjectPool(GameObject objPrefab, int initialSize, Transform parent = null)
+    public ObjectPool(GameObject[] objPrefabs, int initialSize, Transform parent = null)
     {
-        prefab = objPrefab;
+        prefabs = objPrefabs;
         for (int i = 0; i < initialSize; i++)
         {
-            GameObject obj = Object.Instantiate(prefab);
+            GameObject obj = Object.Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
             obj.SetActive(false);
             inactiveObjects.Add(obj);
 
@@ -26,7 +28,7 @@ public class ObjectPool
     {
         if (inactiveObjects.Count == 0)
         {
-            GameObject obj = Object.Instantiate(prefab);
+            GameObject obj = Object.Instantiate(prefabs[Random.Range(0, prefabs.Length)]);
             obj.SetActive(true);
             return obj;
         }
