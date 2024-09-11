@@ -5,7 +5,7 @@ public class Transparentable : MonoBehaviour {
     [SerializeField] private MeshRenderer meshRenderer;
     public MeshRenderer MeshRenderer { get => meshRenderer; }
     private Material[] storedMaterials;
-    private Material opaqueOutline, transparentOutline;
+    private Material opaqueOutline, transparentOutline, transparentMaterial;
 
     private void Awake() {
         if (meshRenderer == null) {
