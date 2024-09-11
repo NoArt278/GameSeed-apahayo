@@ -2,6 +2,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CatHidingState : CatBaseState {
     public CatHidingState(CatStateMachine stm) : base(stm) { }
@@ -24,11 +25,17 @@ public class CatHidingState : CatBaseState {
     }
 
     public void QuitHiding(Vector3 position, Action onComplete) {
-        stm.transform.position = position;
-        stm.Renderer.DOFade(1, stm.Hide.FadeDuration).OnComplete(() => onComplete());
+
+        stm.Renderer.DOFade(1, stm.Hide.FadeDuration).OnComplete(
+        () => {
+            stm.Agent.enabled = true;
+            if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1f, NavMesh.AllAreas)) {
+                stm.transform.position = hit.position;
+            }
+            onComplete?.Invoke();
+        });
     }
 
     public override void ExitState() {
-        stm.Agent.enabled = true;
     }
 }
