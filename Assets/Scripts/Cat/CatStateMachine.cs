@@ -34,11 +34,14 @@ public class CatStateMachine : MonoBehaviour {
     public WanderProperties Wander;
     public IdleProperties Idle;
     public HideProperties Hide;
-    [HideInInspector] public FollowProperties Follow;
+    [ReadOnly] public FollowProperties Follow;
 
-    [SerializeField, ReadOnly] private  CatBaseState previousState;
-    [SerializeField, ReadOnly] private CatBaseState currentState;
-    public CatBaseState CurrentState;
+    public CatBaseState PreviousState { get; private set; }
+    public CatBaseState CurrentState { get; private set; }
+
+    [ShowNativeProperty] public string CurrentStateName => CurrentState != null ? CurrentState.GetType().Name : "None";
+    [ShowNativeProperty] public string PreviousStateName => PreviousState != null ? PreviousState.GetType().Name : "None";
+
     // STATES ========================================
     public  CatStrayIdleState   STATE_STRAYIDLE { get; private set; }
     public  CatStrayWanderState STATE_STRAYWANDER { get; private set; }
@@ -57,7 +60,7 @@ public class CatStateMachine : MonoBehaviour {
     public NavMeshAgent Agent { get; private set; }
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
-    public CatSpawner Spawner;
+    [ReadOnly] public CatSpawner Spawner;
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
@@ -68,9 +71,6 @@ public class CatStateMachine : MonoBehaviour {
         STATE_FOLLOW = new CatFollowState(this);
         STATE_HIDING = new CatHidingState(this);
         STATE_HYPNOTIZE = new CatHypnotizeState(this);
-
-        // Set initial state
-        ChangeState(STATE_STRAYIDLE);
     }
 
     public void BecomeFollower(Transform target, float baseSpeed, float sprintSpeed) {
@@ -87,7 +87,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void QuitHiding(Vector3 position) {
-        STATE_HIDING.QuitHiding(position, () => ChangeState(previousState));
+        STATE_HIDING.QuitHiding(position, () => ChangeState(PreviousState));
     }
 
     public void StartSprint() {
@@ -99,7 +99,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void UseCatForHypnotize(Vector3 catFloatPos) {
-        if (currentState == STATE_HYPNOTIZE) return;
+        if (CurrentState == STATE_HYPNOTIZE) return;
 
         STATE_HYPNOTIZE.StartHypnotize(catFloatPos);
     }
@@ -115,22 +115,22 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     private void Update() {
-        currentState?.UpdateState();
+        CurrentState?.UpdateState();
 
         animator.SetFloat("Speed", Agent.velocity.magnitude);
         animator.SetFloat("SignZ", Agent.velocity.z);
     }
 
     public void ChangeState(CatBaseState newState) {
-        if (currentState == newState) return;
+        if (CurrentState == newState) return;
 
-        previousState = currentState;
+        PreviousState = CurrentState;
 
-        currentState?.UpdateState();
-        currentState = newState;
-        currentState.EnterState();
+        CurrentState?.ExitState();
+        CurrentState = newState;
+        CurrentState.EnterState();
 
-        OnStateChanged?.Invoke(previousState, newState);
+        OnStateChanged?.Invoke(PreviousState, newState);
     }
 
     public void AlignOrientation() {

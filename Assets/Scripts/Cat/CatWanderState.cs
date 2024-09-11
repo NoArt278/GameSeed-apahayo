@@ -17,7 +17,7 @@ public class CatStrayWanderState : CatBaseState {
         bool isDestinationReached = stm.Agent.remainingDistance <= stm.Agent.stoppingDistance;
 
         if (isPathStale || isPathPending || isDestinationReached) {
-            stm.ChangeState(stm.STATE_STRAYWANDER);
+            stm.ChangeState(stm.STATE_STRAYIDLE);
         }
 
         stm.AlignOrientation();
@@ -37,11 +37,8 @@ public class CatStrayWanderState : CatBaseState {
             Vector3 randomDirection = Random.insideUnitSphere * radius;
             Vector3 targetPos = stm.transform.position + randomDirection;
 
-            // Debug.DrawLine(transform.position, targetPos, Color.red, 2f);
-
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, radius, NavMesh.AllAreas))
             {
-                // Debug.DrawLine(transform.position, hit.position, Color.green, 2f);
                 // Check if the path is full
                 var path = new NavMeshPath();
                 if (NavMesh.CalculatePath(stm.transform.position, hit.position, NavMesh.AllAreas, path)) {

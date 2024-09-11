@@ -128,7 +128,7 @@ public class NPCSpawner : MonoBehaviour
                 else
                 {
                     Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
-                    if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+                    if (clipSpace.x < -0.2 || clipSpace.x > 1.2 || clipSpace.y < -0.2 || clipSpace.y > 1.2)
                     {
                         return hitPosition;
                     }

@@ -13057,9 +13057,9 @@ MonoBehaviour:
   catPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
     type: 3}
   maxStrayCats: 15
-  maxCatsInScene: 30
-  spawnDelay: 10
-  bulkSpawnRate: 8
+  maxCatsInScene: 20
+  spawnDelay: 12
+  bulkSpawnRate: 4
   maxLocationSearchAttempts: 30
   spawnParent: {fileID: 5324258636316344980}
   strayCatPool:
@@ -13149,7 +13149,7 @@ MonoBehaviour:
   - {fileID: 1272540199784814790, guid: f8e3d4b6b28b4c84ea68580fdbe6ecc5, type: 3}
   - {fileID: 1272540199784814790, guid: e208c3e5971ac224d9c96913842da3e4, type: 3}
   - {fileID: 1272540199784814790, guid: d11390593f565fc43984aba29c6381b3, type: 3}
-  maxNPCInScene: 25
+  maxNPCInScene: 30
   spawnDelay: 10
   bulkSpawnRate: 4
   maxLocationSearchAttempts: 30

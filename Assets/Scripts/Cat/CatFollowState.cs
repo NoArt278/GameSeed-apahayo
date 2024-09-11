@@ -2,6 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CatFollowState : CatBaseState {
     private bool onAction = false;
@@ -15,6 +16,10 @@ public class CatFollowState : CatBaseState {
         stm.Agent.velocity = Vector3.zero;
 
         LittleJumpOnRegistered();
+    }
+
+    public override void ExitState() {
+        stm.Agent.ResetPath();
     }
 
     private void LittleJumpOnRegistered() {
@@ -41,14 +46,12 @@ public class CatFollowState : CatBaseState {
 
     public override void UpdateState() {
         if (!onAction) Follow();
-        if (stm.Agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
+        // if (stm.Agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
 
         stm.AlignOrientation();
     }
 
     private void Follow() {
-        if (stm.Follow.Target == null) return;
-
         float speed = isSprinting ? stm.Follow.SprintSpeed : stm.Follow.BaseSpeed;
         speed += stm.Follow.SpeedDeviation.RandomValue();
         stm.Agent.speed = speed;
