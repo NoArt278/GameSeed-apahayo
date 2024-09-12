@@ -13,6 +13,7 @@ public class PatrolState : DogState
     [SerializeField] private float speed = 3.5f;
     [SerializeField] private float rotateDuration = 1f;
     [SerializeField] private float biasTowardsPlayer = 0.7f;
+    [SerializeField] private float minDistanceAfterHide = 3;
 
     // Wander
     [SerializeField] private RangeFloat wanderRadius = new(.5f, 2f);
@@ -26,7 +27,6 @@ public class PatrolState : DogState
     private float timer;
     private float stopIdlingTime;
     private Vector3 nextDestination;
-    private Vector3 prevDestination;
     private Vector3 prevPosition;
 
 
@@ -142,8 +142,6 @@ public class PatrolState : DogState
         }
         else
         {
-            //print("Rotating target: " + nextDestination);
-            //print("Rotating value current: " + Vector3.Lerp(Vector3.forward, nextDestination, timer / stopIdlingTime));
             fieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(prevPosition == null ? Vector3.forward : transform.position + (transform.position -  prevPosition).normalized, nextDestination, timer / stopIdlingTime));
         }
     }
@@ -155,17 +153,28 @@ public class PatrolState : DogState
         {
             float radius = wanderRadius.RandomValue();
             Vector3 randomDirection = Random.insideUnitSphere * radius;
-            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-            Vector3 biasedDirection = Vector3.Lerp(randomDirection, directionToPlayer * radius, biasTowardsPlayer);
-            Vector3 targetPos = transform.position + biasedDirection;
+            Vector3 biasedDirection, targetPos;
+            if (player.GetComponent<PlayerMovement>().IsHiding())
+            {
+                Vector3 directionAwayFromPlayer = (transform.position - player.transform.position).normalized;
+                biasedDirection = Vector3.Lerp(randomDirection, directionAwayFromPlayer * radius, biasTowardsPlayer);
+                targetPos = transform.position + biasedDirection;
 
-            
-
-            // Debug.DrawLine(transform.position, targetPos, Color.red, 2f);
+                float targetDistanceToPlayer = Vector3.Distance(targetPos, player.transform.position);
+                if (targetDistanceToPlayer < minDistanceAfterHide)
+                {
+                    targetPos = transform.position + directionAwayFromPlayer * radius;
+                }
+            }
+            else
+            {
+                Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+                biasedDirection = Vector3.Lerp(randomDirection, directionToPlayer * radius, biasTowardsPlayer);
+                targetPos = transform.position + biasedDirection;
+            }
 
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, radius, NavMesh.AllAreas))
             {
-                // Debug.DrawLine(transform.position, hit.position, Color.green, 2f);
                 // Check if the path is full
                 var path = new NavMeshPath();
                 if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, path))
