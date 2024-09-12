@@ -38,16 +38,33 @@ public class PlayerHypnotize : MonoBehaviour
                 if (catArmy.GetCatCount() > 0 && !currNPC.CheckHypnotize() && !currNPC.CheckCrazed())
                 {
                     currNPC.StartHyponotize();
+                    if (lastHypnotizedNPC != null)
+                    {
+                        lastHypnotizedNPC.isControllingBar = false;
+                    }
                     lastHypnotizedNPC = currNPC;
+                    lastHypnotizedNPC.isControllingBar = true;
                     catGodAnimator.SetTrigger("StartHypnotize");
                     catGodAnimator.SetBool("isHypnotizing", true);
+                    GameplayUI.Instance.StartHypnotize();
 
                     // Vector3 catFloatPos = catFloatPosition.position;
                     // if (sr.flipX) catFloatPos.x *= -1;
                     // catArmy.StartHypnotize(catFloatPos);
-                } else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
+                }
+                else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
+                    currNPC.animator.SetBool("isHypno", false);
                     currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);
+                }
+                else if (currNPC != lastHypnotizedNPC && currNPC.CheckHypnotize())
+                {
+                    if (lastHypnotizedNPC != null)
+                    {
+                        lastHypnotizedNPC.isControllingBar = false;
+                    }
+                    lastHypnotizedNPC = currNPC;
+                    lastHypnotizedNPC.isControllingBar = true;
                 }
                 if (!currNPC.CheckCrazed() && catArmy.GetCatCount() > 0)
                 {
@@ -60,14 +77,24 @@ public class PlayerHypnotize : MonoBehaviour
             currNPC = null;
         }
 
-        if (lastHypnotizedNPC != null && lastHypnotizedNPC.CheckCrazed())
+        if (lastHypnotizedNPC != null)
         {
-            Debug.Log("Hypnotize complete");
-            score += Mathf.RoundToInt(lastHypnotizedNPC.HypnotizeStats.hypnotizeHealth * 10);
-            lastHypnotizedNPC = null;
-            catArmy.DestroyCat();
-            GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
-            GameplayUI.Instance.UpdateScore(score);
+            if (lastHypnotizedNPC.CheckCrazed())
+            {
+                score += Mathf.RoundToInt(lastHypnotizedNPC.HypnotizeStats.hypnotizeHealth * 10);
+                catArmy.DestroyCat();
+                GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
+                GameplayUI.Instance.UpdateScore(score);
+                GameplayUI.Instance.StopHypnotize();
+                lastHypnotizedNPC.isControllingBar = false;
+                lastHypnotizedNPC = null;
+            }
+            else if (!lastHypnotizedNPC.CheckHypnotize())
+            {
+                GameplayUI.Instance.StopHypnotize();
+                lastHypnotizedNPC.isControllingBar = false;
+                lastHypnotizedNPC = null;
+            }
         }
 
         if (Time.time - lastClickTime > clickMoveDelay && !playerMovement.IsHiding())

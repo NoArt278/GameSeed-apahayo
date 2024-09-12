@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5091378545787214062}
   - component: {fileID: 7480164201256537380}
   - component: {fileID: 5205804573859854808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArmyCat
   m_TagString: Cat
   m_Icon: {fileID: 0}

@@ -34,6 +34,7 @@ public class NPCStateMachine : MonoBehaviour
     // STATS =========================================
     [SerializeField] private HypnotizeStats hypnotizeStats;
     public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
+    public bool isControllingBar = false;
 
     // SPAWNER =======================================
     public NPCSpawner Spawner;

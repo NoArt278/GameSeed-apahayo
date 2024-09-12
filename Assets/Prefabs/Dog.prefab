@@ -389,6 +389,7 @@ MonoBehaviour:
   speed: 4.1
   rotateDuration: 2
   biasTowardsPlayer: 0.7
+  minDistanceAfterHide: 3
   wanderRadius:
     min: 2
     max: 5
@@ -442,7 +443,7 @@ MonoBehaviour:
   isChasing: 0
   playerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
