@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -142,7 +143,18 @@ public class FieldOfView : MonoBehaviour
     private void CheckView()
     {
         Collider[] outerColliders = Physics.OverlapSphere(Vision.transform.position, outerRadius, playerMask);
+        outerColliders = outerColliders.Where(collider => 
+            LayerMask.LayerToName(collider.gameObject.layer) == "Player" || 
+            (LayerMask.LayerToName(collider.gameObject.layer) == "Cat" 
+                && collider.gameObject.GetComponent<CatStateMachine>().Follow.Target != null)
+        ).ToArray();
+
         Collider[] innerColliders = Physics.OverlapSphere(Vision.transform.position, innerRadius, playerMask);
+        innerColliders = innerColliders.Where(collider =>
+            LayerMask.LayerToName(collider.gameObject.layer) == "Player" ||
+            (LayerMask.LayerToName(collider.gameObject.layer) == "Cat"
+                && collider.gameObject.GetComponent<CatStateMachine>().Follow.Target != null)
+        ).ToArray();
 
         if (innerColliders.Length > 0)
         {
