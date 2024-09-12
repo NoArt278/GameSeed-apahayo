@@ -21,7 +21,6 @@ public class NPCHypnotizedState : NPCBaseState
         maxHypnotizeDelay = stats.maxHypnotizeDelay;
     }
 
-
     public override void EnterState()
     {
         initialSpeed = agent.speed;
