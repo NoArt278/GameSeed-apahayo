@@ -9,9 +9,19 @@ public class ChaseState : DogState
     [SerializeField] private float chaseAngle;
     public bool shouldChase = false;
     private bool lostTimerStarted = false;
+    private CameraShake cameraShake;
 
     private float prevAngle;
     [SerializeField] private LayerMask obstacleMask;
+
+    private void Start()
+    {
+        cameraShake = GameObject.FindWithTag("MainCamera").GetComponentInChildren<CameraShake>();
+        if(cameraShake == null)
+        {
+            print("Camera Shake Script Not Found!");
+        }
+    }
 
     private void AlignOrientation()
     {
@@ -32,6 +42,7 @@ public class ChaseState : DogState
         fieldOfView.isChasing = true;
         animator.SetBool("Chase", true);
         print("Enter Chase State");
+        cameraShake.isChased = true;
     }
 
     public override void UpdateState(DogStateMachine stateMachine)
@@ -75,6 +86,7 @@ public class ChaseState : DogState
 
         if (shouldChase)
         {
+            cameraShake.isChased = true;
             if (isPlayerHiding && fieldOfView.isPlayerVisible)
             {
                 agent.destination = transform.position;
@@ -101,6 +113,7 @@ public class ChaseState : DogState
         fieldOfView.isChasing = false;
         isPlayerLost = false;
         isPlayerHiding = false;
+        cameraShake.isChased = false;
     }
 
     private IEnumerator TargetLostRoutine()
