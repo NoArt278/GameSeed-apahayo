@@ -30,7 +30,6 @@ public class NPCHypnotizedState : NPCBaseState
         timer = 0f;
 
         stm.animator.SetBool("isHypno", true);
-        GameplayUI.Instance.StartHypnotize();
 
         stm.SpriteRenderer.color = Color.blue;
     }
@@ -51,8 +50,10 @@ public class NPCHypnotizedState : NPCBaseState
                 stm.TransitionToState(stm.STATE_WANDER);
             }
         }
-
-        GameplayUI.Instance.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
+        if (stm.isControllingBar)
+        {
+            GameplayUI.Instance.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
+        }
     }
 
     private void TimerUpdate() {
@@ -65,7 +66,6 @@ public class NPCHypnotizedState : NPCBaseState
 
     public override void ExitState()
     {
-        GameplayUI.Instance.StopHypnotize();
         agent.speed = initialSpeed;
     }
 }
