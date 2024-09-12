@@ -99,7 +99,7 @@ public class NPCStateMachine : MonoBehaviour
 
     public bool CheckCrazed()
     {
-        return currentState == STATE_CRAZE;
+        return currentState == STATE_WANDER;
     }
 
     public bool IsNPCClicked()

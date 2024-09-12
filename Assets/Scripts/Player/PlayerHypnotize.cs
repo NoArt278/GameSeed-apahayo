@@ -55,17 +55,19 @@ public class PlayerHypnotize : MonoBehaviour
                     lastClickTime = Time.time;
                 }
             }
-            if (currNPC.CheckCrazed() && currNPC == lastHypnotizedNPC && (lastCrazedNPC == null || lastCrazedNPC != currNPC))
-            {
-                lastCrazedNPC = currNPC;
-                catArmy.DestroyCat();
-                score += Mathf.RoundToInt(currNPC.HypnotizeStats.hypnotizeHealth * 10);
-                GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
-                GameplayUI.Instance.UpdateScore(score);
-            }
         } else
         {
             currNPC = null;
+        }
+
+        if (lastHypnotizedNPC != null && lastHypnotizedNPC.CheckCrazed())
+        {
+            Debug.Log("Hypnotize complete");
+            score += Mathf.RoundToInt(lastHypnotizedNPC.HypnotizeStats.hypnotizeHealth * 10);
+            lastHypnotizedNPC = null;
+            catArmy.DestroyCat();
+            GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
+            GameplayUI.Instance.UpdateScore(score);
         }
 
         if (Time.time - lastClickTime > clickMoveDelay && !playerMovement.IsHiding())
