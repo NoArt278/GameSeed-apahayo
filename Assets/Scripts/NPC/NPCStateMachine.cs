@@ -80,6 +80,11 @@ public class NPCStateMachine : MonoBehaviour
         currentState.UpdateState();
     }
 
+    void FixedUpdate()
+    {
+        IsNPCWalking();
+    }
+
     public void TransitionToState(NPCBaseState state)
     {
         currentState.ExitState();
@@ -116,7 +121,7 @@ public class NPCStateMachine : MonoBehaviour
     }
 
     public void IsNPCWalking(){
-        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0.1f);
+        Debug.LogWarning(Agent.velocity.sqrMagnitude > 0);
         animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 

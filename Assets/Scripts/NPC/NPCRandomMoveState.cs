@@ -31,7 +31,7 @@ public class NPCRandomMoveState : NPCBaseState
     {   
         AlignOrientation();
         CheckArrival();
-        stm.IsNPCWalking();
+        // stm.IsNPCWalking();
     }
 
     private void CheckArrival()
