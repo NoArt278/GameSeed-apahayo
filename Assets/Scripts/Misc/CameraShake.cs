@@ -13,7 +13,6 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         vcam = GetComponent<CinemachineVirtualCamera>();
-        print(vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile);
     }
 
     private void Update()
@@ -22,12 +21,10 @@ public class CameraShake : MonoBehaviour
         {
             vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = shake6D;
 
-            print(vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile);
         }
         else
         {
             vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = null;
-            print(vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile);
         }
     }
 }
