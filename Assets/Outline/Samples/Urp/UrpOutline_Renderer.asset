@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   _event: 600
-  _solid: 0.36241958
-  _thickness: 0.65891886
+  _solid: 0.18953244
+  _thickness: 0.14824101
   _alphaCutout: 0.5
   _mode: 0
   _filter: 1

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3103650062240677007}
   - component: {fileID: 2666695732229117609}
   - component: {fileID: 4051855954649681611}
+  - component: {fileID: 4418024786410385769}
   m_Layer: 7
   m_Name: Remaja
   m_TagString: NPC
@@ -97,6 +98,7 @@ MonoBehaviour:
   hypnotizeStats:
     hypnotizeHealth: 10
     maxHypnotizeDelay: 2
+  isControllingBar: 0
   Spawner: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &4051855954649681611
@@ -112,6 +114,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hypnoBar: {fileID: 6037017770548434732}
+--- !u!114 &4418024786410385769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272540199784814790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a0e8c62fe0cc242bf5200975d6d5eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3078107940759522863
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +226,7 @@ GameObject:
   - component: {fileID: 6330607062609479635}
   - component: {fileID: 8398377628498058092}
   - component: {fileID: 7634294227976691044}
+  - component: {fileID: 7451548741318756634}
   m_Layer: 7
   m_Name: SpriteRenderer
   m_TagString: Untagged
@@ -307,3 +322,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7451548741318756634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588648533899059606}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 1, g: 1, b: 1, a: 1}
