@@ -23,7 +23,7 @@ public class PlayerCam : MonoBehaviour
     private void Update()
     {
         Vector3 direction = player.position - transform.position;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
+        RaycastHit[] hits = Physics.RaycastAll(transform.position - direction * 3, direction, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
         bool isBlocked = false;
 
         foreach (var hit in hits)
