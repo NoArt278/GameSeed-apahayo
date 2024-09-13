@@ -17,6 +17,7 @@ public class CatFollowState : CatBaseState {
         stm.Animator.SetTrigger("Hypnotized");
 
         if (firstFollow) {
+            AudioManager.Instance.PlayOneShot("Acquired");
             LittleJumpOnRegistered();
             firstFollow = false;
         }

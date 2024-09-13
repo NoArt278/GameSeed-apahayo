@@ -15,10 +15,10 @@ public class PlayerLaser : MonoBehaviour {
     }
     
     public void EmitLaser(Transform from, Transform to) {
-        Debug.Log("Emitting laser");
         this.from = from;
         this.to = to;
         laserActive = true;
+        lineRenderer.enabled = true;
     }
 
     private void Update() {
@@ -28,8 +28,6 @@ public class PlayerLaser : MonoBehaviour {
     }
 
     public void StopLaser() {
-        Debug.Log("Stopping laser");
-
         lineRenderer.SetPosition(0, Vector3.zero);
         lineRenderer.SetPosition(1, Vector3.zero);
 
