@@ -17,13 +17,16 @@ public class MainMenuScreen : MonoBehaviour
         AudioManager.Instance.PlayOneShot("Click");
     }
 
+    // Pointer enter suka miss, tp exit gk jadi ngecil mulu
+    // Need fix later, for now like this
     public void CursorHover(Transform obj)
     {
-        obj.DOScale(obj.localScale * 1.1f, 0.5f);
+        
+        obj.DOScale(new Vector3(1.4f, 1.4f, 1.4f), 0.5f);
     }
 
     public void CursorExit(Transform obj)
     {
-        obj.DOScale(obj.localScale / 1.1f, 0.5f);
+        obj.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.5f);
     }
 }
