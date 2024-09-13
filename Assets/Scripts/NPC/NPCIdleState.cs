@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class NPCIdleState : NPCBaseState 
 {
     public float timewait = 0;
-    public RangeFloat waitTime = new RangeFloat(1, 3);
+    public RangeFloat waitTime = new RangeFloat(1, 5);
     private readonly NavMeshAgent agent;
     private Coroutine idleCoroutine;
 
@@ -17,6 +17,7 @@ public class NPCIdleState : NPCBaseState
     {
         agent.ResetPath();
         timewait = waitTime.RandomValue();
+        // Debug.Log("Idle for " + timewait + " seconds");
         idleCoroutine = stm.StartCoroutine(Idle());
     }
 
