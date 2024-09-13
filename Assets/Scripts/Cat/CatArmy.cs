@@ -75,14 +75,12 @@ public class CatArmy : MonoBehaviour
 
         usedCat = cats[Random.Range(0, cats.Count)];
         usedCat.UseCatForHypnotize(catFloatPos);
-        cats.Remove(usedCat);
     }
 
     public void CancelHypnotize() {
         if (cats.Count == 0) return;
 
         usedCat.CancelHypnotize( FindAppropriateSpawnLocation(follow ? follow.position : Vector3.zero) );
-        cats.Add(usedCat);
     }
 
     public void DestroyCat()

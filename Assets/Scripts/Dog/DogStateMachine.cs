@@ -38,4 +38,8 @@ public class DogStateMachine : MonoBehaviour
         CurrentState = newState;
         CurrentState.EnterState(this);
     }
+
+    private void OnBecameVisible() {
+        AudioManager.Instance.Play("Sniff");
+    }
 }
