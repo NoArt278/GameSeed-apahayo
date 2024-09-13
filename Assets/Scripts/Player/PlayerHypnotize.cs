@@ -54,6 +54,7 @@ public class PlayerHypnotize : MonoBehaviour
                 sr.flipX = currNPC.transform.position.x < transform.position.x;
                 if (catArmy.GetCatCount() > 0 && !currNPC.CheckHypnotize() && !currNPC.CheckCrazed())
                 {
+                    Debug.Log("Start Hypnotize");
                     currNPC.StartHyponotize();
                     if (lastHypnotizedNPC != null)
                     {
