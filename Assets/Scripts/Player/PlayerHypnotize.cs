@@ -12,6 +12,7 @@ public class PlayerHypnotize : MonoBehaviour
     private int score = 0;
 
     [SerializeField] private Transform catFloatPosition;
+    [SerializeField] private float distance;
 
     private void Awake()
     {
@@ -48,9 +49,10 @@ public class PlayerHypnotize : MonoBehaviour
                     catGodAnimator.SetBool("isHypnotizing", true);
                     GameplayUI.Instance.StartHypnotize();
 
-                    // Vector3 catFloatPos = catFloatPosition.position;
-                    // if (sr.flipX) catFloatPos.x *= -1;
-                    // catArmy.StartHypnotize(catFloatPos);
+                    Vector3 catFloatPos = catFloatPosition.position;
+                    Vector3 direction = (currNPC.transform.position - transform.position).normalized;
+                    catFloatPos += direction * distance;
+                    catArmy.StartHypnotize(catFloatPos);
                 }
                 else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
@@ -92,6 +94,7 @@ public class PlayerHypnotize : MonoBehaviour
             else if (!lastHypnotizedNPC.CheckHypnotize())
             {
                 GameplayUI.Instance.StopHypnotize();
+                catArmy.CancelHypnotize();
                 lastHypnotizedNPC.isControllingBar = false;
                 lastHypnotizedNPC = null;
             }
