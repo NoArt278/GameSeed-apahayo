@@ -226,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
             CatStateMachine cat = other.gameObject.GetComponent<CatStateMachine>();
             catArmy.RegisterCat(cat, transform);
             GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
-        } else if (other.CompareTag("Hide"))
+        } else if (other.CompareTag("Hide") && !isHiding)
         {
             currTrashBin = other.transform;
             prevTrashBin = currTrashBin;
