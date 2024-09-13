@@ -159,7 +159,8 @@ public class CatStateMachine : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Dog")) {
             if (CurrentState == STATE_FOLLOW) {
-                Vector3 perpendicular = Vector3.Cross(Agent.velocity, Vector3.up);
+                int sign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+                Vector3 perpendicular = Vector3.Cross(Agent.velocity, Vector3.up) * sign;
                 Vector3 landPosition = transform.position + perpendicular * 2f;
                 
                 ChangeState(STATE_YEETED);

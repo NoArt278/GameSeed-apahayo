@@ -43,6 +43,8 @@ public class ChaseState : DogState
         animator.SetBool("Chase", true);
         print("Enter Chase State");
         cameraShake.isChased = true;
+
+        GameplayUI.Instance.StartDogChase();
     }
 
     public override void UpdateState(DogStateMachine stateMachine)
@@ -114,6 +116,8 @@ public class ChaseState : DogState
         isPlayerLost = false;
         isPlayerHiding = false;
         cameraShake.isChased = false;
+
+        GameplayUI.Instance.StopDogChase();
     }
 
     private IEnumerator TargetLostRoutine()

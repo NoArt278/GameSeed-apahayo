@@ -78,6 +78,7 @@ public class CatSpawner : MonoBehaviour
         if (!Camera.main) return;
 
         Vector3 spawnPosition = GetSpawnPosition();
+        Debug.DrawRay(spawnPosition, Vector3.up, Color.red, 100f);
         if (spawnPosition == Vector3.zero) return;
 
         GameObject cat = strayCatPool.GetObject();
@@ -122,8 +123,10 @@ public class CatSpawner : MonoBehaviour
                 Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.3f) continue;
 
+                Debug.DrawRay(hitPosition, Vector3.up, Color.green, 100f);
+
                 // CASE 0: It is inside a building
-                if (Physics.OverlapSphere(hitPosition, 0.1f, obstacleMask).Length > 0) continue;
+                if (Physics.OverlapSphere(hitPosition, 0.5f, obstacleMask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToHit = hitPosition - Camera.main.transform.position;
@@ -138,7 +141,7 @@ public class CatSpawner : MonoBehaviour
                 else
                 {
                     Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
-                    if (clipSpace.x < -0.2 || clipSpace.x > 1.2 || clipSpace.y < -0.2 || clipSpace.y > 1.2)
+                    if (clipSpace.x < -0.5 || clipSpace.x > 1.5 || clipSpace.y < -0.5 || clipSpace.y > 1.5)
                     {
                         return hitPosition;
                     }

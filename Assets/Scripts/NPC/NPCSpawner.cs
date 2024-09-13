@@ -113,7 +113,7 @@ public class NPCSpawner : MonoBehaviour
                 if (hit.position.y > 0.3f) continue;
 
                 // CASE 0: It is inside a building
-                if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
+                if (Physics.OverlapSphere(hit.position, 0.5f, obstacleMask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToHit = hitPosition - Camera.main.transform.position;
@@ -128,7 +128,7 @@ public class NPCSpawner : MonoBehaviour
                 else
                 {
                     Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
-                    if (clipSpace.x < -0.2 || clipSpace.x > 1.2 || clipSpace.y < -0.2 || clipSpace.y > 1.2)
+                    if (clipSpace.x < -0.5 || clipSpace.x > 1.5 || clipSpace.y < -0.5 || clipSpace.y > 1.5)
                     {
                         return hitPosition;
                     }

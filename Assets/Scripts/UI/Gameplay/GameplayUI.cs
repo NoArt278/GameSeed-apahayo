@@ -23,6 +23,7 @@ public class GameplayUI : MonoBehaviour {
     [SerializeField] private Image crosshair;
     [SerializeField] private Image overlay;
     [SerializeField] private Image hypnoVignette;
+    [SerializeField] private Image dogVignette;
 
     [Header("CG")]
     [SerializeField] private CanvasGroup staminaSliderCG;
@@ -118,6 +119,23 @@ public class GameplayUI : MonoBehaviour {
         hypnoBarParent.gameObject.SetActive(false);
         hypnoVignette.DOKill();
         hypnoVignette.DOFade(0, hypnoVignette.color.a * 2).OnComplete(() => hypnoVignette.gameObject.SetActive(false));
+    }
+
+    public void StartDogChase() {
+        dogVignette.gameObject.SetActive(true);
+        dogVignette.color = new Color(1, 1, 1, 0);
+
+        dogVignette.DOFade(1f, 1.5f).SetEase(Ease.Linear).OnComplete(() => {
+            DOTween.Sequence()
+                .Append(dogVignette.DOFade(0.7f, 0.45f).SetEase(Ease.Linear))
+                .Append(dogVignette.DOFade(1f, 0.45f).SetEase(Ease.Linear))
+                .SetLoops(-1, LoopType.Restart);
+        });
+    }
+
+    public void StopDogChase() {
+        dogVignette.DOKill();
+        dogVignette.DOFade(0, dogVignette.color.a * 1.5f).OnComplete(() => dogVignette.gameObject.SetActive(false));
     }
 
     public void UpdateScore(int score)
