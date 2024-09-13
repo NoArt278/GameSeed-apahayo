@@ -41,6 +41,7 @@ public class NPCWanderState : NPCBaseState
 
     private void CheckArrival()
     {
+        // if (HasArrived()) EnterState();
         if (HasArrived()) stm.TransitionToState(stm.STATE_IDLE);
     }
 

@@ -11,10 +11,10 @@ public class PlayerHypnotize : MonoBehaviour
     private const float clickMoveDelay = 0.5f;
     private int score = 0;
 
-    [SerializeField] private Transform catFloatCenter;
-    [SerializeField] private float distance;
     [SerializeField] private PlayerLaser playerLaser;
+    [SerializeField] private Transform catFloatCenter;
     [SerializeField] private Transform staffPosition;
+    [SerializeField] private float distance;
 
     private Vector3 originalStaffPosition;
 

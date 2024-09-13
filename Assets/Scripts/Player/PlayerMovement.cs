@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator catGodAnimator;
     private SpriteRenderer sr;
     private ParticleSystem sprintTrail;
-    public CinemachineVirtualCamera virtualCamera;
+    [HideInInspector] public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
@@ -174,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             cc.enabled = false;
             transform.position = currTrashBin.position + currTrashBin.forward;
             cc.enabled = true;
+            // Hide();
             StartCoroutine(HideDelay());
         } else if (isHiding && !justHid)
         {
@@ -183,15 +184,18 @@ public class PlayerMovement : MonoBehaviour
             isHiding = false;
             catArmy.QuitHiding(currTrashBin.GetComponent<TrashBin>().GroundPoint.position + currTrashBin.forward * 1.5f);
             currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
+            // Hide();
             StartCoroutine(HideDelay());
         }
     }
 
     private IEnumerator HideDelay()
+    // private void Hide()
     {
         justHid = true;
         GameplayUI.Instance.ChangeHideText("");
-        yield return new WaitForSeconds(0.5f);
+        if (isHiding) VFXManager.Instance.PlayPoofVFX(transform.position);
+        yield return new WaitForSeconds(0.3f);
         if (isHiding)
         {
             capsuleCollider.enabled = false;

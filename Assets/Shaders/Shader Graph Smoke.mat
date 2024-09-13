@@ -127,7 +127,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Voronoi_Scale: 2.5
+    - _Voronoi_Scale: 2
     - _Voronoi_Speed: 4
     - _WorkflowMode: 1
     - _ZWrite: 1
