@@ -16,7 +16,7 @@ public class HypnotizeStats
 
 public class NPCStateMachine : MonoBehaviour
 {
-    private NPCBaseState currentState;
+    public NPCBaseState currentState;
     [ShowNativeProperty] public string CurrentStateName => currentState != null ? currentState.GetType().Name : "None";
 
     // STATES ========================================

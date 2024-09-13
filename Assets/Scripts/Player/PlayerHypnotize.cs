@@ -73,7 +73,9 @@ public class PlayerHypnotize : MonoBehaviour
                 else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
                     currNPC.animator.SetBool("isHypno", false);
-                    currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);
+                    if(currNPC.currentState != currNPC.STATE_RANDOMMOVE){
+                        currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);                         
+                    }
                 }
                 else if (currNPC != lastHypnotizedNPC && currNPC.CheckHypnotize())
                 {
