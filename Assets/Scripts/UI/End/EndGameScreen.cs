@@ -26,11 +26,13 @@ public class EndGameScreen : MonoBehaviour {
 
     public void RestartScene() {
         SceneLoader.Instance.RestartGameplay();
+        AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void ToMainMenu()
     {
         SceneLoader.Instance.LoadScene("MainMenu");
+        AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void CursorHover(Transform obj)
