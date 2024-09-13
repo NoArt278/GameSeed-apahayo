@@ -14,6 +14,7 @@ public class CatFollowState : CatBaseState {
         stm.Agent.speed = stm.Follow.BaseSpeed;
         stm.Agent.SetDestination(stm.Follow.Target.position);
         stm.Agent.velocity = Vector3.zero;
+        stm.Animator.SetTrigger("Hypnotized");
 
         if (firstFollow) {
             LittleJumpOnRegistered();

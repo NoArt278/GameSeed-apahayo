@@ -73,7 +73,7 @@ public class CatArmy : MonoBehaviour
     public void StartHypnotize(Vector3 catFloatPos) {
         if (cats.Count == 0) return;
 
-        usedCat = cats[0];
+        usedCat = cats[Random.Range(0, cats.Count)];
         usedCat.UseCatForHypnotize(catFloatPos);
         cats.Remove(usedCat);
     }
@@ -89,9 +89,8 @@ public class CatArmy : MonoBehaviour
     {
         if (cats.Count == 0) return;
 
-        CatStateMachine destroyedCat = cats[0];
-        cats.Remove(destroyedCat);
-        destroyedCat.ReturnToSpawner();
+        cats.Remove(usedCat);
+        usedCat.ReturnToSpawner();
     }
 
     public void QuitHiding(Vector3 exitPosition) {

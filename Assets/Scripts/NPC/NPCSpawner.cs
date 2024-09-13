@@ -107,7 +107,7 @@ public class NPCSpawner : MonoBehaviour
         for (int i = 0; i < maxLocationSearchAttempts; i++)
         {
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(spawnPosition, out hit, 5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 0.5f, NavMesh.AllAreas))
             {
                 Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.3f) continue;
