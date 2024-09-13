@@ -21,6 +21,8 @@ public class NPCRandomMoveState : NPCBaseState
             if (GetRandomPositionOnNavMesh(out randomPoint)) break;
         }
 
+        // Debug.Log("Random Move to " + randomPoint);
+
         agent.SetDestination(randomPoint);
         AlignOrientation();
 
@@ -41,12 +43,13 @@ public class NPCRandomMoveState : NPCBaseState
 
     private bool HasArrived()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
-        {
-            return true;
-        }
+        return IsWithinStoppingDistance(agent.transform.position, agent.destination, agent.stoppingDistance);
+    }
 
-        return false;
+    private bool IsWithinStoppingDistance(Vector3 currentPosition, Vector3 destinationPosition, float stoppingDistance)
+    {
+        float distance = Vector3.Distance(currentPosition, destinationPosition);
+        return distance <= stoppingDistance + 0.1f;
     }
 
     bool GetRandomPositionOnNavMesh(out Vector3 result)
