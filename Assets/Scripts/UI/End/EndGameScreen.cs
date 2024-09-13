@@ -1,9 +1,11 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class EndGameScreen : MonoBehaviour {
     public static EndGameScreen Instance { get; private set; }
     [SerializeField] private CanvasGroup endGameScreen;
+    [SerializeField] private TextMeshProUGUI pointsText;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -20,6 +22,7 @@ public class EndGameScreen : MonoBehaviour {
     public void ShowEndGameScreen() {
         endGameScreen.alpha = 0;
         endGameScreen.gameObject.SetActive(true);
+        pointsText.text = GameplayUI.Instance.GetScore().ToString();
 
         endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine);
     }

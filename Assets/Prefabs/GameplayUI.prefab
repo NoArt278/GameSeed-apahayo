@@ -2948,6 +2948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endGameScreen: {fileID: 7771763820189043786}
+  pointsText: {fileID: 3153941477061400139}
 --- !u!1 &8785940900449368207
 GameObject:
   m_ObjectHideFlags: 0

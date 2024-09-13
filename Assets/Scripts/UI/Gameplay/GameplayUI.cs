@@ -138,6 +138,11 @@ public class GameplayUI : MonoBehaviour {
         dogVignette.DOFade(0, dogVignette.color.a * 1.5f).OnComplete(() => dogVignette.gameObject.SetActive(false));
     }
 
+    public int GetScore()
+    {
+        return Convert.ToInt32(scoreText.text);
+    }
+    
     public void UpdateScore(int score)
     {
         scoreText.text = score.ToString();
