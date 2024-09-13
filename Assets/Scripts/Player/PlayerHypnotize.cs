@@ -11,8 +11,22 @@ public class PlayerHypnotize : MonoBehaviour
     private const float clickMoveDelay = 0.5f;
     private int score = 0;
 
-    [SerializeField] private Transform catFloatPosition;
+    [SerializeField] private Transform catFloatCenter;
     [SerializeField] private float distance;
+    [SerializeField] private PlayerLaser playerLaser;
+    [SerializeField] private Transform staffPosition;
+
+    private Vector3 originalStaffPosition;
+
+    public Transform StaffPosition { get {
+        Vector3 stPos = originalStaffPosition;
+        stPos.x *= sr.flipX ? -1 : 1;
+
+        staffPosition.localPosition = stPos;
+        return staffPosition;
+    }}
+    
+    public Transform HypnotizedNPCTr { get; private set; }
 
     private void Awake()
     {
@@ -22,6 +36,8 @@ public class PlayerHypnotize : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         lastClickTime = 0;
         GameplayUI.Instance.UpdateScore(score);
+
+        originalStaffPosition = staffPosition.localPosition;
     }
 
     void Update()
@@ -45,14 +61,13 @@ public class PlayerHypnotize : MonoBehaviour
                     }
                     lastHypnotizedNPC = currNPC;
                     lastHypnotizedNPC.isControllingBar = true;
+                    HypnotizedNPCTr = currNPC.transform;
                     catGodAnimator.SetTrigger("StartHypnotize");
                     catGodAnimator.SetBool("isHypnotizing", true);
                     GameplayUI.Instance.StartHypnotize();
 
-                    Vector3 catFloatPos = catFloatPosition.position;
                     Vector3 direction = (currNPC.transform.position - transform.position).normalized;
-                    catFloatPos += direction * distance;
-                    catArmy.StartHypnotize(catFloatPos);
+                    catArmy.StartHypnotize(catFloatCenter.position + direction * distance);
                 }
                 else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
@@ -67,6 +82,7 @@ public class PlayerHypnotize : MonoBehaviour
                     }
                     lastHypnotizedNPC = currNPC;
                     lastHypnotizedNPC.isControllingBar = true;
+                    HypnotizedNPCTr = currNPC.transform;
                 }
                 if (!currNPC.CheckCrazed() && catArmy.GetCatCount() > 0)
                 {
@@ -88,6 +104,7 @@ public class PlayerHypnotize : MonoBehaviour
                 GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
                 GameplayUI.Instance.UpdateScore(score);
                 GameplayUI.Instance.StopHypnotize();
+                playerLaser.StopLaser();
                 lastHypnotizedNPC.isControllingBar = false;
                 lastHypnotizedNPC = null;
             }
@@ -95,6 +112,7 @@ public class PlayerHypnotize : MonoBehaviour
             {
                 GameplayUI.Instance.StopHypnotize();
                 catArmy.CancelHypnotize();
+                playerLaser.StopLaser();
                 lastHypnotizedNPC.isControllingBar = false;
                 lastHypnotizedNPC = null;
             }

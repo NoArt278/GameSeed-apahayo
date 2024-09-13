@@ -13,16 +13,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 1577138667004244461, guid: 8dff4f84775630947a58221ce2cbf438,
+    - target: {fileID: 3042937848854568068, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.000000067055225
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1705172867844401616, guid: 8dff4f84775630947a58221ce2cbf438,
+    - target: {fileID: 4981370398834450592, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
-      propertyPath: catFloatStartPos
-      value: 
-      objectReference: {fileID: 2344041240566950231}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6581633996417484836, guid: 8dff4f84775630947a58221ce2cbf438,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,9 +78,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dff4f84775630947a58221ce2cbf438, type: 3}
---- !u!4 &2344041240566950231 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 700554238810398673, guid: 8dff4f84775630947a58221ce2cbf438,
-    type: 3}
-  m_PrefabInstance: {fileID: 2972212238702343814}
-  m_PrefabAsset: {fileID: 0}

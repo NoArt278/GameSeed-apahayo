@@ -118,7 +118,7 @@ public class CatSpawner : MonoBehaviour
             spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
             spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 0.5f, NavMesh.AllAreas)) {
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 0.2f, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.3f) continue;
 

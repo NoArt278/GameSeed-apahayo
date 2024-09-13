@@ -97,6 +97,7 @@ MonoBehaviour:
   hypnotizeStats:
     hypnotizeHealth: 10
     maxHypnotizeDelay: 2
+  isControllingBar: 0
   Spawner: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &4051855954649681611
