@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Active: 1
   _event: 600
   _solid: 0
-  _thickness: 0.15
+  _thickness: 0.1
   _alphaCutout: 0.5
   _mode: 0
   _filter: 1
