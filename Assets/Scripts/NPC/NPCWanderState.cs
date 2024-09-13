@@ -29,6 +29,8 @@ public class NPCWanderState : NPCBaseState
         GameTimer.Instance.AddTime(5f);
 
         stm.Collider.enabled = false;
+
+        // stm.animator.SetBool("isHypno", true);
     }
 
     public override void UpdateState()

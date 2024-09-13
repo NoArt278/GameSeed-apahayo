@@ -3,6 +3,9 @@ using NaughtyAttributes;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 [System.Serializable]
 public class HypnotizeStats
@@ -74,11 +77,29 @@ public class NPCStateMachine : MonoBehaviour
     {
         currentState = STATE_RANDOMMOVE;
         currentState.EnterState();
+        if (IsUsingURP())
+        {
+            Debug.Log("Using Universal Render Pipeline (URP)");
+        }
+        else
+        {
+            Debug.Log("Not using Universal Render Pipeline (URP)");
+        }
+    }
+
+    bool IsUsingURP()
+    {
+        return GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset;
     }
 
     void Update()
     {
         currentState.UpdateState();
+    }
+
+    void FixedUpdate()
+    {
+        IsNPCWalking();
     }
 
     public void TransitionToState(NPCBaseState state)
@@ -117,7 +138,7 @@ public class NPCStateMachine : MonoBehaviour
     }
 
     public void IsNPCWalking(){
-        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0.1f);
+        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0);
         animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 
