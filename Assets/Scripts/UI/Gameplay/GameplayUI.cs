@@ -27,6 +27,9 @@ public class GameplayUI : MonoBehaviour {
     [Header("CG")]
     [SerializeField] private CanvasGroup staminaSliderCG;
 
+    [Header("Animations")]
+    [SerializeField] private Animator crosshairAnimator;
+
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -131,5 +134,10 @@ public class GameplayUI : MonoBehaviour {
         blinkSq.Append(staminaSliderCG.DOFade(1, 0.3f));
         blinkSq.SetLoops(8);
         blinkSq.Play();
+    }
+
+    public void PlayCrosshairBeat()
+    {
+        crosshairAnimator.SetTrigger("Beat");
     }
 }
