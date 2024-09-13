@@ -27,4 +27,19 @@ public class EndGameScreen : MonoBehaviour {
     public void RestartScene() {
         SceneLoader.Instance.RestartGameplay();
     }
+
+    public void ToMainMenu()
+    {
+        SceneLoader.Instance.LoadScene("MainMenu");
+    }
+
+    public void CursorHover(Transform obj)
+    {
+        obj.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f);
+    }
+
+    public void CursorExit(Transform obj)
+    {
+        obj.DOScale(new Vector3(1, 1, 1), 0.5f);
+    }
 }
