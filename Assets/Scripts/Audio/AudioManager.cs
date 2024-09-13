@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
@@ -22,6 +23,7 @@ public class AudioManager : MonoBehaviour {
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
+            sound.source.clip = sound.clip;
         }
     }
 
@@ -36,13 +38,20 @@ public class AudioManager : MonoBehaviour {
         sound.source.PlayOneShot(sound.clip);
     }
 
-    public void Play(string name) {
+    public void Play(string name, bool overrideExisting = true) {
         Sound sound = sounds.Find(s => s.name == name);
         if (sound == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
 
+        if (sound.source.isPlaying && !overrideExisting) return; 
+
+        sound.source.clip = sound.clip;
+        sound.source.volume = sound.volume;
+        sound.source.pitch = sound.pitch;
+
+        sound.source.Stop();
         sound.source.Play();
     }
 
@@ -54,5 +63,15 @@ public class AudioManager : MonoBehaviour {
         }
 
         sound.source.Stop();
+    }
+
+    public void StopFadeOut(string name, float fadeTime) {
+        Sound sound = sounds.Find(s => s.name == name);
+        if (sound == null) {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        sound.source.DOFade(0, fadeTime);
     }
 }

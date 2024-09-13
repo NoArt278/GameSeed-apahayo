@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private CatArmy catArmy;
     private Animator catGodAnimator;
     private SpriteRenderer sr;
-    private ParticleSystem sprintParticle, sprintTrail;
+    private ParticleSystem sprintTrail;
     public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         cc = GetComponent<CharacterController>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         catArmy = GetComponent<CatArmy>();
-        sprintParticle = GetComponent<ParticleSystem>();
         sprintTrail = GetComponentInChildren<ParticleSystem>();
         sr = GetComponentInChildren<SpriteRenderer>();
         catGodAnimator = GetComponentInChildren<Animator>();
@@ -36,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        InputContainer.playerInputs.Player.Sprint.started += PlaySprintAudio;
         InputContainer.playerInputs.Player.Sprint.performed += StartSprint;
         InputContainer.playerInputs.Player.Sprint.canceled += StopSprintInput;
         InputContainer.playerInputs.Player.Interact.performed += Hide;
@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
         InputContainer.playerInputs.Player.Sprint.performed -= StartSprint;
         InputContainer.playerInputs.Player.Sprint.canceled -= StopSprintInput;
         InputContainer.playerInputs.Player.Interact.performed -= Hide;
+    }
+
+    private void PlaySprintAudio(InputAction.CallbackContext _) {
+        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint", overrideExisting: false);
     }
 
     // Update is called once per frame
@@ -134,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         catGodAnimator.SetBool("isSprinting", false);
         catArmy.StopSprint();
         sprintTrail.Stop();
+        AudioManager.Instance.StopFadeOut("Sprint", 1f);
     }
 
     public void EnableMove()

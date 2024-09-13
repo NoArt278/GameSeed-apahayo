@@ -89,6 +89,7 @@ public class PlayerHypnotize : MonoBehaviour
                 {
                     playerMovement.DisableMove();
                     lastClickTime = Time.time;
+                    AudioManager.Instance.PlayOneShot("ClickHypno");
                 }
             }
         } else
@@ -105,6 +106,7 @@ public class PlayerHypnotize : MonoBehaviour
                 GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
                 GameplayUI.Instance.UpdateScore(score);
                 GameplayUI.Instance.StopHypnotize();
+                AudioManager.Instance.PlayOneShot("HypnoSuccess");
                 playerLaser.StopLaser();
                 lastHypnotizedNPC.isControllingBar = false;
                 lastHypnotizedNPC = null;
@@ -127,6 +129,7 @@ public class PlayerHypnotize : MonoBehaviour
         else if (playerMovement.IsHiding())
         {
             lastClickTime = Time.time;
+            AudioManager.Instance.PlayOneShot("ClickHypno");
         }
     }
 }
