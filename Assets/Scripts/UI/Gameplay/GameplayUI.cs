@@ -38,7 +38,7 @@ public class GameplayUI : MonoBehaviour {
             Instance = this;
         }
 
-        // Cursor.visible = false;
+        Cursor.visible = false;
         overlay.gameObject.SetActive(false);
         Color oColor = overlay.color;
         oColor.a = 1;
@@ -60,6 +60,7 @@ public class GameplayUI : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         crosshair.transform.position = Input.mousePosition;
 
         // Clamp crosshair position to screen bounds

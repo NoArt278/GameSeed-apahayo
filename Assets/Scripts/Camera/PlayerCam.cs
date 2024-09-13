@@ -22,6 +22,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         Vector3 direction = player.position - transform.position;
         RaycastHit[] hits = Physics.RaycastAll(transform.position - direction * 3, direction, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
         bool isBlocked = false;

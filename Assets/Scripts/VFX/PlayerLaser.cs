@@ -22,6 +22,7 @@ public class PlayerLaser : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         if (!laserActive) return;
         lineRenderer.SetPosition(0, from.position);
         lineRenderer.SetPosition(1, to.position + Vector3.up * 1f);

@@ -124,6 +124,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         CurrentState?.UpdateState();
 
         animator.SetFloat("Speed", Agent.velocity.magnitude);

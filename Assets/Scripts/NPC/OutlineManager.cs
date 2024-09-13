@@ -11,16 +11,7 @@ public class OutlineManager : MonoBehaviour
     void Start()
     {
         Collider = GetComponent<CapsuleCollider>();
-
-        
         outlineFX = GetComponentInChildren<OutlineFx.OutlineFx>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void FixedUpdate(){

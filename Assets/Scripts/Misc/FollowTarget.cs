@@ -13,6 +13,7 @@ public class FollowTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         transform.position = target.position + offset;    
     }
 }

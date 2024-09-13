@@ -42,6 +42,7 @@ public class PlayerHypnotize : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         if (playerMovement.IsHiding() || playerMovement.IsDead())
             return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -117,7 +118,7 @@ public class PlayerHypnotize : MonoBehaviour
             if (lastHypnotizedNPC.CheckCrazed())
             {
                 score += Mathf.RoundToInt(lastHypnotizedNPC.HypnotizeStats.hypnotizeHealth * 10);
-                catArmy.DestroyCat();
+                catArmy.DestroyCat(lastHypnotizedNPC.transform.position + Vector3.up * 0.5f);
                 GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
                 GameplayUI.Instance.UpdateScore(score);
                 GameplayUI.Instance.StopHypnotize();

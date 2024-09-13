@@ -121,6 +121,7 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         DrawVisionCone();
         if (isPlayerVisible)
         {

@@ -17,6 +17,7 @@ public class CameraShake : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         if (isChased)
         {
             vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = shake6D;

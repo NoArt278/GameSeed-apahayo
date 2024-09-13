@@ -3,7 +3,7 @@ using Cinemachine;
 using UnityEngine;
 
 [Serializable]
-public enum GameState { PreGame, InGame, PostGame }
+public enum GameState { PreGame, InGame, Paused, PostGame }
 
 public class GameManager : MonoBehaviour
 {
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         // Timer
         GameTimer.Instance.SetDuration(120f);
         GameTimer.Instance.OnTimeUp += () => {
-            EndGameScreen.Instance.ShowEndGameScreen();
+            InGameScreen.Instance.ShowEndGameScreen();
         };
 
         GameplayUI.Instance.GameTransitionIn(OnGameTransitionInComplete);

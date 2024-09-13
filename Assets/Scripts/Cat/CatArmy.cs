@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class CatArmy : MonoBehaviour
 {
@@ -83,13 +84,16 @@ public class CatArmy : MonoBehaviour
         usedCat.CancelHypnotize( FindAppropriateSpawnLocation(follow ? follow.position : Vector3.zero) );
     }
 
-    public void DestroyCat()
+    public void DestroyCat(Vector3 endPosition)
     {
         if (cats.Count == 0) return;
 
         cats.Remove(usedCat);
-        usedCat.ReturnToSpawner();
-        GameplayUI.Instance.UpdateCatCount(GetCatCount());
+        usedCat.transform.DOMove(endPosition, 0.2f).OnComplete(() => {
+            usedCat.ReturnToSpawner();
+            GameplayUI.Instance.UpdateCatCount(GetCatCount());
+        }).SetEase(Ease.Linear);
+
     }
 
     public void RemoveCat(CatStateMachine cat)

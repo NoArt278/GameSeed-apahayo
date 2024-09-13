@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ShowGameOver()
     {
         yield return new WaitForSeconds(1);
-        EndGameScreen.Instance.ShowEndGameScreen();
+        InGameScreen.Instance.ShowEndGameScreen();
     }
 
     private void OnTriggerExit(Collider other)

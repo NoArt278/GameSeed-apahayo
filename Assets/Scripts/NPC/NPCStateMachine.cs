@@ -81,11 +81,13 @@ public class NPCStateMachine : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         currentState.UpdateState();
     }
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         IsNPCWalking();
     }
 

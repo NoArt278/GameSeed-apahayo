@@ -20,6 +20,7 @@ public class DogStateMachine : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.InGame) return;
         if(CurrentState != null)
         {
             CurrentState.UpdateState(this);
