@@ -89,6 +89,7 @@ public class CatArmy : MonoBehaviour
 
         cats.Remove(usedCat);
         usedCat.ReturnToSpawner();
+        GameplayUI.Instance.UpdateCatCount(GetCatCount());
     }
 
     public void RemoveCat(CatStateMachine cat)
@@ -96,6 +97,7 @@ public class CatArmy : MonoBehaviour
         if (cats.Count == 0) return;
 
         cats.Remove(cat);
+        GameplayUI.Instance.UpdateCatCount(GetCatCount());
     }
 
     public void QuitHiding(Vector3 exitPosition) {
