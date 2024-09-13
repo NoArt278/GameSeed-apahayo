@@ -114,7 +114,7 @@ MonoBehaviour:
   _solid: 0
   _thickness: 0.15
   _alphaCutout: 0.5
-  _mode: 1
+  _mode: 0
   _filter: 1
   _attachDepth: 1
   _output:
