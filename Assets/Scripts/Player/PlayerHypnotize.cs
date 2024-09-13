@@ -52,23 +52,30 @@ public class PlayerHypnotize : MonoBehaviour
             if (InputContainer.playerInputs.Player.Fire.WasPerformedThisFrame())
             {
                 sr.flipX = currNPC.transform.position.x < transform.position.x;
-                if (catArmy.GetCatCount() > 0 && !currNPC.CheckHypnotize() && !currNPC.CheckCrazed())
+                if (catArmy.GetCatCount() > 0 && !currNPC.CheckCrazed())
                 {
-                    Debug.Log("Start Hypnotize");
-                    currNPC.StartHyponotize();
-                    if (lastHypnotizedNPC != null)
+                    if (lastHypnotizedNPC != null && lastHypnotizedNPC != currNPC)
                     {
                         lastHypnotizedNPC.isControllingBar = false;
                     }
-                    lastHypnotizedNPC = currNPC;
-                    lastHypnotizedNPC.isControllingBar = true;
-                    HypnotizedNPCTr = currNPC.transform;
-                    catGodAnimator.SetTrigger("StartHypnotize");
-                    catGodAnimator.SetBool("isHypnotizing", true);
-                    GameplayUI.Instance.StartHypnotize();
-
-                    Vector3 direction = (currNPC.transform.position - transform.position).normalized;
-                    catArmy.StartHypnotize(catFloatCenter.position + direction * distance);
+                    if (lastHypnotizedNPC != currNPC)
+                    {
+                        lastHypnotizedNPC = currNPC;
+                        lastHypnotizedNPC.isControllingBar = true;
+                        HypnotizedNPCTr = currNPC.transform;
+                    }
+                    if (!catGodAnimator.GetBool("isHypnotizing"))
+                    {
+                        catGodAnimator.SetTrigger("StartHypnotize");
+                        catGodAnimator.SetBool("isHypnotizing", true);
+                    }
+                    if (!currNPC.CheckHypnotize())
+                    {
+                        GameplayUI.Instance.StartHypnotize();
+                        Vector3 direction = (currNPC.transform.position - transform.position).normalized;
+                        catArmy.StartHypnotize(catFloatCenter.position + direction * distance);
+                        currNPC.StartHyponotize();
+                    }
                 }
                 else if (catArmy.GetCatCount() <= 0 && !currNPC.CheckCrazed())
                 {
@@ -76,16 +83,6 @@ public class PlayerHypnotize : MonoBehaviour
                     if(currNPC.currentState != currNPC.STATE_RANDOMMOVE){
                         currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);                         
                     }
-                }
-                else if (currNPC != lastHypnotizedNPC && currNPC.CheckHypnotize())
-                {
-                    if (lastHypnotizedNPC != null)
-                    {
-                        lastHypnotizedNPC.isControllingBar = false;
-                    }
-                    lastHypnotizedNPC = currNPC;
-                    lastHypnotizedNPC.isControllingBar = true;
-                    HypnotizedNPCTr = currNPC.transform;
                 }
                 if (!currNPC.CheckCrazed() && catArmy.GetCatCount() > 0)
                 {
@@ -98,6 +95,21 @@ public class PlayerHypnotize : MonoBehaviour
         } else
         {
             currNPC = null;
+        }
+
+        if (Time.time - lastClickTime > clickMoveDelay && !playerMovement.IsHiding())
+        {
+            catGodAnimator.SetBool("isHypnotizing", false);
+            playerMovement.EnableMove();
+            if (lastHypnotizedNPC != null)
+            {
+                playerLaser.StopLaser();
+                catArmy.CancelHypnotize();
+            }
+        }
+        else if (playerMovement.IsHiding())
+        {
+            lastClickTime = Time.time;
         }
 
         if (lastHypnotizedNPC != null)
@@ -118,20 +130,9 @@ public class PlayerHypnotize : MonoBehaviour
             {
                 GameplayUI.Instance.StopHypnotize();
                 catArmy.CancelHypnotize();
-                playerLaser.StopLaser();
                 lastHypnotizedNPC.isControllingBar = false;
                 lastHypnotizedNPC = null;
             }
-        }
-
-        if (Time.time - lastClickTime > clickMoveDelay && !playerMovement.IsHiding())
-        {
-            catGodAnimator.SetBool("isHypnotizing", false);
-            playerMovement.EnableMove();
-        }
-        else if (playerMovement.IsHiding())
-        {
-            lastClickTime = Time.time;
         }
     }
 }
