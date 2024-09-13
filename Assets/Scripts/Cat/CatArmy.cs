@@ -22,10 +22,10 @@ public class CatArmy : MonoBehaviour
     {
         if (cats.Contains(cat)) return false;
 
-        this.follow = player == null ? this.follow : player;
+        follow = player == null ? follow : player;
 
         PlayerStats stats = player.GetComponent<PlayerStats>();
-        cat.BecomeFollower(player, stats.walkSpeed, stats.sprintSpeed);
+        cat.BecomeFollower(this, player, stats.walkSpeed, stats.sprintSpeed);
 
         cats.Add(cat);
         RecalculateStoppingDistance();
@@ -91,6 +91,13 @@ public class CatArmy : MonoBehaviour
 
         cats.Remove(usedCat);
         usedCat.ReturnToSpawner();
+    }
+
+    public void RemoveCat(CatStateMachine cat)
+    {
+        if (cats.Count == 0) return;
+
+        cats.Remove(cat);
     }
 
     public void QuitHiding(Vector3 exitPosition) {

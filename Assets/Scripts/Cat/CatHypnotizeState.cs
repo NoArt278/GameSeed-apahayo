@@ -6,7 +6,7 @@ public class CatHypnotizeState : CatBaseState {
 
     public override void EnterState() {
         stm.Agent.enabled = false;
-        stm.Trail.gameObject.SetActive(true);
+        // stm.Trail.gameObject.SetActive(true);
         stm.Animator.SetBool("Float", true);
     }
 
@@ -24,7 +24,7 @@ public class CatHypnotizeState : CatBaseState {
     }
 
     public override void ExitState() {
-        stm.Trail.gameObject.SetActive(false);
+        // stm.Trail.gameObject.SetActive(false);
         stm.Animator.SetBool("Float", false);
         stm.Agent.enabled = true;
     }

@@ -5,11 +5,8 @@ public class PlayerAnimationEvent : MonoBehaviour {
     [SerializeField] private PlayerHypnotize playerHypnotize;
     [SerializeField] private PlayerLaser playerLaser;
 
-    public void OnCrystalStart() {
-        playerLaser.InitiateCrystal();
-    }
-
     public void OnLaserStart() {
+        playerLaser.InitiateCrystal();
         playerLaser.gameObject.SetActive(true);
         playerLaser.EmitLaser(playerHypnotize.StaffPosition, playerHypnotize.HypnotizedNPCTr);
     }

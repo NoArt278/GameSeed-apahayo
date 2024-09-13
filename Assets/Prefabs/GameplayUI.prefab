@@ -348,6 +348,7 @@ MonoBehaviour:
   overlay: {fileID: 4831305796964385465}
   hypnoVignette: {fileID: 4771619738033649232}
   staminaSliderCG: {fileID: 3569822981449308607}
+  crosshairAnimator: {fileID: 4526056460441797461}
 --- !u!1 &2388361043416690941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1418,7 @@ GameObject:
   - component: {fileID: 1159762050624850932}
   - component: {fileID: 161062368054188036}
   - component: {fileID: 12451868042703282}
+  - component: {fileID: 4526056460441797461}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -1441,7 +1443,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 106, y: 95}
+  m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &161062368054188036
 CanvasRenderer:
@@ -1471,7 +1473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e81e5451bb3d61a4388ad53c78d0c1c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0f1133a05b11b7448ed39a3114d8997, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1481,6 +1483,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4526056460441797461
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598410035243209793}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5ba11e752e05f74cac82ee211f07145, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5186011312418006338
 GameObject:
   m_ObjectHideFlags: 0

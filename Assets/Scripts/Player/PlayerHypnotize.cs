@@ -92,6 +92,7 @@ public class PlayerHypnotize : MonoBehaviour
                     playerMovement.DisableMove();
                     lastClickTime = Time.time;
                     AudioManager.Instance.PlayOneShot("ClickHypno");
+                    GameplayUI.Instance.PlayCrosshairBeat();
                 }
             }
         } else
@@ -131,7 +132,6 @@ public class PlayerHypnotize : MonoBehaviour
         else if (playerMovement.IsHiding())
         {
             lastClickTime = Time.time;
-            AudioManager.Instance.PlayOneShot("ClickHypno");
         }
     }
 }

@@ -48,21 +48,24 @@ public class CatStateMachine : MonoBehaviour {
     public  CatFollowState      STATE_FOLLOW { get; private set; }
     public  CatHidingState      STATE_HIDING { get; private set; }
     public  CatHypnotizeState   STATE_HYPNOTIZE { get; private set; }
+    public  CatYeetedState      STATE_YEETED { get; private set; }
 
     // COMPONENTS ====================================
     // Reference
     [SerializeField] private SpriteRenderer catRenderer;
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform trail;
+    // [SerializeField] private Transform trail;
 
     // Getters
     public SpriteRenderer Renderer { get => catRenderer; }
     public Animator Animator { get => animator; }
     public NavMeshAgent Agent { get; private set; }
-    public Transform Trail { get => trail; }
+    // public Transform Trail { get => trail; }
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
     [ReadOnly] public CatSpawner Spawner;
+
+    private CatArmy catArmy;
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
@@ -74,9 +77,11 @@ public class CatStateMachine : MonoBehaviour {
         STATE_FOLLOW = new CatFollowState(this);
         STATE_HIDING = new CatHidingState(this);
         STATE_HYPNOTIZE = new CatHypnotizeState(this);
+        STATE_YEETED = new CatYeetedState(this);
     }
 
-    public void BecomeFollower(Transform target, float baseSpeed, float sprintSpeed) {
+    public void BecomeFollower(CatArmy catArmy, Transform target, float baseSpeed, float sprintSpeed) {
+        this.catArmy = catArmy;
         Follow.Target = target;
         Follow.BaseSpeed = baseSpeed;
         Follow.SprintSpeed = sprintSpeed;
@@ -141,8 +146,25 @@ public class CatStateMachine : MonoBehaviour {
         if (Agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = Agent.velocity.x < 0;
     }
 
+    public void YeetedCallback() {
+        catArmy.RemoveCat(this);
+        ReturnToSpawner();
+    }
+
     public void ReturnToSpawner() {
         if (Spawner) Spawner.Return(gameObject);
         else Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Dog")) {
+            if (CurrentState == STATE_FOLLOW) {
+                Vector3 perpendicular = Vector3.Cross(Agent.velocity, Vector3.up);
+                Vector3 landPosition = transform.position + perpendicular * 2f;
+                
+                ChangeState(STATE_YEETED);
+                STATE_YEETED.Yeeted(landPosition);
+            }
+        }
     }
 }
