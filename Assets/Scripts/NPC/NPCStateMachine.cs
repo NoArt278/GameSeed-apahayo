@@ -77,19 +77,6 @@ public class NPCStateMachine : MonoBehaviour
     {
         currentState = STATE_RANDOMMOVE;
         currentState.EnterState();
-        if (IsUsingURP())
-        {
-            Debug.Log("Using Universal Render Pipeline (URP)");
-        }
-        else
-        {
-            Debug.Log("Not using Universal Render Pipeline (URP)");
-        }
-    }
-
-    bool IsUsingURP()
-    {
-        return GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset;
     }
 
     void Update()
