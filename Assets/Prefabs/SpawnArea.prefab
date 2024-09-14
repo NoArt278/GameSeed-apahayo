@@ -14120,8 +14120,8 @@ MonoBehaviour:
     type: 3}
   maxStrayCats: 25
   maxCatsInScene: 40
-  spawnDelay: 12
-  bulkSpawnRate: 4
+  spawnDelay: 10
+  bulkSpawnRate: 5
   initialSpawn: 12
   maxLocationSearchAttempts: 30
   spawnParent: {fileID: 5324258636316344980}
@@ -14278,7 +14278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogPrefab: {fileID: 7700631295823998277, guid: 89ac29d2c1869b24eb965c31f004354e,
     type: 3}
-  spawnAmount: 3
+  spawnAmount: 4
   minDistanceFromPlayer: 10
   maxLocationSearchAttempts: 30
 --- !u!1 &4473886345843376746
@@ -18098,7 +18098,7 @@ Transform:
   m_GameObject: {fileID: 5530043300873429447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.449999, y: 0, z: 3.0500002}
+  m_LocalPosition: {x: -12.2, y: 0, z: 3.0500002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28163,7 +28163,7 @@ Transform:
   m_GameObject: {fileID: 9053433921421799723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: 1.48}
+  m_LocalPosition: {x: -1.9, y: 0, z: 1.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

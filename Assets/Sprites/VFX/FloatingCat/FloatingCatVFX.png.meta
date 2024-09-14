@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 00c6ca4b5018923498141d8dabf9d13d
+guid: 6ad1044f041c9ce41b51e8679f2006cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hypno_0
+      name: FloatingCatVFX_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b3291e7a7e5e7a4486e7cb5dfdd72b8
-      internalID: -412680741
+      spriteID: 828306ff84102b046b6a55d46a1f8053
+      internalID: -8457000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_1
+      name: FloatingCatVFX_1
       rect:
         serializedVersion: 2
         x: 512
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8399b36f42e89d42a374a4277ecaa55
-      internalID: -1055229043
+      spriteID: 0ca240f033c148543a17d29335bc53d6
+      internalID: -1061529929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_2
+      name: FloatingCatVFX_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bad54404798abe42b83fcbab79b0ab3
-      internalID: -1562606218
+      spriteID: 7f625058a1d696d4dac5c8d7fc62af83
+      internalID: -1825823489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_3
+      name: FloatingCatVFX_3
       rect:
         serializedVersion: 2
         x: 1536
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d63d6a706e7aef41a350a6136c49b0c
-      internalID: -684170908
+      spriteID: fb3d6feb442c27542905b66027865bff
+      internalID: 643365815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_4
+      name: FloatingCatVFX_4
       rect:
         serializedVersion: 2
         x: 2048
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9aeddd9805886944bbef62e280818cc
-      internalID: -1100174868
+      spriteID: a98a958dc2c7cf440a0d291f6fd3d84c
+      internalID: 1203779192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_5
+      name: FloatingCatVFX_5
       rect:
         serializedVersion: 2
         x: 2560
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbf9b5201ee7f464f869c477891bb75a
-      internalID: 894765677
+      spriteID: 7321ba593de8cdf45b469fd10fa5bed1
+      internalID: -62461223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_6
+      name: FloatingCatVFX_6
       rect:
         serializedVersion: 2
         x: 3072
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6f94463afc2a174abf4f7521cc7aade
-      internalID: -1531316024
+      spriteID: 5a4fdcbebc80d0a45b1137a0fda0329f
+      internalID: 1556028916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hypno_7
+      name: FloatingCatVFX_7
       rect:
         serializedVersion: 2
         x: 3584
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20bc2659542c56049a179db21fd69ba0
-      internalID: -1694957501
+      spriteID: 156f3b4cadee6a441a9255afbb12c802
+      internalID: -273424439
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hypno_0: -412680741
-      hypno_1: -1055229043
-      hypno_2: -1562606218
-      hypno_3: -684170908
-      hypno_4: -1100174868
-      hypno_5: 894765677
-      hypno_6: -1531316024
-      hypno_7: -1694957501
+      FloatingCatVFX_0: -8457000
+      FloatingCatVFX_1: -1061529929
+      FloatingCatVFX_2: -1825823489
+      FloatingCatVFX_3: 643365815
+      FloatingCatVFX_4: 1203779192
+      FloatingCatVFX_5: -62461223
+      FloatingCatVFX_6: 1556028916
+      FloatingCatVFX_7: -273424439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
