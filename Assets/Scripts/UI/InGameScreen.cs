@@ -70,6 +70,11 @@ public class InGameScreen : MonoBehaviour {
 
     public void ToggleSettingPanel(InputAction.CallbackContext _)
     {
+        ToggleSettingPanel();
+    }
+
+    public void ToggleSettingPanel()
+    {
         if (isSettingPanelOpen)
         {
             CloseSettingPanel();
