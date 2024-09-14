@@ -20,7 +20,6 @@ public class NPCSpawner : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private NavMeshSurface navMeshSurface;
-    [SerializeField] private Canvas sceneCanvas;
 
     private BoxCollider spawnArea;
     private LayerMask obstacleMask;
@@ -48,6 +47,8 @@ public class NPCSpawner : MonoBehaviour
         while (spawnParent.childCount > 0) {
             DestroyImmediate(spawnParent.GetChild(0).gameObject);
         }
+
+        npcPool = null;
     }
 
     private void OnDisable() {
@@ -87,11 +88,12 @@ public class NPCSpawner : MonoBehaviour
 
         // Instantiate NPC
         GameObject npc = npcPool.GetObject();
-        npc.transform.SetPositionAndRotation(randomPosition, Quaternion.identity);
+        NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
+
+        agent.Warp(randomPosition);
 
         npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
         npc.GetComponent<NPCStateMachine>().Spawner = this;
-        npc.GetComponent<HypnotizeUIManager>().SetupHypnoBar(sceneCanvas);
 
         npcInScene++;
     }

@@ -47,6 +47,8 @@ public class CatSpawner : MonoBehaviour
         while (spawnParent.childCount > 0) {
             DestroyImmediate(spawnParent.GetChild(0).gameObject);
         }
+
+        strayCatPool = null;
     }
 
     private void OnDisable() {
@@ -78,11 +80,14 @@ public class CatSpawner : MonoBehaviour
         if (!Camera.main) return;
 
         Vector3 spawnPosition = GetSpawnPosition();
-        Debug.DrawRay(spawnPosition, Vector3.up, Color.red, 100f);
+        Debug.DrawRay(spawnPosition, Vector3.up * 100f, Color.red, 100f);
         if (spawnPosition == Vector3.zero) return;
 
         GameObject cat = strayCatPool.GetObject();
-        cat.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        NavMeshAgent agent = cat.GetComponent<NavMeshAgent>();
+
+        agent.Warp(spawnPosition);
+        // cat.transform.position = spawnPosition;
 
         strayCatCount++;
         catsInSceneCount++;
@@ -123,7 +128,7 @@ public class CatSpawner : MonoBehaviour
                 Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.3f) continue;
 
-                Debug.DrawRay(hitPosition, Vector3.up, Color.green, 100f);
+                // Debug.DrawRay(hitPosition, Vector3.up * 100f, Color.green, 100f);
 
                 // CASE 0: It is inside a building
                 if (Physics.OverlapSphere(hitPosition, 0.5f, obstacleMask).Length > 0) continue;

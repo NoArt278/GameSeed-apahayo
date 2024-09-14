@@ -30,7 +30,6 @@ public class NPCStateMachine : MonoBehaviour
     // COMPONENTS ====================================
     public  NavMeshAgent        Agent { get; private set; }
     public  NavMeshSurface      Surface { get; private set; }
-    public  HypnotizeUIManager  BarUI { get; private set; }
     public  SpriteRenderer      SpriteRenderer { get; private set; }
     public  Collider            Collider { get; private set; }
 
@@ -47,7 +46,6 @@ public class NPCStateMachine : MonoBehaviour
 
     private void Awake() {
         // COMPONENTS
-        BarUI = GetComponent<HypnotizeUIManager>();
         Agent = GetComponent<NavMeshAgent>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Collider = GetComponent<Collider>();
