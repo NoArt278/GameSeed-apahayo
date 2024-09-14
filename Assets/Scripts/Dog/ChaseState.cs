@@ -42,7 +42,7 @@ public class ChaseState : DogState
         fieldOfView.isChasing = true;
         animator.SetBool("Chase", true);
         print("Enter Chase State");
-        cameraShake.isChased = true;
+        cameraShake.StartShaking();
 
         GameplayUI.Instance.StartDogChase();
     }
@@ -88,7 +88,7 @@ public class ChaseState : DogState
 
         if (shouldChase)
         {
-            cameraShake.isChased = true;
+            cameraShake.StartShaking();
             if (isPlayerHiding && fieldOfView.isPlayerVisible)
             {
                 agent.destination = transform.position;
@@ -115,7 +115,7 @@ public class ChaseState : DogState
         fieldOfView.isChasing = false;
         isPlayerLost = false;
         isPlayerHiding = false;
-        cameraShake.isChased = false;
+        cameraShake.StopShaking();
 
         GameplayUI.Instance.StopDogChase();
     }

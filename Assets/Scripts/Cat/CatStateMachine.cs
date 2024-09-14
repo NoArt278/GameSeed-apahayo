@@ -54,13 +54,14 @@ public class CatStateMachine : MonoBehaviour {
     // Reference
     [SerializeField] private SpriteRenderer catRenderer;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform floatVFX;
     // [SerializeField] private Transform trail;
 
     // Getters
     public SpriteRenderer Renderer { get => catRenderer; }
     public Animator Animator { get => animator; }
     public NavMeshAgent Agent { get; private set; }
-    // public Transform Trail { get => trail; }
+    public Transform FloatVFX { get => floatVFX; }
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
     [ReadOnly] public CatSpawner Spawner;

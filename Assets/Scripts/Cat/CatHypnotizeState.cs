@@ -8,6 +8,7 @@ public class CatHypnotizeState : CatBaseState {
         stm.Agent.enabled = false;
         // stm.Trail.gameObject.SetActive(true);
         stm.Animator.SetBool("Float", true);
+        stm.FloatVFX.gameObject.SetActive(true);
     }
 
     public void StartHypnotize(Vector3 floatPosition) {
@@ -27,5 +28,6 @@ public class CatHypnotizeState : CatBaseState {
         // stm.Trail.gameObject.SetActive(false);
         stm.Animator.SetBool("Float", false);
         stm.Agent.enabled = true;
+        stm.FloatVFX.gameObject.SetActive(false);
     }
 }
