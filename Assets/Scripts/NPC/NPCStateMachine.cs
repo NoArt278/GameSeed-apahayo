@@ -43,6 +43,7 @@ public class NPCStateMachine : MonoBehaviour
 
     // ANIMATION =====================================
     public Animator animator;
+    public Transform Center;
 
     private void Awake() {
         // COMPONENTS
@@ -129,7 +130,7 @@ public class NPCStateMachine : MonoBehaviour
         animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 
-    private void OnDestroy() {
+    public void SelfDestroy() {
         if (Spawner != null) Spawner.Return(gameObject);
         else Destroy(gameObject);
     }

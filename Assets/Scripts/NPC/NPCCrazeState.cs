@@ -33,7 +33,7 @@ public class NPCCrazeState : NPCBaseState
         AlignOrientation();
 
         if (IsOutOfCamera()){
-            Object.Destroy(stm.gameObject);
+            stm.SelfDestroy();
         } 
     }
 

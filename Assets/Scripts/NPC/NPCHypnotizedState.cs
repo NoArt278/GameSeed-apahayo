@@ -25,12 +25,13 @@ public class NPCHypnotizedState : NPCBaseState
     {
         initialSpeed = agent.speed;
         agent.speed = 0;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+
         currentHypnotizeValue = 1f;
         timer = 0f;
 
         stm.animator.SetBool("isHypno", true);
-
-        stm.SpriteRenderer.color = Color.blue;
     }
 
     public override void UpdateState()

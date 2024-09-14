@@ -6,8 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(BoxCollider))]
 public class CatSpawner : MonoBehaviour
 {
-    private static int strayCatCount = 0;
-    private static int catsInSceneCount = 0;
+    private int strayCatCount = 0;
+    private int catsInSceneCount = 0;
 
     [SerializeField] private GameObject catPrefab;
     [SerializeField] private int maxStrayCats = 20;
@@ -16,25 +16,27 @@ public class CatSpawner : MonoBehaviour
     [Header("Spawn")]
     [SerializeField] private float spawnDelay = 10f;
     [SerializeField] private int bulkSpawnRate = 4;
+    [SerializeField] private int initialSpawn = 12;
     [SerializeField] private int maxLocationSearchAttempts = 30;
     [SerializeField] private Transform spawnParent;
+    [SerializeField] private Transform[] fixedSpawnPoints;
 
     private LayerMask obstacleMask;
     private BoxCollider spawnArea;
     private Coroutine spawnRoutine;
+    private bool firstSpawn = true;
 
     [SerializeField, ReadOnly] private ObjectPool strayCatPool;
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
         obstacleMask = LayerMask.GetMask("Obstacle");
-
-        strayCatCount = 0;
-        catsInSceneCount = 0;
     }
 
     private void Start() {
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        strayCatCount = 0;
+        catsInSceneCount = 0;
     }
 
     [Button]
@@ -63,8 +65,44 @@ public class CatSpawner : MonoBehaviour
         }
     }
 
+    private void FixedSpawn() {
+        for (int i = 0; i < fixedSpawnPoints.Length; i++) {
+            GameObject cat = strayCatPool.GetObject();
+            NavMeshAgent agent = cat.GetComponent<NavMeshAgent>();
+
+            agent.Warp(fixedSpawnPoints[i].position);
+
+            CatStateMachine stm = cat.GetComponent<CatStateMachine>();
+
+            stm.Spawner = this;
+            strayCatCount++;
+            catsInSceneCount++;
+
+            stm.OnStateChanged += (prev, current) => {
+                if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
+                    strayCatCount--;
+                }
+
+                if (current == stm.STATE_STRAYIDLE || current == stm.STATE_STRAYWANDER) {
+                    strayCatCount++;
+                }
+            };
+        }
+    }
+
     private IEnumerator SpawnRoutine() {
         while (true) {
+            if (firstSpawn) {
+                FixedSpawn();
+                for (int i = 0; i < initialSpawn; i++) {
+                    Spawn();
+                    yield return null;
+                }
+
+                firstSpawn = false;
+                yield return new WaitForSeconds(spawnDelay);
+            }
+
             for (int i = 0; i < bulkSpawnRate; i++) {
                 Spawn();
                 yield return null;
@@ -80,20 +118,18 @@ public class CatSpawner : MonoBehaviour
         if (!Camera.main) return;
 
         Vector3 spawnPosition = GetSpawnPosition();
-        Debug.DrawRay(spawnPosition, Vector3.up * 100f, Color.red, 100f);
-        if (spawnPosition == Vector3.zero) return;
+        if (spawnPosition == Vector3.zero) { return; }
 
         GameObject cat = strayCatPool.GetObject();
         NavMeshAgent agent = cat.GetComponent<NavMeshAgent>();
 
         agent.Warp(spawnPosition);
-        // cat.transform.position = spawnPosition;
-
-        strayCatCount++;
-        catsInSceneCount++;
 
         CatStateMachine stm = cat.GetComponent<CatStateMachine>();
         stm.Spawner = this;
+
+        strayCatCount++;
+        catsInSceneCount++;
 
         stm.OnStateChanged += (prev, current) => {
             if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
@@ -124,14 +160,14 @@ public class CatSpawner : MonoBehaviour
             spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
             spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 0.2f, NavMesh.AllAreas)) {
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;
                 if (hit.position.y > 0.3f) continue;
 
                 // Debug.DrawRay(hitPosition, Vector3.up * 100f, Color.green, 100f);
 
                 // CASE 0: It is inside a building
-                if (Physics.OverlapSphere(hitPosition, 0.5f, obstacleMask).Length > 0) continue;
+                if (Physics.OverlapSphere(hitPosition, 0.1f, obstacleMask).Length > 0) continue;
 
                 // CASE 1: Spawn position is obstructed by something (i.e. building)
                 Vector3 directionToHit = hitPosition - Camera.main.transform.position;
@@ -146,7 +182,7 @@ public class CatSpawner : MonoBehaviour
                 else
                 {
                     Vector2 clipSpace = Camera.main.WorldToViewportPoint(hitPosition);
-                    if (clipSpace.x < -0.5 || clipSpace.x > 1.5 || clipSpace.y < -0.5 || clipSpace.y > 1.5)
+                    if (clipSpace.x < -0.1 || clipSpace.x > 1.1 || clipSpace.y < -0.1 || clipSpace.y > 1.1)
                     {
                         return hitPosition;
                     }

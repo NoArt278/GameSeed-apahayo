@@ -19,6 +19,8 @@ public class PlayerLaser : MonoBehaviour {
         this.to = to;
         laserActive = true;
         lineRenderer.enabled = true;
+
+        VFXManager.Instance.PlayZapVFX(to.GetComponent<NPCStateMachine>().Center.position);
     }
 
     private void Update() {
@@ -35,5 +37,7 @@ public class PlayerLaser : MonoBehaviour {
         crystal.gameObject.SetActive(false);
         laserActive = false;
         lineRenderer.enabled = false;
+
+        VFXManager.Instance.StopZapVFX();
     }
 }
