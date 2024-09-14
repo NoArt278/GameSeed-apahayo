@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,6 +29,7 @@ public class CatSpawner : MonoBehaviour
     private bool firstSpawn = true;
 
     [SerializeField, ReadOnly] private ObjectPool strayCatPool;
+    [SerializeField] private GameObject pulseVFX;
 
     private void Awake() {
         spawnArea = GetComponent<BoxCollider>();
@@ -78,6 +81,7 @@ public class CatSpawner : MonoBehaviour
             strayCatCount++;
             catsInSceneCount++;
 
+
             stm.OnStateChanged += (prev, current) => {
                 if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
                     strayCatCount--;
@@ -87,6 +91,21 @@ public class CatSpawner : MonoBehaviour
                     strayCatCount++;
                 }
             };
+            
+            DOVirtual.DelayedCall(UnityEngine.Random.Range(0f, 0.5f), () => {
+                GameObject pulse = Instantiate(pulseVFX, cat.transform);
+                Action<CatBaseState, CatBaseState> PulseRemover = (prev, current) => {
+                    if (current == stm.STATE_FOLLOW) {
+                        Destroy(pulse);
+                    }
+                };
+
+                stm.OnStateChanged += (prev, current) => {
+                    if (current != stm.STATE_FOLLOW) return;
+                    PulseRemover(prev, current);
+                    stm.OnStateChanged -= PulseRemover;
+                };
+            });
         }
     }
 
@@ -157,8 +176,8 @@ public class CatSpawner : MonoBehaviour
             Vector3 spawnPosition = transform.position;
             Vector3 spawnSize = spawnArea.size;
 
-            spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
-            spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
+            spawnPosition.x += UnityEngine.Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
+            spawnPosition.z += UnityEngine.Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 2f, NavMesh.AllAreas)) {
                 Vector3 hitPosition = hit.position;

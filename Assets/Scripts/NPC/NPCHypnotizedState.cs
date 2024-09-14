@@ -43,18 +43,19 @@ public class NPCHypnotizedState : NPCBaseState
     }
 
     private void MeterUpdate() {
-        if (stm.IsNPCClicked()) {
-            timer = 0f;
-            currentHypnotizeValue += 1f;
-            if (hypnotizeHealth <= currentHypnotizeValue) {
-                stm.animator.SetBool("isCraze", true);
-                stm.TransitionToState(stm.STATE_WANDER);
-                VFXManager.Instance.PlayPoofVFX(stm.transform.position + Vector3.up * 0.5f);
-            }
-        }
         if (stm.isControllingBar)
         {
             GameplayUI.Instance.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
+        }
+    }
+
+    public void NPCClicked() {
+        timer = 0f;
+        currentHypnotizeValue += 1f;
+        if (hypnotizeHealth <= currentHypnotizeValue) {
+            stm.animator.SetBool("isCraze", true);
+            stm.TransitionToState(stm.STATE_WANDER);
+            VFXManager.Instance.PlayPoofVFX(stm.transform.position + Vector3.up * 0.5f);
         }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
         // Timer
         GameTimer.Instance.SetDuration(120f);
         GameTimer.Instance.OnTimeUp += () => {
-            InGameScreen.Instance.ShowEndGameScreen();
+            DOVirtual.DelayedCall(1.8f, () => InGameScreen.Instance.ShowEndGameScreen());
         };
 
         GameplayUI.Instance.GameTransitionIn(OnGameTransitionInComplete);

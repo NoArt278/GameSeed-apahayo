@@ -17352,10 +17352,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
     type: 3}
-  maxStrayCats: 25
-  maxCatsInScene: 40
+  maxStrayCats: 50
+  maxCatsInScene: 50
   spawnDelay: 10
-  bulkSpawnRate: 5
+  bulkSpawnRate: 6
   initialSpawn: 12
   maxLocationSearchAttempts: 30
   spawnParent: {fileID: 5324258636316344980}
@@ -17416,6 +17416,8 @@ MonoBehaviour:
     - {fileID: 6406352046731782411}
     - {fileID: 1179688559266061663}
     - {fileID: 7996298996206806075}
+  pulseVFX: {fileID: 1977479970188021746, guid: f068f29a02ca9564f9b66b3ffddc80e5,
+    type: 3}
 --- !u!114 &388133243602741459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21441,7 +21443,7 @@ Transform:
   m_GameObject: {fileID: 5530043300873429447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.2, y: 0, z: 3.0500002}
+  m_LocalPosition: {x: -18.4, y: 0, z: 1.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

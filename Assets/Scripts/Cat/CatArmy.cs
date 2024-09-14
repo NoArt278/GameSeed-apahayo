@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+using System.IO.Pipes;
 
 public class CatArmy : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class CatArmy : MonoBehaviour
         cat.BecomeFollower(this, player, stats.walkSpeed, stats.sprintSpeed);
 
         cats.Add(cat);
+        outsideCats.Add(cat);
         RecalculateStoppingDistance();
 
         return true;
@@ -133,9 +135,15 @@ public class CatArmy : MonoBehaviour
 
     private Vector3 FindAppropriateSpawnLocation(Vector3 center)
     {
+        Vector3 spawnPosition = center + 3 * catRadius * Random.insideUnitSphere;
+        NavMeshHit hit;
         if (outsideCats.Count == 0)
         {
-            return center + 2 * catRadius * Random.insideUnitSphere;
+            if (NavMesh.SamplePosition(spawnPosition, out hit, 10, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+            return spawnPosition;
         }
 
         Vector3 averagePosition = Vector3.zero;
@@ -150,7 +158,13 @@ public class CatArmy : MonoBehaviour
         {
             followDirection = Random.insideUnitSphere;
         }
+        followDirection.y = 0;
 
-        return averagePosition + 2 * catRadius * followDirection;
+        spawnPosition = averagePosition + 3 * catRadius * followDirection;
+        if (NavMesh.SamplePosition(spawnPosition, out hit, 10, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        return spawnPosition;
     }
 }

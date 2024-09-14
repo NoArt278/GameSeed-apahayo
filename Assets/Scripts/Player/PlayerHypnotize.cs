@@ -91,6 +91,7 @@ public class PlayerHypnotize : MonoBehaviour
                     lastClickTime = Time.time;
                     AudioManager.Instance.PlayOneShot("ClickHypno");
                     GameplayUI.Instance.PlayCrosshairBeat();
+                    currNPC.OnNPCClicked();
                 }
             }
         } else

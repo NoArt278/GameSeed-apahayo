@@ -112,21 +112,15 @@ public class NPCStateMachine : MonoBehaviour
         return currentState == STATE_WANDER;
     }
 
-    public bool IsNPCClicked()
+    public void OnNPCClicked()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (currentState == STATE_HYPNOTIZED)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("NPC")))
-            {
-                return hit.collider == Collider;
-            }
+            STATE_HYPNOTIZED.NPCClicked();
         }
-        return false;
     }
 
     public void IsNPCWalking(){
-        // Debug.LogWarning(Agent.velocity.sqrMagnitude > 0);
         animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 
