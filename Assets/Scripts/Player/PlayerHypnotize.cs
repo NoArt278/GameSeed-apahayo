@@ -73,7 +73,7 @@ public class PlayerHypnotize : MonoBehaviour
                     if (!currNPC.CheckHypnotize())
                     {
                         GameplayUI.Instance.StartHypnotize();
-                        Vector3 direction = (currNPC.transform.position - transform.position).normalized;
+                        Vector3 direction = (currNPC.Center.position - transform.position).normalized;
                         catArmy.StartHypnotize(catFloatCenter.position + direction * distance);
                         currNPC.StartHyponotize();
                     }

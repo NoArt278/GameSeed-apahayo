@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class VFXManager : MonoBehaviour {
     public static VFXManager Instance { get; private set; }
     [SerializeField] private ParticleSystem poofVFX;
     [SerializeField] private Animator zapVFX;
+
+    private Transform zapVFXTransform;
 
     private void Awake() {
         if (Instance != null && Instance != this) {
@@ -18,9 +21,18 @@ public class VFXManager : MonoBehaviour {
         poofVFX.Play();
     }
 
-    public void PlayZapVFX(Vector3 position) {
-        zapVFX.transform.position = position;
+    public void PlayZapVFX(Transform tr) {
+        zapVFX.transform.position = tr.position;
         zapVFX.gameObject.SetActive(true);
+        zapVFXTransform = tr;
+        StartCoroutine(ZapVFXRoutine());
+    }
+
+    private IEnumerator ZapVFXRoutine() {
+        while (zapVFX.gameObject.activeSelf) {
+            zapVFX.transform.position = zapVFXTransform.position;
+            yield return null;
+        }
     }
 
     public void StopZapVFX() {
