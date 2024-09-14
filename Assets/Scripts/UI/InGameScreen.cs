@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InGameScreen : MonoBehaviour {
@@ -22,15 +23,14 @@ public class InGameScreen : MonoBehaviour {
 
     private void Start() {
         endGameScreen.gameObject.SetActive(false);
-        InputContainer.playerInputs.Player.Pause.started += ctx => ToggleSettingPanel();
+    }
+
+    public void Initialize() {
+        InputContainer.playerInputs.Player.Pause.started += ToggleSettingPanel;
     }
 
     private void OnDisable() {
-        InputContainer.playerInputs.Player.Pause.started -= ctx => ToggleSettingPanel();
-    }
-
-    private void OnDestroy() {
-        InputContainer.playerInputs.Player.Pause.started -= ctx => ToggleSettingPanel();
+        InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
     }
 
     public void ShowEndGameScreen() {
@@ -38,7 +38,7 @@ public class InGameScreen : MonoBehaviour {
         endGameScreen.gameObject.SetActive(true);
         pointsText.text = GameplayUI.Instance.GetScore().ToString();
 
-        InputContainer.playerInputs.Player.Pause.started -= ctx => ToggleSettingPanel();
+        InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
         endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine).SetUpdate(true);
 
         GameManager.Instance.SetGameState(GameState.PostGame);
@@ -68,7 +68,7 @@ public class InGameScreen : MonoBehaviour {
         obj.DOScale(new Vector3(1, 1, 1), 0.1f).SetUpdate(true);
     }
 
-    public void ToggleSettingPanel()
+    public void ToggleSettingPanel(InputAction.CallbackContext _)
     {
         if (isSettingPanelOpen)
         {

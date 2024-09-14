@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         GameTimer.Instance.StartTimer();
         SetGameState(GameState.InGame);
+        InGameScreen.Instance.Initialize();
     }
 
     private void InitializePlayer() {
