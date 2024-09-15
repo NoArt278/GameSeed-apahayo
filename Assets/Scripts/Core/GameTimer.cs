@@ -1,4 +1,5 @@
 using System;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,13 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    [Button]
+    public void OneTenthTime()
+    {
+        remainingTime = tenthTime;
+        UpdateTimerDisplay();
+    }
+
     public void StartTimer()
     {
         isRunning = true;
@@ -90,6 +98,7 @@ public class GameTimer : MonoBehaviour
         isRunning = false;
         remainingTime = 0;
         UpdateTimerDisplay();
+        AudioManager.Instance.Stop("Time");
         AudioManager.Instance.PlayOneShot("TimesUp");
         OnTimeUp?.Invoke();
     }
