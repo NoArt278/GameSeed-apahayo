@@ -15,7 +15,7 @@ public class LoaderCallback : MonoBehaviour
 
     private IEnumerator Callback() {
         SceneLoader.LoaderCallback();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         SceneLoader.Instance.AllowSceneActivation();
     }
 }

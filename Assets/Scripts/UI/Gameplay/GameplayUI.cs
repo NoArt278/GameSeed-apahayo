@@ -24,9 +24,11 @@ public class GameplayUI : MonoBehaviour {
     [SerializeField] private Image overlay;
     [SerializeField] private Image hypnoVignette;
     [SerializeField] private Image dogVignette;
+    [SerializeField] private Image dimmer;
 
     [Header("CG")]
     [SerializeField] private CanvasGroup staminaSliderCG;
+    [SerializeField] private CanvasGroup pregameCG;
 
     [Header("Animations")]
     [SerializeField] private Animator crosshairAnimator;
@@ -49,9 +51,17 @@ public class GameplayUI : MonoBehaviour {
         overlay.gameObject.SetActive(true);
         Sequence sequence = DOTween.Sequence();
 
-        sequence.AppendInterval(1);
-        sequence.Append(overlay.DOFade(0, 1).OnComplete(() => {
-            overlay.gameObject.SetActive(false);
+        Color dimmerColor = dimmer.color;
+        // dimmer.color = new Color(dimmerColor.r, dimmerColor.g, dimmerColor.b, 0.5f);
+
+        overlay.DOFade(0, 0);
+        sequence.AppendInterval(2);
+        sequence.Append(pregameCG.DOFade(0, 1).OnComplete(() => {
+            pregameCG.gameObject.SetActive(false);
+        }));
+        sequence.Join(dimmer.DOFade(0, 1).OnComplete(() => {
+            dimmer.gameObject.SetActive(false);
+            dimmer.color = dimmerColor;
         }));
 
         sequence.JoinCallback(() => {
@@ -102,6 +112,7 @@ public class GameplayUI : MonoBehaviour {
         hypnoVignette.gameObject.SetActive(true);
         hypnoVignette.color = new Color(1, 1, 1, 0);
 
+        hypnoVignette.DOKill();
         hypnoVignette.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(() => {
             DOTween.Sequence()
                 .Append(hypnoVignette.DOFade(0.7f, 0.6f).SetEase(Ease.Linear))
@@ -126,6 +137,7 @@ public class GameplayUI : MonoBehaviour {
         dogVignette.gameObject.SetActive(true);
         dogVignette.color = new Color(1, 1, 1, 0);
 
+        dogVignette.DOKill();
         dogVignette.DOFade(1f, 1.5f).SetEase(Ease.Linear).OnComplete(() => {
             DOTween.Sequence()
                 .Append(dogVignette.DOFade(0.7f, 0.45f).SetEase(Ease.Linear))

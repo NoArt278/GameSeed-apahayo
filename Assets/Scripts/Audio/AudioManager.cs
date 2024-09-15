@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
+    private Tween fadeTween;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -77,6 +79,8 @@ public class AudioManager : MonoBehaviour {
             return;
         }
 
-        sound.source.DOFade(0, fadeTime);
+        fadeTween?.Kill();
+        sound.source.volume = sound.volume;
+        fadeTween = sound.source.DOFade(0, fadeTime);
     }
 }

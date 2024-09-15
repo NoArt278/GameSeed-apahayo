@@ -28,7 +28,7 @@ public class SceneLoader : MonoBehaviour {
     public void LoadScene(string sceneName, SceneLoadEvents events = null) {
         Time.timeScale = 1;
         DOTween.KillAll();
-        overlay.DOFade(1, 0.2f).OnComplete(() => {
+        overlay.DOFade(1, 0.5f).OnComplete(() => {
             onLoaderCallback = () => { StartCoroutine(LoadSceneAsync(sceneName, events)); };
             SceneManager.LoadScene("LoadingScreen");
             overlay.DOFade(0, 0f);
