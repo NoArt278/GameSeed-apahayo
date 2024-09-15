@@ -5230,6 +5230,8 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   musicSource: {fileID: 2774550784699613400}
+  sfxGroup: {fileID: 3192011362529257218, guid: e11f44f53950dae438f3507fdfb96dce,
+    type: 2}
 --- !u!82 &2774550784699613400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5239,7 +5241,8 @@ AudioSource:
   m_GameObject: {fileID: 4563839385119144925}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4785512760479693184, guid: e11f44f53950dae438f3507fdfb96dce,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MainMenuScreen : MonoBehaviour
 {
+    [SerializeField] GameObject settings;
     public void StartGame()
     {
         SceneLoader.Instance.ToGameplay();
@@ -13,6 +14,11 @@ public class MainMenuScreen : MonoBehaviour
     {
         SceneLoader.Instance.QuitGame();
         AudioManager.Instance.PlayOneShot("Click");
+    }
+
+    public void ShowSetting()
+    {
+        settings.SetActive(true);
     }
 
     // Pointer enter suka miss, tp exit gk jadi ngecil mulu

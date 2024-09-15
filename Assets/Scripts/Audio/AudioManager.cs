@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
     public static AudioManager Instance { get; private set; }
     [SerializeField] private List<Sound> sounds;
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioMixerGroup sfxGroup;
 
     private void Awake() {
         if (Instance == null) {
@@ -18,8 +20,11 @@ public class AudioManager : MonoBehaviour {
             if (sound.type == AudioType.Music) {
                 sound.source = musicSource;
             } else {
-                sound.source = gameObject.AddComponent<AudioSource>();
+                AudioSource sfxSource = gameObject.AddComponent<AudioSource>();
+                sound.source = sfxSource;
+                sfxSource.outputAudioMixerGroup = sfxGroup;
             }
+            
             sound.source.volume = sound.volume;
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
