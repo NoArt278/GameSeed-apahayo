@@ -22,7 +22,6 @@ public class LoreVidScript : MonoBehaviour
             skipText.SetActive(true);
             TMP_Text skipT = skipText.GetComponent<TMP_Text>();
             skipT.text = "Click to continue";
-            skipT.color = Color.black;
         }
         if (Input.GetMouseButtonDown(0) && canSkip)
         {
