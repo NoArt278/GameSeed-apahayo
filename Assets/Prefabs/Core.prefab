@@ -5271,6 +5271,13 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - type: 1
+    clip: {fileID: 8300000, guid: 7dfe460bea929544d9a8964e01eb5ced, type: 3}
+    name: Poof
+    volume: 0.45
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
   musicSource: {fileID: 2774550784699613400}
   sfxGroup: {fileID: 3192011362529257218, guid: e11f44f53950dae438f3507fdfb96dce,
     type: 2}

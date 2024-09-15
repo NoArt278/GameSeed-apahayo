@@ -35,6 +35,10 @@ public class NPCWanderState : NPCBaseState
     {   
         AlignOrientation();
         CheckArrival();
+
+        if (IsOutOfCamera()){
+            stm.SelfDestroy();
+        } 
     }
 
     private void CheckArrival()
@@ -87,5 +91,14 @@ public class NPCWanderState : NPCBaseState
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(stm.transform.position, randomPoint);
+    }
+
+    public bool IsOutOfCamera() {
+        Vector2 clipSpace = Camera.main.WorldToViewportPoint(stm.transform.position + stm.SpriteRenderer.bounds.extents.y * Vector3.up);
+        if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+        {
+            return true;
+        }
+        return false;
     }
 }

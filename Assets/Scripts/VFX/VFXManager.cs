@@ -19,6 +19,7 @@ public class VFXManager : MonoBehaviour {
     public void PlayPoofVFX(Vector3 position) {
         poofVFX.transform.position = position;
         poofVFX.Play();
+        AudioManager.Instance.PlayOneShot("Poof");
     }
 
     public void PlayZapVFX(Transform tr) {

@@ -51,8 +51,6 @@ public class CatFollowState : CatBaseState {
 
     public override void UpdateState() {
         if (!onAction) Follow();
-        // if (stm.Agent.isOnOffMeshLink && !onAction) StartJumpToPlatform();
-
         stm.AlignOrientation();
     }
 
@@ -62,65 +60,6 @@ public class CatFollowState : CatBaseState {
         stm.Agent.speed = speed;
 
         stm.Agent.SetDestination(stm.Follow.Target.position);
-    }
 
-    private void StartJumpToPlatform() {
-        onAction = true;
-        NavMeshLink link = stm.Agent.navMeshOwner as NavMeshLink;
-        bool reverse = CheckIfJumpingFromEndToStart(link);
-        Spline spline = reverse ? link.GetComponent<NavMeshLinkSpline>().SplineDrop : link.GetComponent<NavMeshLinkSpline>().SplineJump;
-        if (spline == null) 
-        {
-            onAction = false;
-        }
-
-        stm.StartCoroutine(JumpToPlatformCoroutine(spline, reverse));
-    }
-
-
-    private IEnumerator JumpToPlatformCoroutine(Spline spline, bool reverseDirection) {
-        float currentTime = 0;
-        float jumpDuration = 0.2f;
-        Vector3 agentStartPosition = stm.Agent.transform.position;
-
-        Vector3 direction = spline.Direction;
-        stm.Renderer.flipX = direction.x <= 0 ^ reverseDirection;
-
-        while (currentTime < jumpDuration)
-        {
-            currentTime += Time.deltaTime;
-
-            float amount = Mathf.Clamp01(currentTime / jumpDuration);
-            amount = reverseDirection ? 1 - amount : amount;
-
-            stm.Agent.transform.position =
-                reverseDirection ?
-                spline.CalculatePositionCustomEnd(amount, agentStartPosition)
-                : spline.CalculatePositionCustomStart(amount, agentStartPosition);
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        stm.Agent.CompleteOffMeshLink();
-
-        // OnLand?.Invoke();
-        yield return new WaitForSeconds(0.1f);
-        onAction = false;
-    }
-
-    private bool CheckIfJumpingFromEndToStart(NavMeshLink link)
-    {
-        Vector3 startPosWorld
-            = link.gameObject.transform.TransformPoint(link.startPoint);
-        Vector3 endPosWorld
-            = link.gameObject.transform.TransformPoint(link.endPoint);
-
-        float distancePlayerToStart 
-            = Vector3.Distance(stm.Agent.transform.position, startPosWorld);
-        float distancePlayerToEnd 
-            = Vector3.Distance(stm.Agent.transform.position, endPosWorld);
-
-
-        return distancePlayerToStart > distancePlayerToEnd;
     }
 }
