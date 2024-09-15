@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
             DOVirtual.DelayedCall(1.8f, () => InGameScreen.Instance.ShowEndGameScreen());
         };
 
+        AudioManager.Instance.Play("InGameBGM");
         GameplayUI.Instance.GameTransitionIn(OnGameTransitionInComplete);
     }
 

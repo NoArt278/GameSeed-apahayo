@@ -4,6 +4,11 @@ using UnityEngine;
 public class MainMenuScreen : MonoBehaviour
 {
     [SerializeField] GameObject settings;
+
+    private void Start() {
+        AudioManager.Instance.Play("MenuBGM");
+    }
+
     public void StartGame()
     {
         SceneLoader.Instance.ToGameplay();

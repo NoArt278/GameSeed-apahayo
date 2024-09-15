@@ -55,15 +55,17 @@ public class PlayerHypnotize : MonoBehaviour
                 sr.flipX = currNPC.transform.position.x < transform.position.x;
                 if (catArmy.GetCatCount() > 0 && !currNPC.CheckCrazed())
                 {
-                    if (lastHypnotizedNPC != null && lastHypnotizedNPC != currNPC)
-                    {
-                        lastHypnotizedNPC.isControllingBar = false;
-                    }
-                    if (lastHypnotizedNPC != currNPC)
+                    // if (lastHypnotizedNPC != null && lastHypnotizedNPC != currNPC)
+                    // {
+                    //     lastHypnotizedNPC.isControllingBar = false;
+                    // }
+                    if (lastHypnotizedNPC != currNPC && lastHypnotizedNPC == null)
                     {
                         lastHypnotizedNPC = currNPC;
                         lastHypnotizedNPC.isControllingBar = true;
                         HypnotizedNPCTr = currNPC.transform;
+                        playerLaser.StopLaser();
+                        playerLaser.EmitLaser(StaffPosition, HypnotizedNPCTr);
                     }
                     if (!catGodAnimator.GetBool("isHypnotizing"))
                     {

@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void PlaySprintAudio(InputAction.CallbackContext _) {
-        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint", overrideExisting: false);
+        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint", overrideExisting: true);
     }
 
     // Update is called once per frame
@@ -245,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canMove = false;
             catGodAnimator.SetTrigger("Die");
+            AudioManager.Instance.PlayOneShot("Caught");
             isDead = true;
             StopAllCoroutines();
             StartCoroutine(ShowGameOver());

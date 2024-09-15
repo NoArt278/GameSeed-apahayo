@@ -41,6 +41,6 @@ public class DogStateMachine : MonoBehaviour
     }
 
     private void OnBecameVisible() {
-        AudioManager.Instance.Play("Sniff");
+        // AudioManager.Instance.Play("Sniff");
     }
 }

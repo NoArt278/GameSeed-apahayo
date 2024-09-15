@@ -45,6 +45,7 @@ public class ChaseState : DogState
         cameraShake.StartShaking();
 
         GameplayUI.Instance.StartDogChase();
+        AudioManager.Instance.PlayOneShot("Caught");
     }
 
     public override void UpdateState(DogStateMachine stateMachine)

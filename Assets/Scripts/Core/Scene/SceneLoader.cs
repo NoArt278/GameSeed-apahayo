@@ -28,6 +28,7 @@ public class SceneLoader : MonoBehaviour {
     public void LoadScene(string sceneName, SceneLoadEvents events = null) {
         Time.timeScale = 1;
         DOTween.KillAll();
+        AudioManager.Instance.StopBGMFadeOut(1f);
         overlay.DOFade(1, 0.5f).OnComplete(() => {
             onLoaderCallback = () => { StartCoroutine(LoadSceneAsync(sceneName, events)); };
             SceneManager.LoadScene("LoadingScreen");
@@ -65,6 +66,7 @@ public class SceneLoader : MonoBehaviour {
     }
 
     public void RestartGameplay() {
+        AudioManager.Instance.StopBGMFadeOut(1f);
         ToGameplay();
     }
 

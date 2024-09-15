@@ -123,7 +123,7 @@ public class PatrolState : DogState
     {
         AlignOrientation();
 
-        bool isPathStale = agent.pathStatus == NavMeshPathStatus.PathInvalid || agent.pathStatus == NavMeshPathStatus.PathPartial;
+        bool isPathStale = agent.pathStatus != NavMeshPathStatus.PathComplete;
         bool isPathPending = agent.pathPending;
         bool isDestinationReached = agent.remainingDistance <= agent.stoppingDistance;
 

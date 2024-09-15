@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
-    private Tween fadeTween;
+    private Tween sfxFadeTween;
+    private Tween musicFadeTween;
 
     private void Awake() {
         if (Instance == null) {
@@ -42,7 +43,18 @@ public class AudioManager : MonoBehaviour {
         }
 
         sound.source.clip = sound.clip;
+        sound.source.volume = sound.volume;
+        sound.source.pitch = sound.pitch;
         sound.source.PlayOneShot(sound.clip);
+    }
+
+    public void StopBGM() {
+        musicSource.Stop();
+    }
+
+    public void StopBGMFadeOut(float fadeTime) {
+        musicFadeTween?.Kill();
+        musicFadeTween = musicSource.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => musicSource.Stop());
     }
 
     public void Play(string name, bool overrideExisting = true) {
@@ -79,8 +91,8 @@ public class AudioManager : MonoBehaviour {
             return;
         }
 
-        fadeTween?.Kill();
+        sfxFadeTween?.Kill();
         sound.source.volume = sound.volume;
-        fadeTween = sound.source.DOFade(0, fadeTime);
+        sfxFadeTween = sound.source.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => sound.source.Stop());
     }
 }

@@ -21,7 +21,7 @@ public class NPCCrazeState : NPCBaseState
         agent.acceleration = crazeSpeed * 2;
         agent.SetDestination(GetValidDestination());
 
-        GameTimer.Instance.AddTime(5f);
+        // GameTimer.Instance.AddTime(stm.HypnotizeStats.hypnotizeHealth / 2);
     }
 
 

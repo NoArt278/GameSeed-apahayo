@@ -7,6 +7,7 @@ public class FieldOfView : MonoBehaviour
     public float outerRadius;
     public float innerRadius;
     public float Angle;
+    public float closeRange = 8f;
 
     private GameObject Vision;
     private Mesh mesh;
@@ -23,6 +24,7 @@ public class FieldOfView : MonoBehaviour
 
     public bool isPlayerVisible = false;
     public bool isChasing = false;
+    private bool isPlayerClose = false;
 
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
@@ -188,5 +190,19 @@ public class FieldOfView : MonoBehaviour
         {
             isPlayerVisible = false;
         }
+
+        Collider[] closeColliders = Physics.OverlapSphere(Vision.transform.position, closeRange, playerMask);
+        closeColliders = closeColliders.Where(collider =>
+            LayerMask.LayerToName(collider.gameObject.layer) == "Player" ||
+            (LayerMask.LayerToName(collider.gameObject.layer) == "Cat"
+                && collider.gameObject.GetComponent<CatStateMachine>().Follow.Target != null)
+        ).ToArray();
+
+        if (closeColliders.Length > 0 && !isPlayerClose)
+        {
+            // AudioManager.Instance.PlayOneShot("Sniff");
+            isPlayerClose = true;
+        }
+        else { isPlayerClose = false; }
     }
 }

@@ -26,11 +26,9 @@ public class NPCWanderState : NPCBaseState
 
         spriteRenderer.color = Color.white;
 
-        GameTimer.Instance.AddTime(5f);
+        GameTimer.Instance.AddTime(stm.HypnotizeStats.hypnotizeHealth / 2);
 
         stm.Collider.enabled = false;
-
-        // stm.animator.SetBool("isHypno", true);
     }
 
     public override void UpdateState()

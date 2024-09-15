@@ -431,9 +431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baf2b46f0f23e349a31fe6a2f08c926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outerRadius: 5
-  innerRadius: 2
-  Angle: 90
+  outerRadius: 6
+  innerRadius: 4
+  Angle: 170
+  closeRange: 10
   meshFilter: {fileID: 7752524031374214084}
   meshRenderer: {fileID: 2962366968393680047}
   innerMeshFilter: {fileID: 9220263630957861205}

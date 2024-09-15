@@ -5173,38 +5173,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - type: 0
+  - type: 1
     clip: {fileID: 8300000, guid: c01ff44b601fd11478b757fe3e74e8c9, type: 3}
     name: Sniff
-    volume: 0.6
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - type: 1
     clip: {fileID: 8300000, guid: d7d2beed940657e4484e764de9c7c759, type: 3}
     name: Acquired
-    volume: 0.6
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - type: 1
     clip: {fileID: 8300000, guid: 0e49ac30c0826f547a4ab08889b94151, type: 3}
     name: Yeet
-    volume: 0.6
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - type: 1
     clip: {fileID: 8300000, guid: 7a3e0770af3c9dc439fd08ff445b7eae, type: 3}
     name: Click
-    volume: 0.6
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - type: 1
     clip: {fileID: 8300000, guid: 91dcfc8b23db3fc4fbe3f76ffd32503e, type: 3}
     name: ClickHypno
-    volume: 0.6
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
     loop: 0
@@ -5226,6 +5226,48 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2f5b6f51e66ba344f900ba267d2065b9, type: 3}
     name: HypnoSuccess
     volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - type: 0
+    clip: {fileID: 8300000, guid: 427b093775a4ef44daab184c693747b4, type: 3}
+    name: InGameBGM
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - type: 0
+    clip: {fileID: 8300000, guid: 399eb20bc1ac1c1488130868f7be51f0, type: 3}
+    name: MenuBGM
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - type: 1
+    clip: {fileID: 8300000, guid: 9051beadb24b3da449630c7b02afdd2d, type: 3}
+    name: GameOver
+    volume: 0.45
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - type: 1
+    clip: {fileID: 8300000, guid: 3befec9aff7b00649b5dc48423f1d20b, type: 3}
+    name: Caught
+    volume: 0.45
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - type: 1
+    clip: {fileID: 8300000, guid: b5581199f10f8f447af71a293710ddd8, type: 3}
+    name: Time
+    volume: 0.45
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - type: 1
+    clip: {fileID: 8300000, guid: f59174f2f84a91946bef85681d4414e9, type: 3}
+    name: TimesUp
+    volume: 0.45
     pitch: 1
     source: {fileID: 0}
     loop: 0

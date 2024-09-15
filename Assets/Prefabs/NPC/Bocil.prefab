@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hypnotizeStats:
-    hypnotizeHealth: 10
+    hypnotizeHealth: 15
     maxHypnotizeDelay: 2
   isControllingBar: 0
   Spawner: {fileID: 0}
