@@ -56,6 +56,7 @@ public class InGameScreen : MonoBehaviour {
         highScoreText.text = highScore.ToString();
 
         InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
+        AudioManager.Instance.Stop("Time");
         AudioManager.Instance.StopBGMFadeOut(0.2f);
         endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine).SetUpdate(true);
         DOVirtual.DelayedCall(0.2f, () => AudioManager.Instance.PlayOneShot("GameOver"));

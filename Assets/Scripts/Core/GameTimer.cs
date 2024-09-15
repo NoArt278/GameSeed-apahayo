@@ -98,7 +98,6 @@ public class GameTimer : MonoBehaviour
         isRunning = false;
         remainingTime = 0;
         UpdateTimerDisplay();
-        AudioManager.Instance.Stop("Time");
         AudioManager.Instance.PlayOneShot("TimesUp");
         OnTimeUp?.Invoke();
     }
