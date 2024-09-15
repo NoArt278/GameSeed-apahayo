@@ -31,10 +31,6 @@ public class NPCCrazeState : NPCBaseState
         }
         
         AlignOrientation();
-
-        if (IsOutOfCamera()){
-            stm.SelfDestroy();
-        } 
     }
 
     void AlignOrientation(){
@@ -72,14 +68,5 @@ public class NPCCrazeState : NPCBaseState
 
         // FALLBACK 2: Stay in the same position
         return stm.transform.position;
-    }
-
-    public bool IsOutOfCamera() {
-        Vector2 clipSpace = Camera.main.WorldToViewportPoint(stm.transform.position + stm.SpriteRenderer.bounds.extents.y * Vector3.up);
-        if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
-        {
-            return true;
-        }
-        return false;
     }
 }

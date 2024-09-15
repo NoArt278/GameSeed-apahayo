@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void PlaySprintAudio(InputAction.CallbackContext _) {
-        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint", overrideExisting: true);
+        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint");
     }
 
     // Update is called once per frame
@@ -194,7 +194,9 @@ public class PlayerMovement : MonoBehaviour
     {
         justHid = true;
         GameplayUI.Instance.ChangeHideText("");
-        if (isHiding) VFXManager.Instance.PlayPoofVFX(transform.position);
+        if (isHiding) {
+            VFXManager.Instance.PlayPoofVFX(transform.position);
+        }
         yield return new WaitForSeconds(0.3f);
         if (isHiding)
         {

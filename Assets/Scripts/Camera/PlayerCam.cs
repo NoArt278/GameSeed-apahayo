@@ -15,7 +15,7 @@ public class PlayerCam : MonoBehaviour
     private void Start()
     {
         CinemachineVirtualCamera vcam = GetComponentInChildren<CinemachineVirtualCamera>();
-        player = vcam.Follow.GetComponentInParent<PlayerMovement>().transform;
+        player = vcam.Follow;
         transparentables = new List<Transparentable>();
         blockingObjectsRenderer = new List<MeshRenderer>();
     }
