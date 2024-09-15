@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void PlaySprintAudio(InputAction.CallbackContext _) {
-        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint", overrideExisting: true);
+        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint");
     }
 
     // Update is called once per frame

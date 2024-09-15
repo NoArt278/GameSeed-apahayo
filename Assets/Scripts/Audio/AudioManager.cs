@@ -66,11 +66,11 @@ public class AudioManager : MonoBehaviour {
 
         if (sound.source.isPlaying && !overrideExisting) return; 
 
+        sfxFadeTween?.Kill();
+
         sound.source.clip = sound.clip;
         sound.source.volume = sound.volume;
         sound.source.pitch = sound.pitch;
-
-        sound.source.Stop();
         sound.source.Play();
     }
 
