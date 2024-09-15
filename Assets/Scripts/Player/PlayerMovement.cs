@@ -249,6 +249,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (other.CompareTag("Dog") && !isHiding)
         {
             canMove = false;
+            canHide = false;
             catGodAnimator.SetTrigger("Die");
             AudioManager.Instance.PlayOneShot("Caught");
             AudioManager.Instance.PlayOneShot("Yeet");

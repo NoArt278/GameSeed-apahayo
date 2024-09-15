@@ -11,8 +11,11 @@ public class InGameScreen : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private TextMeshProUGUI bestLabel;
     [SerializeField] private Image dimmer;
-    [SerializeField] private RectTransform settingPanel;
-    [SerializeField] private Settings settingsUI;
+    [SerializeField] private RectTransform sidePanel;
+
+    [Header("Setting Groups")]
+    [SerializeField] private RectTransform main;
+    [SerializeField] private RectTransform setting;
 
     private bool isSettingPanelOpen = false;
 
@@ -91,22 +94,22 @@ public class InGameScreen : MonoBehaviour {
 
     public void ToggleSettingPanel()
     {
-        if (isSettingPanelOpen && !settingsUI.isOpen)
+        if (isSettingPanelOpen)
         {
-            CloseSettingPanel();
+            CloseSidePanel();
         }
         else
         {
-            OpenSettingPanel();
+            OpenSidePanel();
         }
 
         isSettingPanelOpen = !isSettingPanelOpen;
     }
 
-    public void OpenSettingPanel()
+    public void OpenSidePanel()
     {
         dimmer.gameObject.SetActive(true);
-        settingPanel.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutSine).SetUpdate(true);
+        sidePanel.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutSine).SetUpdate(true);
         AudioManager.Instance.PlayOneShot("Click");
 
         GameManager.Instance.SetGameState(GameState.Paused);
@@ -114,21 +117,28 @@ public class InGameScreen : MonoBehaviour {
         Time.timeScale = 0;
     }
 
-    public void CloseSettingPanel()
+    public void OpenSetting() {
+        main.gameObject.SetActive(false);
+        setting.gameObject.SetActive(true);
+        AudioManager.Instance.PlayOneShot("Click");
+    }
+
+    public void CloseSetting() {
+        main.gameObject.SetActive(true);
+        setting.gameObject.SetActive(false);
+        AudioManager.Instance.PlayOneShot("Click");
+    }
+
+    public void CloseSidePanel()
     {
         dimmer.gameObject.SetActive(false);
-        Vector3 pos = new(-settingPanel.rect.width, 0, 0);
+        Vector3 pos = new(-sidePanel.rect.width, 0, 0);
 
-        settingPanel.DOAnchorPos(pos, 0.5f).SetEase(Ease.InSine).SetUpdate(true);
+        sidePanel.DOAnchorPos(pos, 0.5f).SetEase(Ease.InSine).SetUpdate(true);
         AudioManager.Instance.PlayOneShot("Click");
 
         GameManager.Instance.SetGameState(GameState.InGame);
         Cursor.visible = false;
         Time.timeScale = 1;
-    }
-
-    public void OpenSettingsUI()
-    {
-        settingsUI.OpenSettings();
     }
 }

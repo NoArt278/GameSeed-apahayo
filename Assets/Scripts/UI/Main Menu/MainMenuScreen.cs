@@ -34,8 +34,19 @@ public class MainMenuScreen : MonoBehaviour
         AudioManager.Instance.PlayOneShot("Hover");
     }
 
+    public void CursorHoverV2(Transform obj)
+    {
+        obj.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).SetUpdate(true);
+        AudioManager.Instance.PlayOneShot("Hover");
+    }
+
     public void CursorExit(Transform obj)
     {
         obj.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.1f).SetUpdate(true);
+    }
+
+    public void CursorExitV2(Transform obj)
+    {
+        obj.DOScale(new Vector3(1, 1, 1), 0.1f).SetUpdate(true);
     }
 }

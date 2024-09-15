@@ -12,8 +12,8 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 1);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 1);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 0.6f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 0.6f);
         sfxTest.enabled = false;
         SetMusicVol(musicSlider.value);
         SetSFXVol(sfxSlider.value);
@@ -47,6 +47,7 @@ public class Settings : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
+        AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void ExitGame()

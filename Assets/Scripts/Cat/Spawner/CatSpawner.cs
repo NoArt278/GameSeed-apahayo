@@ -8,11 +8,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(BoxCollider))]
 public class CatSpawner : MonoBehaviour
 {
-    private int strayCatCount = 0;
     private int catsInSceneCount = 0;
 
     [SerializeField] private GameObject catPrefab;
-    [SerializeField] private int maxStrayCats = 20;
     [SerializeField] private int maxCatsInScene = 25;
 
     [Header("Spawn")]
@@ -38,7 +36,6 @@ public class CatSpawner : MonoBehaviour
 
     private void Start() {
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
-        strayCatCount = 0;
         catsInSceneCount = 0;
     }
 
@@ -78,19 +75,7 @@ public class CatSpawner : MonoBehaviour
             CatStateMachine stm = cat.GetComponent<CatStateMachine>();
 
             stm.Spawner = this;
-            strayCatCount++;
             catsInSceneCount++;
-
-
-            stm.OnStateChanged += (prev, current) => {
-                if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
-                    strayCatCount--;
-                }
-
-                if (current == stm.STATE_STRAYIDLE || current == stm.STATE_STRAYWANDER) {
-                    strayCatCount++;
-                }
-            };
             
             DOVirtual.DelayedCall(UnityEngine.Random.Range(0f, 0.5f), () => {
                 GameObject pulse = Instantiate(pulseVFX, cat.transform);
@@ -132,7 +117,6 @@ public class CatSpawner : MonoBehaviour
     }
 
     private void Spawn() {
-        if (strayCatCount >= maxStrayCats) return;
         if (catsInSceneCount >= maxCatsInScene) return;
         if (!Camera.main) return;
 
@@ -147,27 +131,11 @@ public class CatSpawner : MonoBehaviour
         CatStateMachine stm = cat.GetComponent<CatStateMachine>();
         stm.Spawner = this;
 
-        strayCatCount++;
         catsInSceneCount++;
-
-        stm.OnStateChanged += (prev, current) => {
-            if (prev == stm.STATE_STRAYIDLE || prev == stm.STATE_STRAYWANDER) {
-                strayCatCount--;
-            }
-
-            if (current == stm.STATE_STRAYIDLE || current == stm.STATE_STRAYWANDER) {
-                strayCatCount++;
-            }
-        };
     }
 
     public void Return(GameObject cat) {
         catsInSceneCount--;
-        if (cat.TryGetComponent(out CatStateMachine stm)) {
-            if (stm.CurrentState == stm.STATE_STRAYIDLE || stm.CurrentState == stm.STATE_STRAYWANDER) {
-                strayCatCount--;
-            }
-        }
         strayCatPool.ReturnObject(cat);
     }
 

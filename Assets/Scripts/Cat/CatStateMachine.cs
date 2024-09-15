@@ -66,7 +66,7 @@ public class CatStateMachine : MonoBehaviour {
     public Action<CatBaseState, CatBaseState> OnStateChanged;
     [ReadOnly] public CatSpawner Spawner;
 
-    private CatArmy catArmy;
+    public CatArmy CatArmy { get; private set ;}
 
     private void Awake() {
         Agent = GetComponent<NavMeshAgent>();
@@ -82,7 +82,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void BecomeFollower(CatArmy catArmy, Transform target, float baseSpeed, float sprintSpeed) {
-        this.catArmy = catArmy;
+        this.CatArmy = catArmy;
         Follow.Target = target;
         Follow.BaseSpeed = baseSpeed;
         Follow.SprintSpeed = sprintSpeed;
@@ -149,7 +149,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void YeetedCallback() {
-        catArmy.RemoveCat(this);
+        CatArmy.RemoveCat(this);
         ReturnToSpawner();
     }
 

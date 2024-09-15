@@ -34,8 +34,8 @@ public class CatHypnotizeState : CatBaseState {
         moveTween = stm.transform.DOMove(backPosition, duration).SetEase(Ease.OutQuad).OnComplete(
             () => {
                 stm.Animator.SetBool("Float", false);
-                stm.transform.position = backPosition;
                 stm.Agent.enabled = true;
+                stm.Agent.Warp(backPosition);
                 stm.ChangeState(stm.STATE_FOLLOW);
                 OnAnimation = false;
                 moveTween = null;

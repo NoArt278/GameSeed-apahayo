@@ -141,7 +141,7 @@ public class CatArmy : MonoBehaviour
         }
     }
 
-    private Vector3 FindAppropriateSpawnLocation(Vector3 center)
+    public Vector3 FindAppropriateSpawnLocation(Vector3 center)
     {
         Vector3 spawnPosition = center + 3 * catRadius * Random.insideUnitSphere;
         NavMeshHit hit;
