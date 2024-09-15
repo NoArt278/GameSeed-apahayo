@@ -99,6 +99,7 @@ public class CatArmy : MonoBehaviour
         cats.Remove(usedCat);
         outsideCats.Remove(usedCat);
         usedCat.transform.DOMove(endPosition, 0.2f).OnComplete(() => {
+        usedCat.STATE_HYPNOTIZE.ResetCat();
             usedCat.ReturnToSpawner();
             GameplayUI.Instance.UpdateCatCount(GetCatCount());
         }).SetEase(Ease.Linear);

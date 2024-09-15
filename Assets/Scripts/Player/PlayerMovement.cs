@@ -235,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Cat"))
+        if (other.CompareTag("Cat") && !isHiding)
         {
             CatStateMachine cat = other.gameObject.GetComponent<CatStateMachine>();
             catArmy.RegisterCat(cat, transform);

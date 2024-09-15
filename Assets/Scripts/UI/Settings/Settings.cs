@@ -26,6 +26,7 @@ public class Settings : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(true);
         }
+        AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void SetMusicVol(float vol)

@@ -10,7 +10,10 @@ public class CatFollowState : CatBaseState {
 
     public override void EnterState() {
         stm.Agent.speed = stm.Follow.BaseSpeed;
-        stm.Agent.SetDestination(stm.Follow.Target.position);
+        bool success = stm.Agent.SetDestination(stm.Follow.Target.position);
+        if (!success) {
+            stm.Agent.Warp(stm.CatArmy.FindAppropriateSpawnLocation(stm.Follow.Target.position));
+        }
         stm.Agent.velocity = Vector3.zero;
         stm.Animator.SetTrigger("Hypnotized");
 

@@ -42,4 +42,12 @@ public class CatHypnotizeState : CatBaseState {
             }
         );
     }
+
+    public void ResetCat() {
+        stm.Animator.SetTrigger("Reset");
+        stm.Agent.enabled = true;
+        stm.FloatVFX.gameObject.SetActive(false);
+        OnAnimation = false;
+        moveTween = null;
+    }
 }

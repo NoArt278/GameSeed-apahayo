@@ -56,10 +56,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4323774
-  m_Height: 1.8905623
+  m_Radius: 0.30469796
+  m_Height: 1.762155
   m_Direction: 1
-  m_Center: {x: 0.056293547, y: 0.9355735, z: -0.0000006375127}
+  m_Center: {x: 0.05994153, y: 0.8713704, z: -0.00000084546315}
 --- !u!195 &3103650062240677007
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
     hypnotizeHealth: 20
     maxHypnotizeDelay: 2
   isControllingBar: 0
+  IsCrazed: 0
   Spawner: {fileID: 0}
   animator: {fileID: 0}
   Center: {fileID: 3993754635207630087}

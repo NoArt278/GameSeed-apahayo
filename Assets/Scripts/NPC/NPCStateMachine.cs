@@ -137,6 +137,7 @@ public class NPCStateMachine : MonoBehaviour
     }
 
     public void SelfDestroy() {
+        animator.SetTrigger("Reset");
         if (Spawner != null) Spawner.Return(gameObject);
         else Destroy(gameObject);
     }
