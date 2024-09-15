@@ -77,6 +77,8 @@ public class CatArmy : MonoBehaviour
         if (cats.Count == 0) return;
         if (usedCat != null) return;
 
+        Debug.Log("Hypnotize");
+
         usedCat = cats[0];
         usedCat.UseCatForHypnotize(catFloatPos);
     }
@@ -98,6 +100,8 @@ public class CatArmy : MonoBehaviour
         if (cats.Count == 0) return;
         if (usedCat == null) return;
 
+        Debug.Log("Destroy");
+
         cats.Remove(usedCat);
         outsideCats.Remove(usedCat);
         usedCat.STATE_HYPNOTIZE.ResetCat();
@@ -115,6 +119,7 @@ public class CatArmy : MonoBehaviour
 
         cats.Remove(cat);
         outsideCats.Remove(cat);
+        if (usedCat == cat) usedCat = null;
         GameplayUI.Instance.UpdateCatCount(GetCatCount());
     }
 

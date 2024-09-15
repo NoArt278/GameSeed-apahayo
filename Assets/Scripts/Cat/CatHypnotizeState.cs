@@ -48,6 +48,7 @@ public class CatHypnotizeState : CatBaseState {
         stm.Agent.enabled = true;
         stm.FloatVFX.gameObject.SetActive(false);
         OnAnimation = false;
+        stm.Follow.Target = null;
         moveTween = null;
     }
 }

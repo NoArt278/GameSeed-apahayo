@@ -162,6 +162,10 @@ public class FieldOfView : MonoBehaviour
         if (innerColliders.Length > 0)
         {
             isPlayerVisible = true;
+            foreach (var collider in outerColliders)
+            {
+                Debug.DrawRay(collider.transform.position,  Vector3.up * 100f, Color.blue, 10f);
+            }
         }
         else if (outerColliders.Length > 0)
         {
@@ -175,6 +179,10 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(Vision.transform.position, direction, distance, obstacleMask))
                 {
                     isPlayerVisible = true;
+                    foreach (var collider in outerColliders)
+                    {
+                        Debug.DrawRay(collider.transform.position,  Vector3.up * 100f, Color.blue, 10f);
+                    }
                 }
                 else
                 {
