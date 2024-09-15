@@ -52,7 +52,7 @@ public class GameplayUI : MonoBehaviour {
         Sequence sequence = DOTween.Sequence();
 
         Color dimmerColor = dimmer.color;
-        // dimmer.color = new Color(dimmerColor.r, dimmerColor.g, dimmerColor.b, 0.5f);
+        dimmer.color = new Color(dimmerColor.r, dimmerColor.g, dimmerColor.b, 0.9f);
 
         overlay.DOFade(0, 0);
         sequence.AppendInterval(2);
