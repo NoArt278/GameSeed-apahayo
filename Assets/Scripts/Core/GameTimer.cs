@@ -76,6 +76,10 @@ public class GameTimer : MonoBehaviour
     public void AddTime(float time)
     {
         remainingTime += time;
+        if (remainingTime > duration)
+        {
+            remainingTime = duration;
+        }
         UpdateTimerDisplay();
     }
 
