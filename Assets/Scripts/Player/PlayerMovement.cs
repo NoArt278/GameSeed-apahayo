@@ -246,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
             canMove = false;
             catGodAnimator.SetTrigger("Die");
             AudioManager.Instance.PlayOneShot("Caught");
+            AudioManager.Instance.PlayOneShot("Yeet");
             isDead = true;
             StopAllCoroutines();
             StartCoroutine(ShowGameOver());
