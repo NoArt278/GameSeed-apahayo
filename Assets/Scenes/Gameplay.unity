@@ -551,20 +551,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 872201045593008943, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1633154092459937317, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
       propertyPath: m_Name
       value: GameplayUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1766926879695377686, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2483704034507516183, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
@@ -671,11 +661,6 @@ PrefabInstance:
       propertyPath: settingsUI
       value: 
       objectReference: {fileID: 1224965410}
-    - target: {fileID: 2922692967206096124, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3051653671963094781, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -686,15 +671,20 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3451566807475458716, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7308908355001048010, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+    - target: {fileID: 6968619890674603657, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215182502403767429, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 235.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215182502403767429, guid: 060d7ab2825df8c4b8fd650d2dfdace1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

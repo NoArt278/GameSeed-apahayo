@@ -10,6 +10,7 @@ public class PlayerHypnotize : MonoBehaviour
     private float lastClickTime;
     private const float clickMoveDelay = 0.5f;
     private int score = 0;
+    private bool delayPassed = false;
 
     [SerializeField] private PlayerLaser playerLaser;
     [SerializeField] private Transform catFloatCenter;
@@ -78,6 +79,9 @@ public class PlayerHypnotize : MonoBehaviour
                     if(currNPC.currentState != currNPC.STATE_RANDOMMOVE){
                         currNPC.TransitionToState(currNPC.STATE_RANDOMMOVE);                         
                     }
+
+                    AudioManager.Instance.PlayOneShot("Cant");
+                    GameplayUI.Instance.ShowMainHintText("You have no cat!");
                 }
                 if (!currNPC.CheckCrazed() && currNPC == lastHypnotizedNPC && catArmy.GetCatCount() > 0)
                 {
@@ -90,6 +94,12 @@ public class PlayerHypnotize : MonoBehaviour
                     lastClickTime = Time.time;
                     AudioManager.Instance.PlayOneShot("ClickHypno");
                     GameplayUI.Instance.PlayCrosshairBeat();
+                    if (delayPassed) {
+                        Vector3 direction = (currNPC.Center.position - transform.position).normalized;
+                        catArmy.CancelHypnotize();
+                        catArmy.StartHypnotize(catFloatCenter.position + direction * distance);
+                        delayPassed = false;
+                    }
                     currNPC.OnNPCClicked();
                 }
             }
@@ -106,6 +116,7 @@ public class PlayerHypnotize : MonoBehaviour
             {
                 playerLaser.StopLaser();
                 catArmy.CancelHypnotize();
+                delayPassed = true;
             }
         }
         else if (playerMovement.IsHiding())

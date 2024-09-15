@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void PlaySprintAudio(InputAction.CallbackContext _) {
-        if (stamina > 0 && canMove) AudioManager.Instance.Play("Sprint");
+        if (stamina > 0.5f && canMove) AudioManager.Instance.Play("Sprint");
     }
 
     // Update is called once per frame
@@ -123,6 +123,9 @@ public class PlayerMovement : MonoBehaviour
             catGodAnimator.SetBool("isSprinting", true);
             sprintTrail.Play();
             catArmy.StartSprint();
+        } else {
+            AudioManager.Instance.PlayOneShot("Cant");
+            GameplayUI.Instance.ShowMainHintText("No Stamina!");
         }
     }
 

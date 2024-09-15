@@ -5278,6 +5278,13 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - type: 1
+    clip: {fileID: 8300000, guid: 2fc8a9986a8e5924ab77bf188aa076c9, type: 3}
+    name: Cant
+    volume: 0.45
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
   musicSource: {fileID: 2774550784699613400}
   sfxGroup: {fileID: 3192011362529257218, guid: e11f44f53950dae438f3507fdfb96dce,
     type: 2}

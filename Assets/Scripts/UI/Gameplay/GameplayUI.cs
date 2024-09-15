@@ -14,6 +14,7 @@ public class GameplayUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI catCountText;
     [SerializeField] private TextMeshProUGUI hideText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI mainHintText;
 
     [Header("Bars")]
     [SerializeField] private Slider staminaSlider;
@@ -33,6 +34,8 @@ public class GameplayUI : MonoBehaviour {
     [Header("Animations")]
     [SerializeField] private Animator crosshairAnimator;
 
+    private Tween mainHintTween;
+
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -45,6 +48,8 @@ public class GameplayUI : MonoBehaviour {
         Color oColor = overlay.color;
         oColor.a = 1;
         overlay.color = oColor;
+
+        mainHintText.gameObject.SetActive(false);
     }
 
     public void GameTransitionIn(Action onComplete = null) {
@@ -175,5 +180,29 @@ public class GameplayUI : MonoBehaviour {
     public void PlayCrosshairBeat()
     {
         crosshairAnimator.SetTrigger("Beat");
+    }
+
+    public void ShowMainHintText(string text) {
+        mainHintTween?.Kill();
+        mainHintText.gameObject.SetActive(true);
+        mainHintText.text = text;
+
+        Vector3 initPos = new Vector3(0, 70, 0);
+        Vector3 targetPos = new Vector3(0, 120, 0);
+
+        Sequence seq = DOTween.Sequence();
+        mainHintText.rectTransform.anchoredPosition = initPos;
+        seq.Append(mainHintText.rectTransform.DOAnchorPosY(targetPos.y, 0.5f).SetEase(Ease.OutSine));
+        seq.Join(mainHintText.DOFade(1, 0.5f));
+        seq.AppendInterval(2);
+        seq.Append(mainHintText.rectTransform.DOAnchorPosY(initPos.y, 0.5f).SetEase(Ease.InSine));
+        seq.Join(mainHintText.DOFade(0, 0.5f));
+        seq.AppendCallback(() => {
+            mainHintTween = null;
+            mainHintText.gameObject.SetActive(false);
+            mainHintText.rectTransform.anchoredPosition = targetPos;
+        });
+
+        mainHintTween = seq;
     }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 public class CatHypnotizeState : CatBaseState {
     public CatHypnotizeState(CatStateMachine stm) : base(stm) { }
     private Tween moveTween;
-    private bool isCancelling = false;
+    public bool OnAnimation = false;
 
     public void StartHypnotize(Vector3 floatPosition) {
+        if (OnAnimation) return;
+        OnAnimation = true;
         stm.ChangeState(stm.STATE_HYPNOTIZE);
         stm.Agent.enabled = false;
 
@@ -15,21 +17,28 @@ public class CatHypnotizeState : CatBaseState {
         stm.Animator.SetBool("Float", true);
         stm.FloatVFX.gameObject.SetActive(true);
         moveTween?.Kill();
-        moveTween = stm.transform.DOMove(floatPosition, duration).SetEase(Ease.OutQuad);
+        moveTween = stm.transform.DOMove(floatPosition, duration).SetEase(Ease.OutQuad).OnComplete(
+            () => {
+                OnAnimation = false;
+                moveTween = null;
+            }
+        );
     }
 
     public void CancelHypnotize(Vector3 backPosition) {
-        if (isCancelling) return;
-        isCancelling = true;
+        if (OnAnimation) return;
+        OnAnimation = true;
         float duration = 0.3f;
         moveTween?.Kill();
         stm.FloatVFX.gameObject.SetActive(false);
         moveTween = stm.transform.DOMove(backPosition, duration).SetEase(Ease.OutQuad).OnComplete(
             () => {
                 stm.Animator.SetBool("Float", false);
+                stm.transform.position = backPosition;
                 stm.Agent.enabled = true;
                 stm.ChangeState(stm.STATE_FOLLOW);
-                isCancelling = false;
+                OnAnimation = false;
+                moveTween = null;
             }
         );
     }

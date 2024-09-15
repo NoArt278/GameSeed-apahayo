@@ -54,6 +54,7 @@ public class NPCHypnotizedState : NPCBaseState
         currentHypnotizeValue += 1f;
         if (hypnotizeHealth <= currentHypnotizeValue) {
             stm.animator.SetBool("isCraze", true);
+            stm.IsCrazed = true;
             stm.TransitionToState(stm.STATE_WANDER);
             VFXManager.Instance.PlayPoofVFX(stm.transform.position + Vector3.up * 0.5f);
         }

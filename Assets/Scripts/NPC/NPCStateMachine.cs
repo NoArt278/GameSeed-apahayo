@@ -37,6 +37,7 @@ public class NPCStateMachine : MonoBehaviour
     [SerializeField] private HypnotizeStats hypnotizeStats;
     public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
     public bool isControllingBar = false;
+    public bool IsCrazed = false;
 
     // SPAWNER =======================================
     public NPCSpawner Spawner;
@@ -82,12 +83,23 @@ public class NPCStateMachine : MonoBehaviour
     {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
         currentState.UpdateState();
+
+        if (IsCrazed && IsOutOfCamera()) SelfDestroy();
     }
 
     void FixedUpdate()
     {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
         IsNPCWalking();
+    }    
+
+    public bool IsOutOfCamera() {
+        Vector2 clipSpace = Camera.main.WorldToViewportPoint(transform.position + SpriteRenderer.bounds.extents.y * Vector3.up);
+        if (clipSpace.x < 0 || clipSpace.x > 1 || clipSpace.y < 0 || clipSpace.y > 1)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void TransitionToState(NPCBaseState state)

@@ -46,7 +46,7 @@ public class InGameScreen : MonoBehaviour {
 
         GameManager.Instance.SetGameState(GameState.PostGame);
         Cursor.visible = true;
-        Time.timeScale = 0;
+        Time.timeScale = 0.0f;
     }
 
     public void RestartScene() {

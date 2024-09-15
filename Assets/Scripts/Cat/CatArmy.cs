@@ -76,21 +76,28 @@ public class CatArmy : MonoBehaviour
     public void StartHypnotize(Vector3 catFloatPos) {
         if (cats.Count == 0) return;
 
-        usedCat = cats[Random.Range(0, cats.Count)];
+        usedCat = cats[0];
         usedCat.UseCatForHypnotize(catFloatPos);
     }
 
     public void CancelHypnotize() {
         if (cats.Count == 0) return;
+        if (usedCat == null) return;
 
-        usedCat.CancelHypnotize( FindAppropriateSpawnLocation(follow ? follow.position : Vector3.zero) );
+        if (!follow) {
+            follow = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        usedCat.CancelHypnotize(FindAppropriateSpawnLocation(follow.position));
     }
 
     public void DestroyCat(Vector3 endPosition)
     {
         if (cats.Count == 0) return;
+        if (usedCat == null) return;
 
         cats.Remove(usedCat);
+        outsideCats.Remove(usedCat);
         usedCat.transform.DOMove(endPosition, 0.2f).OnComplete(() => {
             usedCat.ReturnToSpawner();
             GameplayUI.Instance.UpdateCatCount(GetCatCount());
@@ -103,6 +110,7 @@ public class CatArmy : MonoBehaviour
         if (cats.Count == 0) return;
 
         cats.Remove(cat);
+        outsideCats.Remove(cat);
         GameplayUI.Instance.UpdateCatCount(GetCatCount());
     }
 
