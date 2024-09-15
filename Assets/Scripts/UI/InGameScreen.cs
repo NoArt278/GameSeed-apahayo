@@ -10,6 +10,7 @@ public class InGameScreen : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private Image dimmer;
     [SerializeField] private RectTransform settingPanel;
+    [SerializeField] private GameObject settingsUI;
 
     private bool isSettingPanelOpen = false;
 
@@ -75,7 +76,7 @@ public class InGameScreen : MonoBehaviour {
 
     public void ToggleSettingPanel()
     {
-        if (isSettingPanelOpen)
+        if (isSettingPanelOpen && !settingsUI.activeSelf)
         {
             CloseSettingPanel();
         }
@@ -109,5 +110,10 @@ public class InGameScreen : MonoBehaviour {
         GameManager.Instance.SetGameState(GameState.InGame);
         Cursor.visible = false;
         Time.timeScale = 1;
+    }
+
+    public void OpenSettingsUI()
+    {
+        settingsUI.SetActive(true);
     }
 }

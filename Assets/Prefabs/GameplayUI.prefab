@@ -664,6 +664,7 @@ MonoBehaviour:
   pointsText: {fileID: 3153941477061400139}
   dimmer: {fileID: 6275739651079911268}
   settingPanel: {fileID: 2887338722595702073}
+  settingsUI: {fileID: 0}
 --- !u!1 &1721599406300689278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,9 +2999,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1633154092459937317}
-        m_TargetAssemblyTypeName: EndGameScreen, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 2738906644298542823}
+        m_TargetAssemblyTypeName: InGameScreen, Assembly-CSharp
+        m_MethodName: OpenSettingsUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
