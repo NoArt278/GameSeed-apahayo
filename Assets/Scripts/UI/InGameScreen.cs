@@ -8,6 +8,8 @@ public class InGameScreen : MonoBehaviour {
     public static InGameScreen Instance { get; private set; }
     [SerializeField] private CanvasGroup endGameScreen;
     [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private TextMeshProUGUI bestLabel;
     [SerializeField] private Image dimmer;
     [SerializeField] private RectTransform settingPanel;
     [SerializeField] private Settings settingsUI;
@@ -37,7 +39,18 @@ public class InGameScreen : MonoBehaviour {
     public void ShowEndGameScreen() {
         endGameScreen.alpha = 0;
         endGameScreen.gameObject.SetActive(true);
-        pointsText.text = GameplayUI.Instance.GetScore().ToString();
+        int currentScore = GameplayUI.Instance.GetScore();
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        pointsText.text = currentScore.ToString();
+
+        if (currentScore > highScore) {
+            PlayerPrefs.SetInt("HighScore", GameplayUI.Instance.GetScore());
+            highScore = currentScore;
+            bestLabel.text = "New Best!";
+        }
+
+        highScoreText.text = highScore.ToString();
 
         InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
         AudioManager.Instance.StopBGMFadeOut(0.2f);

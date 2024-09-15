@@ -38,7 +38,7 @@ public class Settings : MonoBehaviour
     {
         audioMixer.SetFloat("SFXVol", Mathf.Log10(vol) * 20);
         PlayerPrefs.SetFloat("SFXVol", vol);
-        sfxTest.Play();
+        // sfxTest.Play();
     }
 
     public void BackToPrev()

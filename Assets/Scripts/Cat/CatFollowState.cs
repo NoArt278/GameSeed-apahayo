@@ -1,6 +1,4 @@
-using System.Collections;
 using DG.Tweening;
-using Unity.AI.Navigation;
 using UnityEngine;
 
 public class CatFollowState : CatBaseState {
@@ -60,6 +58,5 @@ public class CatFollowState : CatBaseState {
         stm.Agent.speed = speed;
 
         stm.Agent.SetDestination(stm.Follow.Target.position);
-
     }
 }
