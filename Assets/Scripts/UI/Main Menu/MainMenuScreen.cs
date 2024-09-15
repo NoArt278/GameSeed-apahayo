@@ -11,7 +11,7 @@ public class MainMenuScreen : MonoBehaviour
 
     public void StartGame()
     {
-        SceneLoader.Instance.ToGameplay();
+        SceneLoader.Instance.LoadScene("Lore");
         AudioManager.Instance.PlayOneShot("Click");
     }
 
