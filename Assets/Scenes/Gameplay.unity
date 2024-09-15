@@ -396,11 +396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2566972871356142529, guid: 62e8f7d0d547e7740ba6fea6e6587b29,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4676461077167787354, guid: 62e8f7d0d547e7740ba6fea6e6587b29,
         type: 3}
       propertyPath: m_Pivot.x
@@ -526,12 +521,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e8f7d0d547e7740ba6fea6e6587b29, type: 3}
---- !u!1 &1224965410 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2566972871356142529, guid: 62e8f7d0d547e7740ba6fea6e6587b29,
+--- !u!114 &1224965410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2210960302212822826, guid: 62e8f7d0d547e7740ba6fea6e6587b29,
     type: 3}
   m_PrefabInstance: {fileID: 1224965409}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0070f3f2652095740af1a2286d76ed16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2133899187
 PrefabInstance:
   m_ObjectHideFlags: 0

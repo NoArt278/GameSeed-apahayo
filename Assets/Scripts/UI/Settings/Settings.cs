@@ -7,21 +7,31 @@ public class Settings : MonoBehaviour
 
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider, sfxSlider;
-    [SerializeField] AudioSource musicTest, sfxTest;
+    [SerializeField] AudioSource sfxTest;
+    [HideInInspector] public bool isOpen = false;
 
     private void Awake()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 50);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 50);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 1);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 1);
+        sfxTest.enabled = false;
         SetMusicVol(musicSlider.value);
         SetSFXVol(sfxSlider.value);
+        sfxTest.enabled = true;
+    }
+
+    public void OpenSettings()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     public void SetMusicVol(float vol)
     {
         audioMixer.SetFloat("MusicVol", Mathf.Log10(vol) * 20);
         PlayerPrefs.SetFloat("MusicVol", vol);
-        musicTest.Play();
     }
 
     public void SetSFXVol(float vol)
@@ -33,7 +43,10 @@ public class Settings : MonoBehaviour
 
     public void BackToPrev()
     {
-        gameObject.SetActive(false);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     public void ExitGame()

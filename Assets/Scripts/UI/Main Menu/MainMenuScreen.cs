@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MainMenuScreen : MonoBehaviour
 {
-    [SerializeField] GameObject settings;
+    [SerializeField] Settings settings;
 
     private void Start() {
         AudioManager.Instance.Play("MenuBGM");
@@ -23,7 +23,7 @@ public class MainMenuScreen : MonoBehaviour
 
     public void ShowSetting()
     {
-        settings.SetActive(true);
+        settings.OpenSettings();
     }
 
     // Pointer enter suka miss, tp exit gk jadi ngecil mulu
