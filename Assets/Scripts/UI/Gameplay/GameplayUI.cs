@@ -166,14 +166,16 @@ public class GameplayUI : MonoBehaviour {
         scoreText.text = score.ToString();
     }
 
-    public void StaminaDeplete()
+    public void StaminaDeplete(float period, float duration)
     {
         StopAllCoroutines();
         // StartCoroutine(FadeStaminaBar());
         Sequence blinkSq = DOTween.Sequence();
-        blinkSq.Append(staminaSliderCG.DOFade(0, 0.3f));
-        blinkSq.Append(staminaSliderCG.DOFade(1, 0.3f));
-        blinkSq.SetLoops(8);
+        blinkSq.Append(staminaSliderCG.DOFade(0, period / 2));
+        blinkSq.Append(staminaSliderCG.DOFade(1, period / 2));
+
+        int loops = Mathf.FloorToInt(duration / period);
+        blinkSq.SetLoops(loops);
         blinkSq.Play();
     }
 

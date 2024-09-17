@@ -1,7 +1,5 @@
 using Cinemachine;
-using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -92,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 canFillStamina = false;
                 lastStaminaDepleteTime = Time.time;
-                GameplayUI.Instance.StaminaDeplete();
+                GameplayUI.Instance.StaminaDeplete(0.6f, staminalFillDelay);
                 StopSprint();
             }
         }
