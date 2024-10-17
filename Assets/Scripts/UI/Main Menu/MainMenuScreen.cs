@@ -3,29 +3,6 @@ using UnityEngine;
 
 public class MainMenuScreen : MonoBehaviour
 {
-    [SerializeField] Settings settings;
-
-    private void Start() {
-        AudioManager.Instance.Play("MenuBGM");
-    }
-
-    public void StartGame()
-    {
-        SceneLoader.Instance.LoadScene("Lore");
-        AudioManager.Instance.PlayOneShot("Click");
-    }
-
-    public void QuitGame()
-    {
-        SceneLoader.Instance.QuitGame();
-        AudioManager.Instance.PlayOneShot("Click");
-    }
-
-    public void ShowSetting()
-    {
-        settings.OpenSettings();
-    }
-
     // Pointer enter suka miss, tp exit gk jadi ngecil mulu
     // Need fix later, for now like this
     public void CursorHover(Transform obj)

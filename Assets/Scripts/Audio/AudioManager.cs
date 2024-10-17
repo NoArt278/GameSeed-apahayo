@@ -78,10 +78,17 @@ public class AudioManager : SingletonMB<AudioManager> {
             return;
         }
 
-        if (sound.source != null && sound.source.isPlaying && !overrideExisting) return; 
+        bool isPlaying = sound.source != null && sound.source.isPlaying;    
+        if (isPlaying && !overrideExisting) return; 
 
         if (sound.type == AudioType.Background) {
-            AudioSource backgroundSrc = backgroundChannels.Find(s => !occupiedBackgroundChannels.Contains(s));
+            AudioSource backgroundSrc;
+            if (isPlaying) { // Override existing if already playing
+                backgroundSrc = sound.source;
+            } else { // Else, find empty channel
+                backgroundSrc = backgroundChannels.Find(src => !occupiedBackgroundChannels.Contains(src));
+            }
+
             if (backgroundSrc == null) {
                 Debug.LogWarning("No available background channel!");
                 return;

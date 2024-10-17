@@ -84,6 +84,7 @@ Transform:
   - {fileID: 4084085797355688532}
   - {fileID: 7912409479788645949}
   - {fileID: 7221736858474837294}
+  - {fileID: 6002187231333855483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6137699040403313606
@@ -98,6 +99,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1f620ce53e573488fbb0a073ed7b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2338313219589308312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6002187231333855483}
+  - component: {fileID: 6708137908255356774}
+  - component: {fileID: 6228655629771984534}
+  m_Layer: 0
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6002187231333855483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338313219589308312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4400523057022269741}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6708137908255356774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338313219589308312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aed35889208b554eaf3869a95bff3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6228655629771984534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338313219589308312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8646a0568b1824c499bc58756cf20365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: e11f44f53950dae438f3507fdfb96dce, type: 2}
 --- !u!1 &3140348268100121348
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +216,8 @@ GameObject:
   - component: {fileID: 4039907234970088848}
   - component: {fileID: 8529903182949601236}
   - component: {fileID: 6454546681775244821}
-  m_Layer: 0
-  m_Name: Canvas
+  m_Layer: 5
+  m_Name: OverlayCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,8 +5359,8 @@ GameObject:
   - component: {fileID: 7308385067517161387}
   - component: {fileID: 4213729935249605422}
   - component: {fileID: 62281904319069896}
-  m_Layer: 0
-  m_Name: Overlay
+  m_Layer: 5
+  m_Name: BlackScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
