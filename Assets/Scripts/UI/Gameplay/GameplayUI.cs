@@ -4,9 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameplayUI : MonoBehaviour {
-    public static GameplayUI Instance;
-
+public class GameplayUI : SingletonMB<GameplayUI> {
     [Header("Parent Objects")]
     [SerializeField] private RectTransform hypnoBarParent;
 
@@ -36,12 +34,8 @@ public class GameplayUI : MonoBehaviour {
 
     private Tween mainHintTween;
 
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
+    protected override void Awake() {
+        base.Awake();
 
         Cursor.visible = false;
         overlay.gameObject.SetActive(false);

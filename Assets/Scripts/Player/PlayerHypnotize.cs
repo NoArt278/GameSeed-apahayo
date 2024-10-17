@@ -36,9 +36,12 @@ public class PlayerHypnotize : MonoBehaviour
         catGodAnimator = GetComponentInChildren<Animator>();
         sr = GetComponentInChildren<SpriteRenderer>();
         lastClickTime = 0;
-        GameplayUI.Instance.UpdateScore(score);
 
         originalStaffPosition = staffPosition.localPosition;
+    }
+
+    private void Start() {
+        GameplayUI.Instance.UpdateScore(score);
     }
 
     void Update()

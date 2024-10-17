@@ -6,9 +6,8 @@ using UnityEngine;
 [Serializable]
 public enum GameState { PreGame, InGame, Paused, PostGame }
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMB<GameManager>
 {
-    public static GameManager Instance;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject cameraPrefab;
     [SerializeField] private GameObject directionalLight;
@@ -24,16 +23,8 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(prev, CurrentState);
     }
 
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
-    }
-
     private void Start() {
-        if (SceneLoader.Instance.CurrentSceneName != "MainMenu") OnGameplaySceneLoaded();
+        if (SceneLoader.Instance.CurrentSceneName == "Gameplay") OnGameplaySceneLoaded();
     }
 
     public void OnGameplaySceneLoaded()

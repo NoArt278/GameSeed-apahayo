@@ -6,24 +6,15 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class SceneLoadEvents {
-    public Action OnSceneLoadStart;
-    public Action OnSceneLoadComplete;
+    public Action BeforeAwake;
+    public Action AfterAwake;
 }
 
-public class SceneLoader : MonoBehaviour {
-    public static SceneLoader Instance;
+public class SceneLoader : SingletonMB<SceneLoader> {
     public string CurrentSceneName => SceneManager.GetActiveScene().name;
     [SerializeField] private Image overlay;
     private Action onLoaderCallback;
     public AsyncOperation asyncLoad;
-
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
-    }
 
     public void LoadScene(string sceneName, SceneLoadEvents events = null) {
         Time.timeScale = 1;
@@ -44,13 +35,13 @@ public class SceneLoader : MonoBehaviour {
             if (asyncLoad.progress >= 0.9f) {
                 yield return null;
 
-                events?.OnSceneLoadStart?.Invoke();
+                events?.BeforeAwake?.Invoke();
             }
 
             yield return null;
         }
 
-        events?.OnSceneLoadComplete?.Invoke();
+        events?.AfterAwake?.Invoke();
     }
 
     public void AllowSceneActivation() {
@@ -61,7 +52,7 @@ public class SceneLoader : MonoBehaviour {
 
     public void ToGameplay() {
         LoadScene("Gameplay", new SceneLoadEvents{
-            OnSceneLoadComplete = () => { GameManager.Instance.OnGameplaySceneLoaded(); }
+            AfterAwake = () => { GameManager.Instance.OnGameplaySceneLoaded(); }
         });
     }
 

@@ -3,9 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ArenaGeneration : MonoBehaviour {
-    public static ArenaGeneration Instance;
-
+public class ArenaGeneration : SingletonMB<ArenaGeneration> {
     #if UNITY_EDITOR
     [System.Serializable]
     public class BorderPrefabs {
@@ -65,14 +63,6 @@ public class ArenaGeneration : MonoBehaviour {
     }
 
     public float GroundY => transform.position.y;
-
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
-    }
 
     [Button("[ARENA] Generate Random Props")]
     public void GenerateArena() {

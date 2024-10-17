@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InGameScreen : MonoBehaviour {
-    public static InGameScreen Instance { get; private set; }
+public class InGameScreen : SingletonMB<InGameScreen> {
     [SerializeField] private CanvasGroup endGameScreen;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI highScoreText;
@@ -18,14 +17,6 @@ public class InGameScreen : MonoBehaviour {
     [SerializeField] private RectTransform setting;
 
     private bool isSettingPanelOpen = false;
-
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
-    }
 
     private void Start() {
         endGameScreen.gameObject.SetActive(false);

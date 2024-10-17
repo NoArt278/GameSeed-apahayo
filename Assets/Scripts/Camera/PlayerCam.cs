@@ -6,9 +6,6 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour
 {
     Transform player;
-    // [SerializeField] private Material transparentMaterial;
-    // private List<Material> prevMaterials;
-    // private List<MeshRenderer> blockingObjectsRenderer;
     private List<Transparentable> transparentables;
     private List<MeshRenderer> blockingObjectsRenderer;
 

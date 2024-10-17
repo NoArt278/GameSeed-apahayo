@@ -55,7 +55,6 @@ public class CatStateMachine : MonoBehaviour {
     [SerializeField] private SpriteRenderer catRenderer;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform floatVFX;
-    // [SerializeField] private Transform trail;
 
     // Getters
     public SpriteRenderer Renderer { get => catRenderer; }

@@ -1,13 +1,9 @@
 using Cinemachine;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    // public bool isChased = false;
-    // private bool localIsChased = true;
     private CinemachineVirtualCamera vcam;
     CinemachineBasicMultiChannelPerlin noise;
     [SerializeField] private NoiseSettings shake6D;

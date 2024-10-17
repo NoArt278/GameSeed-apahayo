@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider, sfxSlider;
     [SerializeField] AudioSource sfxTest;

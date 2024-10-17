@@ -1,20 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class VFXManager : MonoBehaviour {
-    public static VFXManager Instance { get; private set; }
+public class VFXManager : SingletonMB<VFXManager> {
     [SerializeField] private ParticleSystem poofVFX;
     [SerializeField] private Animator zapVFX;
 
     private Transform zapVFXTransform;
-
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
-    }
 
     public void PlayPoofVFX(Vector3 position) {
         poofVFX.transform.position = position;

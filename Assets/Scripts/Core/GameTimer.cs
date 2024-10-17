@@ -1,14 +1,11 @@
 using System;
 using NaughtyAttributes;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameTimer : MonoBehaviour
+public class GameTimer : SingletonMB<GameTimer>
 {
-    public static GameTimer Instance { get; private set; }
     [SerializeField] private float duration = 60f;
-    // [SerializeField] private TextMeshProUGUI timerDisplay;
     [SerializeField] private Slider timerDisplay;
     [SerializeField] private bool playOnStart = false;
     public Action OnTimeUp;
@@ -18,13 +15,9 @@ public class GameTimer : MonoBehaviour
     private bool isRunning = false;
     private bool clocksTicking = false;
 
-    void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
+        base.Awake();
 
         tenthTime = duration / 10;
         ResetTimer();

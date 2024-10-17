@@ -1,7 +1,5 @@
 using Cinemachine;
-using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -193,7 +191,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private IEnumerator HideDelay()
-    // private void Hide()
     {
         justHid = true;
         GameplayUI.Instance.ChangeHideText("");

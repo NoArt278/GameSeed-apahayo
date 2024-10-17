@@ -1,7 +1,8 @@
 using UnityEngine;
 
+// ALL METHODS IN THIS CLASS ARE CALLED FROM ANIMATION EVENTS
+// DO NOT CALL THEM FROM ANYWHERE ELSE
 public class PlayerAnimationEvent : MonoBehaviour {
-    // ALL METHODS IN THIS CLASS ARE CALLED FROM ANIMATION EVENTS
     [SerializeField] private PlayerHypnotize playerHypnotize;
     [SerializeField] private PlayerLaser playerLaser;
 

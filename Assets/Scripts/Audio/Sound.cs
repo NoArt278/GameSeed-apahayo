@@ -1,9 +1,9 @@
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public enum AudioType
 {
-    Music, SFX
+    Background, SFX
 }
 
 [System.Serializable]
@@ -13,12 +13,13 @@ public class Sound
     public AudioClip clip;
     public string name;
     [Range(0f,1f)]
-    public float volume;
+    public float volume = 0.6f;
     [Range(.1f,3f)]
-    public float pitch;
+    public float pitch = 1f;
 
     [HideInInspector]
     public AudioSource source;
 
     public bool loop;
+    public Tween activeTween;
 }
