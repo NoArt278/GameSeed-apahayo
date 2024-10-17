@@ -149,10 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae5da3aa9c426479301670021c57ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catFloatCenter: {fileID: 700554238810398673}
-  distance: 0.8
   playerLaser: {fileID: 3198161221810510214}
+  catFloatCenter: {fileID: 700554238810398673}
   staffPosition: {fileID: 8684288902615939782}
+  distance: 0.8
 --- !u!1 &372821002423494207
 GameObject:
   m_ObjectHideFlags: 0
