@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using OutlineFx;
 
 public class OutlineManager : MonoBehaviour
 {
-    private CapsuleCollider Collider;
-    private OutlineFx.OutlineFx outlineFX;
+    private CapsuleCollider _collider;
+    private OutlineFx.OutlineFx _outlineFX;
 
     void Start()
     {
-        Collider = GetComponent<CapsuleCollider>();
-        outlineFX = GetComponentInChildren<OutlineFx.OutlineFx>();
+        _collider = GetComponent<CapsuleCollider>();
+        _outlineFX = GetComponentInChildren<OutlineFx.OutlineFx>();
     }
 
     void FixedUpdate(){
@@ -23,16 +20,16 @@ public class OutlineManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("NPC")))
         {
-            return hit.collider == Collider;
+            return hit.collider == _collider;
         }
         return false;
     }
 
     void CheckOutline(){
         if(IsMouseHover()){
-            outlineFX.enabled = true;
+            _outlineFX.enabled = true;
         } else {
-            outlineFX.enabled = false;
+            _outlineFX.enabled = false;
         }
     }
 }   

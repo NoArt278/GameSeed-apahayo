@@ -1,41 +1,42 @@
 using System.Collections;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float outerRadius;
-    public float innerRadius;
-    public float Angle;
-    public float closeRange = 8f;
+    public float OuterRadius = 6f;
+    public float InnerRadius = 4f;
+    public float Angle = 170f;
+    public float CloseRange = 10f;
 
-    private GameObject Vision;
-    private Mesh mesh;
-    [SerializeField] private MeshFilter meshFilter;
-    [SerializeField] private MeshRenderer meshRenderer;
+    private GameObject _vision;
+    private Mesh _mesh;
+    [SerializeField] private MeshFilter _outerMeshFilter;
+    [SerializeField] private MeshRenderer _outerMeshRenderer;
 
-    private Mesh innerMesh;
-    [SerializeField] private MeshFilter innerMeshFilter;
-    [SerializeField] private MeshRenderer innerMeshRenderer;
+    private Mesh _innerMesh;
+    [SerializeField] private MeshFilter _innerMeshFilter;
+    [SerializeField] private MeshRenderer _innerMeshRenderer;
 
 
-    [SerializeField] public Material visionMaterial;
-    [SerializeField] private int rayCount = 50;
+    [SerializeField] public Material _visionMaterial;
+    [SerializeField] private int _rayCount = 50;
 
-    public bool isPlayerVisible = false;
-    public bool isChasing = false;
-    private bool isPlayerClose = false;
+    [ReadOnly] public bool IsPlayerVisible = false;
+    [ReadOnly] public bool IsChasing = false;
+    [ReadOnly] private bool IsPlayerClose = false;
 
-    [SerializeField] private LayerMask playerMask;
-    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private LayerMask _playerMask;
+    [SerializeField] private LayerMask _obstacleMask;
 
     private void Start()
     {
-        mesh = new Mesh();
-        innerMesh = new Mesh();
-        meshRenderer.material = visionMaterial;
-        innerMeshRenderer.material = visionMaterial;
-        Vision = meshFilter.gameObject;
+        _mesh = new Mesh();
+        _innerMesh = new Mesh();
+        _outerMeshRenderer.material = _visionMaterial;
+        _innerMeshRenderer.material = _visionMaterial;
+        _vision = _outerMeshFilter.gameObject;
         StartCoroutine(CheckRoutine());
         DrawVisionCircle();
     }
@@ -43,26 +44,25 @@ public class FieldOfView : MonoBehaviour
     public void SetVisionDirection(Vector3 currentPosition, Vector3 direction)
     {
         float theta = Mathf.Atan2(direction.x - currentPosition.x, direction.z - currentPosition.z);
-        //print("angle: " + theta * Mathf.Rad2Deg);
-        Vision.transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
+        _vision.transform.eulerAngles = new Vector3(0, theta * Mathf.Rad2Deg, 0);
     }
 
     private void DrawVisionCircle()
     {
-        int[] triangles = new int[(rayCount - 1) * 3];
-        Vector3[] Vertices = new Vector3[rayCount + 1];
+        int[] triangles = new int[(_rayCount - 1) * 3];
+        Vector3[] Vertices = new Vector3[_rayCount + 1];
         Vertices[0] = Vector3.zero;
-        float Currentangle = (0 * Mathf.Deg2Rad) / 2;
-        float angleIcrement = (360 * Mathf.Deg2Rad) / (rayCount - 1);
+        float Currentangle = 0 * Mathf.Deg2Rad / 2;
+        float angleIcrement = 360 * Mathf.Deg2Rad / (_rayCount - 1);
         float Sine;
         float Cosine;
 
-        for (int i = 0; i < rayCount; i++)
+        for (int i = 0; i < _rayCount; i++)
         {
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-            Vertices[i + 1] = VertForward * innerRadius;
+            Vertices[i + 1] = VertForward * InnerRadius;
 
             Currentangle += angleIcrement;
         }
@@ -74,35 +74,35 @@ public class FieldOfView : MonoBehaviour
             triangles[i + 2] = j + 2;
         }
 
-        innerMesh.Clear();
-        innerMesh.vertices = Vertices;
-        innerMesh.triangles = triangles;
-        innerMeshFilter.mesh = innerMesh;
+        _innerMesh.Clear();
+        _innerMesh.vertices = Vertices;
+        _innerMesh.triangles = triangles;
+        _innerMeshFilter.mesh = _innerMesh;
     }
 
     private void DrawVisionCone()
     {
-        int[] triangles = new int[(rayCount - 1) * 3];
-        Vector3[] Vertices = new Vector3[rayCount + 1];
+        int[] triangles = new int[(_rayCount - 1) * 3];
+        Vector3[] Vertices = new Vector3[_rayCount + 1];
         Vertices[0] = Vector3.zero;
-        float Currentangle = (-Angle * Mathf.Deg2Rad) / 2;
-        float angleIcrement = (Angle * Mathf.Deg2Rad) / (rayCount - 1);
+        float Currentangle = -Angle * Mathf.Deg2Rad / 2;
+        float angleIcrement = Angle * Mathf.Deg2Rad / (_rayCount - 1);
         float Sine;
         float Cosine;
 
-        for (int i = 0; i < rayCount; i++)
+        for (int i = 0; i < _rayCount; i++)
         {
             Sine = Mathf.Sin(Currentangle);
             Cosine = Mathf.Cos(Currentangle);
-            Vector3 RaycastDirection = (Vision.transform.forward * Cosine) + (Vision.transform.right * Sine);
+            Vector3 RaycastDirection = (_vision.transform.forward * Cosine) + (_vision.transform.right * Sine);
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-            if (Physics.Raycast(Vision.transform.position, RaycastDirection, out RaycastHit hit, outerRadius, obstacleMask) && !isChasing)
+            if (Physics.Raycast(_vision.transform.position, RaycastDirection, out RaycastHit hit, OuterRadius, _obstacleMask) && !IsChasing)
             {
                 Vertices[i + 1] = VertForward * hit.distance;
             }
             else
             {
-                Vertices[i + 1] = VertForward * outerRadius;
+                Vertices[i + 1] = VertForward * OuterRadius;
             }
 
 
@@ -115,21 +115,16 @@ public class FieldOfView : MonoBehaviour
             triangles[i + 2] = j + 2;
         }
 
-        mesh.Clear();
-        mesh.vertices = Vertices;
-        mesh.triangles = triangles;
-        meshFilter.mesh = mesh;
+        _mesh.Clear();
+        _mesh.vertices = Vertices;
+        _mesh.triangles = triangles;
+        _outerMeshFilter.mesh = _mesh;
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
         DrawVisionCone();
-        if (isPlayerVisible)
-        {
-            //print("Player visible");
-
-        }
     }
 
     private IEnumerator CheckRoutine()
@@ -145,14 +140,14 @@ public class FieldOfView : MonoBehaviour
 
     private void CheckView()
     {
-        Collider[] outerColliders = Physics.OverlapSphere(Vision.transform.position, outerRadius, playerMask);
+        Collider[] outerColliders = Physics.OverlapSphere(_vision.transform.position, OuterRadius, _playerMask);
         outerColliders = outerColliders.Where(collider => 
             LayerMask.LayerToName(collider.gameObject.layer) == "Player" || 
             (LayerMask.LayerToName(collider.gameObject.layer) == "Cat" 
                 && collider.gameObject.GetComponent<CatStateMachine>().Follow.Target != null)
         ).ToArray();
 
-        Collider[] innerColliders = Physics.OverlapSphere(Vision.transform.position, innerRadius, playerMask);
+        Collider[] innerColliders = Physics.OverlapSphere(_vision.transform.position, InnerRadius, _playerMask);
         innerColliders = innerColliders.Where(collider =>
             LayerMask.LayerToName(collider.gameObject.layer) == "Player" ||
             (LayerMask.LayerToName(collider.gameObject.layer) == "Cat"
@@ -161,7 +156,7 @@ public class FieldOfView : MonoBehaviour
 
         if (innerColliders.Length > 0)
         {
-            isPlayerVisible = true;
+            IsPlayerVisible = true;
             foreach (var collider in outerColliders)
             {
                 Debug.DrawRay(collider.transform.position,  Vector3.up * 100f, Color.blue, 10f);
@@ -170,15 +165,15 @@ public class FieldOfView : MonoBehaviour
         else if (outerColliders.Length > 0)
         {
             Transform target = outerColliders[0].transform;
-            Vector3 direction = (target.position - Vision.transform.position).normalized;
+            Vector3 direction = (target.position - _vision.transform.position).normalized;
 
-            if(Vector3.Angle(Vision.transform.forward, direction) < Angle / 2)
+            if(Vector3.Angle(_vision.transform.forward, direction) < Angle / 2)
             {
-                float distance = Vector3.Distance(Vision.transform.position, target.position);
+                float distance = Vector3.Distance(_vision.transform.position, target.position);
 
-                if (!Physics.Raycast(Vision.transform.position, direction, distance, obstacleMask))
+                if (!Physics.Raycast(_vision.transform.position, direction, distance, _obstacleMask))
                 {
-                    isPlayerVisible = true;
+                    IsPlayerVisible = true;
                     foreach (var collider in outerColliders)
                     {
                         Debug.DrawRay(collider.transform.position,  Vector3.up * 100f, Color.blue, 10f);
@@ -186,31 +181,30 @@ public class FieldOfView : MonoBehaviour
                 }
                 else
                 {
-                    isPlayerVisible = false;
+                    IsPlayerVisible = false;
                 }
             }
             else
             {
-                isPlayerVisible= false;
+                IsPlayerVisible= false;
             }
         }
-        else if (isPlayerVisible)
+        else if (IsPlayerVisible)
         {
-            isPlayerVisible = false;
+            IsPlayerVisible = false;
         }
 
-        Collider[] closeColliders = Physics.OverlapSphere(Vision.transform.position, closeRange, playerMask);
+        Collider[] closeColliders = Physics.OverlapSphere(_vision.transform.position, CloseRange, _playerMask);
         closeColliders = closeColliders.Where(collider =>
             LayerMask.LayerToName(collider.gameObject.layer) == "Player" ||
             (LayerMask.LayerToName(collider.gameObject.layer) == "Cat"
                 && collider.gameObject.GetComponent<CatStateMachine>().Follow.Target != null)
         ).ToArray();
 
-        if (closeColliders.Length > 0 && !isPlayerClose)
+        if (closeColliders.Length > 0 && !IsPlayerClose)
         {
-            // AudioManager.Instance.PlayOneShot("Sniff");
-            isPlayerClose = true;
+            IsPlayerClose = true;
         }
-        else { isPlayerClose = false; }
+        else { IsPlayerClose = false; }
     }
 }

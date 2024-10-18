@@ -12,27 +12,27 @@ public class SceneLoadEvents {
 
 public class SceneLoader : SingletonMB<SceneLoader> {
     public string CurrentSceneName => SceneManager.GetActiveScene().name;
-    [SerializeField] private Image overlay;
-    private Action onLoaderCallback;
-    public AsyncOperation asyncLoad;
+    [SerializeField] private Image _overlay;
+    private Action _onLoaderCallback;
+    public AsyncOperation AsyncLoad;
 
     public void LoadScene(string sceneName, SceneLoadEvents events = null) {
         Time.timeScale = 1;
         DOTween.KillAll();
         AudioManager.Instance.StopBGMFadeOut(1f);
-        overlay.DOFade(1, 0.5f).OnComplete(() => {
-            onLoaderCallback = () => { StartCoroutine(LoadSceneAsync(sceneName, events)); };
+        _overlay.DOFade(1, 0.5f).OnComplete(() => {
+            _onLoaderCallback = () => { StartCoroutine(LoadSceneAsync(sceneName, events)); };
             SceneManager.LoadScene("LoadingScreen");
-            overlay.DOFade(0, 0f);
+            _overlay.DOFade(0, 0f);
         });
     }
 
     public IEnumerator LoadSceneAsync(string sceneName, SceneLoadEvents events = null) {
-        asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        asyncLoad.allowSceneActivation = false;
+        AsyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        AsyncLoad.allowSceneActivation = false;
 
-        while (!asyncLoad.isDone) {
-            if (asyncLoad.progress >= 0.9f) {
+        while (!AsyncLoad.isDone) {
+            if (AsyncLoad.progress >= 0.9f) {
                 yield return null;
 
                 events?.BeforeAwake?.Invoke();
@@ -45,9 +45,14 @@ public class SceneLoader : SingletonMB<SceneLoader> {
     }
 
     public void AllowSceneActivation() {
-        asyncLoad.allowSceneActivation = true;
-        overlay.DOFade(1, 0f);
-        overlay.DOFade(0, 0.2f);
+        if (AsyncLoad == null) {
+            Debug.LogWarning("No scene is being loaded");
+            return;
+        }
+
+        AsyncLoad.allowSceneActivation = true;
+        _overlay.DOFade(1, 0f);
+        _overlay.DOFade(0, 0.2f);
     }
 
     public void ToGameplay() {
@@ -67,10 +72,10 @@ public class SceneLoader : SingletonMB<SceneLoader> {
 
     public static void LoaderCallback()
     {
-        if (Instance.onLoaderCallback != null)
+        if (Instance._onLoaderCallback != null)
         {
-            Instance.onLoaderCallback();
-            Instance.onLoaderCallback = null;
+            Instance._onLoaderCallback();
+            Instance._onLoaderCallback = null;
         }
     }
 }

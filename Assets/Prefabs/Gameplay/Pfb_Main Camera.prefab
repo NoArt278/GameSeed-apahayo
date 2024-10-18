@@ -369,5 +369,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d485f3c5a3b93458a60f67cf18d36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isChased: 0
-  shake6D: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  _shake6D: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}

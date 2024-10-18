@@ -1,40 +1,38 @@
 using NaughtyAttributes;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PatrolState : DogState
 {
     private enum State { Wander, Idle }
-    [ReadOnly][SerializeField] private State currentState = State.Idle;
+    [ReadOnly, SerializeField] private State currentState = State.Idle;
 
     [Header("Properties")]
-    [SerializeField] private float speed = 3.5f;
-    [SerializeField] private float rotateDuration = 1f;
-    [SerializeField] private float biasTowardsPlayer = 0.7f;
-    [SerializeField] private float minDistanceAfterHide = 3;
+    [SerializeField] private float _speed = 4.1f;
+    [SerializeField] private float _rotateDuration = 2f;
+    [SerializeField] private float _biasTowardsPlayer = 0.8f;
+    [SerializeField] private float _minDistanceAfterHide = 3;
 
-    // Wander
-    [SerializeField] private RangeFloat wanderRadius = new(.5f, 2f);
-    // Idle
-    [SerializeField] private RangeFloat idleDuration = new(1, 4);
+    [SerializeField] private RangeFloat _wanderRadius = new(2f, 12f);
+    [SerializeField] private RangeFloat _idleDuration = new(2, 4);
+
 
     [Header("Wander Lookup")]
-    [SerializeField] private int maxAttempts;
+    [SerializeField] private int _maxAttempts = 30;
 
     // Idle
-    private float timer;
-    private float stopIdlingTime;
-    private Vector3 nextDestination;
-    private Vector3 prevPosition;
+    private float _timer;
+    private float _stopIdlingTime;
+    private Vector3 _nextDestination;
+    private Vector3 _prevPosition;
 
 
     public override void EnterState(DogStateMachine stateMachine)
     {
-        if (player == null)
+        if (Player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            Player = GameObject.FindGameObjectWithTag("Player");
         }
 
         float random = Random.Range(0f, 1f);
@@ -50,7 +48,7 @@ public class PatrolState : DogState
 
     public override void UpdateState(DogStateMachine stateMachine)
     {
-        if (!fieldOfView.isPlayerVisible || player.GetComponent<PlayerMovement>().IsHiding())
+        if (!FieldOfView.IsPlayerVisible || Player.GetComponent<PlayerMovement>().IsHiding())
         {
             switch (currentState)
             {
@@ -70,31 +68,31 @@ public class PatrolState : DogState
 
     public override void ExitState(DogStateMachine stateMachine)
     {
-        animator.SetBool("Patrol", false);
-        agent.ResetPath();
+        Animator.SetBool("Patrol", false);
+        Agent.ResetPath();
     }
 
     private void AlignOrientation()
     {
-        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x >= 0;
+        if (Agent.velocity.sqrMagnitude > 0.1f) SpriteRenderer.flipX = Agent.velocity.x >= 0;
     }
 
     private void SwitchToIdle()
     {
         //print("Switching to idle");
-        if (agent == null) return;
-        nextDestination = GetValidDestination();
-        animator.SetBool("Patrol", false);
-        agent.ResetPath();
-        timer = 0f;
-        stopIdlingTime = Random.Range(idleDuration.min, idleDuration.max);
+        if (Agent == null) return;
+        _nextDestination = GetValidDestination();
+        Animator.SetBool("Patrol", false);
+        Agent.ResetPath();
+        _timer = 0f;
+        _stopIdlingTime = Random.Range(_idleDuration.Min, _idleDuration.Max);
 
         currentState = State.Idle;
     }
 
     private IEnumerator WaitDelay()
     {
-        WaitForSeconds wait = new WaitForSeconds(rotateDuration);
+        WaitForSeconds wait = new WaitForSeconds(_rotateDuration);
 
         yield return wait;
     }
@@ -103,18 +101,18 @@ public class PatrolState : DogState
     {
         //print("Switching to wander");
         StartCoroutine(WaitDelay());
-        if (agent == null) return;
+        if (Agent == null) return;
 
-        if (nextDestination == null)
+        if (_nextDestination == null)
         {
-            nextDestination = GetValidDestination();
+            _nextDestination = GetValidDestination();
         }
 
-        prevPosition = transform.position;
-        agent.speed = speed;
-        fieldOfView.SetVisionDirection(transform.position, nextDestination);
-        agent.SetDestination(nextDestination);
-        animator.SetBool("Patrol", true);
+        _prevPosition = transform.position;
+        Agent.speed = _speed;
+        FieldOfView.SetVisionDirection(transform.position, _nextDestination);
+        Agent.SetDestination(_nextDestination);
+        Animator.SetBool("Patrol", true);
 
         currentState = State.Wander;
     }
@@ -123,9 +121,9 @@ public class PatrolState : DogState
     {
         AlignOrientation();
 
-        bool isPathStale = agent.pathStatus != NavMeshPathStatus.PathComplete;
-        bool isPathPending = agent.pathPending;
-        bool isDestinationReached = agent.remainingDistance <= agent.stoppingDistance;
+        bool isPathStale = Agent.pathStatus != NavMeshPathStatus.PathComplete;
+        bool isPathPending = Agent.pathPending;
+        bool isDestinationReached = Agent.remainingDistance <= Agent.stoppingDistance;
 
         if (isPathStale || isPathPending || isDestinationReached)
         {
@@ -135,41 +133,41 @@ public class PatrolState : DogState
 
     private void IdleLoop()
     {
-        timer += Time.deltaTime;
-        if (timer >= stopIdlingTime)
+        _timer += Time.deltaTime;
+        if (_timer >= _stopIdlingTime)
         {
             SwitchToWander();
         }
         else
         {
-            fieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(prevPosition == null ? Vector3.forward : transform.position + (transform.position -  prevPosition).normalized, nextDestination, timer / stopIdlingTime));
+            FieldOfView.SetVisionDirection(transform.position, Vector3.Lerp(_prevPosition == null ? Vector3.forward : transform.position + (transform.position -  _prevPosition).normalized, _nextDestination, _timer / _stopIdlingTime));
         }
     }
 
     private Vector3 GetValidDestination()
     {
         // EXPECTED: Get Random Destination inside the wander radius
-        for (int i = 0; i < maxAttempts; i++)
+        for (int i = 0; i < _maxAttempts; i++)
         {
-            float radius = wanderRadius.RandomValue();
+            float radius = _wanderRadius.RandomValue();
             Vector3 randomDirection = Random.insideUnitSphere * radius;
             Vector3 biasedDirection, targetPos;
-            if (player.GetComponent<PlayerMovement>().IsHiding())
+            if (Player.GetComponent<PlayerMovement>().IsHiding())
             {
-                Vector3 directionAwayFromPlayer = (transform.position - player.transform.position).normalized;
-                biasedDirection = Vector3.Lerp(randomDirection, directionAwayFromPlayer * radius, biasTowardsPlayer);
+                Vector3 directionAwayFromPlayer = (transform.position - Player.transform.position).normalized;
+                biasedDirection = Vector3.Lerp(randomDirection, directionAwayFromPlayer * radius, _biasTowardsPlayer);
                 targetPos = transform.position + biasedDirection;
 
-                float targetDistanceToPlayer = Vector3.Distance(targetPos, player.transform.position);
-                if (targetDistanceToPlayer < minDistanceAfterHide)
+                float targetDistanceToPlayer = Vector3.Distance(targetPos, Player.transform.position);
+                if (targetDistanceToPlayer < _minDistanceAfterHide)
                 {
                     targetPos = transform.position + directionAwayFromPlayer * radius;
                 }
             }
             else
             {
-                Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-                biasedDirection = Vector3.Lerp(randomDirection, directionToPlayer * radius, biasTowardsPlayer);
+                Vector3 directionToPlayer = (Player.transform.position - transform.position).normalized;
+                biasedDirection = Vector3.Lerp(randomDirection, directionToPlayer * radius, _biasTowardsPlayer);
                 targetPos = transform.position + biasedDirection;
             }
 
@@ -181,7 +179,7 @@ public class PatrolState : DogState
                 {
                     if (path.status == NavMeshPathStatus.PathComplete)
                     {
-                        fieldOfView.SetVisionDirection(transform.position, hit.position);
+                        FieldOfView.SetVisionDirection(transform.position, hit.position);
 
                         
                         return hit.position;
@@ -194,12 +192,12 @@ public class PatrolState : DogState
         NavMeshHit randomHit;
         if (NavMesh.SamplePosition(Random.insideUnitSphere * 1000f + transform.position, out randomHit, 1000f, NavMesh.AllAreas))
         {
-            fieldOfView.SetVisionDirection(transform.position, randomHit.position);
+            FieldOfView.SetVisionDirection(transform.position, randomHit.position);
             return randomHit.position;
         }
 
         // FALLBACK 2: Stay in the same position
-        fieldOfView.SetVisionDirection(transform.position, transform.position);
+        FieldOfView.SetVisionDirection(transform.position, transform.position);
         return transform.position;
     }
 }

@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb94f29bc4e21b43959a286f3ec1703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2918274875501160764, guid: fd5e94194bcce3a47bfcc1c87956f3d2,
+  _playerPrefab: {fileID: 2918274875501160764, guid: fd5e94194bcce3a47bfcc1c87956f3d2,
     type: 3}
-  cameraPrefab: {fileID: 400486907940317645, guid: 36bee7bb819ccc44d8d0177e07ce0b20,
+  _cameraPrefab: {fileID: 400486907940317645, guid: 36bee7bb819ccc44d8d0177e07ce0b20,
     type: 3}
-  directionalLight: {fileID: 6784417272164631530, guid: 9f3a8ef8812c1a049aace501f4284f7b,
+  _directionalLight: {fileID: 6784417272164631530, guid: 9f3a8ef8812c1a049aace501f4284f7b,
     type: 3}
 --- !u!1 &2180191371773774515
 GameObject:
@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe17d6c1099f35549aafd1d1fe933076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poofVFX: {fileID: 2178843780446148504}
-  zapVFX: {fileID: 810239916865160484}
+  _poofVFX: {fileID: 2178843780446148504}
+  _zapVFX: {fileID: 810239916865160484}
 --- !u!1 &3774695043622836617
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,123 +5230,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49549ecf79098d46af2027a9c105630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - type: 1
-    clip: {fileID: 8300000, guid: c01ff44b601fd11478b757fe3e74e8c9, type: 3}
-    name: Sniff
-    volume: 0.7
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: d7d2beed940657e4484e764de9c7c759, type: 3}
-    name: Acquired
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 0e49ac30c0826f547a4ab08889b94151, type: 3}
-    name: Yeet
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 7a3e0770af3c9dc439fd08ff445b7eae, type: 3}
-    name: Click
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 91dcfc8b23db3fc4fbe3f76ffd32503e, type: 3}
-    name: ClickHypno
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: e37b78e4284c7b241a1a043d5d032321, type: 3}
-    name: Hover
-    volume: 0.6
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 7e9956f5d51446046b552e680506d49a, type: 3}
-    name: Sprint
-    volume: 0.6
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 2f5b6f51e66ba344f900ba267d2065b9, type: 3}
-    name: HypnoSuccess
-    volume: 0.6
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 0
-    clip: {fileID: 8300000, guid: 427b093775a4ef44daab184c693747b4, type: 3}
-    name: InGameBGM
-    volume: 0.6
-    pitch: 1
-    source: {fileID: 0}
-    loop: 1
-  - type: 0
-    clip: {fileID: 8300000, guid: 399eb20bc1ac1c1488130868f7be51f0, type: 3}
-    name: MenuBGM
-    volume: 0.6
-    pitch: 1
-    source: {fileID: 0}
-    loop: 1
-  - type: 1
-    clip: {fileID: 8300000, guid: 9051beadb24b3da449630c7b02afdd2d, type: 3}
-    name: GameOver
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 3befec9aff7b00649b5dc48423f1d20b, type: 3}
-    name: Caught
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: b5581199f10f8f447af71a293710ddd8, type: 3}
-    name: Time
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 1
-  - type: 1
-    clip: {fileID: 8300000, guid: f59174f2f84a91946bef85681d4414e9, type: 3}
-    name: TimesUp
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 7dfe460bea929544d9a8964e01eb5ced, type: 3}
-    name: Poof
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  - type: 1
-    clip: {fileID: 8300000, guid: 2fc8a9986a8e5924ab77bf188aa076c9, type: 3}
-    name: Cant
-    volume: 0.45
-    pitch: 1
-    source: {fileID: 0}
-    loop: 0
-  backgroundChannelAmount: 5
-  backgroundMixerGroup: {fileID: 4785512760479693184, guid: e11f44f53950dae438f3507fdfb96dce,
+  _sounds:
+  - Type: 1
+    Clip: {fileID: 8300000, guid: c01ff44b601fd11478b757fe3e74e8c9, type: 3}
+    Name: Sniff
+    Volume: 0.7
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: d7d2beed940657e4484e764de9c7c759, type: 3}
+    Name: Acquired
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 0e49ac30c0826f547a4ab08889b94151, type: 3}
+    Name: Yeet
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 7a3e0770af3c9dc439fd08ff445b7eae, type: 3}
+    Name: Click
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 91dcfc8b23db3fc4fbe3f76ffd32503e, type: 3}
+    Name: ClickHypno
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: e37b78e4284c7b241a1a043d5d032321, type: 3}
+    Name: Hover
+    Volume: 0.6
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 7e9956f5d51446046b552e680506d49a, type: 3}
+    Name: Sprint
+    Volume: 0.6
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 2f5b6f51e66ba344f900ba267d2065b9, type: 3}
+    Name: HypnoSuccess
+    Volume: 0.6
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 0
+    Clip: {fileID: 8300000, guid: 427b093775a4ef44daab184c693747b4, type: 3}
+    Name: InGameBGM
+    Volume: 0.6
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 1
+  - Type: 0
+    Clip: {fileID: 8300000, guid: 399eb20bc1ac1c1488130868f7be51f0, type: 3}
+    Name: MenuBGM
+    Volume: 0.6
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 1
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 9051beadb24b3da449630c7b02afdd2d, type: 3}
+    Name: GameOver
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 3befec9aff7b00649b5dc48423f1d20b, type: 3}
+    Name: Caught
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: b5581199f10f8f447af71a293710ddd8, type: 3}
+    Name: Time
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 1
+  - Type: 1
+    Clip: {fileID: 8300000, guid: f59174f2f84a91946bef85681d4414e9, type: 3}
+    Name: TimesUp
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 7dfe460bea929544d9a8964e01eb5ced, type: 3}
+    Name: Poof
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  - Type: 1
+    Clip: {fileID: 8300000, guid: 2fc8a9986a8e5924ab77bf188aa076c9, type: 3}
+    Name: Cant
+    Volume: 0.45
+    Pitch: 1
+    Source: {fileID: 0}
+    Loop: 0
+  _backgroundChannelAmount: 5
+  _backgroundMixerGroup: {fileID: 4785512760479693184, guid: e11f44f53950dae438f3507fdfb96dce,
     type: 2}
-  sfxMixerGroup: {fileID: 3192011362529257218, guid: e11f44f53950dae438f3507fdfb96dce,
+  _sfxMixerGroup: {fileID: 3192011362529257218, guid: e11f44f53950dae438f3507fdfb96dce,
     type: 2}
 --- !u!1 &4883553995997703039
 GameObject:
@@ -5574,4 +5574,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdb260ea34fd1b43b02eabb195efcb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlay: {fileID: 62281904319069896}
+  _overlay: {fileID: 62281904319069896}

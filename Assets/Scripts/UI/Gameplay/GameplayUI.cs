@@ -6,61 +6,61 @@ using UnityEngine.UI;
 
 public class GameplayUI : SingletonMB<GameplayUI> {
     [Header("Parent Objects")]
-    [SerializeField] private RectTransform hypnoBarParent;
+    [SerializeField] private RectTransform _hypnoBarParent;
 
     [Header("Texts")]
-    [SerializeField] private TextMeshProUGUI catCountText;
-    [SerializeField] private TextMeshProUGUI hideText;
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI mainHintText;
+    [SerializeField] private TextMeshProUGUI _catCountText;
+    [SerializeField] private TextMeshProUGUI _hideText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _mainHintText;
 
     [Header("Bars")]
-    [SerializeField] private Slider staminaSlider;
-    [SerializeField] private Slider hypnotizeBar;
+    [SerializeField] private Slider _staminaSlider;
+    [SerializeField] private Slider _hypnotizeBar;
 
     [Header("Images")]
-    [SerializeField] private Image crosshair;
-    [SerializeField] private Image overlay;
-    [SerializeField] private Image hypnoVignette;
-    [SerializeField] private Image dogVignette;
-    [SerializeField] private Image dimmer;
+    [SerializeField] private Image _crosshair;
+    [SerializeField] private Image _overlay;
+    [SerializeField] private Image _hypnoVignette;
+    [SerializeField] private Image _dogVignette;
+    [SerializeField] private Image _dimmer;
 
     [Header("CG")]
-    [SerializeField] private CanvasGroup staminaSliderCG;
-    [SerializeField] private CanvasGroup pregameCG;
+    [SerializeField] private CanvasGroup _staminaSliderCG;
+    [SerializeField] private CanvasGroup _pregameCG;
 
     [Header("Animations")]
-    [SerializeField] private Animator crosshairAnimator;
+    [SerializeField] private Animator _crosshairAnimator;
 
-    private Tween mainHintTween;
+    private Tween _mainHintTween;
 
     protected override void Awake() {
         base.Awake();
 
         Cursor.visible = false;
-        overlay.gameObject.SetActive(false);
-        Color oColor = overlay.color;
+        _overlay.gameObject.SetActive(false);
+        Color oColor = _overlay.color;
         oColor.a = 1;
-        overlay.color = oColor;
+        _overlay.color = oColor;
 
-        mainHintText.gameObject.SetActive(false);
+        _mainHintText.gameObject.SetActive(false);
     }
 
     public void GameTransitionIn(Action onComplete = null) {
-        overlay.gameObject.SetActive(true);
+        _overlay.gameObject.SetActive(true);
         Sequence sequence = DOTween.Sequence();
 
-        Color dimmerColor = dimmer.color;
-        dimmer.color = new Color(dimmerColor.r, dimmerColor.g, dimmerColor.b, 0.9f);
+        Color dimmerColor = _dimmer.color;
+        _dimmer.color = new Color(dimmerColor.r, dimmerColor.g, dimmerColor.b, 0.9f);
 
-        overlay.DOFade(0, 0);
+        _overlay.DOFade(0, 0);
         sequence.AppendInterval(2);
-        sequence.Append(pregameCG.DOFade(0, 1).OnComplete(() => {
-            pregameCG.gameObject.SetActive(false);
+        sequence.Append(_pregameCG.DOFade(0, 1).OnComplete(() => {
+            _pregameCG.gameObject.SetActive(false);
         }));
-        sequence.Join(dimmer.DOFade(0, 1).OnComplete(() => {
-            dimmer.gameObject.SetActive(false);
-            dimmer.color = dimmerColor;
+        sequence.Join(_dimmer.DOFade(0, 1).OnComplete(() => {
+            _dimmer.gameObject.SetActive(false);
+            _dimmer.color = dimmerColor;
         }));
 
         sequence.JoinCallback(() => {
@@ -70,7 +70,7 @@ public class GameplayUI : SingletonMB<GameplayUI> {
 
     private void Update() {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
-        crosshair.transform.position = Input.mousePosition;
+        _crosshair.transform.position = Input.mousePosition;
 
         // Clamp crosshair position to screen bounds
         Vector2 mousePosition = Input.mousePosition;
@@ -80,84 +80,84 @@ public class GameplayUI : SingletonMB<GameplayUI> {
             mousePosition.y = Mathf.Clamp(mousePosition.y, 0, Camera.main.pixelHeight);
         }
 
-        crosshair.transform.position = mousePosition;
+        _crosshair.transform.position = mousePosition;
     }
 
     public void UpdateCatCount(int catCount) {
-        catCountText.text = catCount.ToString();
+        _catCountText.text = catCount.ToString();
     }
 
     public void ChangeHideText(string text) {
-        hideText.text = text;
+        _hideText.text = text;
     }
 
     public void HideTextAppear(string text) {
         ChangeHideText(text);
-        hideText.gameObject.SetActive(true);
+        _hideText.gameObject.SetActive(true);
     }
 
     public void HideTextDissapear() {
-        hideText.gameObject.SetActive(false);
+        _hideText.gameObject.SetActive(false);
     }
 
     public void UpdateStamina(float stamina) {
-        staminaSlider.value = stamina;
+        _staminaSlider.value = stamina;
     }
 
     public void StartHypnotize() {
-        hypnoBarParent.gameObject.SetActive(true);
-        hypnotizeBar.value = 0;
+        _hypnoBarParent.gameObject.SetActive(true);
+        _hypnotizeBar.value = 0;
 
-        hypnoVignette.gameObject.SetActive(true);
-        hypnoVignette.color = new Color(1, 1, 1, 0);
+        _hypnoVignette.gameObject.SetActive(true);
+        _hypnoVignette.color = new Color(1, 1, 1, 0);
 
-        hypnoVignette.DOKill();
-        hypnoVignette.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(() => {
+        _hypnoVignette.DOKill();
+        _hypnoVignette.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(() => {
             DOTween.Sequence()
-                .Append(hypnoVignette.DOFade(0.7f, 0.6f).SetEase(Ease.Linear))
-                .Append(hypnoVignette.DOFade(1f, 0.6f).SetEase(Ease.Linear))
+                .Append(_hypnoVignette.DOFade(0.7f, 0.6f).SetEase(Ease.Linear))
+                .Append(_hypnoVignette.DOFade(1f, 0.6f).SetEase(Ease.Linear))
                 .SetLoops(-1, LoopType.Restart);
         });
     }
 
     public void UpdateHypnoBar(float t)
     {
-        hypnotizeBar.value = t;
+        _hypnotizeBar.value = t;
     }
 
     public void StopHypnotize()
     {
-        hypnoBarParent.gameObject.SetActive(false);
-        hypnoVignette.DOKill();
-        hypnoVignette.DOFade(0, hypnoVignette.color.a * 2).OnComplete(() => hypnoVignette.gameObject.SetActive(false));
+        _hypnoBarParent.gameObject.SetActive(false);
+        _hypnoVignette.DOKill();
+        _hypnoVignette.DOFade(0, _hypnoVignette.color.a * 2).OnComplete(() => _hypnoVignette.gameObject.SetActive(false));
     }
 
     public void StartDogChase() {
-        dogVignette.gameObject.SetActive(true);
-        dogVignette.color = new Color(1, 1, 1, 0);
+        _dogVignette.gameObject.SetActive(true);
+        _dogVignette.color = new Color(1, 1, 1, 0);
 
-        dogVignette.DOKill();
-        dogVignette.DOFade(1f, 1.5f).SetEase(Ease.Linear).OnComplete(() => {
+        _dogVignette.DOKill();
+        _dogVignette.DOFade(1f, 1.5f).SetEase(Ease.Linear).OnComplete(() => {
             DOTween.Sequence()
-                .Append(dogVignette.DOFade(0.7f, 0.45f).SetEase(Ease.Linear))
-                .Append(dogVignette.DOFade(1f, 0.45f).SetEase(Ease.Linear))
+                .Append(_dogVignette.DOFade(0.7f, 0.45f).SetEase(Ease.Linear))
+                .Append(_dogVignette.DOFade(1f, 0.45f).SetEase(Ease.Linear))
                 .SetLoops(-1, LoopType.Restart);
         });
     }
 
     public void StopDogChase() {
-        dogVignette.DOKill();
-        dogVignette.DOFade(0, dogVignette.color.a * 1.5f).OnComplete(() => dogVignette.gameObject.SetActive(false));
+        _dogVignette.DOKill();
+        _dogVignette.DOFade(0, _dogVignette.color.a * 1.5f).OnComplete(() => _dogVignette.gameObject.SetActive(false));
     }
 
     public int GetScore()
     {
-        return Convert.ToInt32(scoreText.text);
+        return Convert.ToInt32(_scoreText.text);
     }
     
     public void UpdateScore(int score)
     {
-        scoreText.text = score.ToString();
+        _scoreText.text = score.ToString();
     }
 
     public void StaminaDeplete()
@@ -165,38 +165,38 @@ public class GameplayUI : SingletonMB<GameplayUI> {
         StopAllCoroutines();
         // StartCoroutine(FadeStaminaBar());
         Sequence blinkSq = DOTween.Sequence();
-        blinkSq.Append(staminaSliderCG.DOFade(0, 0.3f));
-        blinkSq.Append(staminaSliderCG.DOFade(1, 0.3f));
+        blinkSq.Append(_staminaSliderCG.DOFade(0, 0.3f));
+        blinkSq.Append(_staminaSliderCG.DOFade(1, 0.3f));
         blinkSq.SetLoops(8);
         blinkSq.Play();
     }
 
     public void PlayCrosshairBeat()
     {
-        crosshairAnimator.SetTrigger("Beat");
+        _crosshairAnimator.SetTrigger("Beat");
     }
 
     public void ShowMainHintText(string text) {
-        mainHintTween?.Kill();
-        mainHintText.gameObject.SetActive(true);
-        mainHintText.text = text;
+        _mainHintTween?.Kill();
+        _mainHintText.gameObject.SetActive(true);
+        _mainHintText.text = text;
 
         Vector3 initPos = new Vector3(0, 70, 0);
         Vector3 targetPos = new Vector3(0, 120, 0);
 
         Sequence seq = DOTween.Sequence();
-        mainHintText.rectTransform.anchoredPosition = initPos;
-        seq.Append(mainHintText.rectTransform.DOAnchorPosY(targetPos.y, 0.5f).SetEase(Ease.OutSine));
-        seq.Join(mainHintText.DOFade(1, 0.5f));
+        _mainHintText.rectTransform.anchoredPosition = initPos;
+        seq.Append(_mainHintText.rectTransform.DOAnchorPosY(targetPos.y, 0.5f).SetEase(Ease.OutSine));
+        seq.Join(_mainHintText.DOFade(1, 0.5f));
         seq.AppendInterval(2);
-        seq.Append(mainHintText.rectTransform.DOAnchorPosY(initPos.y, 0.5f).SetEase(Ease.InSine));
-        seq.Join(mainHintText.DOFade(0, 0.5f));
-        seq.AppendCallback(() => {
-            mainHintTween = null;
-            mainHintText.gameObject.SetActive(false);
-            mainHintText.rectTransform.anchoredPosition = targetPos;
-        });
+        seq.Append(_mainHintText.rectTransform.DOAnchorPosY(initPos.y, 0.5f).SetEase(Ease.InSine));
+        seq.Join(_mainHintText.DOFade(0, 0.5f));
+        seq.AppendCallback((TweenCallback)(() => {
+            _mainHintTween = null;
+            this._mainHintText.gameObject.SetActive(false);
+            this._mainHintText.rectTransform.anchoredPosition = targetPos;
+        }));
 
-        mainHintTween = seq;
+        _mainHintTween = seq;
     }
 }

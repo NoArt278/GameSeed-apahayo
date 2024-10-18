@@ -5,6 +5,6 @@ public enum WaypointType { FemaleChild, Male, BuffDude }
 [System.Serializable]
 public class Waypoint
 {
-    public WaypointType type;
-    public Transform[] position;
+    public WaypointType Type;
+    public Transform[] Position;
 }

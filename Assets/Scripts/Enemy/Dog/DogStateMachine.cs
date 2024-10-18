@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class DogStateMachine : MonoBehaviour
 {
     public PatrolState PatrolState;
     public ChaseState ChaseState;
-
-    public DogState CurrentState;
+    [ReadOnly] public DogState CurrentState;
 
     private void Awake()
     {

@@ -3,33 +3,35 @@ using UnityEngine;
 [System.Serializable]
 public class RangeInt
 {
-    public int min, max;
+    public int Min;
+    public int Max;
 
     public RangeInt(int min, int max)
     {
-        this.min = min;
-        this.max = max;
+        Min = min;
+        Max = max;
     }
 
     public int RandomValue()
     {
-        return Random.Range(min, max);
+        return Random.Range(Min, Max);
     }
 }
 
 [System.Serializable]
 public class RangeFloat
 {
-    public float min, max;
+    public float Min;
+    public float Max;
 
     public RangeFloat(float min, float max)
     {
-        this.min = min;
-        this.max = max;
+        Min = min;
+        Max = max;
     }
 
     public float RandomValue()
     {
-        return Random.Range(min, max);
+        return Random.Range(Min, Max);
     }
 }

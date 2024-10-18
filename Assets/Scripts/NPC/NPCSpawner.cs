@@ -9,30 +9,30 @@ public class NPCSpawner : MonoBehaviour
     private int npcInScene = 0;
 
     [Header("NPC")]
-    [SerializeField] private GameObject[] npcPrefabs;
-    [SerializeField] private int maxNPCInScene = 25;
+    [SerializeField] private GameObject[] _npcPrefabs;
+    [SerializeField] private int _maxNPCInScene = 25;
 
     [Header("Spawn")]
-    [SerializeField] private float spawnDelay = 10f;
-    [SerializeField] private int bulkSpawnRate = 4;
-    [SerializeField] private int initialSpawn = 12;
-    [SerializeField] private int maxLocationSearchAttempts = 30;
-    [SerializeField] private Transform spawnParent;
-    [SerializeField] private Transform[] fixedSpawnPoints;
+    [SerializeField] private float _spawnDelay = 10f;
+    [SerializeField] private int _bulkSpawnRate = 4;
+    [SerializeField] private int _initialSpawn = 12;
+    [SerializeField] private int _maxLocationSearchAttempts = 30;
+    [SerializeField] private Transform _spawnParent;
+    [SerializeField] private Transform[] _fixedSpawnPoints;
 
     [Header("Others")]
-    [SerializeField] private NavMeshSurface navMeshSurface;
+    [SerializeField] private NavMeshSurface _navMeshSurface;
 
-    private BoxCollider spawnArea;
-    private LayerMask obstacleMask;
-    private Coroutine spawnRoutine;
-    [SerializeField, ReadOnly] private ObjectPool npcPool;
+    private BoxCollider _spawnArea;
+    private LayerMask _obstacleMask;
+    private Coroutine _spawnRoutine;
+    [SerializeField, ReadOnly] private ObjectPool _npcPool;
 
-    private bool firstSpawn = true;
+    private bool _firstSpawn = true;
 
     private void Awake() {
-        spawnArea = GetComponent<BoxCollider>();
-        obstacleMask = LayerMask.GetMask("Obstacle");
+        _spawnArea = GetComponent<BoxCollider>();
+        _obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start() {
@@ -42,16 +42,16 @@ public class NPCSpawner : MonoBehaviour
 
     [Button]
     private void SerializeObjectPool() {
-        npcPool = new ObjectPool(npcPrefabs, 50, spawnParent);
+        _npcPool = new ObjectPool(_npcPrefabs, 50, _spawnParent);
     }
 
     [Button]
     private void ClearObjectPool() {
-        while (spawnParent.childCount > 0) {
-            DestroyImmediate(spawnParent.GetChild(0).gameObject);
+        while (_spawnParent.childCount > 0) {
+            DestroyImmediate(_spawnParent.GetChild(0).gameObject);
         }
 
-        npcPool = null;
+        _npcPool = null;
     }
 
     private void OnDisable() {
@@ -60,22 +60,22 @@ public class NPCSpawner : MonoBehaviour
 
     private void OnGameStateChanged(GameState prev, GameState current) {
         if (current == GameState.InGame) {
-            spawnRoutine = StartCoroutine(SpawnRoutine());
+            _spawnRoutine = StartCoroutine(SpawnRoutine());
         } else {
-            if (spawnRoutine != null) StopCoroutine(spawnRoutine);
+            if (_spawnRoutine != null) StopCoroutine(_spawnRoutine);
         }
     }
 
     private void FixedSpawn() {
-        for (int i = 0; i < fixedSpawnPoints.Length; i++) {
-            GameObject npc = npcPool.GetObject();
+        for (int i = 0; i < _fixedSpawnPoints.Length; i++) {
+            GameObject npc = _npcPool.GetObject();
             NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
 
-            agent.Warp(fixedSpawnPoints[i].position);
+            agent.Warp(_fixedSpawnPoints[i].position);
 
             NPCStateMachine stm = npc.GetComponent<NPCStateMachine>();
 
-            stm.Initialize(navMeshSurface);
+            stm.Initialize(_navMeshSurface);
             stm.Spawner = this;
             npcInScene++;
         }
@@ -83,32 +83,32 @@ public class NPCSpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine() {
         while (true) {
-            if (firstSpawn) {
+            if (_firstSpawn) {
                 FixedSpawn();
-                for (int i = 0; i < initialSpawn; i++) {
+                for (int i = 0; i < _initialSpawn; i++) {
                     Spawn();
                     yield return null;
                 }
-                firstSpawn = false;
-                yield return new WaitForSeconds(spawnDelay);
+                _firstSpawn = false;
+                yield return new WaitForSeconds(_spawnDelay);
             } 
 
-            for (int i = 0; i < bulkSpawnRate; i++) {
+            for (int i = 0; i < _bulkSpawnRate; i++) {
                 Spawn();
                 yield return null;
             }
 
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(_spawnDelay);
         }
     }
     
     public void Return(GameObject npc){
         npcInScene--;
-        npcPool.ReturnObject(npc);
+        _npcPool.ReturnObject(npc);
     }
 
     private void Spawn(){
-        if (npcInScene >= maxNPCInScene) return;
+        if (npcInScene >= _maxNPCInScene) return;
         if (!Camera.main) return;
 
         Vector3 randomPosition = GetRandomPositionOnNavMesh();
@@ -118,12 +118,12 @@ public class NPCSpawner : MonoBehaviour
         }
 
         // Instantiate NPC
-        GameObject npc = npcPool.GetObject();
+        GameObject npc = _npcPool.GetObject();
         NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
 
         agent.Warp(randomPosition);
 
-        npc.GetComponent<NPCStateMachine>().Initialize(navMeshSurface);
+        npc.GetComponent<NPCStateMachine>().Initialize(_navMeshSurface);
         npc.GetComponent<NPCStateMachine>().Spawner = this;
 
         npcInScene++;
@@ -132,12 +132,12 @@ public class NPCSpawner : MonoBehaviour
     private Vector3 GetRandomPositionOnNavMesh()
     {
         Vector3 spawnPosition = transform.position;
-        Vector3 spawnSize = spawnArea.size;
+        Vector3 spawnSize = _spawnArea.size;
 
         spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
         spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
 
-        for (int i = 0; i < maxLocationSearchAttempts; i++)
+        for (int i = 0; i < _maxLocationSearchAttempts; i++)
         {
             NavMeshHit hit;
             if (NavMesh.SamplePosition(spawnPosition, out hit, 10f, NavMesh.AllAreas))
@@ -152,7 +152,7 @@ public class NPCSpawner : MonoBehaviour
                 Vector3 directionToHit = hitPosition - Camera.main.transform.position;
                 float distance = directionToHit.magnitude;
 
-                if (Physics.Raycast(Camera.main.transform.position, directionToHit, distance, obstacleMask))
+                if (Physics.Raycast(Camera.main.transform.position, directionToHit, distance, _obstacleMask))
                 {
                     return hitPosition;
                 }

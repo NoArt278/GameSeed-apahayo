@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8331cf1bc1a9a954eb7817005a596da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHypnotize: {fileID: 4509958071985119062}
-  playerLaser: {fileID: 386550798975905536}
+  _playerHypnotize: {fileID: 4509958071985119062}
+  _playerLaser: {fileID: 386550798975905536}
 --- !u!1 &217796285900171778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5267,9 +5267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6162e3e10459d6d4daf254942688b7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  sprintSpeed: 8
-  maxArmyCapacity: 10
+  _walkSpeed: 4
+  _sprintSpeed: 8
+  _maxArmyCapacity: 10
 --- !u!114 &7314058896826989453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5295,8 +5295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adbf0066103ca342ab194273b97af53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cats: []
-  armyCatPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
+  _cats: []
+  _armyCatPrefab: {fileID: 7700631295823998277, guid: 70312f30f15a881458034dd69c300ee0,
     type: 3}
 --- !u!143 &2573501632295944324
 CharacterController:
@@ -5336,10 +5336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae5da3aa9c426479301670021c57ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLaser: {fileID: 386550798975905536}
-  catFloatCenter: {fileID: 2344041240566950231}
-  staffPosition: {fileID: 5889479016785759296}
-  distance: 0.8
+  _playerLaser: {fileID: 386550798975905536}
+  _catFloatCenter: {fileID: 2344041240566950231}
+  _staffPosition: {fileID: 5889479016785759296}
+  _distance: 0.8
 --- !u!1 &3176143783358763193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,9 +5489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a337f32b6c8f9bc49bef55ba4152532f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystal: {fileID: 7790676176322139686}
-  player: {fileID: 6702694201549967025}
-  lineRenderer: {fileID: 28162505565666146}
+  _crystal: {fileID: 7790676176322139686}
+  _player: {fileID: 6702694201549967025}
+  _lineRenderer: {fileID: 28162505565666146}
 --- !u!1 &3583105557927499947
 GameObject:
   m_ObjectHideFlags: 0
@@ -10375,7 +10375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9debae445b87a4e95b70c1faa862ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMask:
+  _groundMask:
     serializedVersion: 2
     m_Bits: 256
 --- !u!1 &7615777454753564947

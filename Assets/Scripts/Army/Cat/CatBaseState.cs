@@ -1,8 +1,8 @@
 public abstract class CatBaseState {
-    protected CatStateMachine stm;
+    protected CatStateMachine STM;
 
     public CatBaseState(CatStateMachine stm) {
-        this.stm = stm;
+        this.STM = stm;
     }
 
     public virtual void EnterState() { }

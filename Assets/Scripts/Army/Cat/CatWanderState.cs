@@ -6,26 +6,26 @@ public class CatStrayWanderState : CatBaseState {
 
     public override void EnterState()
     {
-        stm.Agent.speed = stm.Wander.Speed;
-        stm.Agent.SetDestination(GetValidDestination());
+        STM.Agent.speed = STM.Wander.Speed;
+        STM.Agent.SetDestination(GetValidDestination());
     }
 
     public override void UpdateState()
     {
-        bool isPathStale = stm.Agent.pathStatus == NavMeshPathStatus.PathInvalid || stm.Agent.pathStatus == NavMeshPathStatus.PathPartial;
-        bool isPathPending = stm.Agent.pathPending;
-        bool isDestinationReached = stm.Agent.remainingDistance <= stm.Agent.stoppingDistance;
+        bool isPathStale = STM.Agent.pathStatus == NavMeshPathStatus.PathInvalid || STM.Agent.pathStatus == NavMeshPathStatus.PathPartial;
+        bool isPathPending = STM.Agent.pathPending;
+        bool isDestinationReached = STM.Agent.remainingDistance <= STM.Agent.stoppingDistance;
 
         if (isPathStale || isPathPending || isDestinationReached) {
-            stm.ChangeState(stm.STATE_STRAYIDLE);
+            STM.ChangeState(STM.STATE_STRAYIDLE);
         }
 
-        stm.AlignOrientation();
+        STM.AlignOrientation();
     }
 
     public override void ExitState()
     {
-        stm.Agent.ResetPath();
+        STM.Agent.ResetPath();
     }
 
     private Vector3 GetValidDestination()
@@ -33,15 +33,15 @@ public class CatStrayWanderState : CatBaseState {
         // EXPECTED: Get Random Destination inside the wander radius
         for (int i = 0; i < 30; i++)
         {
-            float radius = stm.Wander.Radius.RandomValue();
+            float radius = STM.Wander.Radius.RandomValue();
             Vector3 randomDirection = Random.insideUnitSphere * radius;
-            Vector3 targetPos = stm.transform.position + randomDirection;
+            Vector3 targetPos = STM.transform.position + randomDirection;
 
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, radius, NavMesh.AllAreas))
             {
                 // Check if the path is full
                 var path = new NavMeshPath();
-                if (NavMesh.CalculatePath(stm.transform.position, hit.position, NavMesh.AllAreas, path)) {
+                if (NavMesh.CalculatePath(STM.transform.position, hit.position, NavMesh.AllAreas, path)) {
                     if (path.status == NavMeshPathStatus.PathComplete) return hit.position;
                 }
             }
@@ -49,12 +49,12 @@ public class CatStrayWanderState : CatBaseState {
 
         // FALLBACK 1: Get Random Destination in wherever
         NavMeshHit randomHit;
-        if (NavMesh.SamplePosition(Random.insideUnitSphere * 1000f + stm.transform.position, out randomHit, 1000f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(Random.insideUnitSphere * 1000f + STM.transform.position, out randomHit, 1000f, NavMesh.AllAreas))
         {
             return randomHit.position;
         }
 
         // FALLBACK 2: Stay in the same position
-        return stm.transform.position;
+        return STM.transform.position;
     }
 }

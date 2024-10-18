@@ -3,32 +3,32 @@ using UnityEngine.AI;
 
 public class NPCWanderState : NPCBaseState
 {
-    private readonly NavMeshAgent agent;
-    private readonly SpriteRenderer spriteRenderer;
+    private readonly NavMeshAgent _agent;
+    private readonly SpriteRenderer _spriteRenderer;
 
-    private Vector3 randomPoint;
+    private Vector3 _randomPoint;
 
     public NPCWanderState(NPCStateMachine stm) : base(stm)
     {
-        agent = stm.Agent;
-        spriteRenderer = stm.SpriteRenderer;
+        _agent = stm.Agent;
+        _spriteRenderer = stm.SpriteRenderer;
     }
 
     public override void EnterState()
     {
         for (int i = 0; i < 30; i++)
         {
-            if (GetRandomPositionOnNavMesh(out randomPoint)) break;
+            if (GetRandomPositionOnNavMesh(out _randomPoint)) break;
         }
 
-        agent.SetDestination(randomPoint);
+        _agent.SetDestination(_randomPoint);
         AlignOrientation();
 
-        spriteRenderer.color = Color.white;
+        _spriteRenderer.color = Color.white;
 
-        GameTimer.Instance.AddTime(stm.HypnotizeStats.hypnotizeHealth / 3.7f);
+        GameTimer.Instance.AddTime(STM.HypnotizeStats.hypnotizeHealth / 3.7f);
 
-        stm.Collider.enabled = false;
+        STM.Collider.enabled = false;
     }
 
     public override void UpdateState()
@@ -40,12 +40,12 @@ public class NPCWanderState : NPCBaseState
     private void CheckArrival()
     {
         // if (HasArrived()) EnterState();
-        if (HasArrived()) stm.TransitionToState(stm.STATE_IDLE);
+        if (HasArrived()) STM.TransitionToState(STM.STATE_IDLE);
     }
 
     private bool HasArrived()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        if (_agent.remainingDistance <= _agent.stoppingDistance + 0.1f)
         {
             return true;
         }
@@ -55,7 +55,7 @@ public class NPCWanderState : NPCBaseState
 
     bool GetRandomPositionOnNavMesh(out Vector3 result)
     {
-        Bounds bounds = stm.Surface.navMeshData.sourceBounds;
+        Bounds bounds = STM.Surface.navMeshData.sourceBounds;
 
         Vector3 randomPosition = new Vector3(
             Random.Range(bounds.min.x, bounds.max.x),
@@ -66,7 +66,7 @@ public class NPCWanderState : NPCBaseState
         if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
         {
             var path = new NavMeshPath();
-            if (NavMesh.CalculatePath(stm.transform.position, hit.position, NavMesh.AllAreas, path))
+            if (NavMesh.CalculatePath(STM.transform.position, hit.position, NavMesh.AllAreas, path))
             {
                 if (path.status == NavMeshPathStatus.PathComplete)
                 {
@@ -81,12 +81,12 @@ public class NPCWanderState : NPCBaseState
     }
 
     void AlignOrientation(){
-        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x < 0;
+        if (_agent.velocity.sqrMagnitude > 0.1f) _spriteRenderer.flipX = _agent.velocity.x < 0;
     }
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(stm.transform.position, randomPoint);
+        Gizmos.DrawLine(STM.transform.position, _randomPoint);
     }
 
 

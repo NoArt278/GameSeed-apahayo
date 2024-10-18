@@ -4,30 +4,30 @@ using UnityEngine.Video;
 
 public class LoreVidScript : MonoBehaviour
 {
-    [SerializeField] GameObject skipText;
-    [SerializeField] VideoPlayer vidPlayer;
-    private bool canSkip;
+    [SerializeField] GameObject _skipText;
+    [SerializeField] VideoPlayer _vidPlayer;
+    private bool _canSkip;
 
     private void Awake()
     {
-        canSkip = PlayerPrefs.GetInt("CanSkipLore", 0) == 1;
-        skipText.SetActive(canSkip);
+        _canSkip = PlayerPrefs.GetInt("CanSkipLore", 0) == 1;
+        _skipText.SetActive(_canSkip);
     }
 
     private void Update()
     {
-        if (!vidPlayer.isPlaying && vidPlayer.frame == (long) vidPlayer.frameCount - 1)
+        if (!_vidPlayer.isPlaying && _vidPlayer.frame == (long) _vidPlayer.frameCount - 1)
         {
-            canSkip = true;
-            skipText.SetActive(true);
-            TMP_Text skipT = skipText.GetComponent<TMP_Text>();
+            _canSkip = true;
+            _skipText.SetActive(true);
+            TMP_Text skipT = _skipText.GetComponent<TMP_Text>();
             skipT.text = "Click to continue";
         }
-        if (Input.GetMouseButtonDown(0) && canSkip)
+        if (Input.GetMouseButtonDown(0) && _canSkip)
         {
-            if (vidPlayer.isPlaying)
+            if (_vidPlayer.isPlaying)
             {
-                vidPlayer.Pause();
+                _vidPlayer.Pause();
             }
             PlayerPrefs.SetInt("CanSkipLore", 1);
             SceneLoader.Instance.ToGameplay();

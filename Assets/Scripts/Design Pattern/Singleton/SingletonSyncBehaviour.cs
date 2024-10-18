@@ -25,15 +25,15 @@ public abstract class SingletonSyncBehaviour : MonoBehaviour {
     protected abstract Action OnEnableCallback();
     protected abstract Action OnDisableCallback();
 
-    private bool startFlag = false;
+    private bool _startFlag = false;
 
     protected virtual void OnEnable() {
-        if (!startFlag) return;
+        if (!_startFlag) return;
         OnEnableCallback()?.Invoke();
     }
 
     protected virtual void Start() {
-        startFlag = true;
+        _startFlag = true;
         OnEnable();
     }
 

@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider musicSlider, sfxSlider;
+    [SerializeField] Slider _musicSlider;
+    [SerializeField] Slider _sfxSlider;
 
     private void Start()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVol", 0.6f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVol", 0.6f);
-        SetMusicVol(musicSlider.value);
-        SetSFXVol(sfxSlider.value);
+        _musicSlider.value = Settings.Instance.Audio.MusicVolume;
+        _sfxSlider.value = Settings.Instance.Audio.SFXVolume;
+        SetMusicVol(_musicSlider.value);
+        SetSFXVol(_sfxSlider.value);
     }
 
     public void SetMusicVol(float vol)

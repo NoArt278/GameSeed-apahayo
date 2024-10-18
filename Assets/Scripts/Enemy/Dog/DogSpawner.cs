@@ -3,26 +3,26 @@ using UnityEngine.AI;
 
 public class DogSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject dogPrefab;
-    private GameObject Player;
-    [SerializeField] private int spawnAmount = 2;
-    private int dogsSpawned = 0;
+    [SerializeField] private GameObject _dogPrefab;
+    private GameObject _player;
+    [SerializeField] private int _spawnAmount = 2;
+    private int _dogsSpawned = 0;
 
     [Header("Spawn")]
-    [SerializeField] private float minDistanceFromPlayer;
-    [SerializeField] private int maxLocationSearchAttempts = 30;
+    [SerializeField] private float _minDistanceFromPlayer;
+    [SerializeField] private int _maxLocationSearchAttempts = 30;
 
-    private BoxCollider spawnArea;
-    private LayerMask obstacleMask;
+    private BoxCollider _spawnArea;
+    private LayerMask _obstacleMask;
 
     private void Awake() {
-        obstacleMask = LayerMask.GetMask("Obstacle");
+        _obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Start()
     {
-        spawnArea = GetComponent<BoxCollider>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        _spawnArea = GetComponent<BoxCollider>();
+        _player = GameObject.FindGameObjectWithTag("Player");
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
@@ -33,7 +33,7 @@ public class DogSpawner : MonoBehaviour
     private void OnGameStateChanged(GameState prev, GameState current)
     {
         if (current == GameState.InGame) {
-            while (dogsSpawned < spawnAmount) { Spawn(); }
+            while (_dogsSpawned < _spawnAmount) { Spawn(); }
         }
     }
 
@@ -44,16 +44,16 @@ public class DogSpawner : MonoBehaviour
         Vector3 spawnPosition = GetSpawnPosition();
         if (spawnPosition == Vector3.zero) return;
 
-        Instantiate(dogPrefab, spawnPosition, Quaternion.identity);
-        dogsSpawned++;
+        Instantiate(_dogPrefab, spawnPosition, Quaternion.identity);
+        _dogsSpawned++;
     }
 
     private Vector3 GetSpawnPosition()
     {
-        for (int i = 0; i < maxLocationSearchAttempts; i++)
+        for (int i = 0; i < _maxLocationSearchAttempts; i++)
         {
             Vector3 spawnPosition = transform.position;
-            Vector3 spawnSize = spawnArea.size;
+            Vector3 spawnSize = _spawnArea.size;
 
             spawnPosition.x += Random.Range(-spawnSize.x / 2, spawnSize.x / 2);
             spawnPosition.z += Random.Range(-spawnSize.z / 2, spawnSize.z / 2);
@@ -64,13 +64,13 @@ public class DogSpawner : MonoBehaviour
                 if (hit.position.y > 0.5f) continue;
                 Vector3 hitPosition = hit.position;
 
-                if (Player == null) {
-                    Player = GameObject.FindGameObjectWithTag("Player");
+                if (_player == null) {
+                    _player = GameObject.FindGameObjectWithTag("Player");
                 }
 
-                if (Vector3.Distance(hitPosition, Player.transform.position) >= minDistanceFromPlayer)
+                if (Vector3.Distance(hitPosition, _player.transform.position) >= _minDistanceFromPlayer)
                 {
-                    if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
+                    if (Physics.OverlapSphere(hit.position, 0.1f, _obstacleMask).Length > 0) continue;
                     return hitPosition;
                 }
             }

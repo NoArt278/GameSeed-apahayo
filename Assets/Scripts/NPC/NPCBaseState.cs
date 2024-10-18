@@ -1,14 +1,9 @@
-using UnityEngine;
-
 public abstract class NPCBaseState
 {
-    protected NPCStateMachine stm;
-    public bool facingRight = false;
+    protected NPCStateMachine STM;
+    public bool FacingRight = false;
 
-    public NPCBaseState(NPCStateMachine stm)
-    {
-        this.stm = stm;
-    }
+    public NPCBaseState(NPCStateMachine stm) { STM = stm; }
 
     public virtual void EnterState() {}
     public virtual void UpdateState() {}

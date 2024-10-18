@@ -5,51 +5,51 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InGameScreen : SingletonMB<InGameScreen> {
-    [SerializeField] private CanvasGroup endGameScreen;
-    [SerializeField] private TextMeshProUGUI pointsText;
-    [SerializeField] private TextMeshProUGUI highScoreText;
-    [SerializeField] private TextMeshProUGUI bestLabel;
-    [SerializeField] private Image dimmer;
-    [SerializeField] private RectTransform sidePanel;
+    [SerializeField] private CanvasGroup _endGameScreen;
+    [SerializeField] private TextMeshProUGUI _pointsText;
+    [SerializeField] private TextMeshProUGUI _highScoreText;
+    [SerializeField] private TextMeshProUGUI _bestLabel;
+    [SerializeField] private Image _dimmer;
+    [SerializeField] private RectTransform _sidePanel;
 
     [Header("Setting Groups")]
-    [SerializeField] private RectTransform main;
-    [SerializeField] private RectTransform setting;
+    [SerializeField] private RectTransform _main;
+    [SerializeField] private RectTransform _setting;
 
-    private bool isSettingPanelOpen = false;
+    private bool _isSettingPanelOpen = false;
 
     private void Start() {
-        endGameScreen.gameObject.SetActive(false);
+        _endGameScreen.gameObject.SetActive(false);
     }
 
     public void Initialize() {
-        InputContainer.playerInputs.Player.Pause.started += ToggleSettingPanel;
+        InputContainer.PlayerInputs.Player.Pause.started += ToggleSettingPanel;
     }
 
     private void OnDisable() {
-        InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
+        InputContainer.PlayerInputs.Player.Pause.started -= ToggleSettingPanel;
     }
 
     public void ShowEndGameScreen() {
-        endGameScreen.alpha = 0;
-        endGameScreen.gameObject.SetActive(true);
+        _endGameScreen.alpha = 0;
+        _endGameScreen.gameObject.SetActive(true);
         int currentScore = GameplayUI.Instance.GetScore();
         int highScore = PlayerPrefs.GetInt("HighScore", 0);
 
-        pointsText.text = currentScore.ToString();
+        _pointsText.text = currentScore.ToString();
 
         if (currentScore > highScore) {
             PlayerPrefs.SetInt("HighScore", GameplayUI.Instance.GetScore());
             highScore = currentScore;
-            bestLabel.text = "New Best!";
+            _bestLabel.text = "New Best!";
         }
 
-        highScoreText.text = highScore.ToString();
+        _highScoreText.text = highScore.ToString();
 
-        InputContainer.playerInputs.Player.Pause.started -= ToggleSettingPanel;
+        InputContainer.PlayerInputs.Player.Pause.started -= ToggleSettingPanel;
         AudioManager.Instance.Stop("Time");
         AudioManager.Instance.StopBGMFadeOut(0.2f);
-        endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine).SetUpdate(true);
+        _endGameScreen.DOFade(1, 1f).SetEase(Ease.InOutSine).SetUpdate(true);
         DOVirtual.DelayedCall(0.2f, () => AudioManager.Instance.PlayOneShot("GameOver"));
 
         GameManager.Instance.SetGameState(GameState.PostGame);
@@ -86,7 +86,7 @@ public class InGameScreen : SingletonMB<InGameScreen> {
 
     public void ToggleSettingPanel()
     {
-        if (isSettingPanelOpen)
+        if (_isSettingPanelOpen)
         {
             CloseSidePanel();
         }
@@ -95,13 +95,13 @@ public class InGameScreen : SingletonMB<InGameScreen> {
             OpenSidePanel();
         }
 
-        isSettingPanelOpen = !isSettingPanelOpen;
+        _isSettingPanelOpen = !_isSettingPanelOpen;
     }
 
     public void OpenSidePanel()
     {
-        dimmer.gameObject.SetActive(true);
-        sidePanel.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutSine).SetUpdate(true);
+        _dimmer.gameObject.SetActive(true);
+        _sidePanel.DOAnchorPos(Vector2.zero, 0.5f).SetEase(Ease.OutSine).SetUpdate(true);
         AudioManager.Instance.PlayOneShot("Click");
 
         GameManager.Instance.SetGameState(GameState.Paused);
@@ -110,23 +110,23 @@ public class InGameScreen : SingletonMB<InGameScreen> {
     }
 
     public void OpenSetting() {
-        main.gameObject.SetActive(false);
-        setting.gameObject.SetActive(true);
+        _main.gameObject.SetActive(false);
+        _setting.gameObject.SetActive(true);
         AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void CloseSetting() {
-        main.gameObject.SetActive(true);
-        setting.gameObject.SetActive(false);
+        _main.gameObject.SetActive(true);
+        _setting.gameObject.SetActive(false);
         AudioManager.Instance.PlayOneShot("Click");
     }
 
     public void CloseSidePanel()
     {
-        dimmer.gameObject.SetActive(false);
-        Vector3 pos = new(-sidePanel.rect.width, 0, 0);
+        _dimmer.gameObject.SetActive(false);
+        Vector3 pos = new(-_sidePanel.rect.width, 0, 0);
 
-        sidePanel.DOAnchorPos(pos, 0.5f).SetEase(Ease.InSine).SetUpdate(true);
+        _sidePanel.DOAnchorPos(pos, 0.5f).SetEase(Ease.InSine).SetUpdate(true);
         AudioManager.Instance.PlayOneShot("Click");
 
         GameManager.Instance.SetGameState(GameState.InGame);

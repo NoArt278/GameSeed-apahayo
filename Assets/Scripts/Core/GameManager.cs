@@ -8,9 +8,9 @@ public enum GameState { PreGame, InGame, Paused, PostGame }
 
 public class GameManager : SingletonMB<GameManager>
 {
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject cameraPrefab;
-    [SerializeField] private GameObject directionalLight;
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _cameraPrefab;
+    [SerializeField] private GameObject _directionalLight;
     public GameState CurrentState { get; private set; } = GameState.PreGame;
     public Action<GameState, GameState> OnGameStateChanged;
 
@@ -55,10 +55,10 @@ public class GameManager : SingletonMB<GameManager>
 
     private void InitializePlayer() {
         Vector3 spawnPosition = ArenaGeneration.Instance.PlayerSpawnPoint;
-        GameObject player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+        GameObject player = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
-        GameObject camera = Instantiate(cameraPrefab);
+        GameObject camera = Instantiate(_cameraPrefab);
         CinemachineVirtualCamera vcam = camera.GetComponentInChildren<CinemachineVirtualCamera>();
 
         CinemachineTargetGroup targetGroup = player.GetComponentInChildren<CinemachineTargetGroup>();
@@ -69,22 +69,4 @@ public class GameManager : SingletonMB<GameManager>
         WorldPosCrosshair crosshair = player.GetComponentInChildren<WorldPosCrosshair>();
         crosshair.Initialize(camera.GetComponent<Camera>());
     }
-
-    // private Vector3 GetValidSpawnPosition()
-    // {
-    //     for (int i = 0; i < 100; i++)
-    //     {
-    //         float x = ArenaGeneration.Instance.HorizontalBounds().RandomValue();
-    //         float y = ArenaGeneration.Instance.GroundY;
-    //         float z = ArenaGeneration.Instance.VerticalBounds().RandomValue();
-
-    //         if (NavMesh.SamplePosition(new Vector3(x, y, z), out NavMeshHit hit, 100f, NavMesh.AllAreas))
-    //         {
-    //             if (Physics.OverlapSphere(hit.position, 0.1f, obstacleMask).Length > 0) continue;
-    //             return hit.position;
-    //         } 
-    //     }
-
-    //     return Vector3.zero;
-    // }
 }

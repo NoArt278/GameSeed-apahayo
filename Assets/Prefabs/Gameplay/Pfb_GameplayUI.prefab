@@ -454,11 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0070f3f2652095740af1a2286d76ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: e11f44f53950dae438f3507fdfb96dce, type: 2}
-  musicSlider: {fileID: 7380425266169779444}
-  sfxSlider: {fileID: 1528635356079655164}
-  sfxTest: {fileID: 5784364401353870610}
-  isOpen: 0
+  _musicSlider: {fileID: 7380425266169779444}
+  _sfxSlider: {fileID: 1528635356079655164}
 --- !u!1 &525526503189443242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,21 +1166,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1642581949530b746aae35e8ee4b1a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hypnoBarParent: {fileID: 5965754579245024710}
-  catCountText: {fileID: 6975192237169805585}
-  hideText: {fileID: 8252411072507813995}
-  scoreText: {fileID: 5530489909688681282}
-  mainHintText: {fileID: 7030456296105691555}
-  staminaSlider: {fileID: 7769289922632288850}
-  hypnotizeBar: {fileID: 7944790062649890160}
-  crosshair: {fileID: 12451868042703282}
-  overlay: {fileID: 4831305796964385465}
-  hypnoVignette: {fileID: 4771619738033649232}
-  dogVignette: {fileID: 7453118417302451562}
-  dimmer: {fileID: 6275739651079911268}
-  staminaSliderCG: {fileID: 3569822981449308607}
-  pregameCG: {fileID: 7287488443640578941}
-  crosshairAnimator: {fileID: 4526056460441797461}
+  _hypnoBarParent: {fileID: 5965754579245024710}
+  _catCountText: {fileID: 6975192237169805585}
+  _hideText: {fileID: 8252411072507813995}
+  _scoreText: {fileID: 5530489909688681282}
+  _mainHintText: {fileID: 7030456296105691555}
+  _staminaSlider: {fileID: 7769289922632288850}
+  _hypnotizeBar: {fileID: 7944790062649890160}
+  _crosshair: {fileID: 12451868042703282}
+  _overlay: {fileID: 4831305796964385465}
+  _hypnoVignette: {fileID: 4771619738033649232}
+  _dogVignette: {fileID: 7453118417302451562}
+  _dimmer: {fileID: 6275739651079911268}
+  _staminaSliderCG: {fileID: 3569822981449308607}
+  _pregameCG: {fileID: 7287488443640578941}
+  _crosshairAnimator: {fileID: 4526056460441797461}
 --- !u!114 &2738906644298542823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,14 +1193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f39ef5bcef019a4f9226e1737cb9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endGameScreen: {fileID: 7771763820189043786}
-  pointsText: {fileID: 3153941477061400139}
-  highScoreText: {fileID: 6084273779591335802}
-  bestLabel: {fileID: 731918750998461389}
-  dimmer: {fileID: 6275739651079911268}
-  sidePanel: {fileID: 2887338722595702073}
-  main: {fileID: 7454643624120039896}
-  setting: {fileID: 4149462112757561970}
+  _endGameScreen: {fileID: 7771763820189043786}
+  _pointsText: {fileID: 3153941477061400139}
+  _highScoreText: {fileID: 6084273779591335802}
+  _bestLabel: {fileID: 731918750998461389}
+  _dimmer: {fileID: 6275739651079911268}
+  _sidePanel: {fileID: 2887338722595702073}
+  _main: {fileID: 7454643624120039896}
+  _setting: {fileID: 4149462112757561970}
 --- !u!1 &1721599406300689278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,9 +1758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d26f10e52edfc4f9f303923f4a1647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 30
-  timerDisplay: {fileID: 4725278837777158258}
-  playOnStart: 0
+  _duration: 30
+  _timerDisplay: {fileID: 4725278837777158258}
+  _playOnStart: 0
 --- !u!114 &4531979615299012076
 MonoBehaviour:
   m_ObjectHideFlags: 0

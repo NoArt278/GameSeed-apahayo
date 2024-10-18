@@ -31,6 +31,8 @@ public class CatStateMachine : MonoBehaviour {
         public float SprintSpeed;
     }
 
+
+    [Header("Properties")]
     public WanderProperties Wander;
     public IdleProperties Idle;
     public HideProperties Hide;
@@ -52,15 +54,16 @@ public class CatStateMachine : MonoBehaviour {
 
     // COMPONENTS ====================================
     // Reference
-    [SerializeField] private SpriteRenderer catRenderer;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Transform floatVFX;
+    [Header("Components")]
+    [SerializeField] private SpriteRenderer _catRenderer;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _floatVFX;
 
     // Getters
-    public SpriteRenderer Renderer { get => catRenderer; }
-    public Animator Animator { get => animator; }
+    public SpriteRenderer Renderer { get => _catRenderer; }
+    public Animator Animator { get => _animator; }
     public NavMeshAgent Agent { get; private set; }
-    public Transform FloatVFX { get => floatVFX; }
+    public Transform FloatVFX { get => _floatVFX; }
 
     public Action<CatBaseState, CatBaseState> OnStateChanged;
     [ReadOnly] public CatSpawner Spawner;
@@ -81,7 +84,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void BecomeFollower(CatArmy catArmy, Transform target, float baseSpeed, float sprintSpeed) {
-        this.CatArmy = catArmy;
+        CatArmy = catArmy;
         Follow.Target = target;
         Follow.BaseSpeed = baseSpeed;
         Follow.SprintSpeed = sprintSpeed;
@@ -127,8 +130,8 @@ public class CatStateMachine : MonoBehaviour {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
         CurrentState?.UpdateState();
 
-        animator.SetFloat("Speed", Agent.velocity.magnitude);
-        animator.SetFloat("SignZ", Agent.velocity.z);
+        _animator.SetFloat("Speed", Agent.velocity.magnitude);
+        _animator.SetFloat("SignZ", Agent.velocity.z);
     }
 
     public void ChangeState(CatBaseState newState) {
@@ -144,7 +147,7 @@ public class CatStateMachine : MonoBehaviour {
     }
 
     public void AlignOrientation() {
-        if (Agent.velocity.sqrMagnitude > 0.1f) catRenderer.flipX = Agent.velocity.x < 0;
+        if (Agent.velocity.sqrMagnitude > 0.1f) _catRenderer.flipX = Agent.velocity.x < 0;
     }
 
     public void YeetedCallback() {

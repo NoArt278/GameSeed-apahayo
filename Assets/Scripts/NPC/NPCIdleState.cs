@@ -4,32 +4,32 @@ using UnityEngine.AI;
 
 public class NPCIdleState : NPCBaseState 
 {
-    public float timewait = 0;
-    public RangeFloat waitTime = new RangeFloat(1, 5);
-    private readonly NavMeshAgent agent;
-    private Coroutine idleCoroutine;
+    public float Timewait = 0;
+    public RangeFloat WaitTime = new RangeFloat(1, 5);
+    private readonly NavMeshAgent _agent;
+    private Coroutine _idleCoroutine;
 
     public NPCIdleState(NPCStateMachine stm) : base(stm) {
-        agent = stm.Agent;
+        _agent = stm.Agent;
     }
 
     public override void EnterState()
     {
-        agent.ResetPath();
-        timewait = waitTime.RandomValue();
+        _agent.ResetPath();
+        Timewait = WaitTime.RandomValue();
         // Debug.Log("Idle for " + timewait + " seconds");
-        idleCoroutine = stm.StartCoroutine(Idle());
+        _idleCoroutine = STM.StartCoroutine(Idle());
     }
 
     private IEnumerator Idle()
     {
-        yield return new WaitForSeconds(timewait);
-        stm.TransitionToState(stm.STATE_RANDOMMOVE);
+        yield return new WaitForSeconds(Timewait);
+        STM.TransitionToState(STM.STATE_RANDOMMOVE);
     }
 
     public override void ExitState()
     {
-        if (idleCoroutine != null) stm.StopCoroutine(idleCoroutine);
+        if (_idleCoroutine != null) STM.StopCoroutine(_idleCoroutine);
     }
 
 }

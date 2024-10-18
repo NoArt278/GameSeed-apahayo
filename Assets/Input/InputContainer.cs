@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class InputContainer : MonoBehaviour
 {
-    public static PlayerInput playerInputs;
-    public static InputContainer instance;
+    public static PlayerInput PlayerInputs;
+    public static InputContainer Instance;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            playerInputs = new PlayerInput();
-            instance = this;
+            PlayerInputs = new PlayerInput();
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         } else
         {
@@ -19,13 +19,13 @@ public class InputContainer : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (instance == this)
-            playerInputs.Enable();
+        if (Instance == this)
+            PlayerInputs.Enable();
     }
 
     private void OnDisable()
     {
-        if (instance == this)
-            playerInputs.Disable();
+        if (Instance == this)
+            PlayerInputs.Disable();
     }
 }

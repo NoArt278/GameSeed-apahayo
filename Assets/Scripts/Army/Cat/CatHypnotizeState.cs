@@ -2,25 +2,26 @@ using DG.Tweening;
 using UnityEngine;
 
 public class CatHypnotizeState : CatBaseState {
+    private Tween _moveTween;
+    public bool OnAnimation { get; private set; } = false;
+
     public CatHypnotizeState(CatStateMachine stm) : base(stm) { }
-    private Tween moveTween;
-    public bool OnAnimation = false;
 
     public void StartHypnotize(Vector3 floatPosition) {
         if (OnAnimation) return;
         OnAnimation = true;
-        stm.ChangeState(stm.STATE_HYPNOTIZE);
-        stm.Agent.enabled = false;
+        STM.ChangeState(STM.STATE_HYPNOTIZE);
+        STM.Agent.enabled = false;
 
         float duration = 0.3f;
-        stm.Renderer.flipX = floatPosition.x < stm.transform.position.x;
-        stm.Animator.SetBool("Float", true);
-        stm.FloatVFX.gameObject.SetActive(true);
-        moveTween?.Kill();
-        moveTween = stm.transform.DOMove(floatPosition, duration).SetEase(Ease.OutQuad).OnComplete(
+        STM.Renderer.flipX = floatPosition.x < STM.transform.position.x;
+        STM.Animator.SetBool("Float", true);
+        STM.FloatVFX.gameObject.SetActive(true);
+        _moveTween?.Kill();
+        _moveTween = STM.transform.DOMove(floatPosition, duration).SetEase(Ease.OutQuad).OnComplete(
             () => {
                 OnAnimation = false;
-                moveTween = null;
+                _moveTween = null;
             }
         );
     }
@@ -29,26 +30,26 @@ public class CatHypnotizeState : CatBaseState {
         if (OnAnimation) return;
         OnAnimation = true;
         float duration = 0.3f;
-        moveTween?.Kill();
-        stm.FloatVFX.gameObject.SetActive(false);
-        moveTween = stm.transform.DOMove(backPosition, duration).SetEase(Ease.OutQuad).OnComplete(
+        _moveTween?.Kill();
+        STM.FloatVFX.gameObject.SetActive(false);
+        _moveTween = STM.transform.DOMove(backPosition, duration).SetEase(Ease.OutQuad).OnComplete(
             () => {
-                stm.Animator.SetBool("Float", false);
-                stm.Agent.enabled = true;
-                stm.Agent.Warp(backPosition);
-                stm.ChangeState(stm.STATE_FOLLOW);
+                STM.Animator.SetBool("Float", false);
+                STM.Agent.enabled = true;
+                STM.Agent.Warp(backPosition);
+                STM.ChangeState(STM.STATE_FOLLOW);
                 OnAnimation = false;
-                moveTween = null;
+                _moveTween = null;
             }
         );
     }
 
     public void ResetCat() {
-        stm.Animator.SetTrigger("Reset");
-        stm.Agent.enabled = true;
-        stm.FloatVFX.gameObject.SetActive(false);
+        STM.Animator.SetTrigger("Reset");
+        STM.Agent.enabled = true;
+        STM.FloatVFX.gameObject.SetActive(false);
         OnAnimation = false;
-        stm.Follow.Target = null;
-        moveTween = null;
+        STM.Follow.Target = null;
+        _moveTween = null;
     }
 }

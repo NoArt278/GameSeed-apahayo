@@ -2,64 +2,64 @@ using DG.Tweening;
 using UnityEngine;
 
 public class CatFollowState : CatBaseState {
-    private bool onAction = false;
-    private bool isSprinting = false;
-    private bool firstFollow = true;
+    private bool _onAction = false;
+    private bool _isSprinting = false;
+    private bool _firstFollow = true;
 
     public CatFollowState(CatStateMachine stm) : base(stm) { }
 
     public override void EnterState() {
-        stm.Agent.speed = stm.Follow.BaseSpeed;
-        bool success = stm.Agent.SetDestination(stm.Follow.Target.position);
+        STM.Agent.speed = STM.Follow.BaseSpeed;
+        bool success = STM.Agent.SetDestination(STM.Follow.Target.position);
         if (!success) {
-            stm.Agent.Warp(stm.CatArmy.FindAppropriateSpawnLocation(stm.Follow.Target.position));
+            STM.Agent.Warp(STM.CatArmy.FindAppropriateSpawnLocation(STM.Follow.Target.position));
         }
-        stm.Agent.velocity = Vector3.zero;
-        stm.Animator.SetTrigger("Hypnotized");
+        STM.Agent.velocity = Vector3.zero;
+        STM.Animator.SetTrigger("Hypnotized");
 
-        if (firstFollow) {
+        if (_firstFollow) {
             AudioManager.Instance.PlayOneShot("Acquired");
             LittleJumpOnRegistered();
-            firstFollow = false;
+            _firstFollow = false;
         }
     }
 
     public override void ExitState() {
-        stm.Agent.ResetPath();
+        STM.Agent.ResetPath();
     }
 
     private void LittleJumpOnRegistered() {
-        onAction = true;
+        _onAction = true;
         float jumpDuration = 0.4f;
         float jumpHeight = 0.4f;
 
-        Vector3 ground = stm.transform.position;
+        Vector3 ground = STM.transform.position;
 
-        stm.transform.DOJump(ground, jumpHeight, 1, jumpDuration).OnComplete(() => onAction = false);
+        STM.transform.DOJump(ground, jumpHeight, 1, jumpDuration).OnComplete(() => _onAction = false);
     }
 
     public void StartSprint(float speed) {
-        stm.Agent.speed = speed;
-        stm.Animator.speed = speed / stm.Follow.BaseSpeed;
-        isSprinting = true;
+        STM.Agent.speed = speed;
+        STM.Animator.speed = speed / STM.Follow.BaseSpeed;
+        _isSprinting = true;
     }
 
     public void StopSprint() {
-        stm.Agent.speed = stm.Follow.BaseSpeed;
-        stm.Animator.speed = 1;
-        isSprinting = false;
+        STM.Agent.speed = STM.Follow.BaseSpeed;
+        STM.Animator.speed = 1;
+        _isSprinting = false;
     }
 
     public override void UpdateState() {
-        if (!onAction) Follow();
-        stm.AlignOrientation();
+        if (!_onAction) Follow();
+        STM.AlignOrientation();
     }
 
     private void Follow() {
-        float speed = isSprinting ? stm.Follow.SprintSpeed : stm.Follow.BaseSpeed;
-        speed += stm.Follow.SpeedDeviation.RandomValue();
-        stm.Agent.speed = speed;
+        float speed = _isSprinting ? STM.Follow.SprintSpeed : STM.Follow.BaseSpeed;
+        speed += STM.Follow.SpeedDeviation.RandomValue();
+        STM.Agent.speed = speed;
 
-        stm.Agent.SetDestination(stm.Follow.Target.position);
+        STM.Agent.SetDestination(STM.Follow.Target.position);
     }
 }

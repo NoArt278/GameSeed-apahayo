@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Core : SingletonMB<Core> {
     protected override void Awake() {
         base.Awake();

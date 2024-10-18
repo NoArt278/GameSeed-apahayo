@@ -8,14 +8,28 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats stats;
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
-    private const float maxStamina = 100, staminaDrainRate = 50, staminaFillRate = 10, staminalFillDelay = 5;
-    private bool isSprinting = false, canHide = false, isHiding = false, justHid = false, canMove = false, canFillStamina = true, isDead = false;
-    private float stamina, moveSpeed, lastStaminaDepleteTime;
-    private Transform currTrashBin, prevTrashBin;
-    private CatArmy catArmy;
-    private Animator catGodAnimator;
-    private SpriteRenderer sr;
-    private ParticleSystem sprintTrail;
+    private const float MAX_STAMINA = 100;
+    private const float STAMINA_DRAIN_RATE = 50;
+    private const float STAMINA_FILL_RATE = 10;
+    private const float STAMINA_FILL_DELAY = 5;
+
+    private bool _isSprinting = false;
+    private bool _canHide = false;
+    private bool _isHiding = false;
+    private bool _justHid = false;
+    private bool _canMove = false;
+    private bool _canFillStamina = true;
+    private bool _isDead = false;
+
+    private float _stamina;
+    private float _moveSpeed;
+    private float _lastStaminaDepleteTime;
+    private Transform _currTrashBin;
+    private Transform _prevTrashBin;
+    private CatArmy _catArmy;
+    private Animator _catGodAnimator;
+    private SpriteRenderer _sr;
+    private ParticleSystem _sprintTrail;
     [HideInInspector] public CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
@@ -23,31 +37,31 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         cc = GetComponent<CharacterController>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-        catArmy = GetComponent<CatArmy>();
-        sprintTrail = GetComponentInChildren<ParticleSystem>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-        catGodAnimator = GetComponentInChildren<Animator>();
-        stamina = maxStamina;
-        moveSpeed = stats.walkSpeed;
+        _catArmy = GetComponent<CatArmy>();
+        _sprintTrail = GetComponentInChildren<ParticleSystem>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
+        _catGodAnimator = GetComponentInChildren<Animator>();
+        _stamina = MAX_STAMINA;
+        _moveSpeed = stats.WalkSpeed;
     }
 
     private void Start()
     {
-        InputContainer.playerInputs.Player.Sprint.started += PlaySprintAudio;
-        InputContainer.playerInputs.Player.Sprint.performed += StartSprint;
-        InputContainer.playerInputs.Player.Sprint.canceled += StopSprintInput;
-        InputContainer.playerInputs.Player.Interact.performed += Hide;
+        InputContainer.PlayerInputs.Player.Sprint.started += PlaySprintAudio;
+        InputContainer.PlayerInputs.Player.Sprint.performed += StartSprint;
+        InputContainer.PlayerInputs.Player.Sprint.canceled += StopSprintInput;
+        InputContainer.PlayerInputs.Player.Interact.performed += Hide;
     }
 
     private void OnDisable()
     {
-        InputContainer.playerInputs.Player.Sprint.performed -= StartSprint;
-        InputContainer.playerInputs.Player.Sprint.canceled -= StopSprintInput;
-        InputContainer.playerInputs.Player.Interact.performed -= Hide;
+        InputContainer.PlayerInputs.Player.Sprint.performed -= StartSprint;
+        InputContainer.PlayerInputs.Player.Sprint.canceled -= StopSprintInput;
+        InputContainer.PlayerInputs.Player.Interact.performed -= Hide;
     }
 
     private void PlaySprintAudio(InputAction.CallbackContext _) {
-        if (stamina > 0.5f && canMove) AudioManager.Instance.Play("Sprint");
+        if (_stamina > 0.5f && _canMove) AudioManager.Instance.Play("Sprint");
     }
 
     // Update is called once per frame
@@ -55,72 +69,72 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!cc.isGrounded)
         {
-            cc.Move(new Vector3(0, moveSpeed * Time.deltaTime * -1, 0));
+            cc.Move(new Vector3(0, _moveSpeed * Time.deltaTime * -1, 0));
         }
 
         if (GameManager.Instance && GameManager.Instance.CurrentState != GameState.InGame) return;
 
-        if (canMove)
+        if (_canMove)
         {
-            Vector2 moveInput = InputContainer.playerInputs.Player.Move.ReadValue<Vector2>();
+            Vector2 moveInput = InputContainer.PlayerInputs.Player.Move.ReadValue<Vector2>();
             if (moveInput != Vector2.zero)
             {
-                catGodAnimator.SetBool("isWalking", true);
+                _catGodAnimator.SetBool("isWalking", true);
 
-                if (moveInput.x > 0) sr.flipX = true && !isSprinting;
-                else if (moveInput.x < 0) sr.flipX = false || isSprinting;
+                if (moveInput.x > 0) _sr.flipX = true && !_isSprinting;
+                else if (moveInput.x < 0) _sr.flipX = false || _isSprinting;
 
-                if (moveInput.y > 0) catGodAnimator.SetBool("isMovingUp", true);
-                else catGodAnimator.SetBool("isMovingUp", false);
+                if (moveInput.y > 0) _catGodAnimator.SetBool("isMovingUp", true);
+                else _catGodAnimator.SetBool("isMovingUp", false);
             } else
             {
-                catGodAnimator.SetBool("isWalking", false);
+                _catGodAnimator.SetBool("isWalking", false);
             }
-            cc.Move(new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed * Time.deltaTime);
+            cc.Move(new Vector3(moveInput.x, 0, moveInput.y) * _moveSpeed * Time.deltaTime);
         } else
         {
-            catGodAnimator.SetBool("isWalking", false);
+            _catGodAnimator.SetBool("isWalking", false);
             StopSprint();
         }
 
-        if (isSprinting)
+        if (_isSprinting)
         {
-            stamina = Mathf.Max(stamina - Time.deltaTime * staminaDrainRate, 0);
-            if (stamina == 0)
+            _stamina = Mathf.Max(_stamina - Time.deltaTime * STAMINA_DRAIN_RATE, 0);
+            if (_stamina == 0)
             {
-                canFillStamina = false;
-                lastStaminaDepleteTime = Time.time;
+                _canFillStamina = false;
+                _lastStaminaDepleteTime = Time.time;
                 GameplayUI.Instance.StaminaDeplete();
                 StopSprint();
             }
         }
         else
         {
-            if (canFillStamina)
+            if (_canFillStamina)
             {
-                stamina = Mathf.Min(stamina + Time.deltaTime * staminaFillRate, maxStamina);
+                _stamina = Mathf.Min(_stamina + Time.deltaTime * STAMINA_FILL_RATE, MAX_STAMINA);
             }
             else
             {
-                if (Time.time - lastStaminaDepleteTime > staminalFillDelay)
+                if (Time.time - _lastStaminaDepleteTime > STAMINA_FILL_DELAY)
                 {
-                    canFillStamina = true;
+                    _canFillStamina = true;
                 }
             }
         }
 
-        GameplayUI.Instance.UpdateStamina(stamina / maxStamina);
+        GameplayUI.Instance.UpdateStamina(_stamina / MAX_STAMINA);
     }
 
     private void StartSprint(InputAction.CallbackContext ctx)
     {
-         if (stamina > 0 && canMove)
+         if (_stamina > 0 && _canMove)
         {
-            isSprinting = true;
-            moveSpeed = stats.sprintSpeed;
-            catGodAnimator.SetBool("isSprinting", true);
-            sprintTrail.Play();
-            catArmy.StartSprint();
+            _isSprinting = true;
+            _moveSpeed = stats.SprintSpeed;
+            _catGodAnimator.SetBool("isSprinting", true);
+            _sprintTrail.Play();
+            _catArmy.StartSprint();
         } else {
             AudioManager.Instance.PlayOneShot("Cant");
             GameplayUI.Instance.ShowMainHintText("No Stamina!");
@@ -134,57 +148,57 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopSprint()
     {
-        isSprinting = false;
-        moveSpeed = stats.walkSpeed;
-        catGodAnimator.SetBool("isSprinting", false);
-        catArmy.StopSprint();
-        sprintTrail.Stop();
+        _isSprinting = false;
+        _moveSpeed = stats.WalkSpeed;
+        _catGodAnimator.SetBool("isSprinting", false);
+        _catArmy.StopSprint();
+        _sprintTrail.Stop();
         AudioManager.Instance.StopFadeOut("Sprint", 1f);
     }
 
     public void EnableMove()
     {
-        canMove = true;
+        _canMove = true;
     }
 
     public void DisableMove()
     {
-        canMove = false;
+        _canMove = false;
     }
 
     public bool IsHiding()
     {
-        return isHiding;
+        return _isHiding;
     }
 
     public bool IsDead()
     {
-        return isDead;
+        return _isDead;
     }
 
     private void Hide(InputAction.CallbackContext ctx)
     {
-        if (canHide && !isHiding && !justHid)
+        if (_canHide && !_isHiding && !_justHid)
         {
             StopAllCoroutines();
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 2;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 2;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 2;
-            isHiding = true;
-            canMove = false;
+            _isHiding = true;
+            _canMove = false;
             cc.enabled = false;
-            transform.position = currTrashBin.position + currTrashBin.forward;
+            transform.position = _currTrashBin.position + _currTrashBin.forward;
             cc.enabled = true;
             // Hide();
             StartCoroutine(HideDelay());
-        } else if (isHiding && !justHid)
+        } else if (_isHiding && !_justHid)
         {
             StopAllCoroutines();
-            transform.position = currTrashBin.position + currTrashBin.forward;
-            sr.enabled = true;
-            isHiding = false;
-            catArmy.QuitHiding(currTrashBin.GetComponent<TrashBin>().GroundPoint.position + currTrashBin.forward * 1.5f);
-            currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
+            transform.position = _currTrashBin.position + _currTrashBin.forward;
+            _sr.enabled = true;
+            _isHiding = false;
+            _catArmy.QuitHiding(_currTrashBin.GetComponent<TrashBin>().GroundPoint.position + _currTrashBin.forward * 1.5f);
+            _currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", false);
             // Hide();
             StartCoroutine(HideDelay());
         }
@@ -192,20 +206,20 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator HideDelay()
     {
-        justHid = true;
+        _justHid = true;
         GameplayUI.Instance.ChangeHideText("");
-        if (isHiding) {
+        if (_isHiding) {
             VFXManager.Instance.PlayPoofVFX(transform.position);
         }
         yield return new WaitForSeconds(0.3f);
-        if (isHiding)
+        if (_isHiding)
         {
             capsuleCollider.enabled = false;
-            sr.enabled = false;
+            _sr.enabled = false;
             GameplayUI.Instance.ChangeHideText("(E) Unhide");
-            catArmy.HideCats(currTrashBin.position);
-            currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", true);
-            Transform spriteTransform = currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
+            _catArmy.HideCats(_currTrashBin.position);
+            _currTrashBin.GetComponentInChildren<Animator>().SetBool("isHiding", true);
+            Transform spriteTransform = _currTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
             spriteTransform.LookAt(new Vector3(spriteTransform.position.x, spriteTransform.position.y, spriteTransform.position.z + 5));
             if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
                     || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
@@ -214,43 +228,43 @@ public class PlayerMovement : MonoBehaviour
             }
         } else
         {
-            canMove = true;
+            _canMove = true;
             capsuleCollider.enabled = true;
             GameplayUI.Instance.ChangeHideText("(E) Hide");
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
-            Transform spriteTransform = prevTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
+            Transform spriteTransform = _prevTrashBin.GetComponentInChildren<SpriteRenderer>().transform;
             if (Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 90 || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == -90
                     || Mathf.RoundToInt(spriteTransform.localRotation.eulerAngles.y) == 270)
             {
                 spriteTransform.localScale = new Vector3(spriteTransform.localScale.z, spriteTransform.localScale.y, spriteTransform.localScale.x);
             }
         }
-        justHid = false;
+        _justHid = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Cat") && !isHiding)
+        if (other.CompareTag("Cat") && !_isHiding)
         {
             CatStateMachine cat = other.gameObject.GetComponent<CatStateMachine>();
-            catArmy.RegisterCat(cat, transform);
-            GameplayUI.Instance.UpdateCatCount(catArmy.GetCatCount());
-        } else if (other.CompareTag("Hide") && !isHiding)
+            _catArmy.RegisterCat(cat, transform);
+            GameplayUI.Instance.UpdateCatCount(_catArmy.GetCatCount());
+        } else if (other.CompareTag("Hide") && !_isHiding)
         {
-            currTrashBin = other.transform;
-            prevTrashBin = currTrashBin;
-            canHide = true;
+            _currTrashBin = other.transform;
+            _prevTrashBin = _currTrashBin;
+            _canHide = true;
             GameplayUI.Instance.HideTextAppear("(E) Hide");
-        } else if (other.CompareTag("Dog") && !isHiding)
+        } else if (other.CompareTag("Dog") && !_isHiding)
         {
-            canMove = false;
-            canHide = false;
-            catGodAnimator.SetTrigger("Die");
+            _canMove = false;
+            _canHide = false;
+            _catGodAnimator.SetTrigger("Die");
             AudioManager.Instance.PlayOneShot("Caught");
             AudioManager.Instance.PlayOneShot("Yeet");
-            isDead = true;
+            _isDead = true;
             StopAllCoroutines();
             StartCoroutine(ShowGameOver());
         }
@@ -266,8 +280,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Hide"))
         {
-            currTrashBin = null;
-            canHide = false;
+            _currTrashBin = null;
+            _canHide = false;
             GameplayUI.Instance.HideTextDissapear();
         }
     }

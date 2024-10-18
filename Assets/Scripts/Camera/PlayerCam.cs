@@ -5,47 +5,47 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    Transform player;
-    private List<Transparentable> transparentables;
-    private List<MeshRenderer> blockingObjectsRenderer;
+    private Transform _player;
+    private List<Transparentable> _transparentables;
+    private List<MeshRenderer> _blockingObjectsRenderer;
 
     private void Start()
     {
         CinemachineVirtualCamera vcam = GetComponentInChildren<CinemachineVirtualCamera>();
-        player = vcam.Follow;
-        transparentables = new List<Transparentable>();
-        blockingObjectsRenderer = new List<MeshRenderer>();
+        _player = vcam.Follow;
+        _transparentables = new List<Transparentable>();
+        _blockingObjectsRenderer = new List<MeshRenderer>();
     }
 
     private void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
-        Vector3 direction = player.position - transform.position;
+        Vector3 direction = _player.position - transform.position;
         RaycastHit[] hits = Physics.RaycastAll(transform.position - direction * 3, direction, Mathf.Infinity, LayerMask.GetMask("Obstacle"));
         bool isBlocked = false;
 
         foreach (var hit in hits)
         {
-            if (Vector3.Distance(transform.position, player.position) < Vector3.Distance(transform.position, hit.point)) continue;
+            if (Vector3.Distance(transform.position, _player.position) < Vector3.Distance(transform.position, hit.point)) continue;
 
             isBlocked = true;
             if (hit.collider.TryGetComponent(out Transparentable transparentable))
             {
-                if (transparentables.Contains(transparentable) || blockingObjectsRenderer.Contains(transparentable.MeshRenderer)) continue;
-                blockingObjectsRenderer.Add(transparentable.MeshRenderer);
-                transparentables.Add(transparentable);
+                if (_transparentables.Contains(transparentable) || _blockingObjectsRenderer.Contains(transparentable.MeshRenderer)) continue;
+                _blockingObjectsRenderer.Add(transparentable.MeshRenderer);
+                _transparentables.Add(transparentable);
                 transparentable.BeTransparent();
             }
         }
 
-        if (!isBlocked && transparentables.Count > 0)
+        if (!isBlocked && _transparentables.Count > 0)
         {
-            foreach (var transparentable in transparentables)
+            foreach (var transparentable in _transparentables)
             {
                 transparentable.BeOpaque();
             }
-            transparentables.Clear();
-            blockingObjectsRenderer.Clear();
+            _transparentables.Clear();
+            _blockingObjectsRenderer.Clear();
         }
     }
 

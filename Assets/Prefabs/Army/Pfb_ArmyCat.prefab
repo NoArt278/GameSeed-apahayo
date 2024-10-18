@@ -202,26 +202,26 @@ MonoBehaviour:
   Wander:
     Speed: 3.5
     Radius:
-      min: 1
-      max: 3
+      Min: 1
+      Max: 3
   Idle:
     Duration:
-      min: 1
-      max: 4
+      Min: 1
+      Max: 4
   Hide:
     FadeDelay: 0
     FadeDuration: 0.2
     Duration: 0.5
   Follow:
     SpeedDeviation:
-      min: -0.3
-      max: 0.3
+      Min: -0.3
+      Max: 0.3
     Target: {fileID: 0}
     BaseSpeed: 0
     SprintSpeed: 0
-  catRenderer: {fileID: 527617308162765455}
-  animator: {fileID: 3799112928120774700}
-  floatVFX: {fileID: 2303283713122790832}
+  _catRenderer: {fileID: 527617308162765455}
+  _animator: {fileID: 3799112928120774700}
+  _floatVFX: {fileID: 2303283713122790832}
   Spawner: {fileID: 0}
 --- !u!1 &8942800176160294879
 GameObject:

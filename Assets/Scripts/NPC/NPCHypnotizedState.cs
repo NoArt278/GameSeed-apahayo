@@ -3,35 +3,35 @@ using UnityEngine.AI;
 
 public class NPCHypnotizedState : NPCBaseState
 {
-    private readonly NavMeshAgent agent;
-    private float hypnotizeHealth = 10f;
-    private float currentHypnotizeValue = 0f;
+    private readonly NavMeshAgent _agent;
+    private float _hypnotizeHealth = 10f;
+    private float _currentHypnotizeValue = 0f;
 
-    private float timer;
-    private float maxHypnotizeDelay = 2f;
-    private float initialSpeed;
+    private float _timer;
+    private float _maxHypnotizeDelay = 2f;
+    private float _initialSpeed;
 
     public NPCHypnotizedState(NPCStateMachine stm) : base(stm)
     {
-        agent = stm.Agent;
+        _agent = stm.Agent;
     }
 
     public void SetHypnotizeStats(HypnotizeStats stats) {
-        hypnotizeHealth = stats.hypnotizeHealth;
-        maxHypnotizeDelay = stats.maxHypnotizeDelay;
+        _hypnotizeHealth = stats.hypnotizeHealth;
+        _maxHypnotizeDelay = stats.maxHypnotizeDelay;
     }
 
     public override void EnterState()
     {
-        initialSpeed = agent.speed;
-        agent.speed = 0;
-        agent.ResetPath();
-        agent.velocity = Vector3.zero;
+        _initialSpeed = _agent.speed;
+        _agent.speed = 0;
+        _agent.ResetPath();
+        _agent.velocity = Vector3.zero;
 
-        currentHypnotizeValue = 1f;
-        timer = 0f;
+        _currentHypnotizeValue = 1f;
+        _timer = 0f;
 
-        stm.animator.SetBool("isHypno", true);
+        STM.Animator.SetBool("isHypno", true);
     }
 
     public override void UpdateState()
@@ -39,37 +39,37 @@ public class NPCHypnotizedState : NPCBaseState
         TimerUpdate();
         MeterUpdate();
 
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
     }
 
     private void MeterUpdate() {
-        if (stm.isControllingBar)
+        if (STM.IsControllingBar)
         {
-            GameplayUI.Instance.UpdateHypnoBar(currentHypnotizeValue / hypnotizeHealth);
+            GameplayUI.Instance.UpdateHypnoBar(_currentHypnotizeValue / _hypnotizeHealth);
         }
     }
 
     public void NPCClicked() {
-        timer = 0f;
-        currentHypnotizeValue += 1f;
-        if (hypnotizeHealth <= currentHypnotizeValue) {
-            stm.animator.SetBool("isCraze", true);
-            stm.IsCrazed = true;
-            stm.TransitionToState(stm.STATE_WANDER);
-            VFXManager.Instance.PlayPoofVFX(stm.transform.position + Vector3.up * 0.5f);
+        _timer = 0f;
+        _currentHypnotizeValue += 1f;
+        if (_hypnotizeHealth <= _currentHypnotizeValue) {
+            STM.Animator.SetBool("isCraze", true);
+            STM.IsCrazed = true;
+            STM.TransitionToState(STM.STATE_WANDER);
+            VFXManager.Instance.PlayPoofVFX(STM.transform.position + Vector3.up * 0.5f);
         }
     }
 
     private void TimerUpdate() {
-        if (timer >= maxHypnotizeDelay) {
-            stm.animator.SetBool("isHypno", false);
-            stm.TransitionToState(stm.STATE_RANDOMMOVE);
+        if (_timer >= _maxHypnotizeDelay) {
+            STM.Animator.SetBool("isHypno", false);
+            STM.TransitionToState(STM.STATE_RANDOMMOVE);
         }
 
     }
 
     public override void ExitState()
     {
-        agent.speed = initialSpeed;
+        _agent.speed = _initialSpeed;
     }
 }

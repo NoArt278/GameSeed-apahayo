@@ -1,66 +1,67 @@
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
+
 public class Transparentable : MonoBehaviour {
     [SerializeField] private MeshRenderer meshRenderer;
     public MeshRenderer MeshRenderer { get => meshRenderer; }
-    private Material[] storedMaterials;
-    private Material opaqueOutline, transparentOutline, transparentMaterial;
+    private Material[] _storedMaterials;
+    private Material _opaqueOutline;
+    private Material _transparentOutline;
 
     private void Awake() {
         if (meshRenderer == null) {
             Debug.LogWarning("MeshRenderer is null for " + gameObject.name);
             return;
         }
-        storedMaterials = meshRenderer.sharedMaterials;
-        for (int i=0; i<storedMaterials.Length; i++)
+        _storedMaterials = meshRenderer.sharedMaterials;
+        for (int i=0; i<_storedMaterials.Length; i++)
         {
-            storedMaterials[i] = new Material(storedMaterials[i]);
+            _storedMaterials[i] = new Material(_storedMaterials[i]);
         }
-        meshRenderer.sharedMaterials = storedMaterials;
-        transparentOutline = Resources.Load<Material>("Materials/outlineTransparent");
-        opaqueOutline = Resources.Load<Material>("Materials/outline");
+        meshRenderer.sharedMaterials = _storedMaterials;
+        _transparentOutline = Resources.Load<Material>("Materials/outlineTransparent");
+        _opaqueOutline = Resources.Load<Material>("Materials/outline");
     }
     public void BeTransparent() {
-        for (int i=0; i<storedMaterials.Length; i++)
+        for (int i=0; i<_storedMaterials.Length; i++)
         {
-            if (storedMaterials[i].name == "outline")
+            if (_storedMaterials[i].name == "outline")
             {
-                storedMaterials[i] = transparentOutline;
-                meshRenderer.sharedMaterials = storedMaterials;
+                _storedMaterials[i] = _transparentOutline;
+                meshRenderer.sharedMaterials = _storedMaterials;
                 continue;
             }
-            storedMaterials[i].DOFade(0.2f, 0.2f);
-            storedMaterials[i].SetFloat("_ZWrite", 0);
+            _storedMaterials[i].DOFade(0.2f, 0.2f);
+            _storedMaterials[i].SetFloat("_ZWrite", 0);
         }
     }
     public void BeOpaque() {
-        for (int i = 0; i < storedMaterials.Length; i++)
+        for (int i = 0; i < _storedMaterials.Length; i++)
         {
-            if (storedMaterials[i].name == "outlineTransparent")
+            if (_storedMaterials[i].name == "outlineTransparent")
             {
-                storedMaterials[i] = opaqueOutline;
-                meshRenderer.sharedMaterials = storedMaterials;
+                _storedMaterials[i] = _opaqueOutline;
+                meshRenderer.sharedMaterials = _storedMaterials;
                 continue;
             }
-            storedMaterials[i].DOFade(1f, 0.2f);
-            storedMaterials[i].SetFloat("_ZWrite", 1);
+            _storedMaterials[i].DOFade(1f, 0.2f);
+            _storedMaterials[i].SetFloat("_ZWrite", 1);
         }
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < storedMaterials.Length; i++)
+        for (int i = 0; i < _storedMaterials.Length; i++)
         {
-            if (storedMaterials[i].name == "outlineTransparent")
+            if (_storedMaterials[i].name == "outlineTransparent")
             {
-                storedMaterials[i] = opaqueOutline;
-                meshRenderer.sharedMaterials = storedMaterials;
+                _storedMaterials[i] = _opaqueOutline;
+                meshRenderer.sharedMaterials = _storedMaterials;
                 continue;
             }
-            Color currColor = storedMaterials[i].color;
+            Color currColor = _storedMaterials[i].color;
             currColor.a = 1f;
-            storedMaterials[i].color = currColor;
+            _storedMaterials[i].color = currColor;
         }
     }
 }

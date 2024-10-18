@@ -1,30 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NPCWayPointState : NPCBaseState
 {
-    GameObject[] wayPoints;
-
-    private NavMeshAgent agent;
-    private SpriteRenderer spriteRenderer;
-    private Vector3 randomWaypoint;
+    private NavMeshAgent _agent;
+    private SpriteRenderer _spriteRenderer;
+    private Vector3 _randomWaypoint;
 
     public NPCWayPointState(NPCStateMachine stm) : base(stm)
     {
-        agent = stm.GetComponent<NavMeshAgent>();
-        spriteRenderer = stm.GetComponentInChildren<SpriteRenderer>();
+        _agent = stm.GetComponent<NavMeshAgent>();
+        _spriteRenderer = stm.GetComponentInChildren<SpriteRenderer>();
     }
 
     public override void EnterState()
     {
         for (int i = 0; i < 30; i++)
         {
-            if (GetRandomWaypoint(out randomWaypoint)) break;
+            if (GetRandomWaypoint(out _randomWaypoint)) break;
         }
 
-        agent.SetDestination(randomWaypoint);
+        _agent.SetDestination(_randomWaypoint);
     }
 
     public override void UpdateState()
@@ -35,9 +31,9 @@ public class NPCWayPointState : NPCBaseState
 
     private void CheckArrival()
     {
-        if (agent.remainingDistance < 0.3f)
+        if (_agent.remainingDistance < 0.3f)
         {
-            stm.TransitionToState(stm.STATE_IDLE);
+            STM.TransitionToState(STM.STATE_IDLE);
         }
     }
 
@@ -45,7 +41,7 @@ public class NPCWayPointState : NPCBaseState
     {
         // TODO: Ganti Ke Waypoint Randomnya
 
-        Bounds bounds = stm.Surface.navMeshData.sourceBounds;
+        Bounds bounds = STM.Surface.navMeshData.sourceBounds;
 
         Vector3 randomPosition = new Vector3(
             Random.Range(bounds.min.x, bounds.max.x),
@@ -64,6 +60,6 @@ public class NPCWayPointState : NPCBaseState
     }
 
     private void AlignOrientation(){
-        if (agent.velocity.sqrMagnitude > 0.1f) spriteRenderer.flipX = agent.velocity.x > 0;
+        if (_agent.velocity.sqrMagnitude > 0.1f) _spriteRenderer.flipX = _agent.velocity.x > 0;
     }
 }

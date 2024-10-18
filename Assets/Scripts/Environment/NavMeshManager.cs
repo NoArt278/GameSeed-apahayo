@@ -2,11 +2,11 @@ using Unity.AI.Navigation;
 using UnityEngine;
 
 public class NavMeshManager : SingletonMB<NavMeshManager> {
-    [SerializeField] private NavMeshSurface catDogSurface;
-    [SerializeField] private NavMeshSurface npcSurface;
+    [SerializeField] private NavMeshSurface _catDogSurface;
+    [SerializeField] private NavMeshSurface _npcSurface;
 
     public void BuildNavMesh() {
-        catDogSurface.BuildNavMesh();
-        npcSurface.BuildNavMesh();
+        _catDogSurface.BuildNavMesh();
+        _npcSurface.BuildNavMesh();
     }
 }

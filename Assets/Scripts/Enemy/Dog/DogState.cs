@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class DogState : MonoBehaviour
 {
-    protected NavMeshAgent agent;
-    protected GameObject player;
-    [SerializeField] protected FieldOfView fieldOfView;
-    [SerializeField] protected SpriteRenderer spriteRenderer;
-    [SerializeField] protected Animator animator;
+    protected NavMeshAgent Agent;
+    protected GameObject Player;
+    [SerializeField] protected FieldOfView FieldOfView;
+    [SerializeField] protected SpriteRenderer SpriteRenderer;
+    [SerializeField] protected Animator Animator;
 
     protected void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        Agent = GetComponent<NavMeshAgent>();
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public abstract void EnterState(DogStateMachine stateMachine);

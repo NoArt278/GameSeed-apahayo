@@ -383,20 +383,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d742c74cfa1c8f74ea7455348a7fcd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 620627452154065762}
-  spriteRenderer: {fileID: 8463139469125936459}
-  animator: {fileID: 5441396264215612490}
+  FieldOfView: {fileID: 620627452154065762}
+  SpriteRenderer: {fileID: 8463139469125936459}
+  Animator: {fileID: 5441396264215612490}
   currentState: 1
-  speed: 4.1
-  rotateDuration: 2
-  biasTowardsPlayer: 0.9
-  minDistanceAfterHide: 3
+  _speed: 4.1
+  _rotateDuration: 2
+  _biasTowardsPlayer: 0.8
+  _minDistanceAfterHide: 3
   wanderRadius:
-    min: 2
-    max: 12
+    Min: 2
+    Max: 12
   idleDuration:
-    min: 2
-    max: 4
+    Min: 2
+    Max: 4
   maxAttempts: 30
 --- !u!114 &3606688542080626351
 MonoBehaviour:
@@ -410,13 +410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f084c469538a4124fa9a846c3283c839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 620627452154065762}
-  spriteRenderer: {fileID: 8463139469125936459}
-  animator: {fileID: 5441396264215612490}
-  chaseRange: 10
-  chaseAngle: 0
-  shouldChase: 0
-  obstacleMask:
+  FieldOfView: {fileID: 620627452154065762}
+  SpriteRenderer: {fileID: 8463139469125936459}
+  Animator: {fileID: 5441396264215612490}
+  _chaseRange: 10
+  _chaseAngle: 0
+  ShouldChase: 0
+  _obstacleMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!114 &620627452154065762
@@ -431,22 +431,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8baf2b46f0f23e349a31fe6a2f08c926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outerRadius: 6
-  innerRadius: 4
+  OuterRadius: 6
+  InnerRadius: 4
   Angle: 170
-  closeRange: 10
-  meshFilter: {fileID: 7752524031374214084}
-  meshRenderer: {fileID: 2962366968393680047}
-  innerMeshFilter: {fileID: 9220263630957861205}
-  innerMeshRenderer: {fileID: 653570143675347838}
-  visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
-  rayCount: 50
-  isPlayerVisible: 0
-  isChasing: 0
-  playerMask:
+  CloseRange: 10
+  _outerMeshFilter: {fileID: 7752524031374214084}
+  _outerMeshRenderer: {fileID: 2962366968393680047}
+  _innerMeshFilter: {fileID: 9220263630957861205}
+  _innerMeshRenderer: {fileID: 653570143675347838}
+  _visionMaterial: {fileID: 2100000, guid: 772a206b58ecd5041a04ecd69cf549af, type: 2}
+  _rayCount: 50
+  IsPlayerVisible: 0
+  IsChasing: 0
+  _playerMask:
     serializedVersion: 2
     m_Bits: 1032
-  obstacleMask:
+  _obstacleMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!54 &3721438531295730029

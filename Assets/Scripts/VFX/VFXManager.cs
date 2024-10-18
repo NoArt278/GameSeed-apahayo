@@ -2,32 +2,32 @@ using System.Collections;
 using UnityEngine;
 
 public class VFXManager : SingletonMB<VFXManager> {
-    [SerializeField] private ParticleSystem poofVFX;
-    [SerializeField] private Animator zapVFX;
+    [SerializeField] private ParticleSystem _poofVFX;
+    [SerializeField] private Animator _zapVFX;
 
-    private Transform zapVFXTransform;
+    private Transform _zapVFXTransform;
 
     public void PlayPoofVFX(Vector3 position) {
-        poofVFX.transform.position = position;
-        poofVFX.Play();
+        _poofVFX.transform.position = position;
+        _poofVFX.Play();
         AudioManager.Instance.PlayOneShot("Poof");
     }
 
     public void PlayZapVFX(Transform tr) {
-        zapVFX.transform.position = tr.position;
-        zapVFX.gameObject.SetActive(true);
-        zapVFXTransform = tr;
+        _zapVFX.transform.position = tr.position;
+        _zapVFX.gameObject.SetActive(true);
+        _zapVFXTransform = tr;
         StartCoroutine(ZapVFXRoutine());
     }
 
     private IEnumerator ZapVFXRoutine() {
-        while (zapVFX.gameObject.activeSelf) {
-            zapVFX.transform.position = zapVFXTransform.position;
+        while (_zapVFX.gameObject.activeSelf) {
+            _zapVFX.transform.position = _zapVFXTransform.position;
             yield return null;
         }
     }
 
     public void StopZapVFX() {
-        zapVFX.gameObject.SetActive(false);
+        _zapVFX.gameObject.SetActive(false);
     }
 }

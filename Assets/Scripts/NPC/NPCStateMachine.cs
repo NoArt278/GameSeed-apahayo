@@ -1,11 +1,7 @@
-using System;
 using NaughtyAttributes;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-
 
 [System.Serializable]
 public class HypnotizeStats
@@ -16,8 +12,8 @@ public class HypnotizeStats
 
 public class NPCStateMachine : MonoBehaviour
 {
-    public NPCBaseState currentState;
-    [ShowNativeProperty] public string CurrentStateName => currentState != null ? currentState.GetType().Name : "None";
+    public NPCBaseState CurrentState;
+    [ShowNativeProperty] public string CurrentStateName => CurrentState != null ? CurrentState.GetType().Name : "None";
 
     // STATES ========================================
     public  NPCIdleState        STATE_IDLE { get; private set; }
@@ -34,16 +30,16 @@ public class NPCStateMachine : MonoBehaviour
     public  Collider            Collider { get; private set; }
 
     // STATS =========================================
-    [SerializeField] private HypnotizeStats hypnotizeStats;
-    public  HypnotizeStats HypnotizeStats { get => hypnotizeStats; }
-    public bool isControllingBar = false;
-    public bool IsCrazed = false;
+    [SerializeField] private HypnotizeStats _hypnotizeStats;
+    public  HypnotizeStats HypnotizeStats { get => _hypnotizeStats; }
+    [HideInInspector] public bool IsControllingBar = false;
+    [HideInInspector] public bool IsCrazed = false;
 
     // SPAWNER =======================================
-    public NPCSpawner Spawner;
+    [HideInInspector] public NPCSpawner Spawner;
 
     // ANIMATION =====================================
-    public Animator animator;
+    [HideInInspector] public Animator Animator;
     public Transform Center;
 
     private void Awake() {
@@ -64,25 +60,25 @@ public class NPCStateMachine : MonoBehaviour
         // STATE_WAYPOINT = new NPCWayPointState(this);
 
         // ANIMATION
-        animator = GetComponentInChildren<Animator>();
+        Animator = GetComponentInChildren<Animator>();
 
     }
 
     public void Initialize(NavMeshSurface surface, HypnotizeStats stats = null) {
         Surface = surface;
-        if (stats != null) hypnotizeStats = stats;
+        if (stats != null) _hypnotizeStats = stats;
     }
 
     void Start()
     {
-        currentState = STATE_RANDOMMOVE;
-        currentState.EnterState();
+        CurrentState = STATE_RANDOMMOVE;
+        CurrentState.EnterState();
     }
 
     void Update()
     {
         if (GameManager.Instance.CurrentState != GameState.InGame) return;
-        currentState.UpdateState();
+        CurrentState.UpdateState();
 
         if (IsCrazed && IsOutOfCamera()) SelfDestroy();
     }
@@ -104,9 +100,9 @@ public class NPCStateMachine : MonoBehaviour
 
     public void TransitionToState(NPCBaseState state)
     {
-        currentState.ExitState();
-        currentState = state;
-        currentState.EnterState();
+        CurrentState.ExitState();
+        CurrentState = state;
+        CurrentState.EnterState();
     }
 
     public void StartHyponotize()
@@ -116,28 +112,28 @@ public class NPCStateMachine : MonoBehaviour
 
     public bool CheckHypnotize()
     {
-        return currentState == STATE_HYPNOTIZED;
+        return CurrentState == STATE_HYPNOTIZED;
     }
 
     public bool CheckCrazed()
     {
-        return currentState == STATE_WANDER;
+        return CurrentState == STATE_WANDER;
     }
 
     public void OnNPCClicked()
     {
-        if (currentState == STATE_HYPNOTIZED)
+        if (CurrentState == STATE_HYPNOTIZED)
         {
             STATE_HYPNOTIZED.NPCClicked();
         }
     }
 
     public void IsNPCWalking(){
-        animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
+        Animator.SetBool("isWalking", Agent.velocity.sqrMagnitude > 0);
     }
 
     public void SelfDestroy() {
-        animator.SetTrigger("Reset");
+        Animator.SetTrigger("Reset");
         if (Spawner != null) Spawner.Return(gameObject);
         else Destroy(gameObject);
     }

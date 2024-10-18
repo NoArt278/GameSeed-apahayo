@@ -5,42 +5,42 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : SingletonMB<AudioManager> {
-    [SerializeField] private List<Sound> sounds;
-    [SerializeField] private int backgroundChannelAmount = 5;
-    [SerializeField] private AudioMixerGroup backgroundMixerGroup;
-    [SerializeField] private AudioMixerGroup sfxMixerGroup;
+    [SerializeField] private List<Sound> _sounds;
+    [SerializeField] private int _backgroundChannelAmount = 5;
+    [SerializeField] private AudioMixerGroup _backgroundMixerGroup;
+    [SerializeField] private AudioMixerGroup _sfxMixerGroup;
 
-    private List<AudioSource> backgroundChannels;
-    private List<AudioSource> occupiedBackgroundChannels;
+    private List<AudioSource> _backgroundChannels;
+    private List<AudioSource> _occupiedBackgroundChannels;
 
     protected override void Awake() {
         base.Awake();
 
-        backgroundChannels = new List<AudioSource>();
-        for (int i = 0; i < backgroundChannelAmount; i++) {
+        _backgroundChannels = new List<AudioSource>();
+        for (int i = 0; i < _backgroundChannelAmount; i++) {
             AudioSource backgroundSrc = gameObject.AddComponent<AudioSource>();
-            backgroundSrc.outputAudioMixerGroup = backgroundMixerGroup;
-            backgroundChannels.Add(backgroundSrc);
+            backgroundSrc.outputAudioMixerGroup = _backgroundMixerGroup;
+            _backgroundChannels.Add(backgroundSrc);
         }
 
-        occupiedBackgroundChannels = new List<AudioSource>();
+        _occupiedBackgroundChannels = new List<AudioSource>();
 
-        foreach (Sound sound in sounds) {
-            if (sound.type == AudioType.SFX) {
+        foreach (Sound sound in _sounds) {
+            if (sound.Type == AudioType.SFX) {
                 AudioSource sfxSource = gameObject.AddComponent<AudioSource>();
-                sound.source = sfxSource;
-                sfxSource.outputAudioMixerGroup = sfxMixerGroup;
+                sound.Source = sfxSource;
+                sfxSource.outputAudioMixerGroup = _sfxMixerGroup;
 
-                sound.source.volume = sound.volume;
-                sound.source.pitch = sound.pitch;
-                sound.source.loop = sound.loop;
-                sound.source.clip = sound.clip;
+                sound.Source.volume = sound.Volume;
+                sound.Source.pitch = sound.Pitch;
+                sound.Source.loop = sound.Loop;
+                sound.Source.clip = sound.Clip;
             }
         }
     }
 
     public Sound FindSound(string name) {
-        return sounds.Find(s => s.name == name);
+        return _sounds.Find(s => s.Name == name);
     }
 
     public void PlayOneShot(string name) {
@@ -54,39 +54,39 @@ public class AudioManager : SingletonMB<AudioManager> {
     }
 
     public void PlayOneShot(Sound sound) {
-        if (sound.type != AudioType.SFX) {
+        if (sound.Type != AudioType.SFX) {
             Debug.LogWarning("Play One Shot is only for SFX");
             return;
         }
 
-        sound.source.clip = sound.clip;
-        sound.source.volume = sound.volume;
-        sound.source.pitch = sound.pitch;
-        sound.source.PlayOneShot(sound.clip);
+        sound.Source.clip = sound.Clip;
+        sound.Source.volume = sound.Volume;
+        sound.Source.pitch = sound.Pitch;
+        sound.Source.PlayOneShot(sound.Clip);
     }
 
     public IEnumerator PlayOneShotCor(string name) {
         Sound sound = FindSound(name);
         PlayOneShot(name);
-        yield return new WaitForSeconds(sound.clip.length);
+        yield return new WaitForSeconds(sound.Clip.length);
     }
 
     public void Play(string name, bool overrideExisting = true) {
-        Sound sound = sounds.Find(s => s.name == name);
+        Sound sound = _sounds.Find(s => s.Name == name);
         if (sound == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
 
-        bool isPlaying = sound.source != null && sound.source.isPlaying;    
+        bool isPlaying = sound.Source != null && sound.Source.isPlaying;    
         if (isPlaying && !overrideExisting) return; 
 
-        if (sound.type == AudioType.Background) {
+        if (sound.Type == AudioType.Background) {
             AudioSource backgroundSrc;
             if (isPlaying) { // Override existing if already playing
-                backgroundSrc = sound.source;
+                backgroundSrc = sound.Source;
             } else { // Else, find empty channel
-                backgroundSrc = backgroundChannels.Find(src => !occupiedBackgroundChannels.Contains(src));
+                backgroundSrc = _backgroundChannels.Find(src => !_occupiedBackgroundChannels.Contains(src));
             }
 
             if (backgroundSrc == null) {
@@ -94,61 +94,61 @@ public class AudioManager : SingletonMB<AudioManager> {
                 return;
             }
 
-            occupiedBackgroundChannels.Add(backgroundSrc);
-            sound.source = backgroundSrc;
+            _occupiedBackgroundChannels.Add(backgroundSrc);
+            sound.Source = backgroundSrc;
         }
 
-        sound.activeTween?.Kill();
+        sound.ActiveTween?.Kill();
 
-        sound.source.clip = sound.clip;
-        sound.source.volume = sound.volume;
-        sound.source.pitch = sound.pitch;
-        sound.source.Play();
+        sound.Source.clip = sound.Clip;
+        sound.Source.volume = sound.Volume;
+        sound.Source.pitch = sound.Pitch;
+        sound.Source.Play();
     }
 
     public void Stop(string name) {
-        Sound sound = sounds.Find(s => s.name == name);
+        Sound sound = _sounds.Find(s => s.Name == name);
         if (sound == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
 
-        sound.source.Stop();
-        if (sound.type == AudioType.Background) {
-            occupiedBackgroundChannels.Remove(sound.source);
-            sound.source = null;
+        sound.Source.Stop();
+        if (sound.Type == AudioType.Background) {
+            _occupiedBackgroundChannels.Remove(sound.Source);
+            sound.Source = null;
         }
     }
 
     public void StopFadeOut(string name, float fadeTime) {
-        Sound sound = sounds.Find(s => s.name == name);
+        Sound sound = _sounds.Find(s => s.Name == name);
         if (sound == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
 
-        sound.activeTween?.Kill();
-        sound.source.volume = sound.volume;
-        sound.activeTween = sound.source.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => {
-            sound.source.Stop();
-            sound.activeTween = null;
-            if (sound.type == AudioType.Background) {
-                occupiedBackgroundChannels.Remove(sound.source);
-                sound.source = null;
+        sound.ActiveTween?.Kill();
+        sound.Source.volume = sound.Volume;
+        sound.ActiveTween = sound.Source.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => {
+            sound.Source.Stop();
+            sound.ActiveTween = null;
+            if (sound.Type == AudioType.Background) {
+                _occupiedBackgroundChannels.Remove(sound.Source);
+                sound.Source = null;
             }
         });
     }
 
     public void StopBGMFadeOut(float fadeTime) {
-        foreach (Sound sound in sounds) {
-            if (sound.type == AudioType.Background && sound.source != null) {
-                sound.activeTween?.Kill();
-                sound.source.volume = sound.volume;
-                sound.activeTween = sound.source.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => {
-                    sound.source.Stop();
-                    sound.activeTween = null;
-                    occupiedBackgroundChannels.Remove(sound.source);
-                    sound.source = null;
+        foreach (Sound sound in _sounds) {
+            if (sound.Type == AudioType.Background && sound.Source != null) {
+                sound.ActiveTween?.Kill();
+                sound.Source.volume = sound.Volume;
+                sound.ActiveTween = sound.Source.DOFade(0, fadeTime).SetUpdate(true).OnComplete(() => {
+                    sound.Source.Stop();
+                    sound.ActiveTween = null;
+                    _occupiedBackgroundChannels.Remove(sound.Source);
+                    sound.Source = null;
                 });
             }
         }
